@@ -1,4 +1,4 @@
-# vuedata
+# mydata-analysis-portal-frontend
 
 ## Project setup
 ```
