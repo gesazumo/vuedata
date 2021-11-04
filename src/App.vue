@@ -1,6 +1,7 @@
 <template>
 	<v-app>
 		<v-main>
+			<div class="aaa">aaa</div>
 			{{ flag }}
 			<app-header />
 			<router-view />

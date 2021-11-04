@@ -5,6 +5,9 @@ import store from '@/store'
 import vuetify from '@/plugins/vuetify'
 import util from '@/utils/util'
 
+import '@/assets/css/common.css'
+import '@/assets/css/devcommon.css'
+
 Vue.config.productionTip = false
 
 Object.keys(util).forEach(key => (Vue.prototype[key] = util[key]))
