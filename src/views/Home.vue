@@ -1,5 +1,6 @@
 <template>
 	<div class="about">
+		여깅
 		<h1>This is an home page</h1>
 		<home-component />
 	</div>
