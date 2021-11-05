@@ -1,7 +1,6 @@
 <template>
 	<v-app>
 		<v-main>
-			아아아아
 			<div class="aaa">aaa</div>
 			{{ flag }}
 			<app-header />
