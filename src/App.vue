@@ -1,33 +1,22 @@
 <template>
 	<v-app>
 		<v-main>
-			<div class="aaa">aaa</div>
-			{{ flag }}
-			<app-header />
+			<Header />
 			<router-view />
 			<Footer />
-			<button @click="setFlag(false)">asdfadsfasdf</button>
 		</v-main>
 	</v-app>
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue'
+import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
-import { mapActions, mapState } from 'vuex'
-
 export default {
-	components: { AppHeader, Footer },
+	components: { Header, Footer },
 	name: 'App',
-	data: () => ({
-		//
-	}),
-	computed: {
-		...mapState(['flag']),
-	},
-	methods: {
-		...mapActions(['setFlag']),
-	},
+	data: () => ({}),
+	computed: {},
+	methods: {},
 }
 </script>
