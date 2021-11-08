@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { pubRouter } from './pub'
 
 Vue.use(VueRouter)
 
@@ -11,8 +12,8 @@ const routes = [
 	},
 	{
 		path: '/pub',
-		name: 'pub',
 		component: () => import('@/views/pub/Pub.vue'),
+		children: pubRouter,
 	},
 ]
 
