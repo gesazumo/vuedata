@@ -1,5 +1,5 @@
 <template>
-	<v-footer color="primary lighten-1" padless absolute>
+	<v-footer color="primary lighten-1" padless relative>
 		<v-row justify="center" no-gutters>
 			<v-col
 				class="secondary lighten-1 py-4 text-center white--text"
