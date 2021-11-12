@@ -7091,6 +7091,11 @@
     "is-core-module" "^2.2.0"
     "path-parse" "^1.0.6"
 
+"ress@^4.0.0":
+  "integrity" "sha512-awpQM9e6VL6ljw4XuH/ww2q4IEU0SAY9Lcvu4h4nIB5c5XhTUXH3Me8WA0zW3s3naU79lY8uVUJg30dvKJ5cNw=="
+  "resolved" "https://registry.npmjs.org/ress/-/ress-4.0.0.tgz"
+  "version" "4.0.0"
+
 "restore-cursor@^2.0.0":
   "integrity" "sha1-n37ih/gv0ybU/RYpI9YhKe7g368="
   "resolved" "https://registry.npmjs.org/restore-cursor/-/restore-cursor-2.0.0.tgz"
