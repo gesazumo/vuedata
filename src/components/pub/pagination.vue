@@ -4,6 +4,7 @@
 			v-model="page"
 			:length="15"
 			:total-visible="7"
+			color="secondary"
 		></v-pagination>
 	</div>
 </template>

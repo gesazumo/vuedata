@@ -33,15 +33,15 @@
     url(../font/KBFGDisplayM.woff) format("woff");
 }
 
-/* @font-face { */
+@font-face { 
 /*KB금융 제목체 Light*/
-/* font-family: "KBFGDisplayL";
+font-family: "KBFGDisplayL";
   font-style: normal;
   font-weight: normal;
   src: url(../font/KBFGDisplayL.eot);
   src: url(../font/KBFGDisplayL.eot?#iefix) format("embedded-opentype"),
     url(../font/KBFGDisplayL.woff) format("woff");
-} */
+} 
 
 /*layout*/
 
@@ -260,24 +260,25 @@ button:focus {
 }
 
 button.primary:hover {
-  background: #dd3300 !important;
+  background: #ffbc00 !important;
   color: #fff !important;
 }
 button.secondary:hover {
-  background: #504842 !important;
+  background: #EFE9E1 !important;
   color: #fff !important;
 }
 
 button.large {
-  height: 48px;
+  height: 50px;
   width: 160px;
-  font-size: 18px;
+  font-size: 16px;
   padding: 0 24px;
 }
 button.small {
-  height: 28px;
-  min-width: 48px;
-  font-size: 12px;
+  height: 32px;
+  min-width: 0;
+  padding:0 12px;
+  font-size: 14px;
   padding: 0 10px;
 }
 
@@ -326,6 +327,20 @@ button {
 }*/
 
 /*pagebutton*/
+.v-pagination__item {
+  background: transparent;
+  border-radius: 4px;
+  font-size: 14px !important;
+  height: 34px;
+  margin: 0.3rem;
+  min-width: 34px;
+  padding: 0 5px;
+  text-decoration: none;
+  transition: 0.3s cubic-bezier(0, 0, 0.2, 1);
+  width: auto;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
 .v-pagination__navigation {
   height: 32px !important;
   width: 32px !important;
@@ -338,6 +353,7 @@ button {
   width: 32px !important;
   min-width: 0 !important;
 }
+
 
 /*radio style*/
 .boxradio input[type="radio"] {
@@ -362,6 +378,9 @@ button {
   color: #fff;
 }
 
+/*checkbox*/
+
+
 /*input*/
 input[type="text"] {
 }
@@ -369,15 +388,90 @@ input[type="text"] {
 .v-text-field .v-input__control {
   max-width: 240px;
 }
+.v-text-field--filled > .v-input__control > .v-input__slot, .v-text-field--full-width > .v-input__control > .v-input__slot, .v-text-field--outlined > .v-input__control > .v-input__slot {
+  align-items: stretch;
+  min-height: 0px !important;
+}
+.v-input input {
+  max-height: 40px !important;
+}
 
 .v-text-field input {
   flex: 1 1 auto;
   line-height: 20px;
-  padding: 8px 0 8px;
+  padding: 6px 0 8px !important;
   max-width: 100%;
   min-width: 0px;
   width: 100%;
 }
+
+.v-label {
+  font-size: 14px !important;
+  line-height: 1;
+  min-height: 8px;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+.v-text-field .v-label {
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 5px !important;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.v-text-field--outlined .v-label {
+  top: 5px !important;
+}
+.v-input {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 auto;
+  font-size: 14px !important;
+  letter-spacing: normal;
+  max-width: 100%;
+  text-align: left;
+}
+
+.v-input .v-label {
+  height: 0;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.v-text-field--enclosed .v-input__append-inner {
+  margin-top:3px !important;
+}
+
+.v-list-item {
+  align-items: center;
+  display: flex;
+  flex: 1 1 100%;
+  letter-spacing: normal;
+  min-height: 40px !important;
+  outline: none;
+  padding: 0 16px;
+  position: relative;
+  text-decoration: none;
+}
+
+.v-list-item__title {
+  align-self: center;
+  font-size: 14px !important;
+}
+
+/*selectmenu*/
+.v-menu__content {
+  position: absolute;
+  display: inline-block;
+  max-width: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  contain: content;
+  box-shadow: 0px 2px 2px -1px rgb(0 0 0 / 20%), 0px 4px 5px 1px rgb(0 0 0 / 14%), 0px 3px 7px 2px rgb(0 0 0 / 12%);
+  /*box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);*/
+  border-radius: 4px;
+}
+
 
 /*errorpage*/
 .error-page {
@@ -389,7 +483,7 @@ input[type="text"] {
     margin-left: -250px;
     margin-top : -150px;
     */
-  position: absolute;
+  position: relative;
   left: 0;
   top: 0;
   bottom: 0;
@@ -397,27 +491,32 @@ input[type="text"] {
   height: 100%;
   width: 100%;
   display: table;
-  font-family: "KBFGTextM";
 }
 .error-page .inner {
   display: table-cell;
   vertical-align: middle;
+  text-align: center;
   width: 400px;
   margin: 0 auto;
+}
+.error-page .inner img {
+  margin: 30px auto;
 }
 .error-text {
   text-align: center;
 }
 .error-text .meg {
 }
-.error-text .meg h3 {
-  font-size: 20px;
+.error-text .meg p {
+  font-family: "KBFGTextM";
+  font-size: 24px;
 }
 .error-text .meg span {
+  font-family: "KBFGDisplayL";
   font-size: 16px;
 }
 .error-text .meg-btn {
-  font-size: 16px;
+  
 }
 
 /*compoents*/
@@ -529,5 +628,9 @@ table.liner td {
 }
 
 .v-select > .v-input__control > .v-input__slot {
-  max-width: 240px;
+  max-width: 100% !important;
+}
+
+.v-text-field fieldset, .v-text-field .v-input__control {
+  max-width: 100% !important;
 }

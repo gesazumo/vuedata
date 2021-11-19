@@ -292,6 +292,13 @@ address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
 table{width:100%;border-collapse:collapse;border:0;border-spacing:0}
 caption{visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0}
 
+body, th, td, input, select, textarea, button {
+  font-size: 14px;
+  line-height: 28px;
+  font-family: 'KBFGTextL','돋움',dotum,sans-serif;
+  color: #666
+}
+
 body, ul, li, h1 {
   margin:0;
   padding:0;
