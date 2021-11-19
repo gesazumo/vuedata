@@ -1,9 +1,5 @@
-<template>
-	<div></div>
-</template>
+<template><div class="header">header</div></template>
 
-<script>
-export default {}
-</script>
+<script></script>
 
 <style></style>
