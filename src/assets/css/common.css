@@ -43,8 +43,40 @@
         url('/src/assets/font/KBFGDisplayL.woff') format("woff");
 }
 
+/*layout*/
 
-
+/*headline*/
+h1,h2,h3,h4,h5,h6 {font-family: 'KBFGDisplayM';}
+h1 {
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 84px;
+}
+h2 {
+    font-size:48px;
+    font-weight: normal;
+    line-height: 60px;
+}
+h3 {
+    font-size:48px;
+    font-weight: normal;
+    line-height: 60px;
+}
+h4 {    
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 34px;
+}
+h5 {
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 32px;
+}
+h6 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 30px;
+}
 
 #app { 
     font-family: 'KBFGTextM';
