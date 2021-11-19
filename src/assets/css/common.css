@@ -1,7 +1,61 @@
 @charset "utf-8";
 
-@import 'reset.css';
-@import 'kb_web.css';
+@import './reset.css';
+
+/*font*/
+@font-face { /*KB금융 본문체 Light*/
+    font-family:"KBFGTextL";
+    font-style:normal;
+    font-weight:normal;
+    src:url("/src/assets/font/KBFGTextL.eot");
+    src:local('※'), 
+        url('/src/assets/font//KBFGTextL.eot?#iefix') format("embedded-opentype"), 
+        url('/src/assets/font/KBFGTextL.woff') format("woff");
+}
+
+@font-face { /*KB금융 본문체 Medium*/
+    font-family:"KBFGTextM";
+    font-style:normal;
+    font-weight:normal;
+    src:url("/src/assets/font/KBFGTextM.eot");
+    src:local('※'), 
+        url('/src/assets/font/KBFGTextM.eot?#iefix') format("embedded-opentype"), 
+        url('/src/assets/font/KBFGTextM.woff') format("woff");
+}
+
+@font-face { /*KB금융 제목체 Medium*/
+    font-family:"KBFGDisplayM";
+    font-style:normal;
+    font-weight:normal;
+    src:url("/src/assets/font/KBFGDisplayM.eot");
+    src:local('※'), 
+        url('/src/assets/font/KBFGDisplayM.eot?#iefix') format("embedded-opentype"), 
+        url('/src/assets/font/KBFGDisplayM.woff') format("woff");
+}
+
+@font-face { /*KB금융 제목체 Light*/
+    font-family:"KBFGDisplayL";
+    font-style:normal;
+    font-weight:normal;
+    src:url("/src/assets/font/KBFGDisplayL.eot");
+    src:local('※'), 
+        url('/src/assets/font/KBFGDisplayL.eot?#iefix') format("embedded-opentype"), 
+        url('/src/assets/font/KBFGDisplayL.woff') format("woff");
+}
+
+
+
+
+#app { 
+    font-family: 'KBFGTextM';
+}
+.v-application {
+    font-family: 'KBFGTextM';
+}
+.v-application ul {
+    padding-left:0px !important;
+}
+
 
 body {
     font-family: 'KBFGTextM';
@@ -11,11 +65,139 @@ body {
     color: #1e1909;
 }
 
+div { 
+    font-family: 'KBFGTextM'; 
+}
+
+/*layout*/
+.container {
+    width: 100%;
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*visual*/
+#visual {
+    position:relative;
+}
+
+
+/*gnb*/
+#gnb {
+    position:relative;
+    display:inline-block;
+    width: 100%;
+    height: 72px;
+    background: -webkit-linear-gradient(rgba(20, 11, 1, 1) 72px,rgba(20, 11, 1, 0.2) 72px);
+	transition: 0.3s ease-in;
+	overflow:hidden;
+}
+/*
+nav {
+    width:1440px; 
+    margin:0 auto;
+    font-family:  "KBFGTextM", "sans-serif";
+    font-size: 20px;
+    color:#fff;
+}
+nav > ul > li {float:left; position: relative; padding:20px 0; margin-right: 72px;}
+nav > ul > li:first-child {margin-right: 235px;}
+nav > ul > li:last-child {margin-right:0;}
+nav > ul > li ul{ width:100%; opacity:0; position: absolute; transition:0.3s 0.2s;}
+nav > ul > li ul li{white-space:nowrap; font-family: 'KBFGDisplayL'; font-size:16px;}
+nav > ul > li:hover ul{opacity:1; }
+
+nav > ul > li.logo img {
+    width: 177px;
+    height: 30px;
+}
+*/
+
+
+/*maincontents*/
+.section {
+    background:#f4f3f2;
+}
+
+/*footer*/
+#footer {
+    width: 100%;
+    position: relative;
+    background :#f4f3f2;
+    text-align: center;
+
+}
+#footer .inner {
+    position: relative;
+    display: inline-block;
+    width: 1440px;
+    margin:0 auto;
+    padding: 40px 0;
+}
+#footer .inner ul.footMenu {    
+    float: left;
+    width: 1020px;
+    display: inline-block;
+}
+#footer .inner ul.footMenu li {
+    float:left;
+    margin-right: 190px;    
+    color:#261f19;
+    font-family: 'KBFGDisplayM';
+    font-size: 16px;
+}
+#footer .inner ul.footMenu li:last-child {
+    margin-right:0;
+}
+#footer .inner ul.footMenu li a {
+    color:#261f19;
+}
+#footer .inner ul.footMenu li a:link {text-decoration: none;}
+#footer .inner ul.footMenu li a:hover {
+    color: #968d83;
+}
+#footer .inner ul.footMenu li ul {
+    margin:0;
+
+}
+#footer .inner ul.footMenu li ul li {
+    margin:0;
+    padding:0;
+    float:left;
+    clear:both;
+    font-size:14px;
+    line-height: 30px;;
+}
+.copyright {
+    float:left;
+    clear:both;
+    margin-top: 70px !important;
+    margin-bottom: 50px !important;
+    font-family: 'KBFGDisplayL';
+    font-size: 14px;
+}
+
 
 /*text*/
-
+textarea {
+	margin-bottom: 10px;
+}
+textarea::-webkit-scrollbar {
+	width: 3px;
+	background-color: #d8d8d8;
+}
 
 /*link*/
+
+/*textfield
+.v-text-field {
+    max-width:240px !important;
+}
+*/
+
+
+
 
 
 /*btn*/
@@ -23,6 +205,7 @@ button {
     font-family: 'KBFGTextM'; /*KB금융본문체*/
     font-size: 14px;
     font-weight: normal;
+    line-height: 1em;
     display: inline-block;
     text-align: center;
     text-decoration: none;
@@ -80,4 +263,200 @@ button.round {
     background-color: #fff;
     color: #504842;
     border-radius: 50px;
+}
+
+
+/*
+button {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  color: #333;
+  background-color:#fff;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  &[disabled]{
+    cursor: not-allowed;
+  }
+  &.danger {
+    background-color: #ff4949;
+    color: #fff;
+  }
+  &.success {
+    background-color: #13ce66;
+    color: #fff;
+  }
+  &.info {
+    background-color: #50bfff;
+    color: #fff;
+  }
+}*/
+
+/*pagebutton*/
+.v-pagination__navigation {
+	height: 32px !important;
+	width: 32px !important;
+	min-width: 0 !important;
+	max-width: 32px !important;
+	font-size: 14px !important;
+}
+
+.v-pagination__navigation ul li button:first-child {
+	width: 32px !important;
+	min-width: 0 !important;
+}
+
+/*radio style*/
+.boxradio input[type='radio'] {
+	display: none;
+}
+
+.boxradio input[type='radio'] + span {
+	display: inline-block;
+	background: none;
+	border: 1px solid #dfdfdf;
+	padding: 0px 10px;
+	text-align: center;
+	height: 35px;
+	line-height: 33px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.boxradio input[type='radio']:checked + span {
+	border: 1px solid #23a3a7;
+	background: #23a3a7;
+	color: #fff;
+} 
+
+/*input*/
+input[type="text"] {
+    
+}
+.v-text-field fieldset, .v-text-field .v-input__control {
+    max-width: 240px;
+}
+
+.v-text-field input {
+    flex: 1 1 auto;
+    line-height: 20px;
+    padding: 8px 0 8px;
+    max-width: 100%;
+    min-width: 0px;
+    width: 100%;
+}
+
+/*errorpage*/
+.error-page {
+    /*position: absolute;
+    top: 50%;  
+    left: 50%;
+    width: 500px; 
+    height: 300px;
+    margin-left: -250px;
+    margin-top : -150px;
+    */
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    display: table;
+    font-family:'KBFGTextM'
+}
+.error-page .inner {
+    display: table-cell;
+    vertical-align: middle;
+    width: 400px;
+    margin:0 auto;
+}    
+.error-text {text-align: center;}
+.error-text .meg {}
+.error-text .meg h3 {font-size: 20px;}
+.error-text .meg span {font-size: 16px;}
+.error-text .meg-btn {font-size: 16px;}
+
+
+/*compoents*/
+.viewpage {
+    width: 600px;
+    margin:0 auto;
+}
+
+
+/*table*/
+table { 
+    border-collapse: collapse; 
+    width: 100%;
+} 
+th { text-align: center; padding:10px 0; background:#f5f5f5; border: 1px solid #d8d8d8;  }
+th:first-child {border-left:none;}
+th:last-child {border-right:none;}
+td { text-align: center; padding:10px 0; border: 1px solid #d8d8d8; }
+td:first-child {border-left:none;}
+td:last-child {border-right:none;}
+
+table.liner { 
+    border-collapse: collapse; 
+    width: 100%;
+} 
+table.liner tr { border-top: 1px solid #d8d8d8; }
+table.liner tr:last-child { border-bottom: 1px solid #d8d8d8; }
+table.liner th { text-align: center; padding:10px 0; background:#f5f5f5; border:none; }
+table.liner td { text-align: center; padding:10px 0; border:none; }
+
+
+/*popup*/
+#layerpop {
+    width: 300px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: table;
+    background:#f5f5f5;
+}
+#layerpop .inner {padding:30px;}
+#layerpop .inner .poptit {}
+#layerpop .inner .poptit p {
+   
+}
+#layerpop .inner .poptit button {    
+    float: right;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0;
+    margin: 0;
+    margin-top:-40px;
+    padding: 0;
+    height: 30px;
+    min-width: 30px !important;
+    color: #fff;
+    cursor: pointer;
+}
+#layerpop .inner .poptit button i {color:black;}
+#layerpop .inner .popconts {
+    padding:20px;
+}
+#layerpop .inner .popconts div {
+    overflow-y: auto; 
+    height:200px;
+
+}
+#layerpop .inner .popbtn {
+   text-align: center;
+}
+
+
+/*select*/
+.v-select {
+    max-width: 240px;
+}
+
+.v-select > .v-input__control > .v-input__slot {
+    max-width: 240px;
 }

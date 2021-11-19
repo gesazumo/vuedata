@@ -1,20 +1,5 @@
-<template>
-	<v-footer color="primary lighten-1" padless relative>
-		<v-row justify="center" no-gutters>
-			<v-col
-				class="secondary lighten-1 py-4 text-center white--text"
-				cols="12"
-			>
-				{{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-			</v-col>
-		</v-row>
-	</v-footer>
-</template>
+<template><div class="footer">footer</div></template>
 
-<script>
-export default {
-	name: 'Footer',
-}
-</script>
+<script></script>
 
 <style></style>
