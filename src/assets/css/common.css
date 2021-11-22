@@ -248,25 +248,15 @@ button {
   padding: 0 16px;
   height: 40px;
   min-width: 80px;
-  color: #fff;
   cursor: pointer;
 }
-
-button:active,
-button:hover,
-button:focus {
-  background: var(--button-hover-bg-color);
-  outline: 0;
-}
-
-button.primary:hover {
-  background: #ffbc00 !important;
+button.primary {
   color: #fff !important;
 }
-button.secondary:hover {
-  background: #EFE9E1 !important;
+button.secondary {
   color: #fff !important;
 }
+
 
 button.large {
   height: 50px;
@@ -299,6 +289,26 @@ button.round {
   color: #504842;
   border-radius: 50px;
 }
+
+button:active,
+button:hover,
+button:focus {
+  background: var(--button-hover-bg-color);
+  outline: 0;
+}
+
+button.primary:hover {
+  background: #ffbc00 !important;
+  color: #fff !important;
+}
+button.secondary:hover {
+  background: #504842 !important;
+  color: #fff !important;
+}
+
+
+
+
 
 /*
 button {
@@ -578,7 +588,7 @@ table.liner td {
 
 /*popup*/
 #layerpop {
-  width: 300px;
+  width: 500px;
   position: absolute;
   left: 0;
   top: 0;
@@ -633,4 +643,126 @@ table.liner td {
 
 .v-text-field fieldset, .v-text-field .v-input__control {
   max-width: 100% !important;
+}
+
+
+.form_phone {}
+.form_phone .v-select {
+  width:150px !important;
+  float: left;
+}
+.form_phone .v-text-field {
+  width:80px !important;
+  float: left;
+}
+
+
+/*cardlist*/
+.cardlist_wrap {
+  width: 100%;
+  display: inline-block;
+  background-color: #efe9e1;
+  padding: 120px 0; 
+}
+.cardlist_wrap .title {
+  float: left;
+  width: 464px;
+  margin-left: 80px;
+}
+.cardlist_wrap .title h3 {
+  font-family: 'KBFGDisplayM';
+  font-size: 42px !important;
+  font-weight: 600;
+  line-height: 54px !important;
+  color: #1e1909;
+}
+.cardlist_wrap .title span {
+  clear: both;
+  float: left;
+  font-family: 'KBFGTextL';
+  line-height: 30px !important;
+  margin-bottom: 48px;
+}
+.cardlist_wrap .title .v-btn {
+  clear: both;
+  float: left;
+  font-family: "KBFGTextM";
+  font-weight: 600;
+}
+.v-btn--icon.v-size--default {
+  height: 0px !important;
+  width: 0px !important;
+}
+.cardlist_wrap .title .v-btn .v-icon {
+  color: #ffbc00;
+}
+.cardlist {
+  float: left;
+  margin-top: 108px;
+}
+.cardlist .card {
+  float: left;
+  display: inline-block;
+  width: 464px;
+  height: 330px;
+  margin-left: 24px;
+  padding: 46px 43px 46px 46px;
+  border-radius: 4px;
+  box-shadow: 2px 6px 18px 0 rgba(0, 0, 0, 0.13);
+  background: #fff;
+}
+.cardlist .card .keyword {
+  clear: both;
+  font-family: "KBFGTextM";
+  font-size: 16px !important;
+
+}
+.cardlist .card .keyword span {
+  display: inline-block; 
+  float: left;
+  margin: 0 5px 0 0;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background-color: #60584c;
+  color:#fff;
+  font-size: 14px;
+}
+.cardlist .card .keyword span.etc {
+  background-color: #efe5d8;
+  color:#4d4d4d;
+}
+.cardlist .card .cardtit {
+  clear: both;
+  float: left;
+  font-family: 'KBFGTextM';
+  font-size: 24px;
+  font-weight: 600;
+  margin: 28px 0 19px 0;
+}
+.cardlist .card .cardtxt {
+  clear: both;
+  font-family: 'KBFGTextM';
+  font-size: 14px;
+  line-height: 26px;
+  color: #757575; 
+  min-height: 70px;
+}
+.cardlist .card .cardinfo {
+  clear: both;
+  font-family: 'KBFGTextM';
+  font-size: 12px;
+  border-top: 1px solid #d8d8d8;
+  padding-top: 22px;
+  margin-top: 22px;
+}
+.cardlist .card .cardinfo div.name {
+  float: left;
+}
+.cardlist .card .cardinfo div.board {
+  float: right;
+}
+.cardlist .card .cardinfo div.board div {
+  float: left;
+  margin: 0 15px;
+  cursor: pointer;
 }

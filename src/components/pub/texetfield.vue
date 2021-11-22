@@ -62,18 +62,20 @@
 			</v-col>
 			<v-col cols="12" sm="6">
 				선택
-				<v-select
-					:items="items"
-					label="선택하세요"
-					ref="name"
-					v-model="name"
-					:rules="[() => !!name || '입력 항목을 확인해 주세요']"
-					:error-messages="errorMessages"
-					single-line
-					outlined
-				></v-select>
-				<v-text-field single-line outlined></v-text-field>
-				<v-text-field single-line outlined></v-text-field>
+				<div class="form_phone">
+					<v-select
+						:items="items"
+						label="선택하세요"
+						ref="name"
+						v-model="name"
+						:rules="[() => !!name || '입력 항목을 확인해 주세요']"
+						:error-messages="errorMessages"
+						single-line
+						outlined
+					></v-select>
+					<v-text-field single-line outlined></v-text-field>
+					<v-text-field single-line outlined></v-text-field>
+				</div>
 			</v-col>
 			<v-col cols="12" sm="6">
 				보조 텍스트 필드
@@ -83,7 +85,8 @@
 					clearable
 					single-line
 					outlined
-				></v-text-field>
+				>
+				</v-text-field>
 			</v-col>
 		</v-row>
 	</div>

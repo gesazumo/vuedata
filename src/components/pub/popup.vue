@@ -14,8 +14,8 @@
 				</div>
 			</div>
 			<div class="popbtn">
-				<button class="secondary">버튼명</button>
-				<button class="primary">버튼명</button>
+				<button class="secondary large">버튼명</button>
+				<button class="primary large">버튼명</button>
 			</div>
 		</div>
 	</div>
