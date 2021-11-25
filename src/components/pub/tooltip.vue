@@ -1,10 +1,21 @@
 <template>
-	<v-tooltip right>
+	<v-tooltip right content-class="secondary tooltip-right">
 		<template v-slot:activator="{ on, attrs }">
-			<v-icon color="primary" dark v-bind="attrs" v-on="on">
-				mdi-information
-			</v-icon>
+			<v-btn v-bind="attrs" v-on="on" icon color="secondary">
+				<v-icon>mdi-help-circle</v-icon>
+			</v-btn>
 		</template>
-		<span>Right Tooltip</span>
+		<div>
+			<p
+				class="title"
+				style="color: #fff !important; font-size: 16px !important"
+			>
+				Notebook 스펙환경
+			</p>
+			<span>
+				Instance Type : ml.g4dn.xlarge <br />
+				(Accelerated computing, Vcpu 4, GPU 1, 16GiB)
+			</span>
+		</div>
 	</v-tooltip>
 </template>

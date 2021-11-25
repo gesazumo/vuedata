@@ -4,6 +4,10 @@ export const pubRouter = [
 		component: () => import('@/views/pub/Main.vue'),
 	},
 	{
+		path: 'admin',
+		component: () => import('@/views/pub/Admin.vue'),
+	},
+	{
 		path: 'error',
 		component: () => import('@/views/pub/errorpage.vue'),
 	},
@@ -66,5 +70,13 @@ export const pubRouter = [
 	{
 		path: 'tooltip',
 		component: () => import('@/components/pub/tooltip.vue'),
+	},
+	{
+		path: 'bar',
+		component: () => import('@/components/pub/systembar.vue'),
+	},
+	{
+		path: 'slide',
+		component: () => import('@/components/pub/indicator.vue'),
 	},
 ]
