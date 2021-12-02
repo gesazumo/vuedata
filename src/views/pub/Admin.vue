@@ -1,6 +1,6 @@
 <template>
 	<!--adminContents-->
-	<div class="adm_conts">
+	<div class="adm_wrap">
 		<div id="lnb">
 			<ul>
 				<li>

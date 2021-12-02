@@ -1,5 +1,5 @@
 <template>
-	<div class="viewpage">
+	<div>
 		<div>가로형</div>
 		<table>
 			<caption>
@@ -203,5 +203,85 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<div>스크롤</div>
+		<div class="tb_scroll">
+			<div class="topbox1">
+				<table class="toptable1 colr_table2">
+					<caption>
+						table caption
+					</caption>
+					<thead>
+						<tr class="fix_head">
+							<th class="w40">컬럼명</th>
+							<th class="w20">컬럼명</th>
+							<th class="w20">컬럼명</th>
+							<th class="w20">컬럼명</th>
+						</tr>
+					</thead>
+				</table>
+
+				<div class="middlebox">
+					<div class="box2">
+						<table class="colr_table2">
+							<colgroup>
+								<col width="40%" />
+								<col width="20%" />
+								<col width="20%" />
+								<col width="20%" />
+							</colgroup>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+							<tr>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+								<td>데이터</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
