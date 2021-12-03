@@ -1,5 +1,6 @@
 <template>
 	<div id="main">
+		<!--메인이미지-->
 		<div id="visual">
 			<div class="inner">
 				<div class="txt">
@@ -11,6 +12,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!--마이데이터포탈무엇이좋아질까요-->
 		<div class="my_what">
 			<div class="inner">
 				<div class="txt">
@@ -87,8 +90,10 @@
 				</div>
 			</div>
 		</div>
+
+		<!--마이데이터포탈은어떻게쓰나요-->
 		<div class="my_how">
-			<div class="box_bg">
+			<div class="inner">
 				<div class="txt">
 					<h3>
 						마이데이터 포탈은 <br />
@@ -98,13 +103,18 @@
 						초보자부터 숙련된 전문가까지 누구나 쉽게 사용할 수 있는
 						방법을 확인 해 보세요.
 					</span>
-					<!--div>바로가기</div-->
+					<div>
+						<button>
+							바로가기
+							<v-icon color="primary">mdi-chevron-right</v-icon>
+						</button>
+					</div>
 				</div>
-				<div class="img">
-					<img src="../../images/main_illust_04.png" />
-				</div>
+				<div class="img"></div>
 			</div>
 		</div>
+
+		<!--여기부터시작해볼까요-->
 		<div class="my_start">
 			<div class="inner">
 				<div class="txt">
@@ -112,92 +122,347 @@
 						여기부터 <br />
 						시작해볼까요?
 					</h3>
-					<span> 나에게 맞는 분석환경을 제공받을 수 있습니다. </span>
+					<span>나에게 맞는 분석환경을 제공받을 수 있습니다.</span>
 				</div>
-				<div class="">
-					<div class="box">
-						<img src="" />
-					</div>
-					<div></div>
+				<div class="boxitem">
+					<ul>
+						<li>
+							<div class="box">
+								<div class="img1"></div>
+								<div class="text">
+									<p>초보자용</p>
+									<span>
+										신속한 대규모 데이터분석업무 수행을 위한
+										Serverless 환경
+									</span>
+									<div class="tag">
+										<ul>
+											<li># SQL 기반 분석</li>
+											<li># Business Intelligence</li>
+											<li># 대시보드 실행</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="box">
+								<div class="img2"></div>
+								<div class="text">
+									<p>전문가용</p>
+									<span>
+										단일 웹기반 인터페이스를 통해 분석모델
+										구축 훈련 및 배포
+									</span>
+									<div class="tag">
+										<ul>
+											<li># 알고리즘 기반 분석</li>
+											<li># Machine Learning</li>
+											<li># Deep Learning 실행</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="cardlist_wrap">
-			<div class="title">
-				<h3>
-					나에게 필요한 <br />
-					분석모델을 찾아보세요
-				</h3>
-				<span>
-					다양한 알고리즘 및 Use Case별 모범 사례<br />
-					분석 모델을 제공합니다.
-				</span>
-				<!--v-btn text icon color="black">
-				바로가기<v-icon>mdi-chevron-right</v-icon>
-			</v-btn-->
+
+		<!--데이터카달로그서비스를이용해보세요-->
+		<div class="banr">
+			<div class="inner">
+				<div class="title">
+					<span>데이터 카달로그</span><br />
+					서비스를 이용해 보세요.
+				</div>
+				<div class="meg">
+					나에게 필요한 데이터를 검색 후 권한신청을 통해 데이터 활용이
+					가능하며, 개인데이터 업로드를 통한 분석 수행도 가능합니다.
+				</div>
+				<div>
+					<button class="primary large">신청하기</button>
+				</div>
 			</div>
-			<div class="cardlist">
-				<div class="card">
-					<div class="keyword">
-						<span>공통</span>
-						<span class="etc">가맹점분류</span>
+		</div>
+
+		<!--나에게필요한분석모델을찾아보세요-->
+		<div class="my_data">
+			<div class="inner">
+				<div class="txt">
+					<h3>
+						나에게 필요한 <br />
+						분석모델을 찾아보세요
+					</h3>
+					<span>
+						다양한 알고리즘 및 Use Case별 모범 사례<br />
+						분석 모델을 제공합니다.
+					</span>
+					<div>
+						<button>
+							바로가기
+							<v-icon color="primary">mdi-chevron-right</v-icon>
+						</button>
 					</div>
-					<div class="cardtit">그룹 공통 가맹점 업종 분류</div>
-					<div class="cardtxt">
-						KB카드 가맹점 업종분류 정보, KB카드, 은행의 표준 API
-						수집 정보 및 KB마이머니 수집정보를 분석하여 그룹 공통
-						업종 분류 모델 개발
+				</div>
+				<div class="slider">
+					<ul>
+						<li>
+							<div class="card">
+								<div class="keyword">
+									<span>공통</span>
+									<span class="etc">가맹점분류</span>
+								</div>
+								<div class="cardtit">
+									그룹 공통 가맹점 업종 분류
+								</div>
+								<div class="cardtxt">
+									KB카드 가맹점 업종분류 정보, KB카드, 은행의
+									표준 API 수집 정보 및 KB마이머니 수집정보를
+									분석하여 그룹 공통 업종 분류 모델 개발
+								</div>
+								<div class="cardinfo">
+									<div class="name">이스타(star****)</div>
+									<div class="board">
+										<div class="good">
+											<v-icon color="point"
+												>mdi-heart</v-icon
+											>
+											224
+										</div>
+										<div class="view">
+											<v-icon>mdi-eye-outline</v-icon>
+											55
+										</div>
+										<div class="comment">
+											<v-icon>mdi-comment-outline</v-icon>
+											17
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="card">
+								<div class="keyword">
+									<span>공통</span>
+									<span class="etc">통장적요분류</span>
+								</div>
+								<div class="cardtit">통장적요 분류</div>
+								<div class="cardtxt">
+									통장 적요정보 자연어처리를 위한 파싱, 토큰화
+									과정을 거쳐 핵심 키워드 추출하여 1단계 분류
+									후 개별고객 특화정보 딕셔너리를 구축하여
+									2단계 분류 시행
+								</div>
+								<div class="cardinfo">
+									<div class="name">김국민(kim****)</div>
+									<div class="board">
+										<div class="good">
+											<v-icon>mdi-heart-outline</v-icon>
+											224
+										</div>
+										<div class="view">
+											<v-icon>mdi-eye-outline</v-icon>
+											55
+										</div>
+										<div class="comment">
+											<v-icon>mdi-comment-outline</v-icon>
+											17
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="card">
+								<div class="keyword">
+									<span>공통</span>
+									<span class="etc">통장적요분류</span>
+								</div>
+								<div class="cardtit">통장적요 분류</div>
+								<div class="cardtxt">
+									통장 적요정보 자연어처리를 위한 파싱, 토큰화
+									과정을 거쳐 핵심 키워드 추출하여 1단계 분류
+									후 개별고객 특화정보 딕셔너리를 구축하여
+									2단계 분류 시행
+								</div>
+								<div class="cardinfo">
+									<div class="name">김국민(kim****)</div>
+									<div class="board">
+										<div class="good">
+											<v-icon>mdi-heart-outline</v-icon>
+											224
+										</div>
+										<div class="view">
+											<v-icon>mdi-eye-outline</v-icon>
+											55
+										</div>
+										<div class="comment">
+											<v-icon>mdi-comment-outline</v-icon>
+											17
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="card">
+								<div class="keyword">
+									<span>공통</span>
+									<span class="etc">통장적요분류</span>
+								</div>
+								<div class="cardtit">통장적요 분류</div>
+								<div class="cardtxt">
+									통장 적요정보 자연어처리를 위한 파싱, 토큰화
+									과정을 거쳐 핵심 키워드 추출하여 1단계 분류
+									후 개별고객 특화정보 딕셔너리를 구축하여
+									2단계 분류 시행
+								</div>
+								<div class="cardinfo">
+									<div class="name">김국민(kim****)</div>
+									<div class="board">
+										<div class="good">
+											<v-icon>mdi-heart-outline</v-icon>
+											224
+										</div>
+										<div class="view">
+											<v-icon>mdi-eye-outline</v-icon>
+											55
+										</div>
+										<div class="comment">
+											<v-icon>mdi-comment-outline</v-icon>
+											17
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="card">
+								<div class="keyword">
+									<span>공통</span>
+									<span class="etc">통장적요분류</span>
+								</div>
+								<div class="cardtit">통장적요 분류</div>
+								<div class="cardtxt">
+									통장 적요정보 자연어처리를 위한 파싱, 토큰화
+									과정을 거쳐 핵심 키워드 추출하여 1단계 분류
+									후 개별고객 특화정보 딕셔너리를 구축하여
+									2단계 분류 시행
+								</div>
+								<div class="cardinfo">
+									<div class="name">김국민(kim****)</div>
+									<div class="board">
+										<div class="good">
+											<v-icon>mdi-heart-outline</v-icon>
+											224
+										</div>
+										<div class="view">
+											<v-icon>mdi-eye-outline</v-icon>
+											55
+										</div>
+										<div class="comment">
+											<v-icon>mdi-comment-outline</v-icon>
+											17
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--추가지원이필요한가요-->
+		<div class="my_guide">
+			<v-parallax
+				height="666"
+				src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+			>
+				<div class="inner">
+					<div class="txt">
+						<h3>추가지원이 필요하신가요?</h3>
 					</div>
-					<div class="cardinfo">
-						<div class="name">이스타(star****)</div>
-						<div class="board">
-							<div class="good">
-								<v-icon color="point">mdi-heart</v-icon>
-								224
+					<div class="guidebox">
+						<div class="box">
+							<p class="g01">상세 메뉴얼</p>
+							<span>
+								데이터 검색부터 분석환경<br />
+								신청 후 활용까지 상세 내용 확인
+							</span>
+							<div>
+								<button>
+									바로가기
+									<v-icon color="primary"
+										>mdi-chevron-right</v-icon
+									>
+								</button>
 							</div>
-							<div class="view">
-								<v-icon>mdi-eye-outline</v-icon>
-								55
+						</div>
+						<div class="box">
+							<p class="g02">FAQ</p>
+							<span>자주하는 질문 및 답변</span>
+							<div>
+								<button>
+									바로가기
+									<v-icon color="primary"
+										>mdi-chevron-right</v-icon
+									>
+								</button>
 							</div>
-							<div class="comment">
-								<v-icon>mdi-comment-outline</v-icon>
-								17
+						</div>
+						<div class="box">
+							<p class="g03">담당자</p>
+							<span>
+								계열사 별 담당자 및<br />
+								기술지원을 위한 운영자 확인
+							</span>
+							<div>
+								<button>
+									바로가기
+									<v-icon color="primary"
+										>mdi-chevron-right</v-icon
+									>
+								</button>
+							</div>
+						</div>
+						<div class="box last">
+							<p class="g04">공지사항</p>
+							<span>
+								공지사항에서 최신뉴스 및<br />
+								이벤트 확인
+							</span>
+							<div>
+								<button>
+									바로가기
+									<v-icon color="primary"
+										>mdi-chevron-right</v-icon
+									>
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="card">
-					<div class="keyword">
-						<span>공통</span>
-						<span class="etc">통장적요분류</span>
-					</div>
-					<div class="cardtit">통장적요 분류</div>
-					<div class="cardtxt">
-						통장 적요정보 자연어처리를 위한 파싱, 토큰화 과정을 거쳐
-						핵심 키워드 추출하여 1단계 분류 후 개별고객 특화정보
-						딕셔너리를 구축하여 2단계 분류 시행
-					</div>
-					<div class="cardinfo">
-						<div class="name">김국민(kim****)</div>
-						<div class="board">
-							<div class="good">
-								<v-icon>mdi-heart-outline</v-icon>
-								224
-							</div>
-							<div class="view">
-								<v-icon>mdi-eye-outline</v-icon>
-								55
-							</div>
-							<div class="comment">
-								<v-icon>mdi-comment-outline</v-icon>
-								17
-							</div>
-						</div>
-					</div>
+			</v-parallax>
+		</div>
+		<div class="banr2">
+			<div class="inner">
+				<div class="title">
+					<p>
+						여러분의 의견을 기다립니다<br />
+						<span>
+							보다나은 마이데이터 플랫폼을 위한 여러분의 의견을
+							들려주세요.
+						</span>
+					</p>
+				</div>
+				<div style="float: right">
+					<button class="primary large">작성하기</button>
 				</div>
 			</div>
 		</div>
-		<div class="my_etc"></div>
 	</div>
 </template>
 
