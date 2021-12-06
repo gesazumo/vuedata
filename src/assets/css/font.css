@@ -1,0 +1,85 @@
+/*font*/
+@font-face {
+    /*KB금융 본문체 Light*/
+    font-family: "KBFGTextL";
+    font-style: normal;
+    font-weight: normal;
+    src: url(../font/KBFGTextL.eot);
+    src: url(../font//KBFGTextL.eot?#iefix) format("embedded-opentype"),
+      url(../font/KBFGTextL.woff) format("woff");
+  }
+  
+  @font-face {
+    /*KB금융 본문체 Medium*/
+    font-family: "KBFGTextM";
+    font-style: normal;
+    font-weight: normal;
+    src: url(../font/KBFGTextM.eot);
+    src: url(../font/KBFGTextM.eot?#iefix) format("embedded-opentype"),
+      url(../font/KBFGTextM.woff) format("woff");
+  }
+  
+  @font-face {
+    /*KB금융 제목체 Medium*/
+    font-family: "KBFGDisplayM";
+    font-style: normal;
+    font-weight: normal;
+    src: url(../font/KBFGDisplayM.eot);
+    src: url(../font/KBFGDisplayM.eot?#iefix) format("embedded-opentype"),
+      url(../font/KBFGDisplayM.woff) format("woff");
+  }
+  
+  @font-face { 
+  /*KB금융 제목체 Light*/
+  font-family: "KBFGDisplayL";
+    font-style: normal;
+    font-weight: normal;
+    src: url(../font/KBFGDisplayL.eot);
+    src: url(../font/KBFGDisplayL.eot?#iefix) format("embedded-opentype"),
+      url(../font/KBFGDisplayL.woff) format("woff");
+  } 
+  
+  /*headline*/
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "KBFGDisplayM";
+  }
+  h1 {
+    font-size: 64px;
+    font-weight: normal;
+    line-height: 84px;
+  }
+  h2 {
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 60px;
+  }
+  h3 {
+    font-size: 42px;
+    font-weight: normal;
+    line-height: 54px;
+  }
+  h4 {
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 46px;
+  }
+  h5 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 34px;
+  }
+  h6 {
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 32px;
+  }
+  h7 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 30px;
+  }

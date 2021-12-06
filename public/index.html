@@ -9,11 +9,7 @@
       <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
       
-      <!--gnb-->
-      <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
-      
-      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>       
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script>
         $(function () {
         $.fn.topNavi = function (options) {
@@ -166,7 +162,7 @@
                 }
               })
             }
-
+                        
             // scroll
             var scrollF = function () {
               var stmp = $(window).scrollTop()
@@ -229,17 +225,9 @@
         }
 
         $('header').topNavi(options)
-      })
+      });
       </script>
-      
-      <!--bxslider-->
-      <link rel="stylesheet" href="/node_modules/bxslider/dist/jquery.bxslider.css">      
-      <script src="/node_modules/bxslider/dist/jquery.bxslider.min.js"></script>
-      <script>
-        $(document).ready(function(){
-          $('.slider').bxSlider();
-        });
-      </script>
+     
 
 
 

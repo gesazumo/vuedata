@@ -93,7 +93,42 @@
 					</ul>
 				</li>
 			</ul>
-			<div class="util"></div>
+
+			<div class="otherinfo">
+				<div class="familyGroup">
+					<select name="" id="" class="selectbox">
+						<option value="#">Family Site</option>
+						<option value="http://biportal.kbfng.com:8080/BiPortal">
+							그룹 인사이트 포털
+						</option>
+						<option value="">e-시너지 시스템</option>
+						<option value="http://oss.ikfg.com:11185">
+							OSS 포털
+						</option>
+					</select>
+				</div>
+				<div class="down">
+					<ul>
+						<li>
+							계열사별 담당자
+							<span>담당자 목록 다운로드</span>
+						</li>
+						<li>
+							사용자 매뉴얼
+							<span>매뉴얼 다운로드</span>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<v-btn text>
+						문의하러 가기
+						<v-icon>mdi-chevron-right</v-icon>
+					</v-btn>
+				</div>
+			</div>
+			<div class="copyright">
+				Copyright© KB Financial Group Inc. All rights reserved.
+			</div>
 		</div>
 	</footer>
 </template>

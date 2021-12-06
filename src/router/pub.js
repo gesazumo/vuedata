@@ -4,6 +4,10 @@ export const pubRouter = [
 		component: () => import('@/views/pub/Main.vue'),
 	},
 	{
+		path: 'mainb',
+		component: () => import('@/views/pub/MainB.vue'),
+	},
+	{
 		path: 'admin',
 		component: () => import('@/views/pub/Admin.vue'),
 	},
