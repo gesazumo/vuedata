@@ -15,6 +15,15 @@ const routes = [
 		component: () => import('@/views/Home.vue'),
 	},
 	{
+		path: '/pageNotFound',
+		name: 'PageNotFound',
+		component: () => import('@/views/error/PageNotFound.vue'),
+	},
+	{
+		path: '*',
+		redirect: '/pageNotFound',
+	},
+	{
 		path: '/explore',
 		component: () => import('@/views/explore/ExploreIndex.vue'),
 		children: exploreRouter,
