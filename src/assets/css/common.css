@@ -485,6 +485,7 @@ body {
   font-weight: normal;
   line-height: 42px;
   color: #1e1909;
+  background: #f4f3f2;
 }
 
 div {
@@ -1685,23 +1686,23 @@ input[type="text"] {
     margin-top : -150px;
     */
   position: relative;
+  display: inline;
   left: 0;
   top: 0;
   bottom: 0;
-  right: 0;
-  height: 100%;
+  right: 0;  
   width: 100%;
-  display: table;
+  height: 100%;
 }
-.error-page .inner {
-  display: table-cell;
-  vertical-align: middle;
+.error-page .inner {  
+  width: 1440px;
+  margin: 120px auto;
+  padding: 56px 0 74px;
   text-align: center;
-  width: 400px;
-  margin: 0 auto;
+  background: #fff;
 }
 .error-page .inner img {
-  margin: 20px auto;
+  margin: auto 0 32px auto;
 }
 .error-text {
   text-align: center;
