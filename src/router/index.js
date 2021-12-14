@@ -27,6 +27,13 @@ const routes = [
 		path: '/explore',
 		component: () => import('@/views/explore/ExploreIndex.vue'),
 		children: exploreRouter,
+		beforeEnter: (to, from, next) => {
+			console.log(to)
+			console.log(from)
+			console.log(next)
+			// next(error)
+			next(false)
+		},
 	},
 	{
 		path: '/analyze',
