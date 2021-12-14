@@ -11,7 +11,12 @@
 					</span>
 				</div>
 				<div class="meg-btn">
-					<button class="primary large">홈으로</button>
+					<button
+						class="primary large"
+						onclick="location.href='/pub/main'"
+					>
+						홈으로
+					</button>
 				</div>
 			</div>
 		</div>

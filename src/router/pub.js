@@ -80,15 +80,15 @@ export const pubRouter = [
 		component: () => import('@/components/pub/indicator.vue'),
 	},
 	{
-		path: 'error1',
+		path: 'error1', //대체페이지(페이지없음)
 		component: () => import('@/views/pub/TAH-COM002.vue'),
 	},
 	{
-		path: 'error2',
+		path: 'error2', //대체페이지(접속오류)
 		component: () => import('@/views/pub/TAH-COM003.vue'),
 	},
 	{
-		path: 'error3',
+		path: 'error3', //대체페이지(권한없음)
 		component: () => import('@/views/pub/TAH-COM004.vue'),
 	},
 ]
