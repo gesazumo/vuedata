@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import shareStore from './modules/shareStore'
 import { SET_FLAG } from './mutation-type'
 
 Vue.use(Vuex)
@@ -18,5 +19,7 @@ export default new Vuex.Store({
 			commit(SET_FLAG, { flag: value })
 		},
 	},
-	modules: {},
+	modules: {
+		shareStore: shareStore,
+	},
 })
