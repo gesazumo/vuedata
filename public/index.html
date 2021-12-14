@@ -8,11 +8,604 @@
       <title><%= htmlWebpackPlugin.options.title %></title> 
       <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+            
       
+      <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+
+      <script src="https://www.kice.re.kr/js/00002/slick.min.js"></script>
+      <script src="https://www.kice.re.kr/js/00002/ScrollMagic.min.js"></script>
       
-     
+      <script> //common
+        $(document).ready(function () {
+        $('#wrap').append('<span class="line_top"></span>')
+        // header 스크롤
+        var HEADER = (function () {
+          var $target = $('.area_header'),
+            $topBtn = $('.btn_top_1 a'),
+            $top,
+            $hei = $(window).height(),
+            $winWidth = $(window).width(),
+            $footer = $('.area_footer').height(),
+            $max = $('#wrap').height()		
+          })()
+        // gnb
+        var GNB = (function () {
+          var $winWidth = $(window).width(),
+            $target = $('#ul_gnb_1 li'),
+            $link = $('#ul_gnb_1 > li > a'),
+            $bg = $('.bg_header_1'),
+            $snb = $('.box_gnb_1'),
+            $array = [],
+            $flag = false
+          // gnb 높이값 설정
+          gnbHeight()
+          function gnbHeight() {
+            $array = []
+            $bg.removeClass('on').css('height', '0')
+            $snb.each(function () {
+              var $this = $(this)
+              $winWidth = $(window).width()
+              if ($winWidth > 801) {
+                $this.css({ visibility: 'hidden', maxHeight: 'auto' })
+                $array.push($this.height())
+                $this.css({ visibility: 'visible', maxHeight: '0' })
+              } else if ($winWidth <= 800) {
+                $array.push($this.height())
+                $this.css({ visibility: 'visible', minHeight: 'auto' })
+              }
+            })
+          }
+          // 웹용 gnb
+          $(document).on(
+            'mouseenter focus',
+            '#ul_gnb_1:not(.ul_gnb_mo_1) > li > a',
+            viewMenu,
+          )
+          $(document).on(
+            'mouseleave blur',
+            '#ul_gnb_1:not(.ul_gnb_mo_1) > li > a',
+            hideMenu,
+          )
+          $(document).on(
+            'mouseover focus',
+            '.box_gnb_1:not(.ul_gnb_mo_2)',
+            viewMenu1,
+          )
+          $(document).on(
+            'mouseout blur',
+            '.box_gnb_1:not(.ul_gnb_mo_2)',
+            hideMenu,
+          )
+          function viewMenu() {
+            var $this = $(this),
+              $target = $this.parent(),
+              $all_target = $('#ul_gnb_1 > li'),
+              $all_box = $('.box_gnb_1'),
+              $index = $target.index(),
+              $box = $this.next('.box_gnb_1')
+            boxHeight($index)
+            $all_target.removeClass('on')
+            $target.addClass('on')
+            $bg.addClass('on')
+              .stop()
+              .animate({ height: $array[$index] }, 300, $easing1)
+            flag = false
+          }
+          function hideMenu() {
+            flag = true
+            setTimeout(check, 100)
+          }
+          function viewMenu1() {
+            flag = false
+            setTimeout(check, 100)
+          }
+          function check() {
+            if (flag) {
+              $snb.stop().animate({ maxHeight: 0 }, 300, $easing2)
+              $bg.stop()
+                .removeClass('on')
+                .animate({ height: 0 }, 300, $easing2)
+              $target.removeClass('on')
+            }
+          }
+          function boxHeight(idx) {
+            var $this = $('#ul_gnb_1 > li'),
+              $target = $this.find('.box_gnb_1')
+            $target.stop().css('maxHeight', '0')
+            $this
+              .eq(idx)
+              .find('.box_gnb_1')
+              .stop()
+              .animate({ maxHeight: $array[idx] }, 300, $easing2)
+          }
+        })()
+      })
+      </script>
+      <script> //layout
+      $(function () {
+        // GNB
+        $('#gnb .dep01 > li > a').on('focus mouseenter', function () {
+          $('#header').addClass('mnOpen')
+          $(this).parent().addClass('active').siblings().removeClass('active')
+          $('#personInfo, #langlst, #searchFull').hide()
+        })
+        $('#gnb').on('mouseleave', function () {
+          $('#header').removeClass('mnOpen')
+          $('#gnb .dep01 > li').removeClass('active')
+          $('#gnb .dep02 li').each(function (i) {
+            if ($(this).children('ul').length > 0) {
+              $(this).addClass('active')
+            }
+          })
+        })
 
+        if ($('.popFullmenu').length > 0) {
+          $('.popFullmenu .fullmenu_group').mCustomScrollbar()
+        }
 
+        // 모바일 메뉴 child
+        $('.popFullmenu a').each(function (i) {
+          if ($(this).next('ul').length > 0) {
+            $(this).parent().addClass('child')
+          }
+        })
+
+        // 모바일 메뉴 클릭이벤트
+        $('.popFullmenu a').on('click', function (e) {
+          if ($(window).width() <= 1280) {
+            if ($(this).parent().hasClass('child') == true) {
+              if ($(this).parent().hasClass('active') == true) {
+                $(this).next().find('active').removeClass('active')
+                $(this).parent().removeClass('active')
+              } else {
+                $('.popFullmenu li').removeClass('active')
+                $(this).parents('li').addClass('active')
+              }
+              e.preventDefault()
+            }
+          }
+        })
+        // 모바일 오픈메뉴 close처리
+        $('#fullmenuClose').on('click', function () {
+          $('.popFullmenu li').removeClass('active')
+        })
+
+        $('#banner').slick({
+          dots: false,
+          arrows: true,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          speed: 1000,
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          focusOnSelect: true,
+          pauseOnFocus: true,
+          prevArrow: $('#bannerPrev'),
+          nextArrow: $('#bannerNext'),
+          responsive: [
+            {
+              breakpoint: 1025,
+              settings: {
+                slidesToShow: 4,
+              },
+            },
+            {
+              breakpoint: 769,
+              settings: {
+                slidesToShow: 3,
+              },
+            },
+            {
+              breakpoint: 601,
+              settings: {
+                slidesToShow: 2,
+              },
+            },
+          ],
+        })
+        $('.bannerWrap .control button').on('click', function (e) {
+          $this = $(this)
+          slickControl($this, '#banner', '#bannerStop', '#bannerPlay')
+          e.preventDefault()
+        })
+
+        
+
+        // HASH 버튼
+        $('.hash').on('click', function (e) {
+          $(this.hash).slideDown(100)
+          e.preventDefault()
+        })
+        $('.hashClose').on('click', function (e) {
+          $(this.hash).slideUp(100)
+          e.preventDefault()
+        })
+
+        // HASH TOGGLE 버튼
+        $('.hashToggle').on('click', function (e) {
+          var _me = $(this.hash).attr('id')
+          //console.log(_me);
+          $('#personInfo, #langList, #searchFull').each(function () {
+            //console.log($(this).attr('id'));
+            if ($(this).is(':visible') == true && $(this).attr('id') != _me) {
+              $(this).hide()
+            }
+          })
+          $(this.hash).slideToggle()
+          e.preventDefault()
+        })
+
+        // HASH TOGGLE Class버튼
+        $('.hashToggleClass').on('click', function (e) {
+          $(this.hash).toggleClass('active')
+          e.preventDefault()
+        })
+
+        
+      })
+
+      // slider Control
+      function slickControl($this, slick, stop, play) {
+        $slick = $(slick) //slider wrap
+        $stop = $(stop) //Stop Button
+        $play = $(play) //Play Button
+        var display = $this.css('display') //button's display
+
+        if ($this.is(stop)) {
+          $stop.css('display', 'none')
+          $play.delay(100).css('display', display)
+          $slick.slick('slickPause')
+        }
+        if ($this.is(play)) {
+          $play.css('display', 'none')
+          $stop.delay(100).css('display', display)
+          $slick.slick('slickPlay')
+        }
+      }
+
+            </script>
+            <script> //main
+              $(function () {
+        // MAIN BANNER
+        $('#slide01').slick({
+          dots: true,
+          infinite: true,
+          speed: 1000,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          arrows: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        })
+        $('.section01 .control a').on('click', function (e) {
+          $this = $(this)
+          slickControl($this, '#slide01', '#slide01Stop', '#slide01Play')
+          e.preventDefault()
+        })
+
+        // Tab
+        $('.tab > li > a, .tabDep01 > li > a').on('click', function (e) {
+          $(this).parent().addClass('active').siblings().removeClass('active')
+          $(this).parent().parent().find('> li > a').attr('title', '')
+          $(this).attr('title', '선택됨')
+          e.preventDefault()
+        })
+
+        // 팝업존 배너 페이지 정보(1/6)출력 ※주의 : 아래의 slick 슬라이드 실행과 소스 순서가 바뀌면 안됩니다.
+        $('#slide02').on(
+          'init reInit afterChange',
+          function (event, slick, currentSlide, nextSlide) {
+            //console.log(slick);
+            var i = (currentSlide ? currentSlide : 0) + 1
+            $('.section02 .MC_box1 .pagingInfo .now').text(i)
+            $('.section02 .MC_box1 .pagingInfo .total').text(
+              slick.$dots[0].children.length,
+            )
+            $('.section02 .MC_box1 .inBox h4').text(
+              $('#slide02 .slideEl.slick-current.slick-active .title').text(),
+            )
+            $('.section02 .MC_box1 .decoTxt').text(
+              $(
+                '#slide02 .slideEl.slick-current.slick-active > a > .txt',
+              ).text(),
+            )
+          },
+        )
+        $('#slide02')
+          .slick({
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            focusOnSelect: true,
+            pauseOnFocus: true,
+            prevArrow: $('#slide02Prev'),
+            nextArrow: $('#slide02Next'),
+            responsive: [
+              {
+                breakpoint: 769,
+                settings: {
+                  slidesToShow: 1,
+                },
+              },
+            ],
+          })
+          .on('init afterChange', function (e) {
+            //console.log(e);
+          })
+        $('.section02 .control button').on('click', function (e) {
+          $this = $(this)
+          slickControl($this, '#slide02', '#slide02Stop', '#slide02Play')
+          e.preventDefault()
+        })
+
+        $('#slide03').slick({
+          dots: false,
+          arrows: true,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          speed: 1000,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          focusOnSelect: true,
+          pauseOnFocus: true,
+          prevArrow: $('#slide03Prev'),
+          nextArrow: $('#slide03Next'),
+          responsive: [
+            {
+              breakpoint: 481,
+              settings: {
+                slidesToShow: 1,
+              },
+            },
+          ],
+        })
+        $('.section03 .control button').on('click', function (e) {
+          $this = $(this)
+          slickControl($this, '#slide03', '#slide03Stop', '#slide03Play')
+          e.preventDefault()
+        })
+
+        // 팝업존 배너 페이지 정보(1/6)출력 ※주의 : 아래의 slick 슬라이드 실행과 소스 순서가 바뀌면 안됩니다.
+        $('#slide04').on(
+          'init reInit afterChange',
+          function (event, slick, currentSlide, nextSlide) {
+            var i = (currentSlide ? currentSlide : 0) + 1
+            $('.section04 .MC_box2 .pagingInfo .now').text(i)
+            $('.section04 .MC_box2 .pagingInfo .total').text(
+              slick.$dots[0].children.length,
+            )
+          },
+        )
+        $('#slide04').slick({
+          dots: true,
+          arrows: true,
+          infinite: true,
+          speed: 1000,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          focusOnSelect: true,
+          pauseOnFocus: true,
+          prevArrow: $('#slide04Prev'),
+          nextArrow: $('#slide04Next'),
+          responsive: [
+            {
+              breakpoint: 1025,
+              settings: {
+                slidesToShow: 2,
+              },
+            },
+            {
+              breakpoint: 769,
+              settings: {
+                slidesToShow: 1,
+              },
+            },
+          ],
+        })
+        $('.section04 .control button').on('click', function (e) {
+          $this = $(this)
+          slickControl($this, '#slide04', '#slide04Stop', '#slide04Play')
+          e.preventDefault()
+        })
+
+        $('#slide05').slick({
+          dots: false,
+          arrows: true,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          speed: 1000,
+          slidesToShow: 1,
+          focusOnSelect: true,
+          pauseOnFocus: true,
+          prevArrow: $('#slide05Prev'),
+          nextArrow: $('#slide05Next'),
+        })
+        $('.section06 .control button').on('click', function (e) {
+          $this = $(this)
+          slickControl($this, '#slide05', '#slide05Stop', '#slide05Play')
+          e.preventDefault()
+        })
+
+        function sliderSet(slickfor, cnt) {
+          slickfor.slick({
+            dots: false,
+            arrows: true,
+            infinite: true,
+            autoplay: false,
+            autoplaySpeed: 2000,
+            speed: 1000,
+            slidesToShow: cnt,
+            slidesToScroll: 1,
+            responsive: [
+              {
+                breakpoint: 1281,
+                settings: {
+                  slidesToShow: 4,
+                },
+              },
+              {
+                breakpoint: 1025,
+                settings: {
+                  slidesToShow: 3,
+                },
+              },
+              {
+                breakpoint: 769,
+                settings: {
+                  slidesToShow: 2,
+                },
+              },
+              {
+                breakpoint: 601,
+                settings: {
+                  slidesToShow: 1,
+                },
+              },
+            ],
+          })
+        }
+        $('.section05 .tabLst').each(function (i) {
+          i += 1
+          var slickfor = $(this).addClass('for1' + i)
+          sliderSet($('.for1' + i), '5')
+        })
+
+        $('#slide06').slick({
+          fade: true,
+          dots: false,
+          arrows: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          asNavFor: '#slide07',
+        })
+        $('#slide07').slick({
+          dots: false,
+          arrows: true,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          speed: 1000,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          focusOnSelect: true,
+          pauseOnFocus: true,
+          prevArrow: $('#slide07Prev'),
+          nextArrow: $('#slide07Next'),
+          asNavFor: '#slide06',
+        })
+        $('.section07 .control button').on('click', function (e) {
+          $this = $(this)
+          slickControl($this, '#slide07', '#slide07Stop', '#slide07Play')
+          e.preventDefault()
+        })
+
+        // 스크롤매직
+        var controller = new ScrollMagic.Controller()
+        new ScrollMagic.Scene({ triggerElement: '.section01', offset: -500 })
+          //.addIndicators()
+          .setClassToggle('.section01', 'action')
+          .reverse(false)
+          .addTo(controller)
+        new ScrollMagic.Scene({ triggerElement: '.section02', offset: -200 })
+          //.addIndicators()
+          .setClassToggle('.section02', 'action')
+          .reverse(false)
+          .addTo(controller)
+        new ScrollMagic.Scene({ triggerElement: '.section03', offset: -200 })
+          //.addIndicators()
+          .setClassToggle('.section03', 'action')
+          .reverse(false)
+          .addTo(controller)
+        new ScrollMagic.Scene({ triggerElement: '.section04', offset: -200 })
+          //.addIndicators()
+          .setClassToggle('.section04', 'action')
+          .reverse(false)
+          .addTo(controller)
+        new ScrollMagic.Scene({ triggerElement: '.section05', offset: -200 })
+          //.addIndicators()
+          .setClassToggle('.section05', 'action')
+          .reverse(false)
+          .addTo(controller)
+        new ScrollMagic.Scene({ triggerElement: '.section06', offset: -500 })
+          //.addIndicators()
+          .setClassToggle('.section06', 'action')
+          .reverse(false)
+          .addTo(controller)
+        new ScrollMagic.Scene({ triggerElement: '.section07', offset: -500 })
+          //.addIndicators()
+          .setClassToggle('.section07', 'action')
+          .reverse(false)
+          .addTo(controller)
+      })
+
+      // 슬라이드 버튼 위치 조정
+      $(document).ready(function () {
+        $('.section01 .control').prepend($('.section01 .slick-prev'))
+        $('.section01 .control').append($('.section01 .slick-next'))
+        $('.section01 .control').prepend($('.section01 .slick-dots'))
+      })
+
+      // Tab Box JS
+      function TabBox(div, tit) {
+        $tab = $('.' + div)
+
+        $tab.find(tit).each(function () {
+          $(this)
+            .find('a')
+            .on('focus click', function (e) {
+              e.preventDefault() //상단이동방지
+
+              $(this).parent(tit).siblings('.list_box').removeClass('active')
+              $(this).parent(tit).siblings().find('> a').removeClass('active')
+              $(this).parent(tit).next('.list_box').addClass('active')
+              $(this).addClass('active')
+            })
+        })
+      }
+
+      // 이미지 정렬
+      function imgAlign(wrap, imgBox) {
+        console.log(2)
+        var $imgBox = $(wrap).find(imgBox)
+        $imgBox.each(function () {
+          var $img = $(this).find('img')
+          $div = $img.parent()
+          divAspect = $div.height() / $div.width()
+          imgAspect = $img.height() / $img.width()
+
+          if (imgAspect <= divAspect) {
+            //가로 이미지
+            $img.css({ width: 'auto', height: '100%' })
+          } else {
+            $img.css({ width: '100%', height: 'auto' })
+          }
+        })
+      } //이미지 정렬
+      </script>
+      <script>
+        $(function(){        
+        $("#modal-open").click(function(){        
+          $("#popup").css('display','flex').hide().fadeIn();
+        });
+        $("#close").click(function(){
+            modalClose();
+        });
+        function modalClose(){
+          $("#popup").fadeOut();
+        }
+      });
+      </script>
 
     </head>
     <body>

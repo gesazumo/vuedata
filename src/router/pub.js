@@ -12,10 +12,6 @@ export const pubRouter = [
 		component: () => import('@/views/pub/Admin.vue'),
 	},
 	{
-		path: 'error',
-		component: () => import('@/views/pub/errorpage.vue'),
-	},
-	{
 		path: 'button',
 		component: () => import('@/components/pub/button.vue'),
 	},
@@ -82,5 +78,17 @@ export const pubRouter = [
 	{
 		path: 'slide',
 		component: () => import('@/components/pub/indicator.vue'),
+	},
+	{
+		path: 'error1',
+		component: () => import('@/views/pub/TAH-COM002.vue'),
+	},
+	{
+		path: 'error2',
+		component: () => import('@/views/pub/TAH-COM003.vue'),
+	},
+	{
+		path: 'error3',
+		component: () => import('@/views/pub/TAH-COM004.vue'),
 	},
 ]

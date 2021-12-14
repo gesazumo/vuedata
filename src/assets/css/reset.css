@@ -311,3 +311,8 @@ a {
 }
 
 caption,legend {display:none;}
+
+::placeholder, .v-text-field ::placeholder {color:#d8d8d8 !important;}
+input, .v-text-field input {
+  font-family: 'KBFGTextM' !important;
+}
