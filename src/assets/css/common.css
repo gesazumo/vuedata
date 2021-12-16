@@ -2,17 +2,7 @@
 
 @import "reset.css";
 @import "font.css";
-/*@import "admin.css";*/
-
-
-
-/*layout
-.container {
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
-  margin: auto;
-}*/
+@import "admin.css";
 
 
 /* HEADER */
@@ -142,7 +132,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  padding-top: 260px;
+  padding-top: 180px;
   padding-bottom: 40px;
 }
 .popup-head h1 {
@@ -191,20 +181,29 @@
   display: inline-block;
   max-width: 720px;
 }
-.keyword div {float:left;}
-.keyword div.tit {
+.keyword .inner {
+  display: inline-block;
+  position: relative;
+  margin:0 auto;
+}
+
+.keyword .inner div.tit {
+  float:left;
   font-family: 'KBFGDisplayM' ;
   font-size: 16px;
   font-weight: 600;
   color: #1e1909;
   margin-right: 24px; 
   margin-top: 10px;
+  min-height: 80px;
 }
-.keyword div.tag {
-  max-width: 615px;
+.keyword .inner div.tag {
+  max-width: 615px;  
+  max-height: 90px;
   text-align: left;
+  overflow: hidden;
 }
-.keyword div.tag span {
+.keyword .inner div.tag span {
   display: inline-block;
   border-radius: 4px;
   border: 1px solid #d8d8d8;
@@ -280,7 +279,7 @@
   background: #efe5d8;
 }
 .topLink .mybtn .mymenu ul li a, a:hover, a:active {
-  color: #1e1909 !important;
+  /*color: #1e1909 !important;*/
   text-decoration: none;
 }
 .topLink .profile {}
@@ -477,6 +476,9 @@
 }
 .v-application p {
   margin-bottom: 0;
+}
+.v-application a {
+  color: inherit;
 }
 
 body {
@@ -1269,10 +1271,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
 /*footer*/
 
 .footer_wrap {
-  float:left;
-  /*display:inline-flex;*/
   width: 100%;
-  position: relative;
   background: #f4f3f2;
   border-top:1px solid #e0e0e0;
 }
@@ -1377,20 +1376,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
 }
 
 
-/* Scroll Top Btn */
-.scrollTop { 
-  display: inline-block;
-  position: fixed; 
-  bottom: 3em; 
-  right: 3%; 
-  width: 74px; 
-  height: 74px; 
-  background: url(../../images/quick_icon_top.png) center no-repeat; 
-  background-size: contain; 
-  cursor: pointer; 
-  z-index: 90; 
-  border: 0;
-}
 
 /*text*/
 textarea {
@@ -1424,6 +1409,7 @@ button {
   height: 40px;
   min-width: 80px;
   cursor: pointer;
+  background:#ffbc00;
 }
 button.primary {
   color: #fff !important;
@@ -1473,7 +1459,8 @@ button.util {
 button:active,
 button:hover,
 button:focus {
-  background: var(--button-hover-bg-color);
+  /*background: var(--button-hover-bg-color);*/
+  opacity: 0.7;
   outline: 0;
 }
 
@@ -1737,9 +1724,10 @@ table {
 }
 th {
   text-align: center;
-  padding: 10px 0;
+  padding: 0 24px;
   background: #f5f5f5;
   border: 1px solid #d8d8d8;
+  height: 56px;
 }
 th:first-child {
   border-left: none;
@@ -1749,8 +1737,9 @@ th:last-child {
 }
 td {
   text-align: center;
-  padding: 10px 0;
+  padding: 0 24px;
   border: 1px solid #d8d8d8;
+  height: 56px;
 }
 td:first-child {
   border-left: none;
@@ -1779,6 +1768,10 @@ table.liner td {
   text-align: center;
   padding: 10px 0;
   border: none;
+}
+
+table td a:hover {
+  color:#fbc00a !important;
 }
 
 /**/
@@ -2106,3 +2099,57 @@ table.liner td {
 }
 
 
+
+/*quickmenu*/
+#quickmenu {
+  display: inline-block;
+  position: fixed; 
+  top: 163px !important; 
+  right: 3%;
+  width: 72px;
+  max-width: 72px;
+  height: 570px;   
+  z-index: 7; 
+}
+.quick {
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  padding: 12px;
+}
+.quick ul li {  
+  text-align: center;
+  max-width: 48px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f4f3f2;
+}
+.quick ul li a {text-decoration: none;}
+.quick ul li:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.quick ul li img {
+  clear: both;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 4px;
+}
+.quick ul li span {
+  display: inline-block;
+  font-family: 'KBFGTextM';
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.5px;
+}
+.scrollTop { 
+  position: fixed; 
+  bottom: 3em; 
+  width: 74px; 
+  height: 74px; 
+  background: url(../../images/quick_icon_top.png) center no-repeat; 
+  background-size: contain; 
+  cursor: pointer;
+  border: 0;
+}

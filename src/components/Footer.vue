@@ -101,7 +101,9 @@
 						<option value="http://biportal.kbfng.com:8080/BiPortal">
 							그룹 인사이트 포털
 						</option>
-						<option value="">e-시너지 시스템</option>
+						<option value="http://acm.kbfng.com:55000">
+							e-시너지 시스템
+						</option>
 						<option value="http://oss.ikfg.com:11185">
 							OSS 포털
 						</option>

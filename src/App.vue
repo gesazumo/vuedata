@@ -12,10 +12,9 @@
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import Calendar from './components/pub/calendar.vue'
 
 export default {
-	components: { Header, Footer, Calendar },
+	components: { Header, Footer },
 	name: 'App',
 	data: () => ({}),
 	computed: {},

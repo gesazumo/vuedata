@@ -22,11 +22,11 @@
 								<div class="title">
 									<div class="inner">
 										<strong>Explore</strong>
-										<span
-											>그룹사 마이데이터, 그룹사
-											특화데이터, 분석모델 등을 확인할 수
-											있습니다.</span
-										>
+										<span>
+											분석에 필요한 다양한 데이터와 <br />
+											분석모델, 대시보드를 검색하고 <br />
+											활용할 수 있습니다.
+										</span>
 									</div>
 								</div>
 								<ul class="dep02">
@@ -61,11 +61,11 @@
 								<div class="title">
 									<div class="inner">
 										<strong>Analyze</strong>
-										<span
-											>초보자, 중급자, 고급자 분석가에
-											대한 소개와 분석환경 신청을 진행할
-											수 있습니다.</span
-										>
+										<span>
+											분석가 및 프로젝트별 특성을 <br />
+											반영한 유연한 분석환경을 <br />
+											신청할 수 있습니다.
+										</span>
 									</div>
 								</div>
 								<ul class="dep02">
@@ -85,11 +85,11 @@
 								<div class="title">
 									<div class="inner">
 										<strong>Share</strong>
-										<span
-											>인사이트 리포트, 포털 및 AWS 사용자
-											가이드 그리고 포럼 형태의 게시판을
-											제공합니다.</span
-										>
+										<span>
+											트렌드 리포트 및 전문가 <br />
+											리포트를 통해 인사이트를 얻고 <br />
+											아이디어를 공유할 수 있습니다.
+										</span>
 									</div>
 								</div>
 								<ul class="dep02">
@@ -119,11 +119,11 @@
 								<div class="title">
 									<div class="inner">
 										<strong>Support</strong>
-										<span
-											>공지사항, FAQ, 문의하기를 한 곳에
-											모아 궁금한 사항에 대해 쉽게 해결이
-											가능합니다.</span
-										>
+										<span>
+											플랫폼 활용방안, 최신 소식 및 <br />
+											문의하기를 통해 궁금한 사항을 <br />
+											확인할 수 있습니다.
+										</span>
 									</div>
 								</div>
 								<ul class="dep02">
@@ -199,9 +199,6 @@
 							</div>
 						</li>
 						<li class="search">
-							<!--a href="" id="modal-open">
-								<img src="../images/icon_search.png" />
-							</a-->
 							<button class="srch" id="modal-open">
 								<span class="blind">검색</span>
 							</button>
@@ -222,26 +219,42 @@
 													placeholder="검색어를 입력해 주세요"
 													clearable
 													required
-												></v-text-field>
+													prepend-inner-icon="mdi-search"
+												>
+													<template
+														v-slot:prepend-inner
+													>
+														<v-icon>
+															fas fa-search
+														</v-icon>
+													</template>
+												</v-text-field>
 											</div>
 											<div class="keyword">
-												<div class="tit">
-													인기 검색어
-												</div>
-												<div class="tag">
-													<span>마이데이터</span>
-													<span>
-														Machine Learning
-													</span>
-													<span>개인화 추천</span>
-													<span>지식 그래프</span>
-													<span>분류모델</span>
-													<span>
-														SageMaker Studio
-													</span>
-													<span>고객이탈예측</span>
-													<span>차차차</span>
-													<span>시각화</span>
+												<div class="inner">
+													<div class="tit">
+														인기 검색어
+													</div>
+													<div class="tag">
+														<span>마이데이터</span>
+														<span>
+															Machine Learning
+														</span>
+														<span>개인화 추천</span>
+														<span>지식 그래프</span>
+														<span>분류모델</span>
+														<span>KB</span>
+														<span>
+															고객이탈예측
+														</span>
+														<span>마이데이터</span>
+														<span>
+															SageMaker Studio
+														</span>
+
+														<span>차차차</span>
+														<span>시각화</span>
+													</div>
 												</div>
 											</div>
 										</div>

@@ -1,3 +1,5 @@
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@mdi/font/css/materialdesignicons.css'
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib/framework'
 
@@ -12,6 +14,9 @@ const vuetify = new Vuetify({
 				error: '#dd3300',
 			},
 		},
+	},
+	icons: {
+		iconfont: 'mdiSvg' || 'mdi' || 'md' || 'fa' || 'fa4' || 'faSvg',
 	},
 })
 export default vuetify
