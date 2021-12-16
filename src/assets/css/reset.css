@@ -22,7 +22,7 @@ html {
 }
 
 * {
-  padding: 0; /* Reset `padding` and `margin` of all elements */
+  padding: 0; 
   margin: 0;
 }
 
@@ -284,34 +284,39 @@ blockquote, q {quotes: none}
 blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
 input,select,textarea,button {vertical-align:middle}
 button {border:0 none;background-color:transparent;cursor:pointer}
-body {background:#fff;width:100%}
-body,th,td,input,select,textarea,button {font-size:16px;line-height:28px;font-family:'KBFGTextL','돋움',dotum,sans-serif;color:#666}
-p{color:#666}
-a{color:#666;text-decoration:none}
+
+
+p{color:#1e1909}
+a{color:#1e1909; text-decoration:none}
 address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
 table{width:100%;border-collapse:collapse;border:0;border-spacing:0}
 caption{visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0}
 
-body, th, td, input, select, textarea, button {
-  font-size: 14px;
-  line-height: 28px;
-  font-family: 'KBFGTextL','돋움',dotum,sans-serif;
+table, th, td, input, select, textarea, button {  
   color: #1E1909;
 }
 
-body, ul, li, h1 {
+body, ul, li {
   margin:0;
   padding:0;
   list-style:none;
 }
-body {background: #f4f3f2 !important;}
+body {
+  width: 100%;
+  font-family: 'KBFGTextM';
+  font-size: 16px;
+  font-weight: normal;
+  color: #1e1909;
+  background: #f4f3f2 !important;
+}
 .v-application--wrap {background: #f4f3f2 !important;}
 a {
   color:inherit;
   text-decoration:none;
 }
 
-caption,legend {display:none;}
+caption, legend {display:none;}
+colgroup {visibility: hidden;}
 
 ::placeholder, .v-text-field ::placeholder {color:#d8d8d8 !important;}
 input, .v-text-field input {

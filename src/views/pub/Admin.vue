@@ -6,22 +6,22 @@
 				<li>
 					<a href="#none">메타관리</a>
 					<ul>
-						<li><a href="#none">단어관리</a></li>
-						<li><a href="#none">인스턴스코드관리</a></li>
-						<li><a href="#none">메타관리</a></li>
+						<li><a href="#none">- 단어관리</a></li>
+						<li><a href="#none">- 인스턴스코드관리</a></li>
+						<li><a href="#none">- 메타관리</a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="#none">모니터링</a>
 					<ul>
-						<li><a href="#none">포털 로그인 이력</a></li>
-						<li><a href="#none">포털 로그인 접속이력</a></li>
-						<li><a href="#none">SageMaker 접속이력</a></li>
-						<li><a href="#none">데이터 처리현황</a></li>
-						<li><a href="#none">시스템 현황</a></li>
-						<li><a href="#none">장애감지</a></li>
-						<li><a href="#none">리소스사용(계열사별)</a></li>
+						<li><a href="#none">- 포털 로그인 이력</a></li>
+						<li><a href="#none">- 포털 로그인 접속이력</a></li>
+						<li><a href="#none">- SageMaker 접속이력</a></li>
+						<li><a href="#none">- 데이터 처리현황</a></li>
+						<li><a href="#none">- 시스템 현황</a></li>
+						<li><a href="#none">- 장애감지</a></li>
+						<li><a href="#none">- 리소스사용(계열사별)</a></li>
 					</ul>
 				</li>
 				<li><a href="#none">대시보드 관리</a></li>
@@ -36,7 +36,7 @@
 		<div class="conts_adm">
 			<div class="inner">
 				<h5>화면제목</h5>
-				<div class="search">
+				<div class="adm-search">
 					<ul>
 						<li>
 							<label>검색항목명<span>필수</span></label>
@@ -244,16 +244,37 @@
 					<button class="box large">신규</button>
 					<button class="secondary large">저장</button>
 				</div>
+
+				<!--quick-->
+				<div id="quickmenu">
+					<div class="quick">
+						<ul>
+							<li>
+								<a href="">
+									<img src="../../images/quick_icon_01.png" />
+									<span>AWS콘솔바로가기</span>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<img src="../../images/quick_icon_02.png" />
+									<span>문의하기</span>
+								</a>
+							</li>
+							<li>
+								<a
+									href="http://bipotal.kbfng.com:8080/BiPortal"
+								>
+									<img src="../../images/quick_icon_03.png" />
+									<span>인사이트포털</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="scrollTop"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
-<script>
-export default {
-	data() {
-		return {
-			page: 1,
-		}
-	},
-}
-</script>
+<script></script>

@@ -91,4 +91,8 @@ export const pubRouter = [
 		path: 'error3', //대체페이지(권한없음)
 		component: () => import('@/views/pub/TAH-COM004.vue'),
 	},
+	{
+		path: 'adm001', //Admin 메타관리 단어관리
+		component: () => import('@/views/pub/TAH-ADM001.vue'),
+	},
 ]
