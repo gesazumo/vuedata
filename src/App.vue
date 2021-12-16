@@ -1,8 +1,7 @@
 <template>
 	<v-app>
-		<!--
-		<lottie :options="defaultOptions" :height="144" :width="144" />
-		-->
+		<loading-lottie />
+		<check-lottie />
 		<v-main>
 			<Header />
 			<router-view />
@@ -14,37 +13,11 @@
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import animationFile from '@/assets/lottie/check.json'
+import LoadingLottie from './components/LoadingLottie.vue'
+import CheckLottie from './components/CheckLottie.vue'
 
 export default {
-	components: { Header, Footer },
+	components: { Header, Footer, LoadingLottie, CheckLottie },
 	name: 'App',
-
-	data() {
-		return {
-			defaultOptions: { animationData: animationFile },
-		}
-	},
-	methods: {
-		handleAnimation: function (anim) {
-			this.anim = anim
-		},
-
-		stop: function () {
-			this.anim.stop()
-		},
-
-		play: function () {
-			this.anim.play()
-		},
-
-		pause: function () {
-			this.anim.pause()
-		},
-
-		onSpeedChange: function () {
-			this.anim.setSpeed(this.animationSpeed)
-		},
-	},
 }
 </script>
