@@ -1,6 +1,11 @@
 <template>
 	<v-app>
-		<lottie :options="defaultOptions" :height="200" :width="200" />
+		<lottie
+			:options="defaultOptions"
+			:height="200"
+			:width="200"
+			v-on:animCreated="handleAnimation"
+		/>
 		<v-main>
 			<Header />
 			<router-view />
@@ -26,22 +31,7 @@ export default {
 	methods: {
 		handleAnimation: function (anim) {
 			this.anim = anim
-		},
-
-		stop: function () {
-			this.anim.stop()
-		},
-
-		play: function () {
-			this.anim.play()
-		},
-
-		pause: function () {
-			this.anim.pause()
-		},
-
-		onSpeedChange: function () {
-			this.anim.setSpeed(this.animationSpeed)
+			this.anim.setSpeed(1)
 		},
 	},
 }
