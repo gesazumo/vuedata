@@ -1,11 +1,7 @@
 <template>
 	<v-app>
-		<lottie
-			:options="defaultOptions"
-			:height="200"
-			:width="200"
-			v-on:animCreated="handleAnimation"
-		/>
+		<loading-lottie />
+		<check-lottie />
 		<v-main>
 			<Header />
 			<router-view />
@@ -17,22 +13,11 @@
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import animationFile from '@/assets/lottie/social-network.json'
+import LoadingLottie from './components/LoadingLottie.vue'
+import CheckLottie from './components/CheckLottie.vue'
 
 export default {
-	components: { Header, Footer },
+	components: { Header, Footer, LoadingLottie, CheckLottie },
 	name: 'App',
-
-	data() {
-		return {
-			defaultOptions: { animationData: animationFile },
-		}
-	},
-	methods: {
-		handleAnimation: function (anim) {
-			this.anim = anim
-			this.anim.setSpeed(1)
-		},
-	},
 }
 </script>
