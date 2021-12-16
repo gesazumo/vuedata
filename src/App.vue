@@ -1,6 +1,8 @@
 <template>
 	<v-app>
-		<lottie :options="defaultOptions" :height="200" :width="200" />
+		<!--
+		<lottie :options="defaultOptions" :height="144" :width="144" />
+		-->
 		<v-main>
 			<Header />
 			<router-view />
@@ -12,7 +14,7 @@
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import animationFile from '@/assets/lottie/social-network.json'
+import animationFile from '@/assets/lottie/check.json'
 
 export default {
 	components: { Header, Footer },

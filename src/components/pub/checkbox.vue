@@ -2,7 +2,9 @@
 	<div class="viewpage">
 		<v-row>
 			<v-col cols="12" sm="6">
-				<v-checkbox label="normal"></v-checkbox>
+				<v-checkbox
+					:on-icon="'mdi - checkbox - marked - outline'"
+				></v-checkbox>
 				<v-checkbox
 					input-value="true"
 					value

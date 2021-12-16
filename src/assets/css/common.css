@@ -96,6 +96,7 @@
   margin: 0 !important;
   width: 32px !important;
   min-width: 32px;
+  height: 32px;
   background: url(../../images/icon_search.png) center center no-repeat;
 }
 .blind {display: none;}
@@ -1412,14 +1413,14 @@ button {
   background:#ffbc00;
 }
 button.primary {
-  color: #fff !important;
+  color: #fff !important;  
 }
 button.secondary {
-  color: #fff !important;
+  color: #fff !important;  
 }
 button.large {
   height: 50px;
-  width: 160px;
+  min-width: 160px;
   font-size: 16px;
   padding: 0 24px;
 }
@@ -1482,6 +1483,8 @@ button.my {
   background: #ffbc00 !important;
   font-weight: 600;
   color: #231e10;
+  height: 40px;
+  min-width: 80px
 }
 button.my:hover {
   opacity: 0.7;
@@ -1710,11 +1713,11 @@ input[type="text"] {
 }
 .error-text .meg-btn {}
 
-/*compoents*/
-.viewpage {
-  width: 600px;
-  margin: 0 auto;
+.v-application--is-ltr .v-input--selection-controls__input {
+  margin-right: 0 !important;
 }
+.v-checkbox 
+
 
 /*table*/
 table {
@@ -1773,7 +1776,10 @@ table.liner td {
 table td a:hover {
   color:#fbc00a !important;
 }
-
+table tr:hover {
+  background: #fff9e6;
+  cursor: pointer;
+}
 /**/
 .tb_scroll {
   width: 100%;

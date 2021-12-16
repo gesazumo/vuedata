@@ -20,7 +20,7 @@
 							<label></label>
 							<v-select
 								:items="items"
-								label=""
+								label="%_%"
 								ref="name"
 								v-model="name"
 								:rules="[() => !!name || '선택해 주세요']"
@@ -30,7 +30,7 @@
 							></v-select>
 						</li>
 						<li>
-							<button>검색</button>
+							<button>검색하기</button>
 						</li>
 					</ul>
 				</div>
@@ -44,7 +44,8 @@
 								table caption
 							</caption>
 							<colgroup>
-								<col width="8%" />
+								<col width="6%" />
+								<col width="" />
 								<col width="" />
 								<col width="" />
 								<col width="" />
@@ -55,75 +56,31 @@
 							</colgroup>
 							<thead>
 								<tr>
-									<th>순번</th>
+									<th>
+										<v-checkbox></v-checkbox>
+									</th>
+									<th>원천</th>
 									<th>한글단어명</th>
-									<th>영어약문명</th>
+									<th>영어약어명</th>
 									<th>영어단어명</th>
-									<th>단일어복합업</th>
+									<th>단어구분</th>
 									<th>정의</th>
-									<th>등록직원명</th>
+									<th>등록자</th>
 									<th>등록일시</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>1</td>
-									<td><a href="#">KB국민은행</a></td>
-									<td>KB</td>
-									<td>KB Kookmin Bank</td>
-									<td>단일어</td>
-									<td>KB국민은행</td>
-									<td>이정재</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td><a href="#">KB국민은행</a></td>
-									<td>KB</td>
-									<td>KB Kookmin Bank</td>
-									<td>단일어</td>
-									<td>KB금융지주 KB저축은행</td>
-									<td>이정재</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td><a href="#">KB국민은행</a></td>
-									<td>KB</td>
-									<td>KB Kookmin Bank</td>
-									<td>단일어</td>
-									<td>KB국민은행</td>
-									<td>이정재</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td><a href="#">KB국민은행</a></td>
-									<td>KB</td>
-									<td>KB Kookmin Bank</td>
-									<td>단일어</td>
-									<td>KB국민은행</td>
-									<td>이정재</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td><a href="#">KB국민은행</a></td>
-									<td>KB</td>
-									<td>KB Kookmin Bank</td>
-									<td>단일어</td>
-									<td>KB국민은행</td>
-									<td>이정재</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td><a href="#">KB국민은행</a></td>
-									<td>KB</td>
-									<td>KB Kookmin Bank</td>
-									<td>단일어</td>
-									<td>KB국민은행</td>
-									<td>이정재</td>
+									<td>
+										<v-checkbox></v-checkbox>
+									</td>
+									<td>은행메타</td>
+									<td>가망고객</td>
+									<td>PrbablCust</td>
+									<td>Probable Customer</td>
+									<td>복합어</td>
+									<td>가망고객</td>
+									<td>김준수</td>
 									<td>2008-04-15 21:46:10</td>
 								</tr>
 							</tbody>
@@ -147,4 +104,10 @@
 		</div>
 	</div>
 </template>
-<script></script>
+<script>
+export default {
+	data: () => ({
+		items: ['=', '_%', '%_', '%_%'],
+	}),
+}
+</script>
