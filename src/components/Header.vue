@@ -161,7 +161,9 @@
 				<div class="topLink">
 					<ul>
 						<li class="mybtn">
-							<button class="my">My Page</button>
+							<button class="my">
+								My Page <i class="fas fa-chevron-down"></i>
+							</button>
 							<div class="mymenu">
 								<ul>
 									<li><a href="">MY Dashboard</a></li>

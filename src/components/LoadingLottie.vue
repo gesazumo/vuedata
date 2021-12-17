@@ -1,8 +1,8 @@
 <template>
 	<lottie
 		:options="defaultOptions"
-		:height="200"
-		:width="200"
+		:height="24"
+		:width="60"
 		v-on:animCreated="handleAnimation"
 	/>
 </template>

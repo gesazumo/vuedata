@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="193.155" height="193.155" viewBox="0 0 193.155 193.155">
+    <defs>
+        <style>
+            .cls-2{fill:#504842}.cls-3{fill:#fed160}.cls-3,.cls-6{stroke:#504842;stroke-width:1.75px}.cls-5{fill:#ffefcc}.cls-11,.cls-6{fill:none}.cls-6{stroke-miterlimit:10}.cls-10{stroke:none}
+        </style>
+    </defs>
+    <g id="main_search_icon_05" transform="translate(-.124)">
+        <circle id="타원_8" data-name="타원 8" cx="96.577" cy="96.577" r="96.577" transform="translate(.124)" style="fill:#fff"/>
+        <g id="icon" transform="translate(179.569 86.674)">
+            <g id="그룹_826" data-name="그룹 826" transform="translate(-115.896 -3.232)">
+                <path id="사각형_1654" data-name="사각형 1654" class="cls-2" transform="translate(14.382 11.498)" d="M0 0h2v16.559H0z"/>
+                <g id="그룹_820" data-name="그룹 820" transform="translate(0 -.327)">
+                    <g id="사각형_1640" data-name="사각형 1640" class="cls-3" transform="translate(-.549 -.175)">
+                        <rect class="cls-10" width="30" height="12" rx="2"/>
+                        <rect class="cls-11" x=".875" y=".875" width="28.25" height="10.25" rx="1.125"/>
+                    </g>
+                    <path id="사각형_1641" data-name="사각형 1641" class="cls-2" transform="translate(5.451 4.825)" d="M0 0h4v2H0z"/>
+                </g>
+                <g id="그룹_831" data-name="그룹 831" transform="translate(0 13.673)">
+                    <g id="사각형_1640-2" data-name="사각형 1640" class="cls-3" transform="translate(-.549 -.175)">
+                        <rect class="cls-10" width="30" height="12" rx="2"/>
+                        <rect class="cls-11" x=".875" y=".875" width="28.25" height="10.25" rx="1.125"/>
+                    </g>
+                    <path id="사각형_1641-2" data-name="사각형 1641" class="cls-2" transform="translate(5.451 4.825)" d="M0 0h4v2H0z"/>
+                </g>
+                <g id="그룹_832" data-name="그룹 832" transform="translate(0 27.673)">
+                    <g id="사각형_1640-3" data-name="사각형 1640" class="cls-3" transform="translate(-.549 -.175)">
+                        <rect class="cls-10" width="30" height="12" rx="2"/>
+                        <rect class="cls-11" x=".875" y=".875" width="28.25" height="10.25" rx="1.125"/>
+                    </g>
+                    <path id="사각형_1641-3" data-name="사각형 1641" class="cls-2" transform="translate(5.451 4.825)" d="M0 0h4v2H0z"/>
+                </g>
+                <g id="사각형_1657" data-name="사각형 1657" style="stroke:#707070;fill:#504842">
+                    <path class="cls-10" d="M0 0h2.696v1.348H0z" transform="translate(14.382 26.709)"/>
+                    <path class="cls-11" d="M.5.5h1.696v.348H.5z" transform="translate(14.382 26.709)"/>
+                </g>
+            </g>
+            <g id="그룹_830" data-name="그룹 830" transform="translate(-149.572 -32.69)">
+                <path id="패스_4951" data-name="패스 4951" class="cls-5" d="m814.571 645.367 13.169 7.9a6.305 6.305 0 0 1 3.039 4.859l1.509 17.1H790.4l1.506-17.1a6.307 6.307 0 0 1 3.041-4.859l13.169-7.9" transform="translate(-744.042 -606.919)"/>
+                <rect id="사각형_1630" data-name="사각형 1630" class="cls-5" width="17.935" height="23.235" rx="8.967" transform="translate(58.329 16.016)"/>
+                <path id="패스_4951-2" data-name="패스 4951" class="cls-6" d="m814.571 645.367 13.169 7.9a6.305 6.305 0 0 1 3.039 4.859l1.509 17.1H790.4l1.506-17.1a6.307 6.307 0 0 1 3.041-4.859l13.169-7.9" transform="translate(-744.037 -606.919)"/>
+                <rect id="사각형_1630-2" data-name="사각형 1630" class="cls-6" width="17.935" height="23.235" rx="8.967" transform="translate(58.335 16.016)"/>
+                <g id="사각형_1658" data-name="사각형 1658" transform="translate(60.267 50.38)" style="stroke-width:1.75px;stroke:#504842;fill:#fff">
+                    <rect class="cls-10" width="14.057" height="6" rx="2"/>
+                    <rect class="cls-11" x=".875" y=".875" width="12.307" height="4.25" rx="1.125"/>
+                </g>
+            </g>
+            <g id="그룹_833" data-name="그룹 833" transform="translate(-177.569 -100.85)">
+                <g id="그룹_829" data-name="그룹 829" transform="translate(108.124 107)">
+                    <path id="패스_3690" data-name="패스 3690" d="M109.534 59.1a11.831 11.831 0 1 1 3.287-3.4" transform="translate(-92 -37.5)" style="fill:#fdae00;stroke:#4c3f3c;opacity:.999;stroke-miterlimit:10;stroke-width:1.75px"/>
+                </g>
+                <path id="패스_4956" data-name="패스 4956" d="m111.374 114 4.75 4.5 7.5-7.75" transform="translate(1.462 4.212)" style="fill:none;stroke-width:1.75px;stroke:#504842"/>
+            </g>
+        </g>
+    </g>
+</svg>

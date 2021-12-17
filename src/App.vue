@@ -1,7 +1,9 @@
 <template>
 	<v-app>
+		<!--
 		<loading-lottie />
 		<check-lottie />
+		-->
 		<v-main>
 			<Header />
 			<router-view />
@@ -13,11 +15,11 @@
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import LoadingLottie from './components/LoadingLottie.vue'
-import CheckLottie from './components/CheckLottie.vue'
+//import LoadingLottie from './components/LoadingLottie.vue'
+//import CheckLottie from './components/CheckLottie.vue'
 
 export default {
-	components: { Header, Footer, LoadingLottie, CheckLottie },
+	components: { Header, Footer }, //, LoadingLottie, CheckLottie
 	name: 'App',
 }
 </script>

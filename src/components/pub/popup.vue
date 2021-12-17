@@ -2,9 +2,9 @@
 	<div id="layerpop">
 		<div class="inner">
 			<div class="poptit">
-				<p>Action Layer Popup</p>
+				<p>popup title</p>
 				<button>
-					<i class="mdi mdi-close blackstyle"></i>
+					<i class="fas fa-close"></i>
 				</button>
 			</div>
 			<div class="popconts">
@@ -14,8 +14,8 @@
 				</div>
 			</div>
 			<div class="popbtn">
-				<button class="secondary large">버튼명</button>
-				<button class="primary large">버튼명</button>
+				<button class="cancel large">버튼명</button>
+				<button class="confirm large">버튼명</button>
 			</div>
 		</div>
 	</div>

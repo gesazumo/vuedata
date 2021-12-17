@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="193.155" height="193.155" viewBox="0 0 193.155 193.155">
+    <defs>
+        <style>
+            .cls-4{fill:#fff}.cls-3{fill:#fed160}.cls-3,.cls-4{stroke:#504842}.cls-3{stroke-width:1.75px}.cls-9{fill:none}.cls-6{fill:#504842}.cls-7{fill:#ffae00}.cls-8{stroke:none}
+        </style>
+    </defs>
+    <g id="main_search_icon_03" transform="translate(-.062)">
+        <circle id="타원_6" data-name="타원 6" cx="96.577" cy="96.577" r="96.577" transform="translate(.062)" style="fill:#fff"/>
+        <g id="icon" transform="translate(61 58.688)">
+            <g id="그룹_819" data-name="그룹 819">
+                <path id="사각형_1656" data-name="사각형 1656" transform="translate(14.062 11.48)" style="fill:#ffefcc" d="M0 0h35v12.832H0z"/>
+                <g id="사각형_1648" data-name="사각형 1648" class="cls-3" transform="rotate(90 -8.125 29.187)">
+                    <rect class="cls-8" width="32" height="14" rx="2"/>
+                    <rect class="cls-9" x=".875" y=".875" width="30.25" height="12.25" rx="1.125"/>
+                </g>
+                <g id="사각형_1649" data-name="사각형 1649" class="cls-3" transform="rotate(90 2.375 39.687)">
+                    <rect class="cls-8" width="32" height="14" rx="2"/>
+                    <rect class="cls-9" x=".875" y=".875" width="30.25" height="12.25" rx="1.125"/>
+                </g>
+                <g id="사각형_1650" data-name="사각형 1650" class="cls-3" transform="rotate(90 12.875 50.187)">
+                    <rect class="cls-8" width="32" height="14" rx="2"/>
+                    <rect class="cls-9" x=".875" y=".875" width="30.25" height="12.25" rx="1.125"/>
+                </g>
+                <g id="사각형_1651" data-name="사각형 1651" class="cls-4">
+                    <path class="cls-8" d="M0 0h6v2H0z" transform="translate(11.062 42.312)"/>
+                    <path class="cls-9" d="M.5.5h5v1h-5z" transform="translate(11.062 42.312)"/>
+                </g>
+                <g id="사각형_1652" data-name="사각형 1652" class="cls-4">
+                    <path class="cls-8" d="M0 0h6v2H0z" transform="translate(32.062 42.312)"/>
+                    <path class="cls-9" d="M.5.5h5v1h-5z" transform="translate(32.062 42.312)"/>
+                </g>
+                <g id="사각형_1653" data-name="사각형 1653" class="cls-4">
+                    <path class="cls-8" d="M0 0h6v2H0z" transform="translate(53.062 42.312)"/>
+                    <path class="cls-9" d="M.5.5h5v1h-5z" transform="translate(53.062 42.312)"/>
+                </g>
+            </g>
+            <g id="그룹_820" data-name="그룹 820" transform="translate(-6.002 10.919)">
+                <g id="사각형_1640" data-name="사각형 1640" transform="translate(19.063 -4.607)" style="fill:none;stroke-width:1.75px;stroke:#504842">
+                    <rect class="cls-8" width="44" height="18" rx="2"/>
+                    <rect class="cls-9" x=".875" y=".875" width="42.25" height="16.25" rx="1.125"/>
+                </g>
+                <g id="사각형_1641" data-name="사각형 1641" class="cls-4">
+                    <path class="cls-8" d="M0 0h6v2H0z" transform="translate(28.063 3.393)"/>
+                    <path class="cls-9" d="M.5.5h5v1h-5z" transform="translate(28.063 3.393)"/>
+                </g>
+            </g>
+            <path id="합치기_32" data-name="합치기 32" class="cls-6" d="M-9209.937 527.313v-6h-40v6h-2v-8h44v8z" transform="translate(9265 -489)"/>
+            <path id="사각형_1645" data-name="사각형 1645" class="cls-6" transform="translate(34.062 24.312)" d="M0 0h2v14H0z"/>
+            <circle id="타원_207" data-name="타원 207" class="cls-7" cx="3" cy="3" r="3" transform="rotate(180 19.03 17.156)"/>
+            <path id="사각형_1654" data-name="사각형 1654" class="cls-6" transform="translate(34.062 24.312)" d="M0 0h2v14H0z"/>
+            <circle id="타원_208" data-name="타원 208" class="cls-7" cx="3" cy="3" r="3" transform="rotate(180 19.03 17.156)"/>
+            <g id="그룹_821" data-name="그룹 821">
+                <path id="사각형_1655" data-name="사각형 1655" class="cls-6" transform="rotate(90 -.126 14.188)" d="M0 0h2v8H0z"/>
+                <circle id="타원_209" data-name="타원 209" class="cls-7" cx="3" cy="3" r="3" transform="rotate(-90 9.687 8.625)"/>
+            </g>
+            <g id="그룹_822" data-name="그룹 822" transform="rotate(180 35.562 15.312)">
+                <path id="사각형_1655-2" data-name="사각형 1655" class="cls-6" transform="rotate(90 -.126 14.188)" d="M0 0h2v8H0z"/>
+                <circle id="타원_209-2" data-name="타원 209" class="cls-7" cx="3" cy="3" r="3" transform="rotate(-90 9.687 8.625)"/>
+            </g>
+        </g>
+    </g>
+</svg>

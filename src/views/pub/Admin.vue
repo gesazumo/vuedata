@@ -1,5 +1,4 @@
 <template>
-	<!--adminContents-->
 	<div class="adm_wrap">
 		<div id="lnb">
 			<ul>
@@ -33,7 +32,7 @@
 				<li><a href="#none">라이브러리</a></li>
 			</ul>
 		</div>
-		<div class="conts_adm">
+		<div class="adm_contents">
 			<div class="inner">
 				<h5>화면제목</h5>
 				<div class="adm-search">
@@ -72,7 +71,7 @@
 							></v-text-field>
 						</li>
 						<li>
-							<button class="secondary">검색</button>
+							<button class="search">검색</button>
 						</li>
 					</ul>
 				</div>
@@ -244,8 +243,6 @@
 					<button class="box large">신규</button>
 					<button class="secondary large">저장</button>
 				</div>
-
-				<!--quick-->
 				<div id="quickmenu">
 					<div class="quick">
 						<ul>

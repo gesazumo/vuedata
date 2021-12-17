@@ -1,8 +1,8 @@
 <template>
 	<lottie
 		:options="defaultOptions"
-		:height="200"
-		:width="200"
+		:height="96"
+		:width="96"
 		v-on:animCreated="handleAnimation"
 	/>
 </template>
@@ -20,7 +20,7 @@ export default {
 	methods: {
 		handleAnimation: function (anim) {
 			this.anim = anim
-			this.anim.setSpeed(1)
+			this.anim.setSpeed(1.5)
 		},
 	},
 }

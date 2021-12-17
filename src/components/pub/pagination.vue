@@ -1,13 +1,14 @@
 <template>
-	<div class="text-center">
+	<div class="paging">
 		<v-pagination
 			v-model="page"
-			:length="15"
+			:length="50"
 			:total-visible="7"
 			color="primary"
 		></v-pagination>
 	</div>
 </template>
+
 <script>
 export default {
 	data() {
@@ -17,4 +18,3 @@ export default {
 	},
 }
 </script>
-<style></style>

@@ -95,4 +95,8 @@ export const pubRouter = [
 		path: 'adm001', //Admin 메타관리 단어관리
 		component: () => import('@/views/pub/TAH-ADM001.vue'),
 	},
+	{
+		path: 'adm002', //Admin 메타관리 단어등록수정
+		component: () => import('@/views/pub/TAH-ADM002.vue'),
+	},
 ]
