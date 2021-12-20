@@ -86,22 +86,44 @@
   margin-bottom: 24px;
 }
 
+/*항목이3개일때*/
 .adm-search {
-  display: block;
+  display: inline-block;
   width: 100%;
   min-height: 104px;
   padding: 32px;
   background-color: #fff;
 }
+.adm-search ul {float:left; clear: both; min-width: 100%;}
 .adm-search ul li {float:left; margin-left:50px; width:27.15%}
 .adm-search ul li:first-child {margin-left:0;}
 .adm-search ul li:last-child {float:right; margin-left:32px; width:7.05%}
-.adm-search ul li label {float:left; width:23.5%; min-width: 121px; margin-right: 16px; line-height: 38px; font-family:'KBFGTextM'; font-size: 14px; font-weight: 600; }
+.adm-search ul li label {float:left; width:23.5%; min-width: 121px; margin-right: 16px; line-height: 46px; font-family:'KBFGTextM'; font-size: 14px;  }
 .adm-search ul li label span {display:inline-block; color:#dd3300; font-size:11px; font-weight: normal; line-height:14px; margin-left:8px; }
 
 .adm-search ul li .v-select {margin-top: 5px; width:54.5%; }
 .adm-search ul li .v-text-field {margin-top: 5px; width:57.5%; }
 .adm-search ul li button {margin:0px !important;}
+
+/*항목이2개일때*/
+.adm-search-2 {
+  display: inline-block;
+  width: 100%;
+  min-height: 104px;
+  padding: 32px;
+  background-color: #fff;
+}
+.adm-search-2 ul {float:left; clear: both; min-width: 100%;}
+.adm-search-2 ul li {float:left; margin-left:50px; width:38.33%}
+.adm-search-2 ul li:first-child {margin-left:0;}
+.adm-search-2 ul li:last-child {float:right; margin-left:32px; width:15.33%;text-align: right;}
+.adm-search-2 ul li label {float:left; width:23.5%; min-width: 121px; margin-right: 16px; line-height: 46px; font-family:'KBFGTextM'; font-size: 14px;  }
+.adm-search-2 ul li label span {display:inline-block; color:#dd3300; font-size:11px; font-weight: normal; line-height:14px; margin-left:8px; }
+
+.adm-search-2 ul li .v-select {margin-top: 5px; width:65.5%; }
+.adm-search-2 ul li .v-text-field {margin-top: 5px; width:65.5%; }
+.adm-search-2 ul li button {margin:0px 4px !important;}
+
 
 .item_box {
   display: inline-block;
@@ -140,6 +162,14 @@
 .btn_area button {margin:0 5px;}
 .mg_L0 {margin-left:0 !important;} /*leftmargin*/
 
+.v-input--radio-group--row .v-input--radio-group__input {
+  flex-direction: row;
+  flex-wrap: inherit !important; 
+}
+.v-input--selection-controls .v-radio > .v-label {
+  min-width: 100px !important;
+}
+
 @media (max-width:1600px) { 
   .adm-search {
     display: inline-block;
@@ -153,4 +183,9 @@
   .adm-search ul li:last-child {margin-left:0; margin-top:32px; width:8.05%;}
   .v-select {max-width: 100% !important;}    
   .mg_L0 {margin-left:4px !important; margin-top:33px;}
+}
+@media (min-width: 1264px) {
+  .container {
+    max-width: 100% !important;
+    }
 }

@@ -1592,8 +1592,9 @@ button.edit {border: 1px solid #504842; color: #504842; background-color: #fff;}
 button.delete {border: 1px solid #504842; color: #504842; background-color: #fff;} /*삭제*/
 button.cancel {border: 1px solid #504842; color: #504842; background-color: #fff;} /*취소*/
 button.confirm {background-color:#504842; color:#fff;} /*확인,완료*/
-button.search {background: #504842 !important; color: #fff !important;} /*검색*/
-button.check {background: #504842 !important; color: #fff !important;}
+button.search {background: #504842 !important; color: #fff !important; } /*검색*/
+button.check {background: #504842 !important; color: #fff !important; }
+button.reset {background: #968d83 !important; color:#fff !important; }
 
 /*
 button {
@@ -2023,12 +2024,12 @@ table span {
   margin-left: 8px;
 }
 
+
 .tb_list tr:hover {
   background: #fff9e6;
   cursor: pointer;
 }
 
-.tb_write {}
 .tb_write th {max-height: 56px; text-align: left; padding:8px 24px !important;}
 .tb_write td {min-height: 56px; text-align: left; padding:8px 16px !important;}
 .tb_write td .v-text-field .v-input__slot .v-inupt {width:100% !important;}
@@ -2183,7 +2184,7 @@ table span {
 
 /*select*/
 .v-select {
-  max-width: 240px;
+  /*max-width: 240px;*/
 }
 
 .v-select > .v-input__control > .v-input__slot {

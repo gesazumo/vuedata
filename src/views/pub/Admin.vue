@@ -24,12 +24,56 @@
 					</ul>
 				</li>
 				<li><a href="#none">대시보드 관리</a></li>
-				<li><a href="#none">메뉴관리</a></li>
-				<li><a href="#none">권한관리</a></li>
-				<li><a href="#none">코드관리</a></li>
-				<li><a href="#none">게시판관리</a></li>
-				<li><a href="#none">결재관리</a></li>
-				<li><a href="#none">라이브러리</a></li>
+				<li>
+					<a href="#none">메뉴관리</a>
+					<ul>
+						<li><a href="#none">- 메뉴 리스트</a></li>
+						<li><a href="#none">- 메뉴관리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#none">권한관리</a>
+					<ul>
+						<li><a href="#none">- 사용자별 화면권한 리스트</a></li>
+						<li><a href="#none">- 권한관리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#none">코드관리</a>
+					<ul>
+						<li><a href="#none">- 코드조회</a></li>
+						<li><a href="#none">- 코드관리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#none">게시판관리</a>
+					<ul>
+						<li><a href="#none">- 공지사항 관리</a></li>
+						<li><a href="#none">- Q &amp; A 관리</a></li>
+						<li><a href="#none">- FAQ 관리</a></li>
+						<li><a href="#none">- 인사이트 리포트 관리</a></li>
+						<li><a href="#none">- 자료실 관리</a></li>
+						<li><a href="#none">- 댓글 관리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#none">결재관리</a>
+					<ul>
+						<li><a href="#none">- 결재라인 관리</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#none">라이브러리</a>
+					<ul>
+						<li><a href="#none">- 오픈소스 라이브러리 관리</a></li>
+					</ul>
+				</li>
+				<li><a href="#none">AWS 실행관리</a></li>
+				<li><a href="#none">알림현황</a></li>
+				<li><a href="#none">사용자관리</a></li>
+				<li><a href="#none">게시판현황</a></li>
+				<li><a href="#none">결재현황</a></li>
+				<li><a href="#none">프로젝트관리</a></li>
 			</ul>
 		</div>
 		<div class="adm_contents">
