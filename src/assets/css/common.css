@@ -745,7 +745,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
   border-radius: 4px;
 }
 .my_start .inner .boxitem .box .img1 {
-  background: #23a3a7;
+  background: url(../../images/main_img_begin.png) left center no-repeat;
   width: 464px;
   height: 304px;
   border-top-left-radius: 4px;
@@ -753,7 +753,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
   overflow: hidden;
 }
 .my_start .inner .boxitem .box .img2 {
-  background: #2196f3;
+  background: url(../../images/main_img_mater.png) left center no-repeat;
   width: 464px;
   height: 304px;
   border-top-left-radius: 4px;
@@ -1320,6 +1320,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
 .v-parallax__content .inner .guidebox .box div button {
   margin:0 !important;
   padding:0 !important;
+  color:#1e1909 !important;
+}
+.v-parallax__content .inner .guidebox .box div button i {
+  color:#ffbc00;
 }
 
 .banr2 {
@@ -1893,7 +1897,7 @@ table span {
 
 .tb_write {}
 .tb_write th {max-height: 56px; text-align: left; padding:8px 24px !important;}
-.tb_write td {max-height: 56px; text-align: left; padding:8px 16px 0 16px !important;}
+.tb_write td {min-height: 56px; text-align: left; padding:8px 16px !important;}
 .tb_write td .v-text-field .v-input__slot .v-inupt {width:100% !important;}
 
 
@@ -1997,41 +2001,44 @@ table span {
 /*팝업*/
 #layerpop {  
   position: relative;
-  left: 0;
-  top: 0;
+  left: 50%;
+  top: 100px;
   bottom: 0;
   right: 0;
-  display: table;
+  display: inline-block;
   background: #f5f5f5;  
+  margin-left:-200px;
 }
 #layerpop .inner {
   padding: 30px;
-  padding-bottom: 0;
   background: #fff;
 }
-#layerpop .inner .poptit {}
+#layerpop .inner .poptit {
+  display: inline-block;
+  width: 100%;
+}
 #layerpop .inner .poptit p {
   font-size: 18px;
   font-weight: 600;
 }
 #layerpop .inner .poptit button {
+  float: right;
   display: inline-block;
   text-align: center;
   text-decoration: none;
   border-radius: 0;
   margin: 0;
-  margin-top: -40px;
+  margin-top: -30px;
   padding: 0;
   height: 30px;
   min-width: 30px !important;
-  color: #fff;
   cursor: pointer;
 }
 #layerpop .inner .poptit button i {
-  color: black;
+  color: #1e1909;
 }
 #layerpop .inner .popconts {
-  padding: 20px;
+  padding: 20px 0;
 }
 #layerpop .inner .popconts div {
   overflow-y: auto;
@@ -2289,10 +2296,11 @@ table span {
 
 /*v-*/
 .v-messages__message {line-height: 16px !important;}
-.v-input--selection-controls__ripple {left:-5px !important;}
+.v-input--selection-controls__ripple {left:-5px !important; margin:8px !important; }
 .v-system-bar .v-input--selection-controls .v-input__slot > .v-label, 
 .v-input--selection-controls .v-radio > .v-label {
   color:#1e1909;
+  padding-left: 20px !important;
 }
 .v-text-field--outlined .v-input__prepend-outer, 
 .v-text-field--outlined .v-input__append-outer {
@@ -2307,3 +2315,8 @@ table span {
   min-height: 40px !important;
 }
 .v-text-field__details {margin-bottom: 0 !important;}
+.v-input--selection-controls.v-input--dense:not(.v-input--switch) .v-input--selection-controls__ripple {
+  left: -12px;
+  top: calc(50% - 24px);
+  margin: 8px;
+}

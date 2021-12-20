@@ -434,7 +434,7 @@
 					</div>
 					<div class="guidebox">
 						<div class="box">
-							<p class="g01">상세 메뉴얼</p>
+							<p class="g01">상세 매뉴얼</p>
 							<span>
 								데이터 검색부터 분석환경<br />
 								신청 후 활용까지 상세 내용 확인
@@ -442,9 +442,7 @@
 							<div>
 								<button>
 									바로가기
-									<v-icon color="primary"
-										>mdi-chevron-right</v-icon
-									>
+									<i class="fas fa-chevron-right"></i>
 								</button>
 							</div>
 						</div>
@@ -454,9 +452,7 @@
 							<div>
 								<button>
 									바로가기
-									<v-icon color="primary"
-										>mdi-chevron-right</v-icon
-									>
+									<i class="fas fa-chevron-right"></i>
 								</button>
 							</div>
 						</div>
@@ -469,9 +465,7 @@
 							<div>
 								<button>
 									바로가기
-									<v-icon color="primary"
-										>mdi-chevron-right</v-icon
-									>
+									<i class="fas fa-chevron-right"></i>
 								</button>
 							</div>
 						</div>
@@ -484,9 +478,7 @@
 							<div>
 								<button>
 									바로가기
-									<v-icon color="primary"
-										>mdi-chevron-right</v-icon
-									>
+									<i class="fas fa-chevron-right"></i>
 								</button>
 							</div>
 						</div>

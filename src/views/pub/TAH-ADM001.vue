@@ -73,17 +73,6 @@
 							<caption>
 								table caption
 							</caption>
-							<colgroup>
-								<col width="5%" />
-								<col width="10%" />
-								<col width="10%" />
-								<col width="10%" />
-								<col width="" />
-								<col width="10%" />
-								<col width="" />
-								<col width="8%" />
-								<col width="15%" />
-							</colgroup>
 							<thead>
 								<tr>
 									<th>
@@ -96,11 +85,11 @@
 									</th>
 									<th>
 										영어약어명
-										<i class="fas fa-chevron-down"></i>
+										<i class="fas fa-chevron-up"></i>
 									</th>
 									<th>
 										영어단어명
-										<i class="fas fa-chevron-down"></i>
+										<i class="fas fa-chevron-up"></i>
 									</th>
 									<th>
 										단어구분

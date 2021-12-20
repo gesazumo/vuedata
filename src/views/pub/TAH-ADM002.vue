@@ -1,6 +1,37 @@
 <template>
 	<div class="adm_wrap">
-		<div id="lnb"></div>
+		<div id="lnb">
+			<ul>
+				<li>
+					<a href="#none">메타관리</a>
+					<ul>
+						<li><a href="#none">- 단어관리</a></li>
+						<li><a href="#none">- 인스턴스코드관리</a></li>
+						<li><a href="#none">- 메타관리</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="#none">모니터링</a>
+					<ul>
+						<li><a href="#none">- 포털 로그인 이력</a></li>
+						<li><a href="#none">- 포털 로그인 접속이력</a></li>
+						<li><a href="#none">- SageMaker 접속이력</a></li>
+						<li><a href="#none">- 데이터 처리현황</a></li>
+						<li><a href="#none">- 시스템 현황</a></li>
+						<li><a href="#none">- 장애감지</a></li>
+						<li><a href="#none">- 리소스사용(계열사별)</a></li>
+					</ul>
+				</li>
+				<li><a href="#none">대시보드 관리</a></li>
+				<li><a href="#none">메뉴관리</a></li>
+				<li><a href="#none">권한관리</a></li>
+				<li><a href="#none">코드관리</a></li>
+				<li><a href="#none">게시판관리</a></li>
+				<li><a href="#none">결재관리</a></li>
+				<li><a href="#none">라이브러리</a></li>
+			</ul>
+		</div>
 		<div class="adm_contents">
 			<div class="inner">
 				<h5>단어 등록 및 수정</h5>
@@ -21,6 +52,7 @@
 										<v-text-field
 											label=""
 											placeholder="한글단어명을 입력해 주세요"
+											single-line
 											clearable
 											outlined
 										>
@@ -40,6 +72,7 @@
 										<v-text-field
 											label=""
 											placeholder="영문단어명을 입력해 주세요"
+											single-line
 											clearable
 											outlined
 										></v-text-field>
@@ -47,14 +80,7 @@
 								</tr>
 								<tr>
 									<th>영문약어명 <span>필수</span></th>
-									<td>
-										<v-text-field
-											label=""
-											placeholder="영문약어명을 입력해 주세요"
-											clearable
-											outlined
-										></v-text-field>
-									</td>
+									<td>Power Customer</td>
 								</tr>
 								<tr>
 									<th>단어구분 <span>필수</span></th>
@@ -85,10 +111,37 @@
 				</div>
 				<div class="btn_area">
 					<button class="cancel large">취소</button>
-					<button class="regit large">등록하기</button>
+					<button class="delete large">삭제하기</button>
+					<button class="regit large">등록<!--수정-->하기</button>
 				</div>
 
-				<div id="quickmenu"></div>
+				<div id="quickmenu">
+					<div class="quick">
+						<ul>
+							<li>
+								<a href="">
+									<img src="../../images/quick_icon_01.png" />
+									<span>AWS콘솔바로가기</span>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<img src="../../images/quick_icon_02.png" />
+									<span>문의하기</span>
+								</a>
+							</li>
+							<li>
+								<a
+									href="http://bipotal.kbfng.com:8080/BiPortal"
+								>
+									<img src="../../images/quick_icon_03.png" />
+									<span>인사이트포털</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="scrollTop"></div>
+				</div>
 			</div>
 		</div>
 	</div>
