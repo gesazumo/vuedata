@@ -195,34 +195,6 @@
 					<button class="edit large">수정하기</button>
 					<button class="regit large">등록하기</button>
 				</div>
-
-				<div id="quickmenu">
-					<div class="quick">
-						<ul>
-							<li>
-								<a href="">
-									<img src="../../images/quick_icon_01.png" />
-									<span>AWS콘솔바로가기</span>
-								</a>
-							</li>
-							<li>
-								<a href="">
-									<img src="../../images/quick_icon_02.png" />
-									<span>문의하기</span>
-								</a>
-							</li>
-							<li>
-								<a
-									href="http://bipotal.kbfng.com:8080/BiPortal"
-								>
-									<img src="../../images/quick_icon_03.png" />
-									<span>인사이트포털</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="scrollTop"></div>
-				</div>
 			</div>
 		</div>
 	</div>
