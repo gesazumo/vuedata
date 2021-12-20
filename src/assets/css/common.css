@@ -1838,7 +1838,7 @@ input[type="text"] {
   font-family: 'KBFGTextL';
   font-size: 14px;
   color:#1e1909;
-  padding: 0 5px;
+  padding-right: 10px;
 }
 #sub_wrap .title ul li:last-child {font-weight: 600;}
 #sub_wrap .title h3 {

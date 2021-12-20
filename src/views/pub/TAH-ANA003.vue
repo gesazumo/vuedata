@@ -3,8 +3,8 @@
 		<div class="title">
 			<ul>
 				<li>홈</li>
-				<li><i class="fa fa-chevron-right"></i> Analyze</li>
-				<li><i class="fa fa-chevron-right"></i> 분석환경신청</li>
+				<li>Analyze</li>
+				<li>분석환경신청</li>
 			</ul>
 			<h3>분석환경신청</h3>
 		</div>
