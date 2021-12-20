@@ -66,8 +66,15 @@
 				</div>
 				<div class="item_box">
 					<div class="tit">
-						<p>총 <span>123</span>개의 검색결과가 있습니다.</p>
+						<p>총 <span>123</span>개의 검색결과가 있습니다``.</p>
 					</div>
+					<v-data-table
+						:headers="headers"
+						:items="items2"
+						:items-per-page="itemsPerPage"
+						hide-default-footer
+						class="elevation-1"
+					></v-data-table>
 					<div class="table_box">
 						<table class="tb_list">
 							<caption>
@@ -121,45 +128,6 @@
 									<td>복합어</td>
 									<td>가망고객</td>
 									<td>김준수</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>포털</td>
-									<td>고객</td>
-									<td>Cust</td>
-									<td>Customer</td>
-									<td>단일어</td>
-									<td>고객</td>
-									<td>&nbsp;</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>포털</td>
-									<td>고객가족실적</td>
-									<td>Cfarsl</td>
-									<td>Customer Family Actual Result</td>
-									<td>단일어</td>
-									<td>고객가족실적</td>
-									<td>&nbsp;</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>은행메타</td>
-									<td>고객식별자</td>
-									<td>CustIndfr</td>
-									<td>Customer Identifier</td>
-									<td>복합어</td>
-									<td>고객식별자</td>
-									<td>&nbsp;</td>
 									<td>2008-04-15 21:46:10</td>
 								</tr>
 								<tr>
@@ -229,8 +197,62 @@
 </template>
 <script>
 export default {
-	data: () => ({
-		items: ['=', '_%', '%_', '%_%'],
-	}),
+	data() {
+		return {
+			items: ['=', '_%', '%_', '%_%'],
+			page: 1,
+			pageCount: 0,
+			itemsPerPage: 10,
+			headers: [
+				{
+					text: '원천',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '한글단어명',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '영문약어명',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '영어단어명',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '단어구분',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '정의',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '등록자',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '등록일시',
+					align: 'center',
+					sortable: true,
+				},
+			],
+			items2: [],
+		}
+	},
+	methods: {
+		openSel() {
+			//this.axios.post(url).then
+			this.items2 = []
+		},
+	},
 }
 </script>
