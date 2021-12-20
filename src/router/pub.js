@@ -99,4 +99,12 @@ export const pubRouter = [
 		path: 'adm002', //Admin 메타관리 단어등록수정
 		component: () => import('@/views/pub/TAH-ADM002.vue'),
 	},
+	{
+		path: 'ana002', //Analyze 분석환경신청 약관동의
+		component: () => import('@/views/pub/TAH-ANA002.vue'),
+	},
+	{
+		path: 'ana003', //Analyze 분석환경신청 신청정보입력
+		component: () => import('@/views/pub/TAH-ANA003.vue'),
+	},
 ]
