@@ -53,7 +53,7 @@ const routes = [
 	},
 	{
 		path: '/admin',
-		component: () => import('@/views/admin/Admin.vue'),
+		component: () => import('@/views/admin/AdminIndex.vue'),
 		children: adminRouter,
 	},
 ]
