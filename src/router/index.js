@@ -50,6 +50,7 @@ const routes = [
 		component: () => import('@/views/pub/Pub.vue'),
 		children: pubRouter,
 	},
+	{},
 ]
 
 const router = new VueRouter({
