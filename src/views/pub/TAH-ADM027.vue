@@ -17,12 +17,15 @@
 						</li>
 						<li>
 							<label>등록일</label>
-							<v-text-field
+							<date-picker
+								v-model="date"
 								placeholder="날짜선택"
+							/>
+							<!-- <v-text-field
 								single-line
 								outlined
 								clearable
-							></v-text-field>
+							></v-text-field> -->
 						</li>
 						<li></li>
 					</ul>
@@ -184,9 +187,15 @@
 	</div>
 </template>
 <script>
+import DatePicker from 'vue2-datepicker'
+
 export default {
+	components: {
+		DatePicker,
+	},
 	data() {
 		return {
+			date: null,
 			items1: [
 				'카테고리:전체',
 				'트렌드 리포트',
