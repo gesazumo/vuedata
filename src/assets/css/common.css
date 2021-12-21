@@ -100,9 +100,14 @@
   height: 32px;
   background: url(../../images/icon_search.png) center center no-repeat;
 }
+.topLink ul li.search button.srch:hover, 
+.topLink ul li.search button.srch:active,
+.topLink ul li.search button.srch:focus {
+  background: url(../../images/icon_search.png) center center no-repeat !important;
+}
 .blind {display: none;}
 
-/*search 클릭시 검색 화면 view*/
+/*search 클릭시 Fullpoup*/
 .popup-wrap{
   background-color:rgba(0,0,0,.3);
   justify-content:center;
@@ -116,7 +121,7 @@
   padding:0;
   z-index: 12;
 }
-.popup{
+.popup-inner {
   width:100%;
   max-width:100%;
   height: 100%;
@@ -176,6 +181,10 @@
 }
 .search-area .v-text-field input label {
   line-height: 42px !important;
+}
+.search-area .v-text-field .v-input__prepend-inner i {
+  font-size: 22px;
+  margin-top: 7px
 }
 .v-text-field .v-label {min-height: 0 !important;}
 
@@ -239,7 +248,7 @@
   width:100%;
   height:50px;
 }
-.pop-btn{
+.popup-btn{
   display:inline-flex;
   width:40px;
   height:40px;
@@ -248,9 +257,6 @@
   align-items:center;
   cursor:pointer;
   background: url(../../images/com_icon_close.png) center center no-repeat;
-}
-.pop-btn.confirm{
-  border-right:1px solid #3b5fbf;
 }
 
 .topLink .mybtn a.on {position: relative; display: inline-block; }
@@ -1386,7 +1392,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
   float: left;
   margin-right: 140px;
   color: #261f19;
-  font-family: "KBFGDisplayL";
+  font-family: "KBFGDisplayM";
   font-weight: 600;
   font-size: 16px;
 }
@@ -1405,6 +1411,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
 }
 .footer_wrap .inner ul.footmenu li ul {
   margin: 0;
+  margin-top: 20px;
 }
 .footer_wrap .inner ul.footmenu li ul li {
   margin: 0;
@@ -1434,28 +1441,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
 .otherinfo .familyGroup {
   position:relative; 
   width:auto;  
-  padding:0 54px 0 0;
+  /*padding:0 54px 0 0;*/
   border:1px solid #dddddd;
   background: #fff;
 }
 .otherinfo .familyGroup .selectbox {
-  min-width:210px; 
+  min-width:100%; 
   padding:17px 46px 16px 24px; 
   font-family:'KBFGDisplayM'; 
   font-size:16px; 
   color:#1e1909; 
   line-height:1.2; 
   letter-spacing:-0.5px; 
-  font-weight:600; 
-  background:url('/content/images/bg/bg_familysite_arrow.png') right 20px top 50%  no-repeat; 
+  font-weight:600;  
   border:0; 
   -webkit-appearance:none; 
   -moz-appearance:none; 
   appearance:none; 
 }
+
 .otherinfo .down {
   display: inline-block;
-  padding:32px 16px;
+  padding:32px 0 32px 16px;
   border-bottom: 1px solid #d8d8d8;
 }
 .otherinfo .down ul li {
@@ -1466,13 +1473,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#017cc7', end
 }
 .otherinfo .down ul li:last-child {margin-bottom: 0;}
 .otherinfo .down ul li span {
-  display: inline-block;
+  display: block;
   font-family: 'KBFGDisplayM';
   padding-left: 22px;
   background: url('../../images/com_icon_down.png') left center no-repeat;
+  margin-left: 110px;
+  margin-top: -24px;
+  cursor: pointer;
 }
-
-
+.otherinfo .faq-btn {
+ margin-top: 30px;
+}
+.otherinfo .faq-btn i {color:#ffbc00;}
+.otherinfo .faq-btn button.faq {
+ background: none !important;
+ margin: 0 !important;
+ padding: 0 !important;
+ height: auto;
+ min-width: auto;
+ margin-left: 16px !important;
+}
 
 /*text*/
 textarea {
@@ -1491,7 +1511,7 @@ textarea::-webkit-scrollbar {
 }
 */
 
-/*btn*/
+/*기본버튼*/
 button {
   font-family: "KBFGTextM"; /*KB금융본문체*/
   font-size: 14px;
@@ -1503,17 +1523,18 @@ button {
   border-radius: 4px;
   margin: 0px 5px;
   padding: 0 16px;
-  height: 40px;
-  min-width: 80px;
+  color: #1e1909;
+  background: #ffbc00;
   cursor: pointer;
-  /*background:#ffbc00;*/
 }
-button.primary {
-  color: #1e1909 !important;  
+button:active, button:hover, button:focus {
+  background: #ffbc00!important;
+  opacity: 0.7;
+  color: #1e1909;
+  outline: 0;
 }
-button.secondary {
-  color: #fff !important;  
-}
+
+
 button.large {
   height: 50px;
   min-width: 160px;
@@ -1528,21 +1549,24 @@ button.small {
   font-size: 14px;
   padding: 0 10px;
 }
-button:disabled {
-  opacity: 0.5;
-  color: #fff;
-  pointer-events: none;
-}
+
 button.box {
   border: 1px solid #504842;
   background-color: #fff;
   color: #504842;
+  min-height: 40px;
 }
 button.round {
   border: 1px solid #504842;
   background-color: #fff;
   color: #504842;
   border-radius: 50px;
+}
+button.faq {
+  background: transparent;
+}
+button.faq:hover, .faq:focus, .faq:active {
+  background: none;
 }
 button.util {
   border: 1px solid #fff;
@@ -1553,24 +1577,6 @@ button.util {
   min-width: 0;
   padding: 0 10px;
   margin: 0;
-}
-button:active,
-button:hover,
-button:focus {
-  /*background: var(--button-hover-bg-color);*/
-  opacity: 0.7;
-  outline: 0;
-}
-
-button.primary:hover {
-  background: #968d83 !important;
-  opacity: 0.7;
-  color: #fff !important;
-}
-button.secondary:hover {
-  background: #504842 !important;
-  opacity: 0.7;
-  color: #fff !important;
 }
 button.util:hover {
   background-color: rgba(255, 255, 255, 0.2);
@@ -1586,15 +1592,58 @@ button.my {
 button.my:hover, .my:active, .my:focus {
   opacity: 1;
 }
+button:disabled {
+  opacity: 0.5;
+  color: #fff;
+  pointer-events: none;
+}
+
+/*
+
+button.box {
+  border: 1px solid #504842;
+  background-color: #fff;
+  color: #504842;
+  min-height: 40px;
+}
+button.round {
+  border: 1px solid #504842;
+  background-color: #fff;
+  color: #504842;
+  border-radius: 50px;
+}
+
+
+button.primary:hover {
+  background: #ffbc00 !important;
+  opacity: 0.7;
+  color: #1e1909 !important;
+}
+button.secondary:hover {
+  background: #504842 !important;
+  opacity: 0.7;
+  color: #fff !important;
+}
+
+*/
+
 /*버튼*/
 button.regit {background-color: #ffbc00 !important; color: #1e1909 !important;}  /*등록*/
 button.edit {border: 1px solid #504842; color: #504842; background-color: #fff;} /*수정*/
 button.delete {border: 1px solid #504842; color: #504842; background-color: #fff;} /*삭제*/
 button.cancel {border: 1px solid #504842; color: #504842; background-color: #fff;} /*취소*/
+button.cancel:hover {
+  background: #fff!important;
+  opacity: 0.7;
+  outline: 0;
+}
 button.confirm {background-color:#504842; color:#fff;} /*확인,완료*/
-button.search {background: #504842 !important; color: #fff !important; } /*검색*/
+button.search {background: #504842 !important; min-width: 80px; min-height: 40px; color: #fff !important; } /*검색*/
 button.check {background: #504842 !important; color: #fff !important; }
-button.reset {background: #968d83 !important; color:#fff !important; }
+button.reset {background: #968d83 !important; min-width: 80px; min-height: 40px; color:#fff !important; }
+
+button.full {width:100%; min-width:100%; }
+button.close {background: none !important;}
 
 /*
 button {
@@ -2133,7 +2182,7 @@ table span {
 
 
 /*팝업*/
-#layerpop {  
+#popup {  
   position: relative;
   left: 50%;
   top: 100px;
@@ -2142,20 +2191,21 @@ table span {
   display: inline-block;
   background: #f5f5f5;  
   margin-left:-200px;
+  max-width: 400px;
 }
-#layerpop .inner {
-  padding: 30px;
+#popup .inner {
+  padding: 20px;
   background: #fff;
 }
-#layerpop .inner .poptit {
+#popup .inner .poptit {
   display: inline-block;
   width: 100%;
 }
-#layerpop .inner .poptit p {
+#popup .inner .poptit p {
   font-size: 18px;
   font-weight: 600;
 }
-#layerpop .inner .poptit button {
+#popup .inner .poptit button {
   float: right;
   display: inline-block;
   text-align: center;
@@ -2168,19 +2218,25 @@ table span {
   min-width: 30px !important;
   cursor: pointer;
 }
-#layerpop .inner .poptit button i {
+#popup .inner .poptit button i {
   color: #1e1909;
 }
-#layerpop .inner .popconts {
+#popup .inner .popconts {  
   padding: 20px 0;
 }
-#layerpop .inner .popconts div {
-  overflow-y: auto;
+#popup .inner .popconts div {
+  width: 100%;
+  overflow-y: auto;  
+  font-family: 'KBFGTextM';
+  font-size: 16px;
+  line-height: 24px;
   height: 200px;
 }
-#layerpop .inner .popbtn {
+#popup .inner .popbtn {
   text-align: center;
 }
+
+
 
 /*select*/
 .v-select {
@@ -2458,6 +2514,7 @@ table span {
 
 /*datepicker날짜선택*/ 
 .mx-input {min-height: 40px;}
+.mx-datepicker-range {width: 304.5px; }
 .mx-calendar-header button {
   min-width: 0;
 }

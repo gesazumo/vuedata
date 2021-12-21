@@ -15,9 +15,9 @@
 				<nav id="gnb">
 					<ul class="dep01">
 						<li>
-							<a href="" title="" target="_self"
-								><span>Explore</span></a
-							>
+							<a href="" title="" target="_self">
+								<span>Explore</span>
+							</a>
 							<div class="subMn">
 								<div class="title">
 									<div class="inner">
@@ -31,32 +31,36 @@
 								</div>
 								<ul class="dep02">
 									<li class="row">
-										<a href="" title="" target="_self"
-											>마이데이터</a
-										>
+										<a href="" title="" target="_self">
+											마이데이터
+											<i class="fa fa-chevron-right"></i>
+										</a>
+									</li>
+									<li class="row">
+										<a href="" title="" target="_self">
+											특화데이터
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 									<li class="row">
 										<a href="" title="" target="_self"
-											>특화데이터</a
-										>
+											>분석모델
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 									<li class="row">
 										<a href="" title="" target="_self"
-											>분석모델</a
-										>
-									</li>
-									<li class="row">
-										<a href="" title="" target="_self"
-											>대시보드</a
-										>
+											>대시보드
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a href="" title="" target="_self"
-								><span>Analyze</span></a
-							>
+							<a href="" title="" target="_self">
+								<span>Analyze</span>
+							</a>
 							<div class="subMn">
 								<div class="title">
 									<div class="inner">
@@ -70,17 +74,18 @@
 								</div>
 								<ul class="dep02">
 									<li class="row">
-										<a href="" title="" target="_self"
-											>분석환경신청</a
-										>
+										<a href="" title="" target="_self">
+											분석환경신청
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a href="" title="" target="_self"
-								><span>Share</span></a
-							>
+							<a href="" title="" target="_self">
+								<span>Share</span>
+							</a>
 							<div class="subMn">
 								<div class="title">
 									<div class="inner">
@@ -94,27 +99,30 @@
 								</div>
 								<ul class="dep02">
 									<li class="row">
-										<a href="" title="" target="_self"
-											>인사이트 리포트</a
-										>
+										<a href="" title="" target="_self">
+											인사이트 리포트
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 									<li class="row">
-										<a href="" title="" target="_self"
-											>자료실</a
-										>
+										<a href="" title="" target="_self">
+											자료실
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 									<li class="row">
-										<a href="" title="" target="_self"
-											>포럼</a
-										>
+										<a href="" title="" target="_self">
+											포럼
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a href="" title="" target="_self"
-								><span>Support</span></a
-							>
+							<a href="" title="" target="_self">
+								<span>Support</span>
+							</a>
 							<div class="subMn">
 								<div class="title">
 									<div class="inner">
@@ -129,31 +137,35 @@
 								<ul class="dep02">
 									<li class="row">
 										<a href="" title="" target="_self"
-											>공지사항</a
-										>
+											>공지사항
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 									<li class="row">
-										<a href="" title="" target="_self"
-											>FAQ</a
-										>
+										<a href="" title="" target="_self">
+											FAQ
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 									<li class="row">
-										<a href="" title="" target="_self"
-											>문의하기</a
-										>
+										<a href="" title="" target="_self">
+											문의하기
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 									<li class="row">
-										<a href="" title="" target="_self"
-											>라이브러리</a
-										>
+										<a href="" title="" target="_self">
+											라이브러리
+											<i class="fa fa-chevron-right"></i>
+										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a href="" title="" target="_self"
-								><span>Admin</span></a
-							>
+							<a href="" title="" target="_self">
+								<span>Admin</span>
+							</a>
 						</li>
 					</ul>
 				</nav>
@@ -162,7 +174,7 @@
 					<ul>
 						<li class="mybtn">
 							<button class="my">
-								My Page <i class="fas fa-chevron-down"></i>
+								My Page <i class="fa fa-chevron-down"></i>
 							</button>
 							<div class="mymenu">
 								<ul>
@@ -204,11 +216,13 @@
 							<button class="srch" id="modal-open">
 								<span class="blind">검색</span>
 							</button>
-							<div class="popup-wrap" id="popup">
-								<div class="popup">
+							<div class="popup-wrap" id="Fullpopup">
+								<div class="popup-inner">
 									<div class="popup-close">
-										<span class="pop-btn close" id="close">
-											<span class="blind">창 닫기</span>
+										<span
+											class="popup-btn close"
+											id="close"
+										>
 										</span>
 									</div>
 									<div class="popup-head">

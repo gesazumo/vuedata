@@ -121,11 +121,11 @@
 						</li>
 					</ul>
 				</div>
-				<div>
-					<v-btn text>
+				<div class="faq-btn">
+					<button class="faq large">
 						문의하러 가기
-						<v-icon>mdi-chevron-right</v-icon>
-					</v-btn>
+						<i class="fa fa-chevron-right"></i>
+					</button>
 				</div>
 			</div>
 			<div class="copyright">
