@@ -42,13 +42,17 @@
 			<div class="s_body">
 				<div class="agree_all">
 					<p>
-						<v-checkbox></v-checkbox>
+						<v-checkbox
+							v-model="allSelected"
+							@change="checkAll($event)"
+						></v-checkbox>
 						전체동의
 					</p>
 				</div>
 				<div class="agree">
 					<div class="agree_chk">
-						<v-checkbox> </v-checkbox>
+						<v-checkbox v-model="check1" @click="checkChange()">
+						</v-checkbox>
 						<p>
 							권한 및 라이선스 관리 약관에 동의합니다.
 							<span>필수</span>
@@ -64,7 +68,10 @@
 				</div>
 				<div class="agree">
 					<div class="agree_chk">
-						<v-checkbox></v-checkbox>
+						<v-checkbox
+							v-model="check2"
+							@click="checkChange()"
+						></v-checkbox>
 						<p>
 							개인정보 보호 약관에 동의합니다.
 							<span>필수</span>
@@ -78,7 +85,10 @@
 				</div>
 				<div class="agree">
 					<div class="agree_chk">
-						<v-checkbox></v-checkbox>
+						<v-checkbox
+							v-model="check3"
+							@click="checkChange()"
+						></v-checkbox>
 						<p>
 							데이터 관리 약관에 동의합니다.
 							<span>필수</span>
@@ -115,3 +125,38 @@
 		</div>
 	</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			check1: false,
+			check2: false,
+			check3: false,
+			allSelected: false,
+		}
+	},
+
+	methods: {
+		checkAll(e) {
+			if (e == true) {
+				this.check1 = true
+				this.check2 = true
+				this.check3 = true
+			} else {
+				this.check1 = false
+				this.check2 = false
+				this.check3 = false
+			}
+		},
+
+		checkChange() {
+			if (this.check1 && this.check2 && this.check3) {
+				this.allSelected = true
+			} else {
+				this.allSelected = false
+			}
+		},
+	},
+}
+</script>
