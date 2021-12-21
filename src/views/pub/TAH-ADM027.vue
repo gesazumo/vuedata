@@ -19,13 +19,9 @@
 							<label>등록일</label>
 							<date-picker
 								v-model="date"
+								range
 								placeholder="날짜선택"
 							/>
-							<!-- <v-text-field
-								single-line
-								outlined
-								clearable
-							></v-text-field> -->
 						</li>
 						<li></li>
 					</ul>
@@ -72,101 +68,17 @@
 						<p>총 <span>74</span>개의 검색결과가 있습니다.</p>
 					</div>
 					<div class="table_box">
-						<table class="tb_list">
-							<caption>
-								table caption
-							</caption>
-							<thead>
-								<tr>
-									<th>
-										<v-checkbox></v-checkbox>
-									</th>
-									<th>원천</th>
-									<th>
-										한글단어명
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										영어약어명
-										<i class="fas fa-chevron-up"></i>
-									</th>
-									<th>
-										영어단어명
-										<i class="fas fa-chevron-up"></i>
-									</th>
-									<th>
-										단어구분
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										정의
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										등록자
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										등록일시
-										<i class="fas fa-chevron-down"></i>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>메인</td>
-									<td>트랜트 리포트</td>
-									<td>머신러닝/딥러닝</td>
-									<td>뱅킹, 서비스로 연결하다</td>
-									<td>최자영</td>
-									<td>2021-10-29</td>
-									<td>12</td>
-									<td>80</td>
-								</tr>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>메인</td>
-									<td>트랜트 리포트</td>
-									<td>머신러닝/딥러닝</td>
-									<td>뱅킹, 서비스로 연결하다</td>
-									<td>최자영</td>
-									<td>2021-10-29</td>
-									<td>12</td>
-									<td>80</td>
-								</tr>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>메인</td>
-									<td>트랜트 리포트</td>
-									<td>머신러닝/딥러닝</td>
-									<td>뱅킹, 서비스로 연결하다</td>
-									<td>최자영</td>
-									<td>2021-10-29</td>
-									<td>12</td>
-									<td>80</td>
-								</tr>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>메인</td>
-									<td>트랜트 리포트</td>
-									<td>머신러닝/딥러닝</td>
-									<td>뱅킹, 서비스로 연결하다</td>
-									<td>최자영</td>
-									<td>2021-10-29</td>
-									<td>12</td>
-									<td>80</td>
-								</tr>
-							</tbody>
-						</table>
+						<v-data-table
+							v-model="selected"
+							:headers="headers"
+							:items="items3"
+							:items-per-page="itemsPerPage"
+							:single-select="singleSelect"
+							item-key="aaa"
+							show-select
+							hide-default-footer
+							class="elevation-1"
+						></v-data-table>
 						<div class="paging">
 							<v-pagination
 								v-model="page"
@@ -214,6 +126,85 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
+			singleSelect: false,
+			selected: [],
+			headers: [
+				{
+					text: '구분',
+					align: 'center',
+					sortable: false,
+					value: 'aaa',
+				},
+				{ text: '카테고리', align: 'center', value: 'category' },
+				{ text: 'Topic', align: 'center', value: 'topic' },
+				{ text: '제목', align: 'center', value: 'subject' },
+				{ text: '작성자', align: 'center', value: 'writer' },
+				{ text: '등록일', align: 'center', value: 'date' },
+				{ text: '좋아요', align: 'center', value: 'good' },
+				{ text: '조회수', align: 'center', value: 'hit' },
+			],
+			items3: [
+				{
+					aaa: '메인',
+					category: '트렌트 리포트',
+					topic: '머신러닝/딥러닝',
+					subject: '뱅킹, 서비스로 연결하다',
+					writer: '김국민',
+					date: '2021-00-00',
+					good: '12',
+					hit: '22',
+				},
+				{
+					aaa: '일반',
+					category: '트렌트 리포트',
+					topic: '머신러닝/딥러닝',
+					subject: '뱅킹, 서비스로 연결하다',
+					writer: '김국민',
+					date: '2021-00-00',
+					good: '12',
+					hit: '22',
+				},
+				{
+					aaa: '일반',
+					category: '뉴스레터',
+					topic: '머신러닝/딥러닝',
+					subject: '뱅킹, 서비스로 연결하다',
+					writer: '김국민',
+					date: '2021-00-00',
+					good: '12',
+					hit: '22',
+				},
+				{
+					aaa: '메인',
+					category: '전문가 리포트',
+					topic: '머신러닝/딥러닝',
+					subject: '뱅킹, 서비스로 연결하다',
+					writer: '김국민',
+					date: '2021-00-00',
+					good: '12',
+					hit: '22',
+				},
+				{
+					aaa: '메인',
+					category: '트렌트 리포트',
+					topic: '머신러닝/딥러닝',
+					subject: '뱅킹, 서비스로 연결하다',
+					writer: '김국민',
+					date: '2021-00-00',
+					good: '12',
+					hit: '22',
+				},
+				{
+					aaa: '메인',
+					category: '트렌트 리포트',
+					topic: '머신러닝/딥러닝',
+					subject: '뱅킹, 서비스로 연결하다',
+					writer: '김국민',
+					date: '2021-00-00',
+					good: '12',
+					hit: '22',
+				},
+			],
 		}
 	},
 }

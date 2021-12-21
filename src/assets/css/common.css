@@ -2454,3 +2454,10 @@ table span {
   top: calc(50% - 24px);
   margin: 8px;
 }*/
+
+
+/*datepicker날짜선택*/ 
+.mx-input {min-height: 40px;}
+.mx-calendar-header button {
+  min-width: 0;
+}
