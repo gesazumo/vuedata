@@ -6,7 +6,7 @@
 					>메타관리</a
 				>
 				<ul v-if="showMetaSubMenu">
-					<li><a href="#none">단어관리</a></li>
+					<li><router-link to="adm001">단어관리</router-link></li>
 					<li><a href="#none">인스턴스코드관리</a></li>
 					<li><a href="#none">메타관리</a></li>
 				</ul>
@@ -66,7 +66,11 @@
 					<li><a href="#none">공지사항 관리</a></li>
 					<li><a href="#none">Q &amp; A 관리</a></li>
 					<li><a href="#none">FAQ 관리</a></li>
-					<li><a href="#none">사이트 리포트 관리</a></li>
+					<li>
+						<router-link to="adm027"
+							>사이트 리포트 관리</router-link
+						>
+					</li>
 					<li><a href="#none">자료실 관리</a></li>
 					<li><a href="#none">댓글 관리</a></li>
 				</ul>
