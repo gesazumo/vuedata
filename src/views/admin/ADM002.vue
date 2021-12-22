@@ -72,7 +72,7 @@
 								<th>정의 <span class="asterisk">필수</span></th>
 								<td>
 									<v-textarea
-										placeholder="단어정의를 입력하세요/Editor"
+										placeholder="단어정의를 입력하세요./Editor"
 										clearable
 										outlined
 									></v-textarea>
