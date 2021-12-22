@@ -33,7 +33,10 @@
 			</div>
 			<div class="item_box">
 				<div class="tit">
-					<p>총 <span>123</span>개의 검색결과가 있습니다``.</p>
+					<p>
+						총 <span>{{ items2.length }}</span
+						>개의 검색결과가 있습니다``.
+					</p>
 				</div>
 				<v-data-table
 					:headers="headers"
