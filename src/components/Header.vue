@@ -3,12 +3,12 @@
 		<div class="container">
 			<!--logo -->
 			<h1>
-				<a href="">
+				<router-link to="/">
 					<img
 						src="../images/gnb_logo.png"
 						alt="KB 마이데이터 포털"
 					/>
-				</a>
+				</router-link>
 			</h1>
 			<div class="gnbWrap">
 				<!-- gnb -->
