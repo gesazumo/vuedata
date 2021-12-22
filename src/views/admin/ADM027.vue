@@ -1,116 +1,114 @@
 <template>
-	<div class="adm_contents">
-		<div class="inner">
-			<h5>화면제목</h5>
-			<div class="adm-search">
-				<ul>
-					<li>
-						<label>검색항목명<span>필수</span></label>
-						<v-select
-							:items="items"
-							label="선택"
-							ref="name"
-							v-model="name"
-							:rules="[
-								() => !!name || '입력 항목을 확인해 주세요',
-							]"
-							:error-messages="'errorMessages'"
-							single-line
-							outlined
-						></v-select>
-					</li>
-					<li>
-						<label>프로젝트 팀원<span>필수</span></label>
-						<v-text-field
-							placeholder="이름"
-							single-line
-							outlined
-							clearable
-						></v-text-field>
-					</li>
-					<li>
-						<label>검색항목명</label>
-						<v-text-field
-							placeholder="- 없이 번호만"
-							single-line
-							outlined
-							clearable
-						></v-text-field>
-					</li>
-					<li>
-						<button class="search">검색</button>
-					</li>
-				</ul>
-			</div>
-			<div class="item_box">
-				<div class="tit">
-					<h5>영역 타이틀(선택)</h5>
-					<p>총 <span>120</span>개의 검색결과가 있습니다.</p>
+	<div class="adm_wrap">
+		<div id="lnb"></div>
+		<div class="adm_contents">
+			<div class="inner">
+				<h5>인사이트 리포트 관리</h5>
+				<div class="adm-search-2">
+					<ul>
+						<li>
+							<label>제목</label>
+							<v-text-field
+								placeholder="제목"
+								single-line
+								outlined
+								clearable
+							></v-text-field>
+						</li>
+						<li>
+							<label>등록일</label>
+							<date-picker
+								v-model="date"
+								range
+								placeholder="날짜선택"
+							/>
+						</li>
+						<li></li>
+					</ul>
+					<ul>
+						<li>
+							<label>구분</label>
+							<v-select
+								:items="items1"
+								label="전체 카테고리"
+								single-line
+								outlined
+							></v-select>
+						</li>
+						<li>
+							<label>Topic</label>
+							<v-select
+								:items="items2"
+								label="전체 Topic"
+								single-line
+								outlined
+							></v-select>
+						</li>
+						<li></li>
+					</ul>
+					<ul>
+						<li>
+							<label>작성자</label>
+							<v-text-field
+								placeholder=""
+								single-line
+								outlined
+								clearable
+							></v-text-field>
+						</li>
+						<li></li>
+						<li>
+							<button class="reset">초기화</button>
+							<button class="search">검색하기</button>
+						</li>
+					</ul>
 				</div>
-				<div class="btn">
-					<button class="box">담당자 목록 다운로드</button>
-				</div>
-				<div class="table_box">
-					<v-data-table
-						v-model="selected"
-						:headers="headers"
-						:items="items3"
-						:items-per-page="itemsPerPage"
-						:single-select="singleSelect"
-						item-key="aaa"
-						show-select
-						hide-default-footer
-						class="elevation-1"
-					></v-data-table>
-					<div class="paging">
-						<v-pagination
-							v-model="page"
-							:length="50"
-							:total-visible="7"
-							color="primary"
-						></v-pagination>
+				<div class="item_box">
+					<div class="tit">
+						<p>총 <span>74</span>개의 검색결과가 있습니다.</p>
+					</div>
+					<div class="table_box">
+						<v-data-table
+							v-model="selected"
+							:headers="headers"
+							:items="items3"
+							:items-per-page="itemsPerPage"
+							:single-select="singleSelect"
+							item-key="aaa"
+							show-select
+							hide-default-footer
+							class="elevation-1"
+						></v-data-table>
+						<div class="paging">
+							<v-pagination
+								v-model="page"
+								:length="50"
+								:total-visible="7"
+								color="primary"
+							></v-pagination>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="item_box">
-				<div class="tit">
-					<h5>디테일 정보(선택)</h5>
+				<div class="btn_area">
+					<button class="delete large">삭제하기</button>
+					<button class="edit large">수정하기</button>
+					<button class="regit large">등록하기</button>
 				</div>
-				<div class="table_box">
-					<v-data-table
-						v-model="selected"
-						:headers="headers"
-						:items="items3"
-						:items-per-page="itemsPerPage"
-						:single-select="singleSelect"
-						item-key="aaa"
-						show-select
-						hide-default-footer
-						class="elevation-1"
-					></v-data-table>
-					<div class="paging">
-						<v-pagination
-							v-model="page"
-							:length="50"
-							:total-visible="7"
-							color="primary"
-						></v-pagination>
-					</div>
-				</div>
-			</div>
-			<div class="btn_area">
-				<button class="box large">신규</button>
-				<button class="secondary large">저장</button>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+import DatePicker from 'vue2-datepicker'
+
 export default {
+	components: {
+		DatePicker,
+	},
 	data() {
 		return {
 			date: null,
-			items: [
+			items1: [
 				'카테고리:전체',
 				'트렌드 리포트',
 				'전문가 리포트',
