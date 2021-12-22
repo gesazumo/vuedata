@@ -65,7 +65,10 @@
 				</div>
 				<div class="item_box">
 					<div class="tit">
-						<p>총 <span>74</span>개의 검색결과가 있습니다.</p>
+						<p>
+							총 <span>{{ items3.length }}</span
+							>개의 검색결과가 있습니다.
+						</p>
 					</div>
 					<div class="table_box">
 						<v-data-table
@@ -74,15 +77,17 @@
 							:items="items3"
 							:items-per-page="itemsPerPage"
 							:single-select="singleSelect"
-							item-key="aaa"
+							item-key="seq"
 							show-select
 							hide-default-footer
 							class="elevation-1"
+							:page.sync="page"
+							@page-count="pageCount = $event"
 						></v-data-table>
 						<div class="paging">
 							<v-pagination
 								v-model="page"
-								:length="50"
+								:length="pageCount"
 								:total-visible="7"
 								color="primary"
 							></v-pagination>
@@ -125,7 +130,7 @@ export default {
 			],
 			page: 1,
 			pageCount: 0,
-			itemsPerPage: 10,
+			itemsPerPage: 1,
 			singleSelect: false,
 			selected: [],
 			headers: [
@@ -145,60 +150,66 @@ export default {
 			],
 			items3: [
 				{
+					seq: '1',
 					aaa: '메인',
 					category: '트렌트 리포트',
 					topic: '머신러닝/딥러닝',
-					subject: '뱅킹, 서비스로 연결하다',
+					subject: '1.뱅킹, 서비스로 연결하다',
 					writer: '김국민',
 					date: '2021-00-00',
 					good: '12',
 					hit: '22',
 				},
 				{
+					seq: '2',
 					aaa: '일반',
 					category: '트렌트 리포트',
 					topic: '머신러닝/딥러닝',
-					subject: '뱅킹, 서비스로 연결하다',
+					subject: '2.뱅킹, 서비스로 연결하다',
 					writer: '김국민',
 					date: '2021-00-00',
 					good: '12',
 					hit: '22',
 				},
 				{
+					seq: '3',
 					aaa: '일반',
 					category: '뉴스레터',
 					topic: '머신러닝/딥러닝',
-					subject: '뱅킹, 서비스로 연결하다',
+					subject: '3.뱅킹, 서비스로 연결하다',
 					writer: '김국민',
 					date: '2021-00-00',
 					good: '12',
 					hit: '22',
 				},
 				{
+					seq: '4',
 					aaa: '메인',
 					category: '전문가 리포트',
 					topic: '머신러닝/딥러닝',
-					subject: '뱅킹, 서비스로 연결하다',
+					subject: '4.뱅킹, 서비스로 연결하다',
 					writer: '김국민',
 					date: '2021-00-00',
 					good: '12',
 					hit: '22',
 				},
 				{
+					seq: '5',
 					aaa: '메인',
 					category: '트렌트 리포트',
 					topic: '머신러닝/딥러닝',
-					subject: '뱅킹, 서비스로 연결하다',
+					subject: '5.뱅킹, 서비스로 연결하다',
 					writer: '김국민',
 					date: '2021-00-00',
 					good: '12',
 					hit: '22',
 				},
 				{
+					seq: '6',
 					aaa: '메인',
 					category: '트렌트 리포트',
 					topic: '머신러닝/딥러닝',
-					subject: '뱅킹, 서비스로 연결하다',
+					subject: '6.뱅킹, 서비스로 연결하다',
 					writer: '김국민',
 					date: '2021-00-00',
 					good: '12',
