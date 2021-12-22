@@ -5,6 +5,7 @@ import exploreRouter from './explore'
 import { pubRouter } from './pub'
 import shareRouter from './share'
 import supportRouter from './support'
+import adminRouter from './admin'
 
 Vue.use(VueRouter)
 
@@ -49,6 +50,11 @@ const routes = [
 		path: '/pub',
 		component: () => import('@/views/pub/Pub.vue'),
 		children: pubRouter,
+	},
+	{
+		path: '/admin',
+		component: () => import('@/views/admin/AdminIndex.vue'),
+		children: adminRouter,
 	},
 ]
 

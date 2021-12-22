@@ -52,10 +52,6 @@ export const pubRouter = [
 		component: () => import('@/components/pub/tab.vue'),
 	},
 	{
-		path: 'table',
-		component: () => import('@/components/pub/table.vue'),
-	},
-	{
 		path: 'textarea',
 		component: () => import('@/components/pub/textarea.vue'),
 	},

@@ -16,7 +16,10 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th>한글단어명 <span>필수</span></th>
+									<th>
+										한글단어명
+										<span class="asterisk">필수</span>
+									</th>
 									<td>
 										<v-text-field
 											label=""
@@ -34,7 +37,10 @@
 									</td>
 								</tr>
 								<tr>
-									<th>영문단어명 <span>필수</span></th>
+									<th>
+										영문단어명
+										<span class="asterisk">필수</span>
+									</th>
 									<td>
 										<v-text-field
 											label=""
@@ -46,11 +52,17 @@
 									</td>
 								</tr>
 								<tr>
-									<th>영문약어명 <span>필수</span></th>
+									<th>
+										영문약어명
+										<span class="asterisk">필수</span>
+									</th>
 									<td>Power Customer</td>
 								</tr>
 								<tr>
-									<th>단어구분 <span>필수</span></th>
+									<th>
+										단어구분
+										<span class="asterisk">필수</span>
+									</th>
 									<td>
 										<v-radio-group row>
 											<v-radio label="단일어"
@@ -63,7 +75,9 @@
 									</td>
 								</tr>
 								<tr>
-									<th>정의 <span>필수</span></th>
+									<th>
+										정의 <span class="asterisk">필수</span>
+									</th>
 									<td>
 										<v-textarea
 											placeholder="단어정의를 입력하세요/Editor"

@@ -13,7 +13,7 @@
   height: 100%;
   min-height: 100%;;
   background-color: #2c2921;
-  font-family: 'KBFGDisplayL' !important;
+  font-family: 'KBFGDisplayM' !important;
   font-size: 16px;
   line-height: 24px;
   color: #fff;
@@ -26,17 +26,19 @@
   display: block;
   padding: 18px 24px 18px 48px; 
   color: inherit; 
+  font-family: 'KBFGDisplayM' !important;
   font-size: 16px;
-  background:#2c2921 url('../../images/adm_arrow_down.png') no-repeat 95% 15px;
+  background:#2c2921 url('../../images/admin_2dep_arrow.png') no-repeat 90% 15px;
 }
 #lnb > ul > li a:hover {color: #ffbc00; }
 #lnb > ul > li.on > a {
   color: #FF9D00; 
-  background: #f5f2ec url('../../images/adm_arrow_on.png') no-repeat 95% 15px;
+  background: #2c2921 url('../../images/admin_3dep_arrow.png') no-repeat 90% 15px;
 }
 #lnb > ul > li ul {display: block; background: #504842;}
 #lnb > ul > li > ul > li > a {
   display: block;
+  font-family: 'KBFGDisplayM' !important;
   padding: 14px 25px 14px 48px;
   color: inherit; 
   font-size: 14px;
@@ -48,7 +50,7 @@
 }  
 #lnb > ul > li > ul > li.on a {
   color: #FF9D00; 
-  background: url('../../images/adm_arrow_on.png') no-repeat 95% 3px; }
+}
 #lnb > ul > li > ul li ul {
   display: none;
   padding-bottom: 8px;
@@ -58,6 +60,7 @@
   display: block;
   padding: 0 25px 10px 22px; 
   color: #666; 
+  font-family: 'KBFGDisplayM' !important;
   font-size: 14px;
   background-color: #f5f2ec;
 }
@@ -184,8 +187,9 @@
   .v-select {max-width: 100% !important;}    
   .mg_L0 {margin-left:4px !important; margin-top:33px;}
 }
+/*
 @media (min-width: 1264px) {
   .container {
     max-width: 100% !important;
     }
-}
+}*/

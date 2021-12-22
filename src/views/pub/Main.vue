@@ -199,7 +199,7 @@
 					<div>
 						<button>
 							바로가기
-							<v-icon color="primary">mdi-chevron-right</v-icon>
+							<i class="fa fa-chevron-right"></i>
 						</button>
 					</div>
 				</div>

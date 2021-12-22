@@ -10,7 +10,7 @@
 							table caption
 						</caption>
 						<colgroup>
-							<col width="20%" />
+							<col width="22%" />
 							<col width="" />
 						</colgroup>
 						<tbody>
@@ -45,6 +45,9 @@
 												v-on="on"
 												icon
 												color="secondary"
+												style="
+													background: none !important;
+												"
 											>
 												<v-icon>mdi-help-circle</v-icon>
 											</v-btn>
@@ -79,10 +82,18 @@
 								</td>
 							</tr>
 							<tr>
-								<th>Topic <span>필수</span></th>
+								<th>
+									Topic <span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-select
 										:items="items1"
+										:rules="[
+											() =>
+												!!meg ||
+												'Topic을 선택해 주세요',
+										]"
+										:error-messages="errorMessages"
 										label="Topic을 선택하세요"
 										single-line
 										outlined
@@ -90,7 +101,10 @@
 								</td>
 							</tr>
 							<tr>
-								<th>기획연재 여부 <span>필수</span></th>
+								<th>
+									기획연재 여부
+									<span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-radio-group row>
 										<v-radio label="단편 리포트"
@@ -103,10 +117,19 @@
 								</td>
 							</tr>
 							<tr>
-								<th>기획연재 주제 <span>필수</span></th>
+								<th>
+									기획연재 주제
+									<span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-select
 										:items="items2"
+										:rules="[
+											() =>
+												!!meg ||
+												'기획연재 주제를 선택해 주세요',
+										]"
+										:error-messages="errorMessages"
 										label="기획연재 주제를 선택하세요"
 										single-line
 										outlined
@@ -114,9 +137,15 @@
 								</td>
 							</tr>
 							<tr>
-								<th>제목 <span>필수</span></th>
+								<th>제목 <span class="asterisk">필수</span></th>
 								<td>
 									<v-text-field
+										:rules="[
+											() =>
+												!!meg ||
+												'리포트 제목을 입력해 주세요',
+										]"
+										:error-messages="errorMessages"
 										placeholder="제목을 입력하세요"
 										clearable
 										outlined
@@ -124,26 +153,55 @@
 								</td>
 							</tr>
 							<tr>
-								<th>뉴스레터 회차 <span>필수</span></th>
+								<th>
+									뉴스레터 회차
+									<span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-select
 										:items="items3"
+										:rules="[
+											() =>
+												!!meg ||
+												'뉴스레터를 선택해 주세요',
+										]"
+										:error-messages="errorMessages"
 										label="뉴스레터를 선택하세요"
 										single-line
 										outlined
+										style="
+											float: left;
+											margin-right: 4px;
+											width: 40% !important;
+										"
 									></v-select>
 									<v-select
 										:items="items4"
+										:rules="[
+											() =>
+												!!meg ||
+												'뉴스레터를 회차를 선택해 주세요',
+										]"
+										:error-messages="errorMessages"
 										label="회차를 선택하세요"
 										single-line
 										outlined
+										style="width: 20% !important"
 									></v-select>
 								</td>
 							</tr>
 							<tr>
-								<th>요약문장 <span>필수</span></th>
+								<th>
+									요약문장 <span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-text-field
+										:rules="[
+											() =>
+												!!meg ||
+												'요약문장을 입력해 주세요',
+										]"
+										:error-messages="errorMessages"
 										placeholder="요약문장을 입력하세요"
 										clearable
 										outlined
@@ -151,9 +209,14 @@
 								</td>
 							</tr>
 							<tr>
-								<th>본문 <span>필수</span></th>
+								<th>본문 <span class="asterisk">필수</span></th>
 								<td>
 									<v-textarea
+										:rules="[
+											() =>
+												!!meg || '본문을 입력해 주세요',
+										]"
+										:error-messages="errorMessages"
 										placeholder="본문을 입력하세요/Editor"
 										clearable
 										outlined
@@ -161,9 +224,17 @@
 								</td>
 							</tr>
 							<tr>
-								<th>결론문장 <span>필수</span></th>
+								<th>
+									결론문장 <span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-text-field
+										:rules="[
+											() =>
+												!!meg ||
+												'결론문장을 입력해 주세요',
+										]"
+										:error-messages="errorMessages"
 										placeholder="결론문장을 입력하세요"
 										clearable
 										outlined
@@ -171,7 +242,9 @@
 								</td>
 							</tr>
 							<tr>
-								<th>작성자 <span>필수</span></th>
+								<th>
+									작성자 <span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-row>
 										<v-col cols="3">
@@ -179,45 +252,33 @@
 												placeholder="이름을 입력하세요"
 												clearable
 												outlined
-												prepend-inner-icon="fa fa-search"
+												append-outer-icon="fa fa-search"
 											>
-												<template v-slot:prepend-inner>
-													<i class="fa fa-search"></i>
+												<template v-slot:append-outer>
+													<button class="search-in">
+														<i
+															class="fa fa-search"
+														></i>
+													</button>
 												</template>
 											</v-text-field>
 										</v-col>
 									</v-row>
 									<div class="table_box">
-										<table class="tb_list">
-											<thead>
-												<tr>
-													<th>회사명</th>
-													<th>부서</th>
-													<th>이름</th>
-													<th>사번</th>
-													<th>삭제</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>KB 국민은행</td>
-													<td>경영연구소</td>
-													<td>김국민</td>
-													<td>H00001</td>
-													<td>
-														<i
-															class="fa fa-times"
-														></i>
-													</td>
-												</tr>
-											</tbody>
-										</table>
+										<v-data-table
+											:headers="headers"
+											:items="items5"
+											:items-per-page="itemsPerPage"
+											hide-default-footer
+											class="elevation-1"
+										></v-data-table>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>
-									작성자 프로필 이미지 <span>필수</span>
+									작성자 프로필 이미지
+									<span class="asterisk">필수</span>
 									<v-tooltip
 										right
 										content-class="secondary tooltip-right"
@@ -230,6 +291,9 @@
 												v-on="on"
 												icon
 												color="secondary"
+												style="
+													background: none !important;
+												"
 											>
 												<v-icon>mdi-help-circle</v-icon>
 											</v-btn>
@@ -260,7 +324,10 @@
 								</td>
 							</tr>
 							<tr>
-								<th>작성자 소개 <span>필수</span></th>
+								<th>
+									작성자 소개
+									<span class="asterisk">필수</span>
+								</th>
 								<td>
 									<v-text-field
 										placeholder="작성자 소개를 입력하세요"
@@ -271,7 +338,8 @@
 							</tr>
 							<tr>
 								<th>
-									썸네일 이미지 <span>필수</span>
+									썸네일 이미지
+									<span class="asterisk">필수</span>
 									<v-tooltip
 										right
 										content-class="secondary tooltip-right"
@@ -284,6 +352,9 @@
 												v-on="on"
 												icon
 												color="secondary"
+												style="
+													background: none !important;
+												"
 											>
 												<v-icon>mdi-help-circle</v-icon>
 											</v-btn>
@@ -309,7 +380,8 @@
 							</tr>
 							<tr>
 								<th>
-									배너 이미지 <span>필수</span>
+									배너 이미지
+									<span class="asterisk">필수</span>
 									<v-tooltip
 										right
 										content-class="secondary tooltip-right"
@@ -322,6 +394,9 @@
 												v-on="on"
 												icon
 												color="secondary"
+												style="
+													background: none !important;
+												"
 											>
 												<v-icon>mdi-help-circle</v-icon>
 											</v-btn>
@@ -375,6 +450,54 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
+			headers: [
+				{
+					text: '회사명',
+					align: 'center',
+					sortable: false,
+					value: 'company',
+				},
+				{
+					text: '부서',
+					align: 'center',
+					sortable: false,
+					value: 'team',
+				},
+				{
+					text: '이름',
+					align: 'center',
+					sortable: false,
+					value: 'name',
+				},
+				{
+					text: '사번',
+					align: 'center',
+					sortable: false,
+					value: 'companyid',
+				},
+				{
+					text: '삭제',
+					align: 'center',
+					sortable: false,
+					value: 'delete',
+				},
+			],
+			items5: [
+				{
+					company: 'KB국민은행',
+					team: '경영연구소1',
+					name: '김국민',
+					companyid: 'H00001',
+					delete: '',
+				},
+				{
+					company: 'KB국민은행',
+					team: '경영연구소2',
+					name: '김스타',
+					companyid: 'H00007',
+					delete: '',
+				},
+			],
 		}
 	},
 }
