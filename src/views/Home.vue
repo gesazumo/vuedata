@@ -1,5 +1,6 @@
 <template>
 	<div class="about">
+		여기가 홈
 		<home-component />
 	</div>
 </template>
