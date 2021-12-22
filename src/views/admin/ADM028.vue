@@ -1,6 +1,6 @@
 <template>
 	<div class="adm_wrap">
-		<div id="lnb"></div>
+		<!-- <div id="lnb"></div> -->
 		<div class="adm_contents">
 			<div class="inner">
 				<h5>인사이트 리포트 등록 및 수정</h5>
