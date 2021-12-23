@@ -1,8 +1,9 @@
 const analyzeRouter = [
-	// {
-	// 	path: 'test',
-	// 	component: () => import('@/views/support/test.vue'),
-	// },
+	{
+		path: 'ana002',
+		name: 'ana002',
+		component: () => import('@/views/analyze/ANA002.vue'),
+	},
 ]
 
 export default analyzeRouter
