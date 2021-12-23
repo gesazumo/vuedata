@@ -1971,11 +1971,12 @@ input[type="text"] {
 .agree_all p {
   font-weight: 600;
   font-size: 18px;
-  line-height: 65px;
+  line-height: 24px;
+  margin-left: 8px;
 }
 .agree_all p .v-input__slot{
   float:left;
-  max-width: 30px !important;
+  /*max-width: 30px !important;*/
 }
 .agree {
   margin-bottom: 40px;
@@ -1984,13 +1985,14 @@ input[type="text"] {
 .agree .agree_chk p {
   font-family: 'KBFGTextM';
   font-size: 18px;
-  line-height: 70px;
-  color:#1e1909;
+  line-height: 19px;
+  color: #1e1909;
+  margin-left: 8px;
 }
 .agree .agree_chk p span {
  color: #dd3300;
  font-size: 11px;
- margin-left: 8px;
+ margin: 0 8px;
 }
 .agree .agree_txt {
   display: inline-block;
@@ -2006,8 +2008,7 @@ input[type="text"] {
 }
 
 .agree .v-input__slot, .v-input--selection-controls.v-input {
-  width: 30px !important;
-  height: 30px !important;
+  width: 100%;
   float: left;
 }
 
@@ -2504,9 +2505,19 @@ table span {
   border: 0;
 }
 
+.center {text-align: center; align-items: center; justify-items: center;}
+.left {text-align: left; align-items: left; justify-items: left;}
+.right {text-align: right; align-items: right; justify-items: right;}
 
+.btnArea {
+  display: inline-block;
+  width:100%; 
+  text-align: center; 
+}
+.btnArea button {margin:0 5px;}
 
 /*v-*/
+.v-messages {margin-bottom: 5px;}
 .v-messages__message {line-height: 16px !important;}
 /*.v-input--selection-controls__ripple {left:-5px !important; margin:8px !important; }*/
 .v-system-bar .v-input--selection-controls .v-input__slot > .v-label, 
