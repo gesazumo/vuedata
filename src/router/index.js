@@ -38,10 +38,10 @@ const router = new VueRouter({
 	routes,
 })
 
-router.beforeEach((to, from, next) => {
-	if (to.meta.isPublic) {
-		return next()
-	}
-})
+// router.beforeEach((to, from, next) => {
+// 	if (to.meta.isPublic) {
+// 		return next()
+// 	}
+// })
 
 export default router
