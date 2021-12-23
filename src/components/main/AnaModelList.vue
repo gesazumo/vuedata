@@ -2,9 +2,41 @@
 	<!--나에게필요한분석모델을찾아보세요-->
 	<div class="my_data">
 		<div class="inner">
+			<div class="txt">
+				<h3>
+					나에게 필요한 <br />
+					분석모델을 찾아보세요
+				</h3>
+				<span>
+					다양한 알고리즘 및 Use Case별 모범 사례<br />
+					분석 모델을 제공합니다.
+				</span>
+				<div>
+					<button>
+						바로가기
+						<i class="fa fa-chevron-right"></i>
+					</button>
+				</div>
+			</div>
+			<div class="control_btn">
+				<div>
+					<ul>
+						<li>
+							<img src="../../images/swipe_icon_arrow_prev.png" />
+						</li>
+						<li>2<span class="bar"></span>6</li>
+						<li>
+							<img src="../../images/swipe_icon_arrow_next.png" />
+						</li>
+						<li>
+							<img src="../../images/swipe_icon_stop.png" />
+						</li>
+					</ul>
+				</div>
+			</div>
 			<div class="slider">
 				<ul class="bxslider">
-					<carousel :autoplay="true" :perPage="4" :loop="true">
+					<carousel :autoplay="true" :perPage="3" :loop="true">
 						<slide>
 							<li>
 								<div class="card_list">
@@ -239,7 +271,7 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel'
 export default {
-	name: 'AnaModelList',
+	name: 'odelList',
 	components: { Carousel, Slide },
 }
 </script>
