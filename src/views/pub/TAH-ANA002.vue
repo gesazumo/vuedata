@@ -41,18 +41,25 @@
 			</div>
 			<div class="s_body">
 				<div class="agree_all">
-					<p>
-						<v-checkbox></v-checkbox>
-						전체동의
-					</p>
+					<v-checkbox>
+						<template v-slot:label>
+							<p>전체동의</p>
+						</template>
+					</v-checkbox>
 				</div>
 				<div class="agree">
 					<div class="agree_chk">
-						<v-checkbox> </v-checkbox>
-						<p>
-							권한 및 라이선스 관리 약관에 동의합니다.
-							<span>필수</span>
-						</p>
+						<v-checkbox
+							v-model="check1"
+							:rules="[rules.required, rules.check1]"
+						>
+							<template v-slot:label>
+								<p>
+									권한 및 라이선스 관리 약관에 동의합니다.
+									<span>필수</span>
+								</p>
+							</template>
+						</v-checkbox>
 					</div>
 					<div class="agree_txt">
 						그룹 마이데이터 통합분석 플랫폼을 통해 분석환경 및
@@ -64,11 +71,17 @@
 				</div>
 				<div class="agree">
 					<div class="agree_chk">
-						<v-checkbox></v-checkbox>
-						<p>
-							개인정보 보호 약관에 동의합니다.
-							<span>필수</span>
-						</p>
+						<v-checkbox
+							v-model="check2"
+							:rules="[rules.required, rules.check2]"
+						>
+							<template v-slot:label>
+								<p>
+									개인정보 보호 약관에 동의합니다.
+									<span>필수</span>
+								</p>
+							</template>
+						</v-checkbox>
 					</div>
 					<div class="agree_txt">
 						개인정보보호 업무매뉴얼 제 14절 개인정보마스킹 정책에
@@ -78,11 +91,17 @@
 				</div>
 				<div class="agree">
 					<div class="agree_chk">
-						<v-checkbox></v-checkbox>
-						<p>
-							데이터 관리 약관에 동의합니다.
-							<span>필수</span>
-						</p>
+						<v-checkbox
+							v-model="check3"
+							:rules="[rules.required, rules.check3]"
+						>
+							<template v-slot:label>
+								<p>
+									데이터 관리 약관에 동의합니다.
+									<span>필수</span>
+								</p>
+							</template>
+						</v-checkbox>
 					</div>
 					<div class="agree_txt">
 						- 신청 계정으로 생성된 테이블 관리와 데이터에 대한
@@ -108,10 +127,25 @@
 						데이터를 저장하는 등의 행위는 하지 않아야 합니다.
 					</div>
 				</div>
-				<div class="btn_area">
+				<div class="btnArea">
 					<button class="regit large">다음 페이지로</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
+<script>
+export default {
+	data() {
+		return {
+			rules: {
+				check1: value =>
+					!!value || '권한 및 라이선스 관리 약관에 동의해 주세요.',
+				check2: value =>
+					!!value || '개인정보 보호 약관에 동의해 주세요.',
+				check3: value => !!value || '데이터 관리 약관에 동의해 주세요.',
+			},
+		}
+	},
+}
+</script>
