@@ -1,4 +1,4 @@
-const { SET_TEST_FLAG } = require('../mutation-type')
+import { SET_TEST_FLAG } from '@/store/mutation-type'
 
 const shareStore = {
 	namespaced: true,

@@ -1,25 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import shareStore from './modules/shareStore'
-import { SET_FLAG } from './mutation-type'
+import userStore from './modules/userStore'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-	state: {
-		flag: true,
-	},
-	mutations: {
-		[SET_FLAG](state, { flag }) {
-			state.flag = flag
-		},
-	},
-	actions: {
-		setFlag({ commit }, value) {
-			commit(SET_FLAG, { flag: value })
-		},
-	},
+	state: {},
+	mutations: {},
+	actions: {},
 	modules: {
 		shareStore: shareStore,
+		userStore: userStore,
 	},
 })
