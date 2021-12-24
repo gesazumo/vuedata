@@ -20,6 +20,14 @@ const userStore = {
 			state.userInfo = userInfo
 		},
 	},
+	getters: {
+		getAccessToken: state => {
+			return state.accessToken
+		},
+		getRefreshToken: state => {
+			return state.refreshToken
+		},
+	},
 	actions: {
 		async login({ commit }, { accessToken, refreshToken, userInfo }) {
 			commit(SET_TOKEN, { accessToken, refreshToken })

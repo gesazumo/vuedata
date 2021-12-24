@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Container from '@/views/Container.vue'
 import { pubRouter } from './pub'
 import commonRouter from './commonRouter'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -38,10 +39,17 @@ const router = new VueRouter({
 	routes,
 })
 
-// router.beforeEach((to, from, next) => {
-// 	if (to.meta.isPublic) {
-// 		return next()
-// 	}
-// })
+router.beforeEach((to, from, next) => {
+	if (to.meta.isPublic) {
+		return next()
+	}
+
+	// todo check localState
+	if (!store.getters.getAccessToken) {
+		return next({ path: 'login' })
+	}
+
+	return next()
+})
 
 export default router
