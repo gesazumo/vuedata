@@ -210,6 +210,9 @@ export default {
 				],
 			},
 			barChartOption: {
+				legend: {
+					display: false,
+				},
 				responsive: true,
 				maintainAspectRatio: false,
 				scales: {
