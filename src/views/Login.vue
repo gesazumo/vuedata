@@ -13,9 +13,13 @@ export default {
 			await this.$store.dispatch('login', {
 				accessToken: 'accessToken',
 				refreshToken: 'refreshToken',
-				userInfo: {},
+				userInfo: {
+					name: 'name',
+					companyName: 'companyName',
+					department: 'department',
+					employeeNum: 'employeeNum',
+				},
 			})
-			this.$router.push('/')
 		},
 	},
 }
