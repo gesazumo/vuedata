@@ -5,53 +5,52 @@
 			<div class="inner">
 				<h5>라이브러리 신청 확인(반입현황)</h5>
 				<div class="adm-search">
-					<ul>
-						<li>
+					<v-row>
+						<v-col md="3">
 							<label>패키지매니저</label>
 							<v-text-field
 								single-line
 								outlined
 								clearable
 							></v-text-field>
-						</li>
-						<li>
+						</v-col>
+						<v-col md="3">
 							<label>반입상태</label>
-							<date-picker
-								v-model="date"
-								range
-								placeholder="날짜선택"
-							/>
-						</li>
-						<li>
+							<v-select
+								:items="items1"
+								single-line
+								outlined
+								clearable
+							>
+							</v-select>
+						</v-col>
+						<v-col md="3">
 							<label>신청자</label>
 							<v-text-field
 								single-line
 								outlined
 								clearable
 							></v-text-field>
-						</li>
-						<li></li>
-					</ul>
-
-					<ul>
-						<li>
-							<label>신청일</label>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col md="6">
+							신청일자
 							<date-picker
 								v-model="date"
 								range
 								placeholder="날짜선택"
 							/>
-						</li>
-						<li></li>
-						<li></li>
-						<li>
-							<v-btn color="primary">검색하기</v-btn>
-						</li>
-					</ul>
+						</v-col>
+						<v-col md="4"></v-col>
+						<v-col md="2">
+							<v-btn color="primary" dark>검색하기</v-btn>
+						</v-col>
+					</v-row>
 				</div>
 				<div class="item_box">
 					<div class="tit">
-						<p>총 <span>123</span>개의 검색결과가 있습니다.</p>
+						<p>총 <span>123</span>개의 라이브러리 목록</p>
 					</div>
 					<div class="btn">
 						<v-btn class="box">엑셀 다운로드</v-btn>
@@ -59,7 +58,7 @@
 					<div class="table_box">
 						<v-data-table
 							:headers="headers"
-							:items="items1"
+							:items="items2"
 							:items-per-page="itemsPerPage"
 							hide-default-footer
 							class="elevation-1"
@@ -92,6 +91,7 @@ export default {
 	},
 	data() {
 		return {
+			items1: ['반입중', '반입완료'],
 			date: null,
 			page: 1,
 			pageCount: 0,
@@ -105,21 +105,57 @@ export default {
 					sortable: false,
 					value: 'no',
 				},
-				{ text: '패키지매니저', align: 'center', value: 'aa' },
-				{ text: '제공패키지', align: 'center', value: 'bb' },
-				{ text: '패키지ID', align: 'center', value: 'cc' },
+				{
+					text: '패키지매니저',
+					align: 'center',
+					sortable: false,
+					value: 'aa',
+				},
+				{
+					text: '제공패키지',
+					align: 'center',
+					sortable: false,
+					value: 'bb',
+				},
+				{
+					text: '패키지ID',
+					align: 'center',
+					sortable: false,
+					value: 'cc',
+				},
 				{
 					text: '반입파일명/패키지그룹ID',
 					align: 'center',
+					sortable: false,
 					value: 'dd',
 				},
-				{ text: '버전', align: 'center', value: 'ee' },
-				{ text: '반입상태', align: 'center', value: 'ff' },
-				{ text: '신청자', align: 'center', value: 'gg' },
-				{ text: '신청일자', align: 'center', value: 'hh' },
-				{ text: '반입일자', align: 'center', value: 'ii' },
+				{ text: '버전', align: 'center', sortable: false, value: 'ee' },
+				{
+					text: '반입상태',
+					align: 'center',
+					sortable: false,
+					value: 'ff',
+				},
+				{
+					text: '신청자',
+					align: 'center',
+					sortable: false,
+					value: 'gg',
+				},
+				{
+					text: '신청일자',
+					align: 'center',
+					sortable: false,
+					value: 'hh',
+				},
+				{
+					text: '반입일자',
+					align: 'center',
+					sortable: false,
+					value: 'ii',
+				},
 			],
-			items1: [
+			items2: [
 				{
 					no: '5',
 					aa: 'MAVEN',

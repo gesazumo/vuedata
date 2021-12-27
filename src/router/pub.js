@@ -119,4 +119,12 @@ export const pubRouter = [
 		path: 'adm038', //Admin 라이브러리 오픈소스라이브러리 등록수정
 		component: () => import('@/views/pub/TAH-ADM038.vue'),
 	},
+	{
+		path: 'adm003', //Admin 메타관리 인스턴스조회
+		component: () => import('@/views/pub/TAH-ADM003.vue'),
+	},
+	{
+		path: 'adm004', //Admin 메타관리 인스턴스 등록수정
+		component: () => import('@/views/pub/TAH-ADM004.vue'),
+	},
 ]

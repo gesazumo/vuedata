@@ -1945,12 +1945,13 @@ input[type="text"] {
 }
 
 /*selectmenu*/
+
 .v-menu__content {
   position: absolute;
   display: inline-block;
   max-width: 80%;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   contain: content;
   box-shadow: 0px 2px 2px -1px rgb(0 0 0 / 20%), 0px 4px 5px 1px rgb(0 0 0 / 14%), 0px 3px 7px 2px rgb(0 0 0 / 12%);
   /*box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);*/
@@ -3137,7 +3138,10 @@ table span {
 }
 .btnArea button {margin:0 5px;}
 
-/*v-*/
+/*vuetify*/
+.row {margin:0 !important;}
+
+
 .v-messages {margin-bottom: 5px;}
 .v-messages__message {line-height: 16px !important;}
 /*.v-input--selection-controls__ripple {left:-5px !important; margin:8px !important; }*/

@@ -108,6 +108,8 @@
 .adm-search ul li .v-text-field {margin-top: 5px; width:57.5%; }
 .adm-search ul li button {margin:0px !important;}
 
+.adm-search label {float:left;}
+
 /*항목이2개일때*/
 .adm-search-2 {
   display: inline-block;
@@ -146,10 +148,11 @@
 }
 .item_box .tit p {font-family: 'KBFGTextM'; font-size: 14px; margin-bottom: 16px;}
 .item_box .tit span {color:#f26615; }
-.item_box .btn {float:right; margin-top: 28px;}
+.item_box .btn {float:right; margin-top: 0;}
 .item_box .btn button {margin: 0; margin-bottom: 12px !important;}
 
 .table_box {clear:both; width: 100%;}
+.table_box .state {max-width: 100px !important;}
 
 .paging {
   clear: both;
