@@ -218,6 +218,36 @@ const util = {
 		const to = moment(toDt)
 		return to.diff(from, 'days') + 1
 	},
+
+	/**
+	 * v-data-table 삭제버튼 disable
+	 * 예) 0개 true
+	 * param : v-model="checkselected"
+	 */
+	gf_btnDelete(arg) {
+		return arg.length === 0
+	},
+	/**
+	 * v-data-table 수정버튼 disable
+	 * 예) 0개 true, 1개 이상 true
+	 * param : v-model="checkselected"
+	 */
+	gf_btnModify(arg) {
+		return arg.length === 0 || arg.length > 1
+	},
+
+	/**
+	 * 페이지 이동, 파라미터 전달
+	 * 예) this.gf_router('adm002')
+	 *     this.gf_router('adm002', { pageKey: '111' })
+	 */
+	gf_router(url, param) {
+		const page = {
+			name: url,
+			params: param,
+		}
+		this.$router.push(page)
+	},
 }
 
 export default util
