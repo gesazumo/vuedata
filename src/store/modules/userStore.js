@@ -1,25 +1,35 @@
-import { SET_TOKEN, SET_USER_INFO } from '@/store/mutation-type'
+import {
+	SET_TOKEN,
+	SET_USER_INFO,
+	INIT_USER_STATE,
+} from '@/store/mutation-type'
 import router from '@/router'
 
-const userStore = {
-	state: {
-		accessToken: null,
-		refreshToken: null,
-		userInfo: {
-			name: null,
-			companyName: null,
-			department: null,
-			employeeNum: null,
-		},
+const initState = {
+	accessToken: null,
+	refreshToken: null,
+	userInfo: {
+		name: null,
+		companyName: null,
+		department: null,
+		employeeNum: null,
 	},
+}
+
+const userStore = {
+	state: { ...initState },
 	mutations: {
 		[SET_TOKEN](state, { accessToken, refreshToken }) {
-			console.log(accessToken)
 			state.accessToken = accessToken
 			state.refreshToken = refreshToken
 		},
 		[SET_USER_INFO](state, { userInfo }) {
 			state.userInfo = userInfo
+		},
+		[INIT_USER_STATE](state, { initState }) {
+			state.userInfo = initState.userInfo
+			state.accessToken = initState.accessToken
+			state.refreshToken = initState.refreshToken
 		},
 	},
 	getters: {
@@ -32,22 +42,12 @@ const userStore = {
 	},
 	actions: {
 		async login({ commit }, { accessToken, refreshToken, userInfo }) {
-			console.log('login')
 			commit(SET_TOKEN, { accessToken, refreshToken })
 			commit(SET_USER_INFO, { userInfo })
 			router.push('/')
 		},
 		async logout({ commit }) {
-			console.log('logout')
-			commit(SET_TOKEN, { accessToken: null, refreshToken: null })
-			commit(SET_USER_INFO, {
-				userInfo: {
-					name: null,
-					companyName: null,
-					department: null,
-					employeeNum: null,
-				},
-			})
+			commit(INIT_USER_STATE, { initState })
 			router.push('/login')
 		},
 	},
