@@ -128,7 +128,7 @@
 					</div>
 				</div>
 				<div class="btnArea">
-					<button class="regit large">다음 페이지로</button>
+					<v-btn color="primary" large dark>다음 페이지로</v-btn>
 				</div>
 			</div>
 		</div>
