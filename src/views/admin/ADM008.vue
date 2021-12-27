@@ -109,39 +109,41 @@ export default {
 					mode: 'label',
 					callbacks: {
 						label: function (tooltipItem, data) {
-							var item =
+							let item =
 								data.datasets[tooltipItem.datasetIndex].label
-							var value =
+							let value =
 								data.datasets[tooltipItem.datasetIndex].data[
 									tooltipItem.index
 								]
-							var total = 0
-							for (var i = 0; i < data.datasets.length; i++)
+							let total = 0
+							let label = []
+							for (let i = 0; i < data.datasets.length; i++)
 								total +=
 									data.datasets[i].data[tooltipItem.index]
 							if (
 								tooltipItem.datasetIndex !=
 								data.datasets.length - 1
 							) {
-								return (
-									item +
-									' : ' +
-									value +
-									'명 (' +
-									((value / total) * 100).toFixed(1) +
-									'%)'
-								)
-							} else {
-								return [
+								label.push(
 									item +
 										' : ' +
 										value +
 										'명 (' +
 										((value / total) * 100).toFixed(1) +
 										'%)',
-									'Total : ' + total + '명',
-								]
+								)
+							} else {
+								label.push(
+									item +
+										' : ' +
+										value +
+										'명 (' +
+										((value / total) * 100).toFixed(1) +
+										'%)',
+								)
+								label.push('Total : ' + total + '명')
 							}
+							return label
 						},
 					},
 				},
@@ -235,39 +237,41 @@ export default {
 					mode: 'label',
 					callbacks: {
 						label: function (tooltipItem, data) {
-							var item =
+							let item =
 								data.datasets[tooltipItem.datasetIndex].label
-							var value =
+							let value =
 								data.datasets[tooltipItem.datasetIndex].data[
 									tooltipItem.index
 								]
-							var total = 0
-							for (var i = 0; i < data.datasets.length; i++)
+							let total = 0
+							let label = []
+							for (let i = 0; i < data.datasets.length; i++)
 								total +=
 									data.datasets[i].data[tooltipItem.index]
 							if (
 								tooltipItem.datasetIndex !=
 								data.datasets.length - 1
 							) {
-								return (
-									item +
-									' : ' +
-									value +
-									'명 (' +
-									((value / total) * 100).toFixed(1) +
-									'%)'
-								)
-							} else {
-								return [
+								label.push(
 									item +
 										' : ' +
 										value +
 										'명 (' +
 										((value / total) * 100).toFixed(1) +
 										'%)',
-									'Total : ' + total + '명',
-								]
+								)
+							} else {
+								label.push(
+									item +
+										' : ' +
+										value +
+										'명 (' +
+										((value / total) * 100).toFixed(1) +
+										'%)',
+								)
+								label.push('Total : ' + total + '명')
 							}
+							return label
 						},
 					},
 				},
