@@ -1,62 +1,35 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import analyzeRouter from './analyze'
-import exploreRouter from './explore'
+import Container from '@/views/Container.vue'
 import { pubRouter } from './pub'
-import shareRouter from './share'
-import supportRouter from './support'
-import adminRouter from './admin'
+import commonRouter from './commonRouter'
+import store from '../store'
 
 Vue.use(VueRouter)
 
 const routes = [
 	{
+		path: '/login',
+		name: 'Login',
+		meta: { isPublic: true },
+		component: () => import('@/views/Login.vue'),
+	},
+	{
 		path: '/',
-		name: 'Home',
-		component: () => import('@/views/Home.vue'),
+		meta: { isPublic: true },
+		component: Container,
+		children: commonRouter,
 	},
 	{
 		path: '*',
+		meta: { isPublic: true },
 		component: () => import('@/views/error/PageNotFound.vue'),
 	},
 	{
-		path: '/explore',
-		component: () => import('@/views/explore/ExploreIndex.vue'),
-		children: exploreRouter,
-		beforeEnter: (to, from, next) => {
-			console.log(to)
-			console.log(from)
-			console.log(next)
-			// next(error)
-			next(false)
-		},
-	},
-	{
-		path: '/analyze',
-		component: () => import('@/views/analyze/AnalyzeIndex.vue'),
-		children: analyzeRouter,
-	},
-	{
-		path: '/share',
-		component: () => import('@/views/share/ShareIndex.vue'),
-		children: shareRouter,
-	},
-	{
-		path: '/support',
-		component: () => import('@/views/support/SupportIndex.vue'),
-		children: supportRouter,
-	},
-	{
 		path: '/pub',
+		meta: { isPublic: true },
 		component: () => import('@/views/pub/Pub.vue'),
 		children: pubRouter,
-	},
-	{
-		path: '/admin',
-		name: 'admin',
-		meta: { isPublic: false },
-		component: () => import('@/views/admin/AdminIndex.vue'),
-		children: adminRouter,
 	},
 ]
 
@@ -64,6 +37,19 @@ const router = new VueRouter({
 	mode: 'history',
 	base: process.env.BASE_URL,
 	routes,
+})
+
+router.beforeEach((to, from, next) => {
+	if (to.meta.isPublic) {
+		return next()
+	}
+
+	// todo check localState
+	if (!store.getters.getAccessToken) {
+		return next({ path: 'login' })
+	}
+
+	return next()
 })
 
 export default router
