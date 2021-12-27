@@ -248,30 +248,23 @@ export default {
 							for (let i = 0; i < data.datasets.length; i++)
 								total +=
 									data.datasets[i].data[tooltipItem.index]
-							if (
-								tooltipItem.datasetIndex !=
-								data.datasets.length - 1
-							) {
-								label.push(
-									item +
-										' : ' +
-										value +
-										'명 (' +
-										((value / total) * 100).toFixed(1) +
-										'%)',
-								)
-							} else {
-								label.push(
-									item +
-										' : ' +
-										value +
-										'명 (' +
-										((value / total) * 100).toFixed(1) +
-										'%)',
-								)
-								label.push('Total : ' + total + '명')
-							}
+							label.push(
+								item +
+									' : ' +
+									value +
+									'명 (' +
+									((value / total) * 100).toFixed(1) +
+									'%)',
+							)
 							return label
+						},
+						footer: function (tooltipItem, data) {
+							let total = 0
+							for (let i = 0; i < data.datasets.length; i++) {
+								total +=
+									data.datasets[i].data[tooltipItem[i].index]
+							}
+							return 'Total : ' + total + '명'
 						},
 					},
 				},
