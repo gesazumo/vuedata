@@ -271,7 +271,7 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel'
 export default {
-	name: 'odelList',
+	name: 'AnaModelList',
 	components: { Carousel, Slide },
 }
 </script>

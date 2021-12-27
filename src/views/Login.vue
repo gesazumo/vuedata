@@ -15,7 +15,6 @@ export default {
 				refreshToken: 'refreshToken',
 				userInfo: {},
 			})
-			this.$router.push('/')
 		},
 	},
 }

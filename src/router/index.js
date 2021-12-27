@@ -44,7 +44,6 @@ router.beforeEach((to, from, next) => {
 		return next()
 	}
 
-	// todo check localState
 	if (!store.getters.getAccessToken) {
 		return next({ path: 'login' })
 	}
