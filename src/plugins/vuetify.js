@@ -9,8 +9,9 @@ const vuetify = new Vuetify({
 	theme: {
 		themes: {
 			light: {
-				primary: '#ffbc00',
+				primary: '#504842',
 				secondary: '#968d83',
+				accent: '#ffbc00',
 				error: '#dd3300',
 			},
 		},

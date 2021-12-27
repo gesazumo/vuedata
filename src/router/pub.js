@@ -108,7 +108,23 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM027.vue'),
 	},
 	{
-		path: 'adm028', //Admin 게시판관리 인사이트 등록 및 수정
+		path: 'adm028', //Admin 게시판관리 인사이트 등록수정
 		component: () => import('@/views/pub/TAH-ADM028.vue'),
+	},
+	{
+		path: 'adm037', //Admin 라이브러리 오픈소스라이브러리 관리
+		component: () => import('@/views/pub/TAH-ADM037.vue'),
+	},
+	{
+		path: 'adm038', //Admin 라이브러리 오픈소스라이브러리 등록수정
+		component: () => import('@/views/pub/TAH-ADM038.vue'),
+	},
+	{
+		path: 'adm003', //Admin 메타관리 인스턴스조회
+		component: () => import('@/views/pub/TAH-ADM003.vue'),
+	},
+	{
+		path: 'adm004', //Admin 메타관리 인스턴스 등록수정
+		component: () => import('@/views/pub/TAH-ADM004.vue'),
 	},
 ]

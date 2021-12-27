@@ -9,7 +9,7 @@
 			<h3>분석환경신청</h3>
 		</div>
 		<div class="subcontents">
-			<div class="s_title border_no">
+			<div class="s_title">
 				<div class="page_tit">
 					<h4>신청정보입력</h4>
 					<span>
@@ -69,12 +69,20 @@
 								</th>
 								<td colspan="3">
 									<v-text-field
+										label=""
 										placeholder="프로젝트명을 입력해 주세요"
 										single-line
 										clearable
 										outlined
-										v-moel="project"
-										:rules="project_rule"
+										ref="projectname"
+										v-model="projectname"
+										:rules="[
+											() =>
+												!!projectname ||
+												'프로젝트명을 입력해 주세요',
+										]"
+										:error-messages="errorMessages"
+										required
 									></v-text-field>
 								</td>
 							</tr>
@@ -85,11 +93,11 @@
 								</th>
 								<td colspan="3">
 									<date-picker
-										placeholder="프로젝트 기간 선택"
-										range
 										v-model="date"
+										range
+										placeholder="프로젝트 기간 선택"
 									/>
-									<i class="mdi mdi-information-outline"></i>
+									<i class="fa fa-info-circle"></i>
 									프로젝트 총 기간은 1년 이하로 선택하셔야
 									합니다.
 								</td>
@@ -105,8 +113,6 @@
 										single-line
 										clearable
 										outlined
-										v-moel="project_desc"
-										:rules="project_desc_rule"
 									>
 									</v-textarea>
 								</td>
@@ -115,8 +121,16 @@
 								<th>프로젝트 구분</th>
 								<td colspan="3">
 									<v-radio-group row>
-										<v-radio label="개인"> </v-radio>
-										<v-radio label="팀"> </v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												개인
+											</template>
+										</v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												팀
+											</template>
+										</v-radio>
 									</v-radio-group>
 								</td>
 							</tr>
@@ -136,6 +150,9 @@
 												v-on="on"
 												icon
 												color="secondary"
+												style="
+													background: none !important;
+												"
 											>
 												<v-icon>mdi-help-circle</v-icon>
 											</v-btn>
@@ -155,62 +172,7 @@
 										</div>
 									</v-tooltip>
 								</th>
-								<td colspan="3">
-									<v-col md="6">
-										<v-text-field
-											placeholder="이름을 입력하세요"
-											outlined
-											clearable
-											append-outer-icon="fa fa-search"
-										>
-											<template v-slot:append-outer>
-												<button class="search-in">
-													<i class="fa fa-search"></i>
-												</button>
-											</template>
-										</v-text-field>
-									</v-col>
-									<v-data-table
-										:headers="headers"
-										:items="items4"
-										:height="200"
-										fixed-header
-										disable-pagination
-										disable-sort
-										hide-default-footer
-									>
-										<template v-slot:item="row">
-											<tr>
-												<td>
-													{{ row.item.company }}
-												</td>
-												<td>
-													{{ row.item.team }}
-												</td>
-												<td>
-													{{ row.item.name }}
-												</td>
-												<td>
-													{{ row.item.companyid }}
-												</td>
-												<td>
-													<v-btn
-														class="box"
-														dark
-														outlined
-														@click="
-															onButtonClick(
-																row.item,
-															)
-														"
-													>
-														삭제
-													</v-btn>
-												</td>
-											</tr>
-										</template>
-									</v-data-table>
-								</td>
+								<td colspan="3"></td>
 							</tr>
 							<tr>
 								<th>
@@ -228,6 +190,9 @@
 												v-on="on"
 												icon
 												color="secondary"
+												style="
+													background: none !important;
+												"
 											>
 												<v-icon>mdi-help-circle</v-icon>
 											</v-btn>
@@ -247,33 +212,33 @@
 									</v-tooltip>
 								</th>
 								<td colspan="3">
-									<v-row>
-										<v-checkbox
-											label="Athena"
-											value=""
-											hide-details
-										></v-checkbox>
-										<v-checkbox
-											label="QuickSight"
-											value=""
-											hide-details
-										></v-checkbox>
-										<v-checkbox
-											label="Notebook"
-											value=""
-											hide-details
-										></v-checkbox>
-										<v-checkbox
-											label="SageMaker Studio"
-											value=""
-											hide-details
-										></v-checkbox>
-										<v-checkbox
-											label="가상화 환경"
-											value=""
-											hide-details
-										></v-checkbox>
-									</v-row>
+									<v-radio-group row>
+										<v-radio label="">
+											<template v-slot:label>
+												Athena
+											</template>
+										</v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												QuickSight
+											</template>
+										</v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												Notebook
+											</template>
+										</v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												SageMaker Studio
+											</template>
+										</v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												가상화 환경
+											</template>
+										</v-radio>
+									</v-radio-group>
 								</td>
 							</tr>
 							<tr>
@@ -283,8 +248,17 @@
 								</th>
 								<td colspan="3">
 									<v-select
+										placeholder="Instance Type을 선택하세요"
 										:items="items1"
-										placeholder="Notebook Instance Type을 선택하세요"
+										label=""
+										ref="instance"
+										v-model="instance"
+										:rules="[
+											() =>
+												!!instance ||
+												'Notebook Instance Type을 선택해 주세요',
+										]"
+										:error-messages="errorMessages"
 										single-line
 										outlined
 									></v-select>
@@ -297,8 +271,17 @@
 								</th>
 								<td colspan="3">
 									<v-select
-										:items="items2"
 										placeholder="Instance Type을 선택하세요"
+										:items="items2"
+										label=""
+										ref="sagemaker"
+										v-model="sagemaker"
+										:rules="[
+											() =>
+												!!sagemaker ||
+												'SageMaker Studio Instance Type을 선택해 주세요',
+										]"
+										:error-messages="errorMessages"
 										single-line
 										outlined
 									></v-select>
@@ -350,8 +333,15 @@
 								</th>
 								<td colspan="3">
 									<v-select
-										:items="items3"
 										placeholder="Project Template Type을 선택하세요"
+										:items="items3"
+										label=""
+										:rules="[
+											() =>
+												!!studio ||
+												'SageMaker Studio Template Type을 선택해 주세요',
+										]"
+										:error-messages="errorMessages"
 										single-line
 										outlined
 									></v-select>
@@ -373,6 +363,9 @@
 												v-on="on"
 												icon
 												color="secondary"
+												style="
+													background: none !important;
+												"
 											>
 												<v-icon>mdi-help-circle</v-icon>
 											</v-btn>
@@ -401,8 +394,16 @@
 								</th>
 								<td colspan="3">
 									<v-radio-group row>
-										<v-radio label="사용"> </v-radio>
-										<v-radio label="미사용"> </v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												사용
+											</template>
+										</v-radio>
+										<v-radio label="">
+											<template v-slot:label>
+												미사용
+											</template>
+										</v-radio>
 									</v-radio-group>
 								</td>
 							</tr>
@@ -414,8 +415,8 @@
 					</table>
 				</div>
 				<div class="btnArea">
-					<v-btn class="box" large>이전 페이지로</v-btn>
-					<v-btn color="primary" large dark>신청하기</v-btn>
+					<button class="box large">이전 페이지로</button>
+					<button class="large">신청하기</button>
 				</div>
 			</div>
 		</div>
@@ -423,14 +424,12 @@
 </template>
 <script>
 import DatePicker from 'vue2-datepicker'
-
 export default {
 	components: {
 		DatePicker,
 	},
 	data() {
 		return {
-			date: null,
 			items1: [
 				'ml.t3.medium(General purpose, vCPU 2, GPU 0, Memory 4GiB)',
 				'ml.g4dn.xlarge(Accelerated computing, vCPU 4, GPU 1, 16GiB)',
@@ -444,82 +443,6 @@ export default {
 				'ml.c5.large(Compute optimized, vCPU 2, GPU 0, Memory 4GiB)',
 			],
 			items3: ['Building & Tranining', 'Building, Training & Deployment'],
-			project: '',
-			project_rule: [v => !!v || '프로젝트 명을 입력해 주세요.'],
-			project_desc: '',
-			project_desc_rule: [v => !!v || '프로젝트 설명을 입력해 주세요.'],
-			type: '',
-			type_rule: [v => !!v || '분석환경을 선택해 주세요.'],
-			headers: [
-				{
-					text: '회사명',
-					sortable: false,
-					value: 'company',
-				},
-				{
-					text: '부서',
-					sortable: false,
-					value: 'team',
-				},
-				{
-					text: '이름',
-					sortable: false,
-					value: 'name',
-				},
-				{
-					text: '사번',
-					sortable: false,
-					value: 'companyid',
-				},
-				{
-					text: '삭제',
-					sortable: false,
-					value: 'delete',
-				},
-			],
-			items4: [
-				{
-					company: 'KB국민은행',
-					team: '경영연구소1',
-					name: '김국민',
-					companyid: 'H00001',
-					delete: '',
-				},
-				{
-					company: 'KB국민은행',
-					team: '경영연구소2',
-					name: '김스타',
-					companyid: 'H00007',
-					delete: '',
-				},
-				{
-					company: 'KB국민은행',
-					team: '경영연구소2',
-					name: '김스타',
-					companyid: 'H00007',
-					delete: '',
-				},
-				{
-					company: 'KB국민은행',
-					team: '경영연구소2',
-					name: '김스타',
-					companyid: 'H00007',
-					delete: '',
-				},
-				{
-					company: 'KB국민은행',
-					team: '경영연구소2',
-					name: '김스타',
-					companyid: 'H00007',
-					delete: '',
-				},
-			],
-
-			methods: {
-				onButtonClick(item) {
-					console.log('click on ' + item.no)
-				},
-			},
 		}
 	},
 }

@@ -2,12 +2,14 @@ const analyzeRouter = [
 	{
 		path: 'ana002',
 		name: 'ana002',
+		meta: { isPublic: true },
 		component: () => import('@/views/analyze/ANA002.vue'),
 	},
 	{
 		path: 'ana003',
 		name: 'ana003',
-		component: () => import('@/views/pub/TAH-ANA003.vue'),
+		meta: { isPublic: true },
+		component: () => import('@/views/analyze/ANA003.vue'),
 	},
 ]
 
