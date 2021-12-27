@@ -170,7 +170,7 @@
   flex-wrap: inherit !important; 
 }
 .v-input--selection-controls .v-radio > .v-label {
-  min-width: 100px !important;
+  min-width: 0 !important;
 }
 
 @media (max-width:1600px) { 
