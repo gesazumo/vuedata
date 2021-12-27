@@ -10,195 +10,222 @@
 							placeholder="은행"
 							single-line
 							outlined
-							clearable
+							v-model="korWord"
 						></v-text-field>
 					</li>
 					<li class="mg_L0">
 						<label></label>
 						<v-select
-							:items="items"
-							label="%_%"
-							v-model="item"
-							ref="name"
-							:rules="[() => !item || '선택해 주세요']"
-							:error-messages="'errorMessages'"
+							:items="markitems"
+							item-text="iCon"
+							item-value="value"
+							ref="mark"
+							v-model="mark"
 							single-line
 							outlined
 						></v-select>
 					</li>
 					<li>
-						<button class="search">검색하기</button>
+						<button
+							class="search"
+							@click="onSearch()"
+							:disabled="korWord == ''"
+							id="btnSearch"
+						>
+							검색하기
+						</button>
 					</li>
 				</ul>
 			</div>
 			<div class="item_box">
 				<div class="tit">
-					<p>
-						총 <span>{{ items2.length }}</span
-						>개의 검색결과가 있습니다``.
+					<p v-if="itemList.legnth > 0">
+						총 <span>{{ itemList.length }}</span
+						>개의 검색결과가 있습니다.
 					</p>
 				</div>
-				<v-data-table
-					:headers="headers"
-					:items="items2"
-					:items-per-page="itemsPerPage"
-					hide-default-footer
-					class="elevation-1"
-				></v-data-table>
 				<div class="table_box">
-					<table class="tb_list">
-						<caption>
-							table caption
-						</caption>
-						<thead>
-							<tr>
-								<th>
-									<v-checkbox></v-checkbox>
-								</th>
-								<th>원천</th>
-								<th>
-									한글단어명
-									<i class="fas fa-chevron-down"></i>
-								</th>
-								<th>
-									영어약어명
-									<i class="fas fa-chevron-up"></i>
-								</th>
-								<th>
-									영어단어명
-									<i class="fas fa-chevron-up"></i>
-								</th>
-								<th>
-									단어구분
-									<i class="fas fa-chevron-down"></i>
-								</th>
-								<th>
-									정의
-									<i class="fas fa-chevron-down"></i>
-								</th>
-								<th>
-									등록자
-									<i class="fas fa-chevron-down"></i>
-								</th>
-								<th>
-									등록일시
-									<i class="fas fa-chevron-down"></i>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<v-checkbox></v-checkbox>
-								</td>
-								<td>은행메타</td>
-								<td>가망고객</td>
-								<td>PrbablCust</td>
-								<td>Probable Customer</td>
-								<td>복합어</td>
-								<td>가망고객</td>
-								<td>김준수</td>
-								<td>2008-04-15 21:46:10</td>
-							</tr>
-							<tr>
-								<td>
-									<v-checkbox></v-checkbox>
-								</td>
-								<td>은행메타</td>
-								<td>고객유지프로그램</td>
-								<td>CRP</td>
-								<td>
-									Customer Family Actual ResultRetention
-									Program
-								</td>
-								<td>단일어</td>
-								<td>고객유지프로그램</td>
-								<td>&nbsp;</td>
-								<td>2008-04-15 21:46:10</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="paging">
-						<v-pagination
-							v-model="page"
-							:length="50"
-							:total-visible="7"
-							color="primary"
-						></v-pagination>
-					</div>
+					<v-data-table
+						v-model="checkselected"
+						:headers="headers"
+						:items="itemList"
+						:single-select="singleSelect"
+						:items-per-page="itemsPerPage"
+						item-key="hanglWordName"
+						show-select
+						hide-default-footer
+						class="elevation-1"
+						:page.sync="page"
+						@page-count="pageCount = $event"
+					>
+						<template v-slot:no-data>
+							<v-alert :value="true">
+								조회된 데이터가 없습니다.
+							</v-alert>
+						</template>
+					</v-data-table>
+				</div>
+				<div class="paging">
+					<v-pagination
+						v-model="page"
+						:length="pageCount"
+						:total-visible="7"
+						color="primary"
+						v-if="pageCount > 1"
+					></v-pagination>
 				</div>
 			</div>
 			<div class="btn_area">
-				<button class="delete large">삭제하기</button>
-				<button class="edit large">수정하기</button>
 				<button
-					class="regit large"
-					@click="$router.push({ name: 'adm002' })"
+					class="delete large"
+					@click="Delete()"
+					:disabled="gf_btnDelete(this.checkselected)"
 				>
-					등록하기
+					삭제하기
 				</button>
+				<button
+					class="edit large"
+					@click="Modify()"
+					:disabled="gf_btnModify(this.checkselected)"
+				>
+					수정하기
+				</button>
+				<button class="regit large" @click="Insert()">등록하기</button>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
 	data() {
 		return {
-			items: ['=', '_%', '%_', '%_%'],
-			item: '=',
+			// data-table
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
+			singleSelect: false,
+			checkselected: [], // 체크박스
+			itemList: [], // jsonData
 			headers: [
 				{
 					text: '원천',
 					align: 'center',
 					sortable: true,
+					value: 'screnRegiYn',
 				},
 				{
 					text: '한글단어명',
 					align: 'center',
 					sortable: true,
+					value: 'hanglWordName',
 				},
 				{
 					text: '영문약어명',
 					align: 'center',
 					sortable: true,
+					value: 'engAbrvnWordName',
 				},
 				{
 					text: '영어단어명',
 					align: 'center',
 					sortable: true,
+					value: 'engWordName',
 				},
 				{
 					text: '단어구분',
 					align: 'center',
 					sortable: true,
+					value: 'smwrCmwrDstic',
 				},
 				{
 					text: '정의',
 					align: 'center',
 					sortable: true,
+					value: 'hanglWordDefin',
 				},
 				{
 					text: '등록자',
 					align: 'center',
 					sortable: true,
+					value: 'syslastempid',
 				},
 				{
 					text: '등록일시',
 					align: 'center',
 					sortable: true,
+					value: 'sysLastPrcssYms',
 				},
 			],
-			items2: [],
+			// end data-table
+
+			markitems: [
+				{ iCon: '==', value: '1' },
+				{ iCon: '_%', value: '2' },
+				{ iCon: '%_', value: '3' },
+				{ iCon: '%_%', value: '4' },
+			], // 부호 SELCT
+			mark: '4', // 부호
+			korWord: '', // 한글단어명
+		}
+	},
+	created() {
+		if (this.$route.params.searchKey) {
+			this.korWord = this.$route.params.searchKey
+			this.mark = this.$route.params.searchKey2
+			this.onSearch()
 		}
 	},
 	methods: {
-		openSel() {
-			//this.axios.post(url).then
-			this.items2 = []
+		onSearch() {
+			if (this.korWord == '') {
+				return
+			}
+
+			axios
+				.post('/api/admin/selectAdm00101', {
+					inhanglWordName: this.korWord,
+					inCon: this.mark,
+				})
+				.then(res => {
+					this.itemList = res.data.list
+				})
+				.catch(err => {
+					console.log('err : ' + err)
+				})
+		},
+		Insert() {
+			this.gf_router('adm002', {
+				searchKey: this.korWord,
+				searchKey2: this.mark,
+			})
+		},
+		Modify() {
+			this.gf_router('adm002', {
+				inhanglWordName: this.checkselected[0].hanglWordName,
+				searchKey: this.korWord,
+				searchKey2: this.mark,
+			})
+		},
+		Delete() {
+			// if (this.checkselected.length > 0) {
+			//let param = []
+			let param = ''
+			for (let key in this.checkselected) {
+				//param.push(this.checkselected[key].hanglWordName)
+				param = this.checkselected[key].hanglWordName
+			}
+			axios
+				.delete('/api/admin/deleteAdm00101', { inhanglWordName: param })
+				.then(res => {
+					alert('삭제되었습니다.')
+					console.log(res)
+					this.onSearch
+				})
+				.catch(err => {
+					console.log('err : ' + err)
+				})
 		},
 	},
 }
