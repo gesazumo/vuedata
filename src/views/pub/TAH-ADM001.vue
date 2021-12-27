@@ -35,88 +35,18 @@
 				</div>
 				<div class="item_box">
 					<div class="tit">
-						<p>총 <span>123</span>개의 검색결과가 있습니다``.</p>
+						<p>총 <span>123</span>개의 검색결과가 있습니다.</p>
 					</div>
-					<v-data-table
-						:headers="headers"
-						:items="items2"
-						:items-per-page="itemsPerPage"
-						hide-default-footer
-						class="elevation-1"
-					></v-data-table>
 					<div class="table_box">
-						<table class="tb_list">
-							<caption>
-								table caption
-							</caption>
-							<thead>
-								<tr>
-									<th>
-										<v-checkbox></v-checkbox>
-									</th>
-									<th>원천</th>
-									<th>
-										한글단어명
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										영어약어명
-										<i class="fas fa-chevron-up"></i>
-									</th>
-									<th>
-										영어단어명
-										<i class="fas fa-chevron-up"></i>
-									</th>
-									<th>
-										단어구분
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										정의
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										등록자
-										<i class="fas fa-chevron-down"></i>
-									</th>
-									<th>
-										등록일시
-										<i class="fas fa-chevron-down"></i>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>은행메타</td>
-									<td>가망고객</td>
-									<td>PrbablCust</td>
-									<td>Probable Customer</td>
-									<td>복합어</td>
-									<td>가망고객</td>
-									<td>김준수</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-								<tr>
-									<td>
-										<v-checkbox></v-checkbox>
-									</td>
-									<td>은행메타</td>
-									<td>고객유지프로그램</td>
-									<td>CRP</td>
-									<td>
-										Customer Family Actual ResultRetention
-										Program
-									</td>
-									<td>단일어</td>
-									<td>고객유지프로그램</td>
-									<td>&nbsp;</td>
-									<td>2008-04-15 21:46:10</td>
-								</tr>
-							</tbody>
-						</table>
+						<v-data-table
+							:headers="headers"
+							:items="items2"
+							:items-per-page="itemsPerPage"
+							:single-select="singleSelect"
+							show-select
+							hide-default-footer
+							class="elevation-1"
+						></v-data-table>
 						<div class="paging">
 							<v-pagination
 								v-model="page"
@@ -144,6 +74,8 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
+			singleSelect: false,
+			selected: [],
 			headers: [
 				{
 					text: '원천',

@@ -153,6 +153,12 @@
 
 .table_box {clear:both; width: 100%;}
 .table_box .state {max-width: 100px !important;}
+.table_box .more_view {
+  display: none;
+  margin-top:30px;
+}
+.table_box .more_view p {font-size: 16px; font-weight: 600;}
+
 
 .paging {
   clear: both;
@@ -174,6 +180,19 @@
 }
 .v-input--selection-controls .v-radio > .v-label {
   min-width: 0 !important;
+}
+
+
+.fileinput {
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 
 @media (max-width:1600px) { 
