@@ -246,33 +246,27 @@
 									작성자 <span class="asterisk">필수</span>
 								</th>
 								<td>
-									<v-row>
-										<v-col cols="3">
-											<v-text-field
-												placeholder="이름을 입력하세요"
-												clearable
-												outlined
-												append-outer-icon="fa fa-search"
-											>
-												<template v-slot:append-outer>
-													<button class="search-in">
-														<i
-															class="fa fa-search"
-														></i>
-													</button>
-												</template>
-											</v-text-field>
-										</v-col>
-									</v-row>
-									<div class="table_box">
-										<v-data-table
-											:headers="headers"
-											:items="items5"
-											:items-per-page="itemsPerPage"
-											hide-default-footer
-											class="elevation-1"
-										></v-data-table>
-									</div>
+									<v-col md="6">
+										<v-text-field
+											placeholder="이름을 입력하세요"
+											outlined
+											clearable
+											append-outer-icon="fa fa-search"
+										>
+											<template v-slot:append-outer>
+												<button class="search-in">
+													<i class="fa fa-search"></i>
+												</button>
+											</template>
+										</v-text-field>
+									</v-col>
+									<v-data-table
+										:headers="headers"
+										:items="items5"
+										:items-per-page="itemsPerPage"
+										hide-default-footer
+										class="elevation-1"
+									></v-data-table>
 								</td>
 							</tr>
 							<tr>
