@@ -61,6 +61,8 @@ export default {
 						pointBackgroundColor: '#FF717E',
 						borderWidth: 4,
 						pointBorderColor: '#FF717E',
+						pointRadius: 5,
+						pointHoverRadius: 10,
 						//Data to be represented on y-axis
 						data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100],
 						fill: false,
@@ -71,6 +73,8 @@ export default {
 						pointBackgroundColor: '#1FBED6',
 						borderWidth: 4,
 						pointBorderColor: '#1FBED6',
+						pointRadius: 5,
+						pointHoverRadius: 10,
 						//Data to be represented on y-axis
 						data: [50, 40, 30, 20, 40, 70, 80, 90, 50, 30, 20, 40],
 						fill: false,
