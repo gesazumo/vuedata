@@ -29,9 +29,9 @@
 											outlined
 										>
 											<template slot="append-outer">
-												<button class="check">
+												<v-btn color="primary" dark>
 													중복체크
-												</button>
+												</v-btn>
 											</template>
 										</v-text-field>
 									</td>

@@ -1920,7 +1920,7 @@ input[type="text"] {
 }
 
 .v-input .v-label {
-  color:#d8d8d8;
+  /*color:#d8d8d8;*/
   letter-spacing: normal;
 }
 .v-text-field--enclosed .v-input__append-inner {
@@ -2055,7 +2055,7 @@ input[type="text"] {
 }
 .border_no {border:none; }
 .s_title .page_tit {
-  float: left;
+  float:left;
   max-width: 80%;
 }
 .s_title .page_tit h4 {font-weight: 600; margin-bottom: 16px;}
@@ -2063,6 +2063,19 @@ input[type="text"] {
   font-size: 16px;
   color:#1e1909;
 }
+.s_title .page_done_tit {
+  max-width: 80%;
+  margin:0 auto;
+  text-align: center;
+}
+.s_title .page_done_tit h4 {font-weight: 600; margin-bottom: 16px;}
+.s_title .page_done_tit span {
+  font-size: 16px;
+  color:#1e1909;
+}
+
+
+
 .page_step {
   float:right;
   max-height: 24px;
@@ -3170,4 +3183,20 @@ table span {
 .mx-datepicker-range {width: 304.5px; }
 .mx-calendar-header button {
   min-width: 0;
+}
+
+
+/*팀원선택 팝업*/
+.team-popup {
+  background-color:rgba(0,0,0,.3);
+  justify-content:center;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  padding:0;
+  z-index: 12;
 }
