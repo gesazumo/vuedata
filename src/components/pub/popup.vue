@@ -3,9 +3,9 @@
 		<div class="inner">
 			<div class="poptit">
 				<p>Action Layer Popup</p>
-				<button class="close">
+				<v-btn>
 					<i class="fas fa-times"></i>
-				</button>
+				</v-btn>
 			</div>
 			<div class="popconts">
 				<div>
@@ -26,14 +26,15 @@
 				</div>
 			</div>
 			<div class="popbtn">
-				<button class="cancel large">버튼명</button>
-				<button
-					class="confirm large"
+				<v-btn class="box" large>버튼명</v-btn>
+				<v-btn
+					color="primary"
+					large
+					dark
 					onClick="alert('실행메세지입니다')"
 				>
 					버튼명
-				</button>
-				<!--button class="confirm full large">버튼명</button-->
+				</v-btn>
 			</div>
 		</div>
 	</div>
