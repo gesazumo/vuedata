@@ -1,86 +1,86 @@
 <template>
-	<div class="adm_wrap">
-		<div id="lnb"></div>
-		<div class="adm_contents">
-			<div class="inner">
-				<h5>라이브러리 신청 확인(반입현황)</h5>
-				<div class="adm-search">
-					<v-row>
-						<v-col md="3">
-							<label>패키지매니저</label>
-							<v-text-field
-								single-line
-								outlined
-								clearable
-							></v-text-field>
-						</v-col>
-						<v-col md="3">
-							<label>반입상태</label>
-							<v-select
-								:items="items1"
-								single-line
-								outlined
-								clearable
-							>
-							</v-select>
-						</v-col>
-						<v-col md="3">
-							<label>신청자</label>
-							<v-text-field
-								single-line
-								outlined
-								clearable
-							></v-text-field>
-						</v-col>
-					</v-row>
-					<v-row>
-						<v-col md="6">
-							신청일자
-							<date-picker
-								v-model="date"
-								range
-								placeholder="날짜선택"
-							/>
-						</v-col>
-						<v-col md="4"></v-col>
-						<v-col md="2">
-							<v-btn color="primary" dark>검색하기</v-btn>
-						</v-col>
-					</v-row>
+	<!-- <div class="adm_wrap">
+		<div id="lnb"></div> -->
+	<div class="adm_contents">
+		<div class="inner">
+			<h5>라이브러리 신청 확인(반입현황)</h5>
+			<div class="adm-search">
+				<v-row>
+					<v-col md="3">
+						<label>패키지매니저</label>
+						<v-text-field
+							single-line
+							outlined
+							clearable
+						></v-text-field>
+					</v-col>
+					<v-col md="3">
+						<label>반입상태</label>
+						<v-select
+							:items="items1"
+							single-line
+							outlined
+							clearable
+						>
+						</v-select>
+					</v-col>
+					<v-col md="3">
+						<label>신청자</label>
+						<v-text-field
+							single-line
+							outlined
+							clearable
+						></v-text-field>
+					</v-col>
+				</v-row>
+				<v-row>
+					<v-col md="6">
+						신청일자
+						<date-picker
+							v-model="date"
+							range
+							placeholder="날짜선택"
+						/>
+					</v-col>
+					<v-col md="4"></v-col>
+					<v-col md="2">
+						<v-btn color="primary" dark>검색하기</v-btn>
+					</v-col>
+				</v-row>
+			</div>
+			<div class="item_box">
+				<div class="tit">
+					<p>총 <span>123</span>개의 라이브러리 목록</p>
 				</div>
-				<div class="item_box">
-					<div class="tit">
-						<p>총 <span>123</span>개의 라이브러리 목록</p>
-					</div>
-					<div class="btn">
-						<v-btn class="box">엑셀 다운로드</v-btn>
-					</div>
-					<div class="table_box">
-						<v-data-table
-							:headers="headers"
-							:items="items2"
-							:items-per-page="itemsPerPage"
-							hide-default-footer
-							class="elevation-1"
-						></v-data-table>
-						<div class="paging">
-							<v-pagination
-								v-model="page"
-								:length="50"
-								:total-visible="7"
-								color="primary"
-							></v-pagination>
-						</div>
+				<div class="btn">
+					<v-btn class="box">엑셀 다운로드</v-btn>
+				</div>
+				<div class="table_box">
+					<v-data-table
+						:headers="headers"
+						:items="items2"
+						:items-per-page="itemsPerPage"
+						hide-default-footer
+						class="elevation-1"
+					></v-data-table>
+					<div class="paging">
+						<v-pagination
+							v-model="page"
+							:length="50"
+							:total-visible="7"
+							color="primary"
+						></v-pagination>
 					</div>
 				</div>
-				<div class="btn_area">
-					<button class="delete large">삭제하기</button>
-					<button class="edit large">수정하기</button>
-					<button class="regit large">등록하기</button>
-				</div>
+			</div>
+			<div class="btn_area">
+				<button class="delete large">삭제하기</button>
+				<button class="edit large">수정하기</button>
+				<button class="regit large">등록하기</button>
 			</div>
 		</div>
 	</div>
+	<!-- </div> -->
 </template>
 <script>
 import DatePicker from 'vue2-datepicker'
