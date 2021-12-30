@@ -1908,9 +1908,9 @@ input[type="text"] {
   white-space: nowrap;
   pointer-events: none;
 }
-.v-text-field--outlined .v-label {
+/*.v-text-field--outlined .v-label {
   top: 5px !important;
-}
+}*/
 .v-input {
   align-items: flex-start;
   display: flex;
@@ -3163,7 +3163,7 @@ table span {
 
 }
 .col {
-  margin: 0 3px !important;
+  margin: 0 5px !important;
 }
 
 .v-messages {margin-bottom: 5px;}
