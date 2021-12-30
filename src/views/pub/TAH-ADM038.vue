@@ -1,212 +1,414 @@
 <template>
-	<div class="adm_contents">
-		<div class="inner">
-			<h5>라이브러리 신청 관리</h5>
-			<div class="adm-search">
-				<v-row>
-					<v-col md="3">
-						<label>프로젝트 코드</label>
-						<v-text-field
-							single-line
-							outlined
-							clearable
-						></v-text-field>
-					</v-col>
-					<v-col md="3">
-						<label>프로젝트명</label>
-						<v-text-field
-							single-line
-							outlined
-							clearable
-						></v-text-field>
-					</v-col>
-					<v-col md="3">
-						<label>신청상태</label>
-						<v-select
-							:items="items1"
-							single-line
-							outlined
-						></v-select>
-					</v-col>
-				</v-row>
-				<v-row>
-					<v-col md="6">
-						신청일자
-						<date-picker
-							v-model="date"
-							range
-							placeholder="날짜선택"
-						/>
-					</v-col>
-					<v-col md="4"></v-col>
-					<v-col md="2">
-						<v-btn color="primary" dark>검색하기</v-btn>
-					</v-col>
-				</v-row>
-			</div>
-			<div class="item_box">
-				<div class="tit">
-					<p>총 <span>123</span>개의 라이브러리 목록</p>
-				</div>
-				<div class="btn">
-					<v-btn class="box">엑셀 다운로드</v-btn>
-				</div>
-				<div class="table_box">
-					<v-data-table
-						:headers="headers"
-						:items="items2"
-						:items-per-page="itemsPerPage"
-						hide-default-footer
-						class="elevation-1"
-					>
-						<template v-slot:item="row">
-							<tr>
-								<td>
-									{{ row.item.no }}
-								</td>
-								<td>
-									{{ row.item.pj_code }}
-								</td>
-								<td>
-									{{ row.item.pj_name }}
-								</td>
-								<td>
-									<v-select
-										:items="items1"
-										label="진행"
-										single-line
-										outlined
-										style="width: 200px"
-									>
-										<template v-slot:append-outer>
-											<v-btn color="primary" dark>
-												확인
-											</v-btn>
-										</template>
-									</v-select>
-								</td>
-								<td>
-									{{ row.item.team }}
-								</td>
-								<td>
-									{{ row.item.manager }}
-								</td>
-								<td>
-									{{ row.item.reason }}
-								</td>
-								<td>
-									{{ row.item.date }}
-								</td>
-								<td>
-									{{ row.item.admin }}
-								</td>
-							</tr>
-						</template>
-					</v-data-table>
-					<div class="paging">
-						<v-pagination
-							v-model="page"
-							:length="50"
-							:total-visible="7"
+	<v-app>
+		<div class="adm_contents">
+			<div class="inner">
+				<h5>오픈소스 라이브러리 등록 및 수정</h5>
+				<div class="item_box">
+					<div class="table_box">
+						<table class="tb_write">
+							<caption>
+								table caption
+							</caption>
+							<colgroup>
+								<col width="230" />
+								<col width="" />
+								<col width="230" />
+								<col width="" />
+							</colgroup>
+							<tbody>
+								<!--//등록수정시 노출-->
+								<tr>
+									<th>회사명</th>
+									<td>KB국민은행</td>
+									<th>부서</th>
+									<td>경영연구소</td>
+								</tr>
+								<tr>
+									<th>이름</th>
+									<td>김국민</td>
+									<th>사번</th>
+									<td>H000000</td>
+								</tr>
+								<tr>
+									<th>Project ID</th>
+									<td colspan="3">PROJ-0001</td>
+								</tr>
+								<!--등록수정시 노출//-->
+								<tr>
+									<th>패키지 그룹</th>
+									<td>
+										<v-select
+											:items="group"
+											placeholder="패키지 그룹을 선택하세요"
+											single-line
+											outlined
+											hide-details="auto"
+											v-moel="group"
+											:rules="[
+												rules.required,
+												rules.group_rule,
+											]"
+										>
+										</v-select>
+									</td>
+									<th>
+										패키지 버전
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-text-field
+											placeholder="패키지 버전을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-moel="ver"
+											:rules="[
+												rules.required,
+												rules.ver_rule,
+											]"
+											hide-details="auto"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>라이브러리명</th>
+									<td>
+										<v-text-field
+											placeholder="라이브러리명을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-moel="libname"
+											:rules="[
+												rules.required,
+												rules.libname_rule,
+											]"
+											hide-details="auto"
+										></v-text-field>
+									</td>
+									<th>라이브러리 버전</th>
+									<td>
+										<v-text-field
+											placeholder="라이브러리 버전을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-moel="ver"
+											:rules="[
+												rules.required,
+												rules.libver_rule,
+											]"
+											hide-details="auto"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이브러리 설명
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-text-field
+											placeholder="라이브러리 설명을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-moel="libdesc"
+											:rules="[
+												rules.required,
+												rules.libdesc_rule,
+											]"
+											hide-details="auto"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이브러리 파일명
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-text-field
+											placeholder="라이브러리 파일명을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-moel="libfile"
+											:rules="[
+												rules.required,
+												rules.libfile_rule,
+											]"
+											hide-details="auto"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										반입 신청 사유
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										SageMaker에서 bulitin으로 지원하지 않는
+										라이브러리입니다.
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이선스
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-text-field
+											placeholder="라이선스 정보를 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-moel="license"
+											:rules="[
+												rules.required,
+												rules.license_rule,
+											]"
+											hide-details="auto"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이브러리 업로드
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-btn
+											color="primary"
+											dark
+											:loading="isSelecting"
+											@click="handleFileImport"
+											append-outer="fa fa-search"
+											style="margin: 0"
+										>
+											찾아보기
+											<i class="fa fa-search"></i>
+											<input
+												type="file"
+												class="fileinput"
+											/>
+										</v-btn>
+										<div class="filesize-info">
+											총 <span>N개</span>의 파일(00,000KB)
+										</div>
+										<div v-if="!file">
+											<div
+												:class="[
+													'dropZone',
+													dragging
+														? 'dropZone-over'
+														: '',
+												]"
+												@dragenter="dragging = true"
+												@dragleave="dragging = false"
+											>
+												<div
+													class="dropZone-info"
+													@drag="onChange"
+												>
+													<span class="dropZone-title"
+														>첨부할 파일을 Drag &
+														Drop 방식으로 추가할 수
+														있습니다.</span
+													>
+													<div
+														class="
+															dropZone-upload-limit-info
+														"
+													></div>
+												</div>
+												<input
+													type="file"
+													@change="onChange"
+												/>
+											</div>
+										</div>
+										<div v-else class="dropZone-uploaded">
+											<div class="dropZone-uploaded-info">
+												<table class="fileupload-list">
+													<colgroup>
+														<col width="" />
+														<col width="20%" />
+														<col width="10%" />
+													</colgroup>
+													<tr>
+														<th>파일명</th>
+														<th>파일크기</th>
+														<th>삭제</th>
+													</tr>
+													<tr>
+														<td>filename.gif</td>
+														<td>1,234KB</td>
+														<td
+															style="
+																text-align: center;
+															"
+														>
+															<v-btn
+																color="primary"
+																dark
+																x-small
+																class="
+																	removeFile
+																"
+																append-outer="fa fa-times"
+																@click="
+																	removeFile
+																"
+															>
+																<i
+																	class="
+																		fa
+																		fa-times
+																	"
+																></i>
+															</v-btn>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="info_txt">
+						<p>
+							<i class="mdi mdi-information-outline"></i>
+							라이브러리 업로드시 아래 링크를 통해 기존
+							라이브러리와 필요 라이브러리 메타정보를 꼭 확인해
+							주세요.
+						</p>
+						<span>
+							<ul>
+								<li>
+									[Python]
+									https://pypi.org/pypi/{패키지명}/{버전}/json
+								</li>
+								<li>
+									[R]
+									http://cran.seou.go.kr/src/contrib/PACKAGES
+								</li>
+								<li>
+									[Anaconda]
+									https://repo.anaconda.com/pkgs/main/linux-64/repodata.json
+								</li>
+							</ul>
+						</span>
+					</div>
+					<div class="btn_area">
+						<v-btn color="primary" dark large outlined>취소</v-btn>
+						<v-btn color="primary" dark large> 수정하기 </v-btn>
+						<v-btn
 							color="primary"
-						></v-pagination>
+							dark
+							large
+							@click="dialog = true"
+						>
+							반입 요청하기
+						</v-btn>
+						<v-dialog v-model="dialog" max-width="350">
+							<v-card align="center">
+								<v-card-title class="text-subtitle-1">
+									라이브러리 반입을 요청하시겠습니까?
+								</v-card-title>
+								<v-card-text></v-card-text>
+
+								<v-card-actions>
+									<v-spacer></v-spacer>
+
+									<v-btn
+										color="primary"
+										dark
+										outlined
+										@click="dialog = false"
+									>
+										취소
+									</v-btn>
+
+									<v-btn
+										color="primary"
+										dark
+										@click="dialog = false"
+									>
+										요청하기
+									</v-btn>
+								</v-card-actions>
+							</v-card>
+						</v-dialog>
 					</div>
 				</div>
 			</div>
-			<div class="btn_area">
-				<button class="delete large">삭제하기</button>
-				<button class="edit large">수정하기</button>
-				<button class="regit large">등록하기</button>
-			</div>
 		</div>
-	</div>
+	</v-app>
 </template>
 <script>
-import DatePicker from 'vue2-datepicker'
-
 export default {
-	components: {
-		DatePicker,
-	},
+	el: '#app',
 	data() {
 		return {
-			date: null,
-			items1: ['신청중', '진행중', '신청완료'],
-			page: 1,
-			pageCount: 0,
-			itemsPerPage: 10,
-			singleSelect: false,
-			selected: [],
-			headers: [
-				{
-					text: '순번',
-					align: 'center',
-					sortable: false,
-					value: 'no',
-				},
-				{
-					text: '프로젝트코드',
-					align: 'center',
-					sortable: false,
-					value: 'pj_code',
-				},
-				{
-					text: '프로젝트명',
-					align: 'center',
-					sortable: false,
-					value: 'pj_name',
-				},
-				{
-					text: '신청상태',
-					align: 'center',
-					sortable: false,
-					value: 'state',
-				},
-				{
-					text: '신청부서',
-					align: 'center',
-					sortable: false,
-					value: 'team',
-				},
-				{
-					text: '신청직원',
-					align: 'center',
-					sortable: false,
-					value: 'manager',
-				},
-				{
-					text: '신청사유',
-					align: 'center',
-					sortable: false,
-					value: 'reason',
-				},
-				{
-					text: '신청일자',
-					align: 'center',
-					sortable: false,
-					value: 'date',
-				},
-				{
-					text: '관리자',
-					align: 'center',
-					sortable: false,
-					value: 'admin',
-				},
-			],
-			items2: [
-				{
-					no: '5',
-					pj_code: 'PROJECT_0001',
-					pj_name: '통합 프로젝트',
-					state: '',
-					team: '경영지원실',
-					manager: '김국민',
-					reason: '신청',
-					date: '2021-00-00',
-					admin: '홍길동',
-				},
-			],
+			file: '',
+			dragging: false,
+			dialog: false,
+			rules: {
+				group_rule: value => !!value || '패키지 그룹을 선택해 주세요.',
+				ver_rule: value => !!value || '패키지 버전을 입력해 주세요.',
+				libname_rule: value =>
+					!!value || '라이브러리명을 입력해 주세요.',
+				libver_rule: value =>
+					!!value || '라이브러리 버전을 입력해 주세요.',
+				libdesc_rule: value =>
+					!!value || '라이브러리 설명을 입력해 주세요.',
+				libfile_rule: value =>
+					!!value || '라이브러리 파일명을 입력해 주세요.',
+				license_rule: value =>
+					!!value || '라이선스 정보를 입력해 주세요.',
+			},
+			group: ['Python', 'R', 'Anaconda', '기타'],
 		}
+	},
+	methods: {
+		onChange(e) {
+			var files = e.target.files || e.dataTransfer.files
+
+			if (!files.length) {
+				this.dragging = false
+				return
+			}
+
+			this.createFile(files[0])
+		},
+		createFile(file) {
+			if (!file.type.match('text.*')) {
+				alert('please select txt file')
+				this.dragging = false
+				return
+			}
+
+			if (file.size > 5000000) {
+				alert('please check file size no over 5 MB.')
+				this.dragging = false
+				return
+			}
+
+			this.file = file
+			console.log(this.file)
+			this.dragging = false
+		},
+		removeFile() {
+			this.file = ''
+		},
+	},
+	computed: {
+		extension() {
+			return this.file ? this.file.name.split('.').pop() : ''
+		},
 	},
 }
 </script>

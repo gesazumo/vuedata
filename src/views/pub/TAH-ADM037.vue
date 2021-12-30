@@ -30,7 +30,7 @@
 						<v-col md="4">
 							<label>구분</label>
 							<v-select
-								:items="items_01"
+								:items="group"
 								label="전체 패키지 그룹"
 								single-line
 								outlined
@@ -113,7 +113,50 @@
 							show-select
 							hide-default-footer
 							class="elevation-1"
-						></v-data-table>
+						>
+							<template v-slot:item="row">
+								<tr>
+									<td>
+										{{ row.item.singleSelect }}
+									</td>
+									<td>
+										{{ row.item.type }}
+									</td>
+									<td>
+										{{ row.item.status }}
+									</td>
+									<td>
+										{{ row.item.libname }}
+									</td>
+									<td>
+										{{ row.item.ver }}
+									</td>
+									<td>
+										{{ row.item.projectid }}
+									</td>
+									<td>
+										{{ row.item.writer }}
+									</td>
+									<td>
+										{{ row.item.date_01 }}
+									</td>
+									<td>
+										{{ row.item.admin_name }}
+									</td>
+									<td>
+										{{ row.item.date_02 }}
+										<v-btn
+											color="primary"
+											dark
+											outlined
+											small
+											@click="ADM038"
+											>반입하기</v-btn
+										>
+									</td>
+								</tr>
+							</template>
+						</v-data-table>
 						<div class="paging">
 							<v-pagination
 								v-model="page"
@@ -127,8 +170,9 @@
 				<div class="btn_area">
 					<v-btn
 						color="primary"
-						outlined
+						dark
 						large
+						outlined
 						@click="dialog = true"
 					>
 						삭제하기
@@ -162,7 +206,9 @@
 							</v-card-actions>
 						</v-card>
 					</v-dialog>
-					<v-btn color="primary" outlined large> 수정하기 </v-btn>
+					<v-btn color="primary" dark large outlined>
+						수정하기
+					</v-btn>
 					<v-btn color="primary" dark large> 등록하기 </v-btn>
 				</div>
 			</div>
@@ -183,7 +229,7 @@ export default {
 			pageCount: 0,
 			itemsPerPage: 10,
 
-			items_01: ['전체', 'Python', 'R', 'Anaconda', '기타'],
+			group: ['전체', 'Python', 'R', 'Anaconda', '기타'],
 			rules: {
 				date: value =>
 					!!value || '종료일은 시작일과 같거나 이후이여야 합니다.',
@@ -194,93 +240,93 @@ export default {
 				{
 					text: '구분',
 					sortable: true,
-					value: 'a',
+					value: 'type',
 				},
 				{
 					text: 'Status',
 					sortable: true,
-					value: 'b',
+					value: 'status',
 				},
 				{
 					text: '라이브러리명',
 					sortable: true,
-					value: 'c',
+					value: 'libname',
 				},
 				{
 					text: '버전',
 					sortable: true,
-					value: 'd',
+					value: 'ver',
 				},
 				{
 					text: 'Project ID',
 					sortable: true,
-					value: 'e',
+					value: 'projectid',
 				},
 				{
 					text: '신청자',
 					sortable: true,
-					value: 'f',
+					value: 'writer',
 				},
 				{
 					text: '신청일',
 					sortable: true,
-					value: 'g',
+					value: 'date_01',
 				},
 				{
 					text: '관리자',
 					sortable: true,
-					value: 'h',
+					value: 'admin_name',
 				},
 				{
 					text: '반입일',
 					sortable: true,
-					value: 'i',
+					value: 'date_02',
 				},
 			],
 			items_02: [
 				{
-					a: 'Python',
-					b: '접수완료',
-					c: 'Pandas',
-					d: '1.3.4',
-					e: 'PROJ-0001',
-					f: '김영선',
-					g: '2021-00-00',
-					h: '최자영',
-					i: '반입하기',
+					type: 'Anaconda',
+					status: '접수완료',
+					libname: 'Redshift Connector',
+					ver: '2.0.900',
+					projectid: 'PROJ-0001',
+					writer: '조경범',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '반입하기',
 				},
 				{
-					a: 'R',
-					b: '보안점검중',
-					c: 'AWS Wrangler',
-					d: '2.12.1',
-					e: 'PROJ-0002',
-					f: '원종면',
-					g: '2021-00-00',
-					h: '최자영',
-					i: '보안점검중',
+					type: 'Python',
+					status: '보안점검중',
+					libname: 'Ggplot2',
+					ver: '2.2.1',
+					projectid: 'PROJ-0004',
+					writer: '김영선',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '보안점검중',
 				},
 				{
-					a: 'Anaconda',
-					b: '반입완료',
-					c: 'AWS Wrangler',
-					d: '2.12.1',
-					e: 'PROJ-0002',
-					f: '원종면',
-					g: '2021-00-00',
-					h: '최자영',
-					i: '반입불가',
+					type: 'R',
+					status: '취약점 발견',
+					libname: 'Car',
+					ver: '3.0-12',
+					projectid: 'PROJ-0005',
+					writer: '김영선',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '반입불가',
 				},
 				{
-					a: 'Anaconda',
-					b: '취약점 발견',
-					c: 'AWS Wrangler',
-					d: '2.12.1',
-					e: 'PROJ-0002',
-					f: '원종면',
-					g: '2021-00-00',
-					h: '최자영',
-					i: '2021-00-00',
+					type: 'Python',
+					status: '반입완료',
+					libname: 'Pandas',
+					ver: '1.3.4',
+					projectid: 'PROJ-0006',
+					writer: 'N/A',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '2021-00-00',
 				},
 			],
 		}
