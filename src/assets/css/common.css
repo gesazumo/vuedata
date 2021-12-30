@@ -3158,8 +3158,13 @@ table span {
 .btnArea button {margin:0 5px;}
 
 /*vuetify*/
-.row {margin:0 !important;}
+.row {
+  margin: 10px 0 !important;
 
+}
+.col {
+  margin: 0 3px !important;
+}
 
 .v-messages {margin-bottom: 5px;}
 .v-messages__message {line-height: 16px !important;}

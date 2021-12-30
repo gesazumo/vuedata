@@ -129,6 +129,16 @@
 .adm-search-2 ul li .v-text-field {margin-top: 5px; width:65.5%; }
 .adm-search-2 ul li button {margin:0px 4px !important;}
 
+.v-row {
+  padding: 10px 0 !important;
+}
+.checkgroup {
+  display: inline-block;
+}
+.v-input--selection-controls.v-input {
+  width: auto !important;
+  max-width: auto !important;
+}
 
 .item_box {
   display: inline-block;
