@@ -75,7 +75,11 @@
 											clearable
 											outlined
 											v-moel="project"
-											:rules="project_rule"
+											:rules="[
+												rules.required,
+												rules.project_rule,
+											]"
+											hide-details="auto"
 										></v-text-field>
 									</td>
 								</tr>
@@ -88,7 +92,11 @@
 										<date-picker
 											placeholder="프로젝트 기간 선택"
 											range
-											v-model="date"
+											v-model="project_date"
+											:rules="[
+												rules.required,
+												rules.project_date,
+											]"
 										/>
 										<i
 											class="mdi mdi-information-outline"
@@ -109,7 +117,11 @@
 											clearable
 											outlined
 											v-moel="project_desc"
-											:rules="project_desc_rule"
+											:rules="[
+												rules.required,
+												rules.project_desc_rule,
+											]"
+											hide-details="auto"
 										>
 										</v-textarea>
 									</td>
@@ -117,7 +129,7 @@
 								<tr>
 									<th>프로젝트 구분</th>
 									<td colspan="3">
-										<v-radio-group row>
+										<v-radio-group row hide-details="auto">
 											<v-radio label="개인"> </v-radio>
 											<v-radio label="팀"> </v-radio>
 										</v-radio-group>
@@ -138,7 +150,9 @@
 													v-bind="attrs"
 													v-on="on"
 													icon
-													color="secondary"
+													style="
+														background: none !important;
+													"
 												>
 													<v-icon
 														>mdi-help-circle</v-icon
@@ -161,12 +175,18 @@
 										</v-tooltip>
 									</th>
 									<td colspan="3">
-										<v-col md="6">
+										<v-col md="5">
 											<v-text-field
 												placeholder="이름을 입력하세요"
 												outlined
 												clearable
+												v-model="name"
+												:rules="[
+													rules.required,
+													rules.name,
+												]"
 												append-outer-icon="fa fa-search"
+												hide-details="auto"
 											>
 												<template v-slot:append-outer>
 													<button class="search-in">
@@ -234,7 +254,9 @@
 													v-bind="attrs"
 													v-on="on"
 													icon
-													color="secondary"
+													style="
+														background: none !important;
+													"
 												>
 													<v-icon
 														>mdi-help-circle</v-icon
@@ -257,42 +279,22 @@
 										</v-tooltip>
 									</th>
 									<td colspan="3">
-										<v-row row>
-											<v-col cols="2">
-												<v-checkbox
-													label="Athena"
-													value=""
-													hide-details
-												></v-checkbox>
-											</v-col>
-											<v-col cols="2">
-												<v-checkbox
-													label="QuickSight"
-													value=""
-													hide-details
-												></v-checkbox>
-											</v-col>
-											<v-col cols="2">
-												<v-checkbox
-													label="Notebook"
-													value=""
-													hide-details
-												></v-checkbox>
-											</v-col>
-											<v-col cols="2">
-												<v-checkbox
-													label="SageMaker Studio"
-													value=""
-													hide-details
-												></v-checkbox>
-											</v-col>
-											<v-col cols="2">
-												<v-checkbox
-													label="가상화 환경"
-													value=""
-													hide-details
-												></v-checkbox>
-											</v-col>
+										<v-row>
+											<v-checkbox
+												label="Athena"
+											></v-checkbox>
+											<v-checkbox
+												label="QuickSight"
+											></v-checkbox>
+											<v-checkbox
+												label="Notebook"
+											></v-checkbox>
+											<v-checkbox
+												label="SageMaker Studio"
+											></v-checkbox>
+											<v-checkbox
+												label="가상화 환경"
+											></v-checkbox>
 										</v-row>
 									</td>
 								</tr>
@@ -303,25 +305,24 @@
 									</th>
 									<td colspan="3">
 										<v-select
-											:items="items1"
+											:items="instance_01"
 											placeholder="Notebook Instance Type을 선택하세요"
 											single-line
 											outlined
+											v-model="instance_rules_01"
+											:rules="[
+												rules.required,
+												rules.instance_rules_01,
+											]"
+											hide-details="auto"
 										></v-select>
 									</td>
 								</tr>
 								<tr>
-									<th>
-										SageMaker Studio Instance Type
-										<span class="asterisk">필수</span>
-									</th>
+									<th>SageMaker Studio Instance Type</th>
 									<td colspan="3">
-										<v-select
-											:items="items2"
-											placeholder="Instance Type을 선택하세요"
-											single-line
-											outlined
-										></v-select>
+										ml.t3.medium (General purpose, vCPU 2,
+										GPU 0, Memory 4GiB)
 									</td>
 								</tr>
 								<tr>
@@ -339,7 +340,6 @@
 													v-bind="attrs"
 													v-on="on"
 													icon
-													color="secondary"
 													style="
 														background: none !important;
 													"
@@ -357,9 +357,9 @@
 														font-size: 16px !important;
 													"
 												>
-													프로젝트 목적에 맞는
+													프로젝트 목적에 맞는<br />
 													Template을 신청할 수
-													있습니다.
+													있습니다.<br />
 													<span>
 														[Building & Tranining]
 														모델 구축 및 훈련 <br />
@@ -373,10 +373,16 @@
 									</th>
 									<td colspan="3">
 										<v-select
-											:items="items3"
+											:items="instance_02"
 											placeholder="Project Template Type을 선택하세요"
 											single-line
 											outlined
+											v-model="instance_rules_02"
+											:rules="[
+												rules.required,
+												rules.instance_rules_02,
+											]"
+											hide-details="auto"
 										></v-select>
 									</td>
 								</tr>
@@ -386,24 +392,24 @@
 										<span class="asterisk">필수</span>
 									</th>
 									<td colspan="3">
-										컴퓨팅
 										<v-select
-											:items="items5"
-											label=""
+											:items="instance_03"
+											placeholder="Instance Type을 선택하세요"
 											single-line
 											outlined
+											v-model="instance_rules_03"
+											:rules="[
+												rules.required,
+												rules.instance_rules_03,
+											]"
+											hide-details="auto"
 										></v-select>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
-										<v-checkbox
-											input-value="true"
-											readonly
-											value
-											label="스토리지 : 범용 SSD(gp3), 1TiB"
-										>
-										</v-checkbox>
+										<strong>스토리지</strong> : 범용
+										SSD(gp3), 1TiB
 									</td>
 								</tr>
 
@@ -422,7 +428,9 @@
 													v-bind="attrs"
 													v-on="on"
 													icon
-													color="secondary"
+													style="
+														background: none !important;
+													"
 												>
 													<v-icon
 														>mdi-help-circle</v-icon
@@ -441,7 +449,7 @@
 													Information) 사용여부에
 													<br />
 													따라 프로젝트 영역
-													삭제기준이 달라집니다.
+													삭제기준이 달라집니다.<br />
 													<span>
 														[CI값 사용] 데이터
 														생성일 기준 5일 후 삭제
@@ -454,7 +462,7 @@
 										</v-tooltip>
 									</th>
 									<td colspan="3">
-										<v-radio-group row>
+										<v-radio-group row hide-details="auto">
 											<v-radio label="사용"> </v-radio>
 											<v-radio label="미사용"> </v-radio>
 										</v-radio-group>
@@ -462,7 +470,9 @@
 								</tr>
 								<tr>
 									<th>결재자</th>
-									<td colspan="3">L3 N101483(KB국민은행)</td>
+									<td colspan="3">
+										노현곤 (KB국민은행, 데이터기획부)
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -486,26 +496,37 @@ export default {
 	data() {
 		return {
 			date: null,
-			items1: [
+			instance_01: [
 				'ml.t3.medium(General purpose, vCPU 2, GPU 0, Memory 4GiB)',
 				'ml.g4dn.xlarge(Accelerated computing, vCPU 4, GPU 1, 16GiB)',
 				'ml.m5.large(General purpose, vCPU 2, GPU 0, Memory 8GiB)',
 				'ml.c5.large(Compute optimized, vCPU 2, GPU 0, Memory 4GiB)',
 			],
-			items2: [
-				'ml.t3.medium(General purpose, vCPU 2, GPU 0, Memory 4GiB)',
-				'ml.g4dn.xlarge(Accelerated computing, vCPU 4, GPU 1, 16GiB)',
-				'ml.m5.large(General purpose, vCPU 2, GPU 0, Memory 8GiB)',
-				'ml.c5.large(Compute optimized, vCPU 2, GPU 0, Memory 4GiB)',
+			instance_02: [
+				'Building & Tranining',
+				'Building, Training & Deployment',
 			],
-			items3: ['Building & Tranining', 'Building, Training & Deployment'],
-
-			project: '',
-			project_rule: [v => !!v || '프로젝트 명을 입력해 주세요.'],
-			project_desc: '',
-			project_desc_rule: [v => !!v || '프로젝트 설명을 입력해 주세요.'],
-			type: '',
-			type_rule: [v => !!v || '분석환경을 선택해 주세요.'],
+			instance_03: [
+				'r5.4xlarge(16vCPU, 128GiB)',
+				'r5.8xlarge(32vCPU, 256GiB)',
+				'r5.16xlarge(64vCPU, 512GiB)',
+				'p3.2xlarge(8vCPU, 1GPU, 61GiB)',
+			],
+			rules: {
+				project_rule: value => !!value || '프로젝트명을 입력해 주세요.',
+				project_date: value =>
+					!!value || '프로젝트 기간을 선택해 주세요.',
+				project_desc_rule: value =>
+					!!value || '프로젝트 설명을 입력해 주세요.',
+				name: value => !!value || '프로젝트 팀원을 입력해 주세요.',
+				instance_rules_01: value =>
+					!!value || 'Notebook Instance Type를 선택해 주세요.',
+				instance_rules_02: value =>
+					!!value ||
+					'SageMaker Studio Project Template Type을 선택해 주세요.',
+				instance_rules_03: value =>
+					!!value || '가상화 환경 Instance Type을 선택해 주세요.',
+			},
 			headers: [
 				{
 					text: '회사명',
@@ -576,12 +597,7 @@ export default {
 					console.log('click on ' + item.no)
 				},
 			},
-			items5: [
-				'r5.4xlarge(16vCPU, 128GiB)',
-				'r5.8xlarge(32vCPU, 256GiB)',
-				'r5.16xlarge(64vCPU, 512GiB)',
-				'p3.2xlarge(8vCPU, 1GPU, 61GiB)',
-			],
+
 			checked: true,
 		}
 	},
