@@ -1,78 +1,219 @@
 <template>
-	<div class="adm_contents">
-		<div class="inner">
-			<h5>라이브러리 신청 확인(반입현황)</h5>
-			<div class="adm-search">
-				<v-row>
-					<v-col md="3">
-						<label>패키지매니저</label>
-						<v-text-field
-							single-line
-							outlined
-							clearable
-						></v-text-field>
-					</v-col>
-					<v-col md="3">
-						<label>반입상태</label>
-						<v-select :items="items1" single-line outlined>
-						</v-select>
-					</v-col>
-					<v-col md="3">
-						<label>신청자</label>
-						<v-text-field
-							single-line
-							outlined
-							clearable
-						></v-text-field>
-					</v-col>
-				</v-row>
-				<v-row>
-					<v-col md="6">
-						신청일자
-						<date-picker
-							v-model="date"
-							range
-							placeholder="날짜선택"
-						/>
-					</v-col>
-					<v-col md="4"></v-col>
-					<v-col md="2">
-						<v-btn color="primary" dark>검색하기</v-btn>
-					</v-col>
-				</v-row>
-			</div>
-			<div class="item_box">
-				<div class="tit">
-					<p>총 <span>123</span>개의 라이브러리 목록</p>
+	<v-app>
+		<div class="adm_contents">
+			<div class="inner">
+				<h5>오픈소스 라이브러리 관리</h5>
+				<div class="adm-search-2">
+					<v-row>
+						<v-col md="4">
+							<label>제목</label>
+							<v-text-field
+								placeholder="제목"
+								v-moel="subject"
+								:rules="[rules.required, rules.subject]"
+								single-line
+								outlined
+								clearable
+								hide-details="auto"
+							></v-text-field>
+						</v-col>
+						<v-col md="4">
+							<label>등록일</label>
+							<date-picker
+								v-model="date"
+								range
+								placeholder="기간 선택"
+							/>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col md="4">
+							<label>구분</label>
+							<v-select
+								:items="group"
+								label="전체 패키지 그룹"
+								single-line
+								outlined
+								hide-details="auto"
+							></v-select>
+						</v-col>
+						<v-col md="4">
+							<label> Status </label>
+							<v-tooltip
+								right
+								content-class="secondary tooltip-right"
+							>
+								<template v-slot:activator="{ on, attrs }">
+									<v-btn
+										v-bind="attrs"
+										v-on="on"
+										icon
+										style="background: none !important"
+									>
+										<v-icon>mdi-help-circle</v-icon>
+									</v-btn>
+								</template>
+								<div>
+									<p
+										class="title"
+										style="
+											color: #fff !important;
+											font-size: 16px !important;
+										"
+									>
+										오픈소스 라이브러리 반입 현황 확인
+									</p>
+									<span>
+										[접수완료] 오픈소스 라이브러리 반입 신청
+										접수<br />
+										[보안점검중] 운영자가 라이브러리 파일
+										업로드 후 보안점검 진행중인 상태<br />
+										[취약점 발견] 보안점검중 취약점이
+										발견되어 반입이 불가한 상태<br />
+										[반입완료] 보언점검 완료 후 Private
+										Repository로 반입된 상태
+									</span>
+								</div>
+							</v-tooltip>
+							<div class="checkgroup">
+								<v-checkbox
+									label="접수완료"
+									hide-details="auto"
+								></v-checkbox>
+								<v-checkbox
+									label="점검중"
+									hide-details="auto"
+								></v-checkbox>
+								<v-checkbox
+									label="취약점 발견"
+									hide-details="auto"
+								></v-checkbox>
+								<v-checkbox
+									label="반입완료"
+									hide-details="auto"
+								></v-checkbox>
+							</div>
+						</v-col>
+						<v-col md="3" align="right">
+							<v-btn color="primary" dark outlined>초기화</v-btn>
+							<v-btn color="primary" dark>검색하기</v-btn>
+						</v-col>
+					</v-row>
 				</div>
-				<div class="btn">
-					<v-btn class="box">엑셀 다운로드</v-btn>
-				</div>
-				<div class="table_box">
-					<v-data-table
-						:headers="headers"
-						:items="items2"
-						:items-per-page="itemsPerPage"
-						hide-default-footer
-						class="elevation-1"
-					></v-data-table>
-					<div class="paging">
-						<v-pagination
-							v-model="page"
-							:length="50"
-							:total-visible="7"
-							color="primary"
-						></v-pagination>
+				<div class="item_box">
+					<div class="tit">
+						<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+					</div>
+					<div class="table_box">
+						<v-data-table
+							:headers="headers"
+							:items="items_02"
+							:items-per-page="itemsPerPage"
+							:single-select="singleSelect"
+							show-select
+							hide-default-footer
+							class="elevation-1"
+						>
+							<template v-slot:item="row">
+								<tr>
+									<td>
+										{{ row.item.singleSelect }}
+									</td>
+									<td>
+										{{ row.item.type }}
+									</td>
+									<td>
+										{{ row.item.status }}
+									</td>
+									<td>
+										{{ row.item.libname }}
+									</td>
+									<td>
+										{{ row.item.ver }}
+									</td>
+									<td>
+										{{ row.item.projectid }}
+									</td>
+									<td>
+										{{ row.item.writer }}
+									</td>
+									<td>
+										{{ row.item.date_01 }}
+									</td>
+									<td>
+										{{ row.item.admin_name }}
+									</td>
+									<td>
+										{{ row.item.date_02 }}
+										<v-btn
+											color="primary"
+											dark
+											outlined
+											small
+											@click="ADM038"
+											>반입하기</v-btn
+										>
+									</td>
+								</tr>
+							</template>
+						</v-data-table>
+						<div class="paging">
+							<v-pagination
+								v-model="page"
+								:length="50"
+								:total-visible="7"
+								color="primary"
+							></v-pagination>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="btn_area">
-				<button class="delete large">삭제하기</button>
-				<button class="edit large">수정하기</button>
-				<button class="regit large">등록하기</button>
+				<div class="btn_area">
+					<v-btn
+						color="primary"
+						dark
+						large
+						outlined
+						@click="dialog = true"
+					>
+						삭제하기
+					</v-btn>
+					<v-dialog v-model="dialog" max-width="350">
+						<v-card align="center">
+							<v-card-title class="text-subtitle-1">
+								선택 항목을 삭제하시겠습니까?
+							</v-card-title>
+							<v-card-text></v-card-text>
+
+							<v-card-actions>
+								<v-spacer></v-spacer>
+
+								<v-btn
+									color="primary"
+									dark
+									outlined
+									@click="dialog = false"
+								>
+									취소
+								</v-btn>
+
+								<v-btn
+									color="primary"
+									dark
+									@click="dialog = false"
+								>
+									삭제하기
+								</v-btn>
+							</v-card-actions>
+						</v-card>
+					</v-dialog>
+					<v-btn color="primary" dark large outlined>
+						수정하기
+					</v-btn>
+					<v-btn color="primary" dark large> 등록하기 </v-btn>
+				</div>
 			</div>
 		</div>
-	</div>
+	</v-app>
 </template>
 <script>
 import DatePicker from 'vue2-datepicker'
@@ -83,130 +224,109 @@ export default {
 	},
 	data() {
 		return {
-			items1: ['반입중', '반입완료'],
-			date: null,
+			dialog: false,
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
+
+			group: ['전체', 'Python', 'R', 'Anaconda', '기타'],
+			rules: {
+				date: value =>
+					!!value || '종료일은 시작일과 같거나 이후이여야 합니다.',
+			},
 			singleSelect: false,
 			selected: [],
 			headers: [
 				{
-					text: '순번',
-					align: 'center',
-					sortable: false,
-					value: 'no',
+					text: '구분',
+					sortable: true,
+					value: 'type',
 				},
 				{
-					text: '패키지매니저',
-					align: 'center',
-					sortable: false,
-					value: 'aa',
+					text: 'Status',
+					sortable: true,
+					value: 'status',
 				},
 				{
-					text: '제공패키지',
-					align: 'center',
-					sortable: false,
-					value: 'bb',
+					text: '라이브러리명',
+					sortable: true,
+					value: 'libname',
 				},
 				{
-					text: '패키지ID',
-					align: 'center',
-					sortable: false,
-					value: 'cc',
+					text: '버전',
+					sortable: true,
+					value: 'ver',
 				},
 				{
-					text: '반입파일명/패키지그룹ID',
-					align: 'center',
-					sortable: false,
-					value: 'dd',
-				},
-				{ text: '버전', align: 'center', sortable: false, value: 'ee' },
-				{
-					text: '반입상태',
-					align: 'center',
-					sortable: false,
-					value: 'ff',
+					text: 'Project ID',
+					sortable: true,
+					value: 'projectid',
 				},
 				{
 					text: '신청자',
-					align: 'center',
-					sortable: false,
-					value: 'gg',
+					sortable: true,
+					value: 'writer',
 				},
 				{
-					text: '신청일자',
-					align: 'center',
-					sortable: false,
-					value: 'hh',
+					text: '신청일',
+					sortable: true,
+					value: 'date_01',
 				},
 				{
-					text: '반입일자',
-					align: 'center',
-					sortable: false,
-					value: 'ii',
+					text: '관리자',
+					sortable: true,
+					value: 'admin_name',
+				},
+				{
+					text: '반입일',
+					sortable: true,
+					value: 'date_02',
 				},
 			],
-			items2: [
+			items_02: [
 				{
-					no: '5',
-					aa: 'MAVEN',
-					bb: 'Com.sun.,,,',
-					cc: '',
-					dd: '',
-					ee: '',
-					ff: '',
-					gg: '',
-					hh: '',
-					ii: '',
+					type: 'Anaconda',
+					status: '접수완료',
+					libname: 'Redshift Connector',
+					ver: '2.0.900',
+					projectid: 'PROJ-0001',
+					writer: '조경범',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '반입하기',
 				},
 				{
-					no: '4',
-					aa: 'MAVEN',
-					bb: 'Com.sun.,,,',
-					cc: '',
-					dd: '',
-					ee: '',
-					ff: '',
-					gg: '',
-					hh: '',
-					ii: '',
+					type: 'Python',
+					status: '보안점검중',
+					libname: 'Ggplot2',
+					ver: '2.2.1',
+					projectid: 'PROJ-0004',
+					writer: '김영선',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '보안점검중',
 				},
 				{
-					no: '3',
-					aa: 'MAVEN',
-					bb: 'Com.sun.,,,',
-					cc: '',
-					dd: '',
-					ee: '',
-					ff: '',
-					gg: '',
-					hh: '',
-					ii: '',
+					type: 'R',
+					status: '취약점 발견',
+					libname: 'Car',
+					ver: '3.0-12',
+					projectid: 'PROJ-0005',
+					writer: '김영선',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '반입불가',
 				},
 				{
-					no: '2',
-					aa: 'MAVEN',
-					bb: 'Com.sun.,,,',
-					cc: '',
-					dd: '',
-					ee: '',
-					ff: '',
-					gg: '',
-					hh: '',
-					ii: '',
-				},
-				{
-					no: '1',
-					aa: 'MAVEN',
-					bb: 'Com.sun.,,,',
-					cc: '',
-					dd: '',
-					ee: '',
-					ff: '',
-					gg: '',
-					hh: '',
-					ii: '',
+					type: 'Python',
+					status: '반입완료',
+					libname: 'Pandas',
+					ver: '1.3.4',
+					projectid: 'PROJ-0006',
+					writer: 'N/A',
+					date_01: '2021-00-00',
+					admin_name: '최자영',
+					date_02: '2021-00-00',
 				},
 			],
 		}

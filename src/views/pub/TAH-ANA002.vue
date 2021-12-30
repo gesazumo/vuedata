@@ -10,7 +10,7 @@
 				<h3>분석환경신청</h3>
 			</div>
 			<div class="subcontents">
-				<div class="s_title">
+				<div class="s_title" style="margin-bottom: 41px">
 					<div class="page_tit">
 						<h4>
 							그룹 마이데이터 통합분석 플랫폼 서비스 이용을 위한
@@ -54,6 +54,7 @@
 							<v-checkbox
 								v-model="check1"
 								:rules="[rules.required, rules.check1]"
+								hide-details="auto"
 							>
 								<template v-slot:label>
 									<p>
@@ -76,6 +77,7 @@
 							<v-checkbox
 								v-model="check2"
 								:rules="[rules.required, rules.check2]"
+								hide-details="auto"
 							>
 								<template v-slot:label>
 									<p>
@@ -96,6 +98,7 @@
 							<v-checkbox
 								v-model="check3"
 								:rules="[rules.required, rules.check3]"
+								hide-details="auto"
 							>
 								<template v-slot:label>
 									<p>
