@@ -30,7 +30,7 @@
 						<v-col md="4">
 							<label>구분</label>
 							<v-select
-								:items="items_01"
+								:items="group"
 								label="전체 패키지 그룹"
 								single-line
 								outlined
@@ -170,8 +170,9 @@
 				<div class="btn_area">
 					<v-btn
 						color="primary"
-						outlined
+						dark
 						large
+						outlined
 						@click="dialog = true"
 					>
 						삭제하기
@@ -205,7 +206,9 @@
 							</v-card-actions>
 						</v-card>
 					</v-dialog>
-					<v-btn color="primary" outlined large> 수정하기 </v-btn>
+					<v-btn color="primary" dark large outlined>
+						수정하기
+					</v-btn>
 					<v-btn color="primary" dark large> 등록하기 </v-btn>
 				</div>
 			</div>
@@ -226,7 +229,7 @@ export default {
 			pageCount: 0,
 			itemsPerPage: 10,
 
-			items_01: ['전체', 'Python', 'R', 'Anaconda', '기타'],
+			group: ['전체', 'Python', 'R', 'Anaconda', '기타'],
 			rules: {
 				date: value =>
 					!!value || '종료일은 시작일과 같거나 이후이여야 합니다.',
