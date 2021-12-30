@@ -7,12 +7,13 @@ function createInstance() {
 	})
 }
 
-function createInstanceWithAuth() {
+function createInstanceWithAuth(url = '') {
 	const instance = axios.create({
-		baseURL: process.env.VUE_APP_API_URL,
+		baseURL: process.env.VUE_APP_API_URL + url,
 	})
 	return setInterceptors(instance)
 }
 
 export const instance = createInstance()
-export const posts = createInstanceWithAuth()
+export const adminInstance = createInstanceWithAuth('api/admin/')
+export const userInstance = createInstanceWithAuth()
