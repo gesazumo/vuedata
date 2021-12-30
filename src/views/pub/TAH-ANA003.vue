@@ -90,13 +90,9 @@
 									</th>
 									<td colspan="3">
 										<date-picker
+											v-model="date"
 											placeholder="프로젝트 기간 선택"
 											range
-											v-model="project_date"
-											:rules="[
-												rules.required,
-												rules.project_date,
-											]"
 										/>
 										<i
 											class="mdi mdi-information-outline"
@@ -514,8 +510,6 @@ export default {
 			],
 			rules: {
 				project_rule: value => !!value || '프로젝트명을 입력해 주세요.',
-				project_date: value =>
-					!!value || '프로젝트 기간을 선택해 주세요.',
 				project_desc_rule: value =>
 					!!value || '프로젝트 설명을 입력해 주세요.',
 				name: value => !!value || '프로젝트 팀원을 입력해 주세요.',
