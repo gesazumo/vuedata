@@ -6,11 +6,9 @@
 				<div class="adm-search-2">
 					<v-row>
 						<v-col md="4">
-							<label>제목</label>
+							<div class="label_txt">제목</div>
 							<v-text-field
 								placeholder="제목"
-								v-moel="subject"
-								:rules="[rules.required, rules.subject]"
 								single-line
 								outlined
 								clearable
@@ -18,17 +16,19 @@
 							></v-text-field>
 						</v-col>
 						<v-col md="4">
-							<label>등록일</label>
-							<date-picker
-								v-model="date"
-								range
-								placeholder="기간 선택"
-							/>
+							<div class="label_txt">등록일</div>
+							<div>
+								<date-picker
+									v-model="date"
+									range
+									placeholder="기간 선택"
+								/>
+							</div>
 						</v-col>
 					</v-row>
 					<v-row>
 						<v-col md="4">
-							<label>구분</label>
+							<div class="label_txt">구분</div>
 							<v-select
 								:items="group"
 								label="전체 패키지 그룹"
@@ -37,44 +37,48 @@
 								hide-details="auto"
 							></v-select>
 						</v-col>
-						<v-col md="4">
-							<label> Status </label>
-							<v-tooltip
-								right
-								content-class="secondary tooltip-right"
-							>
-								<template v-slot:activator="{ on, attrs }">
-									<v-btn
-										v-bind="attrs"
-										v-on="on"
-										icon
-										style="background: none !important"
-									>
-										<v-icon>mdi-help-circle</v-icon>
-									</v-btn>
-								</template>
-								<div>
-									<p
-										class="title"
-										style="
-											color: #fff !important;
-											font-size: 16px !important;
-										"
-									>
-										오픈소스 라이브러리 반입 현황 확인
-									</p>
-									<span>
-										[접수완료] 오픈소스 라이브러리 반입 신청
-										접수<br />
-										[보안점검중] 운영자가 라이브러리 파일
-										업로드 후 보안점검 진행중인 상태<br />
-										[취약점 발견] 보안점검중 취약점이
-										발견되어 반입이 불가한 상태<br />
-										[반입완료] 보언점검 완료 후 Private
-										Repository로 반입된 상태
-									</span>
-								</div>
-							</v-tooltip>
+						<v-col md="5">
+							<div class="label_txt">
+								Status
+								<v-tooltip
+									right
+									content-class="secondary tooltip-right"
+								>
+									<template v-slot:activator="{ on, attrs }">
+										<v-btn
+											v-bind="attrs"
+											v-on="on"
+											icon
+											style="background: none !important"
+										>
+											<v-icon>mdi-help-circle</v-icon>
+										</v-btn>
+									</template>
+									<div>
+										<p
+											class="title"
+											style="
+												color: #fff !important;
+												font-size: 16px !important;
+											"
+										>
+											오픈소스 라이브러리 반입 현황 확인
+										</p>
+										<span>
+											[접수완료] 오픈소스 라이브러리 반입
+											신청 접수<br />
+											[보안점검중] 운영자가 라이브러리
+											파일 업로드 후 보안점검 진행중인
+											상태<br />
+											[취약점 발견] 보안점검중 취약점이
+											발견되어 반입이 불가한 상태<br />
+											[반입완료] 보언점검 완료 후 Private
+											Repository로 반입된 상태
+										</span>
+									</div>
+								</v-tooltip>
+							</div>
+
 							<div class="checkgroup">
 								<v-checkbox
 									label="접수완료"
@@ -94,7 +98,7 @@
 								></v-checkbox>
 							</div>
 						</v-col>
-						<v-col md="3" align="right">
+						<v-col md="2">
 							<v-btn color="primary" dark outlined>초기화</v-btn>
 							<v-btn color="primary" dark>검색하기</v-btn>
 						</v-col>
@@ -228,12 +232,7 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-
 			group: ['전체', 'Python', 'R', 'Anaconda', '기타'],
-			rules: {
-				date: value =>
-					!!value || '종료일은 시작일과 같거나 이후이여야 합니다.',
-			},
 			singleSelect: false,
 			selected: [],
 			headers: [

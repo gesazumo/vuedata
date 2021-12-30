@@ -108,7 +108,7 @@
 .adm-search ul li .v-text-field {margin-top: 5px; width:57.5%; }
 .adm-search ul li button {margin:0px !important;}
 
-.adm-search label {float:left;}
+/*.adm-search label {float:left;}*/
 
 /*항목이2개일때*/
 .adm-search-2 {
@@ -130,12 +130,26 @@
 .adm-search-2 ul li button {margin:0px 4px !important;}
 
 
+.label_txt {
+  float: left;
+  min-width: 80px;
+  max-height: 40px;
+  font-family: 'KBFGTextM';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
 .checkgroup {
-  display: inline-block;
+  display: flex;  
+}
+.v-label {
+  margin-right: 20px;
 }
 .v-input--selection-controls.v-input {
   width: auto !important;
   max-width: auto !important;
+  float: none;
 }
 
 .item_box {
