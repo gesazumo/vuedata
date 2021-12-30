@@ -253,7 +253,7 @@ export default {
 				},
 				{
 					a: 'R',
-					b: '접수완료',
+					b: '보안점검중',
 					c: 'AWS Wrangler',
 					d: '2.12.1',
 					e: 'PROJ-0002',
