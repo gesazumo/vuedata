@@ -23,8 +23,6 @@
 								v-model="date"
 								range
 								placeholder="기간 선택"
-								:rules="[rules.required, rules.date]"
-								hide-details="auto"
 							/>
 						</v-col>
 					</v-row>
