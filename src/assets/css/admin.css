@@ -168,7 +168,7 @@
   margin-bottom: 16px;
   min-height: 39px;
 }
-.item_box .tit p {font-family: 'KBFGTextM'; font-size: 14px; margin-bottom: 16px;}
+.item_box .tit p {font-family: 'KBFGTextM'; font-size: 14px; margin-bottom: 8px;}
 .item_box .tit span {color:#f26615; }
 .item_box .btn {float:right; margin-top: 0;}
 .item_box .btn button {margin: 0; margin-bottom: 12px !important;}
@@ -190,12 +190,11 @@
 }
 
 .btn_area {
-  margin-top: 32px;
+  margin: 8px 0;
   display: inline-block;
   width:100%; 
-  text-align: right; 
 }
-.btn_area button {margin:0 5px;}
+.btn_area button {margin-left: 0 !important; margin-right:10px;}
 .mg_L0 {margin-left:0 !important;} /*leftmargin*/
 
 .v-input--radio-group--row .v-input--radio-group__input {
