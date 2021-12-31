@@ -124,10 +124,10 @@
 						v-model="selectedItems"
 						:headers="headers"
 						:items="items_02"
+						show-select
 						:items-per-page="itemsPerPage"
 						:single-select="false"
 						item-key="seq"
-						show-select
 						hide-default-footer
 						class="elevation-1"
 						:page.sync="page"
@@ -168,12 +168,12 @@
 			</div>
 			<div class="btn_area">
 				<v-btn
-					v-if="selectedItems.length > 0"
 					color="primary"
 					dark
 					large
 					outlined
 					@click="dialog = true"
+					v-if="selectedItems.length > 0"
 				>
 					삭제하기
 				</v-btn>
@@ -203,7 +203,7 @@
 					</v-card>
 				</v-dialog>
 				<v-btn
-					v-if="(selectedItems.length = 0)"
+					v-if="selectedItems.length == 1"
 					color="primary"
 					dark
 					large
@@ -215,6 +215,7 @@
 					등록하기
 				</v-btn>
 			</div>
+			<span>selected : {{ selectedItems.length }}</span>
 		</div>
 	</div>
 </template>
@@ -234,7 +235,7 @@ export default {
 			dialog: false,
 			page: 1,
 			pageCount: 0,
-			itemsPerPage: 2,
+			itemsPerPage: 10,
 			selectItems: [],
 			checkbox: [],
 			selected: [],
