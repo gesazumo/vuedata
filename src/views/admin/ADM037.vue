@@ -149,6 +149,7 @@
 								dark
 								outlined
 								small
+								@click="bringLibrary(item.seq)"
 								>반입하기</v-btn
 							>
 							<span v-else>
@@ -384,6 +385,9 @@ export default {
 		submit() {
 			console.log('-------------SUBMIT-------------')
 			console.log(this.selectedItems)
+		},
+		bringLibrary(seq) {
+			this.$router.push({ path: '/admin/adm038', query: { seq: seq } })
 		},
 	},
 }
