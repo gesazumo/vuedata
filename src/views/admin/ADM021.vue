@@ -1,17 +1,21 @@
 <template>
-	<div>
-		<!-- 필터 -->
-		<notice-filter @search="search" />
-		<!-- 퍼블나온거에 리스트만 넣음 -->
-		<notice-list :list="list" />
-		<div class="adm_contents">
-			<div class="inner">
-				<v-pagination
-					v-model="param.page"
-					:length="4"
-					prev-icon="mdi-menu-left"
-					next-icon="mdi-menu-right"
-				></v-pagination>
+	<div class="adm_contents">
+		<div class="inner">
+			<h5>공지사항 관리</h5>
+			<notice-filter @search="search" />
+			<!-- 퍼블나온거에 리스트만 넣음 -->
+			<div class="item_box">
+				<div class="table_box">
+					<notice-list :list="list" />
+					<div class="paging">
+						<v-pagination
+							v-model="page"
+							:length="50"
+							:total-visible="7"
+							color="primary"
+						></v-pagination>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -32,8 +36,8 @@ export default {
 	},
 	mixins: [listMixin(getNoticesApi)],
 	methods: {
-		search() {
-			console.log('search')
+		search(param) {
+			console.log(param)
 		},
 	},
 }
