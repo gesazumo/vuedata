@@ -74,12 +74,7 @@
 						</div>
 						<div class="btn_area">
 							<v-btn color="primary" dark> 등록하기 </v-btn>
-							<v-btn
-								color="primary"
-								dark
-								outlined
-								@click="dialog = true"
-							>
+							<v-btn color="primary" dark outlined>
 								삭제하기
 							</v-btn>
 							<v-btn color="primary" dark outlined>

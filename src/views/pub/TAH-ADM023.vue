@@ -76,12 +76,7 @@
 						</div>
 						<div class="btn_area">
 							<v-btn color="primary" dark> 답변하기 </v-btn>
-							<v-btn
-								color="primary"
-								dark
-								outlined
-								@click="dialog = true"
-							>
+							<v-btn color="primary" dark outlined>
 								삭제하기
 							</v-btn>
 						</div>
@@ -112,7 +107,6 @@
 												dark
 												outlined
 												small
-												@click="ADM024"
 												>답변하기</v-btn
 											>
 										</td>
@@ -122,7 +116,7 @@
 						</div>
 					</div>
 					<div class="paging">
-						<v-pagination
+						a<v-pagination
 							v-model="page"
 							:length="50"
 							:total-visible="7"
