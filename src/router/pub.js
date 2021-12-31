@@ -131,4 +131,36 @@ export const pubRouter = [
 		path: 'adm004', //Admin 메타관리 인스턴스 등록수정
 		component: () => import('@/views/pub/TAH-ADM004.vue'),
 	},
+	{
+		path: 'adm021', //Admin 게시판관리 공지사항 관리
+		component: () => import('@/views/pub/TAH-ADM021.vue'),
+	},
+	{
+		path: 'adm022', //Admin 게시판관리 공지사항 등록수정
+		component: () => import('@/views/pub/TAH-ADM022.vue'),
+	},
+	{
+		path: 'adm023', //Admin 게시판관리 문의하기 관리
+		component: () => import('@/views/pub/TAH-ADM023.vue'),
+	},
+	{
+		path: 'adm024', //Admin 게시판관리 문의하기 등록수정
+		component: () => import('@/views/pub/TAH-ADM024.vue'),
+	},
+	{
+		path: 'adm025', //Admin 게시판관리 FAQ 관리
+		component: () => import('@/views/pub/TAH-ADM025.vue'),
+	},
+	{
+		path: 'adm026', //Admin 게시판관리 FAQ 등록수정
+		component: () => import('@/views/pub/TAH-ADM026.vue'),
+	},
+	{
+		path: 'adm005', //Admin 메타관리 테이블관리
+		component: () => import('@/views/pub/TAH-ADM005.vue'),
+	},
+	{
+		path: 'adm006', //Admin 메타관리 테이블 등록수정
+		component: () => import('@/views/pub/TAH-ADM006.vue'),
+	},
 ]

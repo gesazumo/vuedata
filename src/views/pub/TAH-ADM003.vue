@@ -1,108 +1,144 @@
 <template>
 	<v-app>
-		<div class="adm_wrap">
-			<div id="lnb"></div>
-			<div class="adm_contents">
-				<div class="inner">
-					<h5>인스턴스 관리</h5>
-					<div class="adm-search">
-						<ul>
-							<li>
-								<label>인스턴스명</label>
-								<v-text-field
-									placeholder="계좌번호"
-									single-line
-									outlined
-									clearable
-								></v-text-field>
-							</li>
-							<li class="mg_L0">
-								<label></label>
-								<v-select
-									:items="items"
-									label="%_%"
-									ref="name"
-									v-model="name"
-									:rules="[() => !!name || '선택해 주세요']"
-									:error-messages="errorMessages"
-									single-line
-									outlined
-								></v-select>
-							</li>
-							<li>
-								<button class="search">검색하기</button>
-							</li>
-						</ul>
-					</div>
-					<div class="item_box">
-						<div class="tit">
-							<p>총 <span>123</span>개의 검색결과가 있습니다.</p>
-						</div>
-						<div class="table_box">
-							<v-data-table
-								:headers="headers"
-								:items="items2"
-								:items-per-page="itemsPerPage"
-								:single-select="singleSelect"
-								show-select
-								hide-default-footer
-								class="elevation-1"
-							>
-								<template v-slot:item="row">
-									<tr>
-										<td>
-											{{ row.item.singleSelect }}
-										</td>
-										<td>
-											{{ row.item.a }}
-										</td>
-										<td>
-											{{ row.item.b }}
-										</td>
-										<td>
-											{{ row.item.c }}
-											<v-btn text x-small>
-												<i class="fa fa-plus"></i>
-											</v-btn>
-										</td>
-										<td>
-											{{ row.item.d }}
-										</td>
-										<td>
-											{{ row.item.e }}
-										</td>
-										<td>
-											{{ row.item.f }}
-										</td>
-									</tr>
-								</template>
-							</v-data-table>
-
-							<div class="more_view">
-								<p>인스턴스 코드</p>
-								<v-data-table
-									:headers="headers3"
-									:items="items3"
-									:items-per-page="itemsPerPage"
-									hide-default-footer
-									class="elevation-1"
-								>
-								</v-data-table>
-							</div>
-							<div class="paging">
-								<v-pagination
-									v-model="page"
-									:length="50"
-									:total-visible="7"
-									color="primary"
-								></v-pagination>
-							</div>
-						</div>
+		<div class="adm_contents">
+			<div class="inner">
+				<h5>인스턴스 관리</h5>
+				<div class="adm-search">
+					<v-row>
+						<v-col md="4">
+							<div class="label_txt">인스턴스명</div>
+							<v-text-field
+								placeholder="인스턴스명을 입력하세요"
+								single-line
+								outlined
+								clearable
+								hide-details="auto"
+							></v-text-field>
+						</v-col>
+						<v-col md="2">
+							<v-select
+								:items="items"
+								label="_%"
+								single-line
+								outlined
+								hide-details="auto"
+							></v-select>
+						</v-col>
+						<v-col md="4"></v-col>
+						<v-col md="1">
+							<v-btn color="primary" dark>검색하기</v-btn>
+						</v-col>
+					</v-row>
+				</div>
+				<div class="item_box">
+					<div class="tit">
+						<p>총 <span>123</span>개의 검색결과가 있습니다.</p>
 					</div>
 					<div class="btn_area">
-						<button class="delete large">삭제하기</button>
-						<button class="edit large">수정하기</button>
-						<button class="regit large">등록하기</button>
+						<v-btn color="primary" dark> 등록하기 </v-btn>
+						<v-btn
+							color="primary"
+							dark
+							outlined
+							@click="dialog = true"
+						>
+							삭제하기
+						</v-btn>
+						<v-btn color="primary" dark outlined> 수정하기 </v-btn>
+						<v-dialog v-model="dialog" max-width="350">
+							<v-card align="center">
+								<v-card-title class="text-subtitle-1">
+									선택 항목을 삭제하시겠습니까?
+								</v-card-title>
+								<v-card-text></v-card-text>
+
+								<v-card-actions>
+									<v-spacer></v-spacer>
+
+									<v-btn
+										color="primary"
+										dark
+										outlined
+										@click="dialog = false"
+									>
+										취소
+									</v-btn>
+
+									<v-btn
+										color="primary"
+										dark
+										@click="dialog = false"
+									>
+										삭제하기
+									</v-btn>
+								</v-card-actions>
+							</v-card>
+						</v-dialog>
+					</div>
+					<div class="table_box">
+						<v-data-table
+							v-model="selected"
+							:headers="headers"
+							:items="items2"
+							:items-per-page="itemsPerPage"
+							:single-select="singleSelect"
+							item-key="a"
+							show-select
+							hide-default-footer
+							class="elevation-1"
+						>
+							<template v-slot:item="row">
+								<tr>
+									<td>
+										{{ row.item.singleSelect }}
+									</td>
+									<td>
+										{{ row.item.a }}
+									</td>
+									<td>
+										{{ row.item.b }}
+									</td>
+									<td>
+										{{ row.item.c }}
+										<v-btn
+											outlined
+											x-small
+											@click="toggleShow"
+										>
+											<i class="fa fa-plus"></i>
+										</v-btn>
+									</td>
+									<td>
+										{{ row.item.d }}
+									</td>
+									<td>
+										{{ row.item.e }}
+									</td>
+									<td>
+										{{ row.item.f }}
+									</td>
+								</tr>
+							</template>
+						</v-data-table>
+
+						<div class="more_view" v-if="show">
+							<p>인스턴스 코드</p>
+							<v-data-table
+								:headers="headers3"
+								:items="items3"
+								hide-default-footer
+							>
+							</v-data-table>
+						</div>
+
+						<div class="paging">
+							<v-pagination
+								v-model="page"
+								:length="50"
+								:total-visible="7"
+								color="primary"
+							></v-pagination>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -113,6 +149,8 @@
 export default {
 	data() {
 		return {
+			show: false,
+			dialog: false,
 			items: ['=', '_%', '%_', '%_%'],
 			page: 1,
 			pageCount: 0,
@@ -192,6 +230,9 @@ export default {
 		openSel() {
 			//this.axios.post(url).then
 			this.items2 = []
+		},
+		toggleShow() {
+			this.show = !this.show
 		},
 	},
 }

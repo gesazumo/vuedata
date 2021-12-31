@@ -186,7 +186,6 @@
   font-size: 22px;
   margin-top: 7px
 }
-.v-text-field .v-label {min-height: 0 !important;}
 
 .keyword {
   display: inline-block;
@@ -1904,7 +1903,6 @@ input[type="text"] {
   max-width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
-  top: 5px !important;
   white-space: nowrap;
   pointer-events: none;
 }
@@ -1919,11 +1917,6 @@ input[type="text"] {
   letter-spacing: normal;
   max-width: 100%;
   text-align: left;
-}
-
-.v-input .v-label {
-  /*color:#d8d8d8;*/
-  letter-spacing: normal;
 }
 
 .v-application--is-ltr .v-text-field .v-input__append-inner {
@@ -2163,7 +2156,7 @@ input[type="text"] {
 
 .agree .v-input__slot, .v-input--selection-controls.v-input {
   width: 100%;
-  float: left;
+  /*float: left;*/
 }
 
 
@@ -2246,7 +2239,9 @@ table span {
   cursor: pointer;
 }
 
-.tb_write {margin-bottom: 40px;}
+.tb_write {
+  /*margin-bottom: 40px;*/
+}
 .tb_write th {max-height: 56px; text-align: left; padding:8px 24px !important; line-height: 24px;}
 .tb_write td {min-height: 56px; text-align: left; padding:8px 16px !important;}
 .tb_write td .v-text-field .v-input__slot .v-inupt {width:100% !important;}
@@ -2807,8 +2802,8 @@ table span {
     color: rgba(0, 0, 0, .8)
 }
 .mx-datepicker-main {
-    font: 14px / 1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
-    color: #73879c;
+    font: 14px / 1.5 "KBFGTextM", sans-serif;
+    color: #ffbc00;
     background-color: #fff;
     border: 1px solid #e8e8e8
 }
@@ -3066,7 +3061,7 @@ table span {
     line-height: 20px
 }
 .mx-time-option:hover {
-    color: #73879c;
+    color: #ffbc00;
     background-color: #f3f9fe
 }
 .mx-time-option.active {
@@ -3163,7 +3158,8 @@ table span {
 
 }
 .col {
-  margin: 0 5px !important;
+  margin: 0 12px !important;
+  display: flex;
 }
 
 .v-messages {margin-bottom: 5px;}
@@ -3175,6 +3171,7 @@ table span {
   color:#1e1909;
   padding-left: 8px !important;
 }
+
 .v-input__prepend-outer, 
 .v-input__append-outer {
   margin-top:0 !important;
@@ -3194,7 +3191,10 @@ table span {
   min-height: 40px !important;
 }
 
-
+.theme--light.v-label {
+  color:#504842 !important;
+  position: initial !important;
+}
 
 /*datepicker날짜선택*/ 
 .mx-input {min-height: 40px;}
