@@ -108,7 +108,7 @@
 .adm-search ul li .v-text-field {margin-top: 5px; width:57.5%; }
 .adm-search ul li button {margin:0px !important;}
 
-.adm-search label {float:left;}
+/*.adm-search label {float:left;}*/
 
 /*항목이2개일때*/
 .adm-search-2 {
@@ -130,12 +130,26 @@
 .adm-search-2 ul li button {margin:0px 4px !important;}
 
 
+.label_txt {
+  float: left;
+  min-width: 80px;
+  max-height: 40px;
+  font-family: 'KBFGTextM';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
 .checkgroup {
-  display: inline-block;
+  display: flex;  
+}
+.v-label {
+  margin-right: 20px;
 }
 .v-input--selection-controls.v-input {
   width: auto !important;
   max-width: auto !important;
+  float: none;
 }
 
 .item_box {
@@ -154,7 +168,7 @@
   margin-bottom: 16px;
   min-height: 39px;
 }
-.item_box .tit p {font-family: 'KBFGTextM'; font-size: 14px; margin-bottom: 16px;}
+.item_box .tit p {font-family: 'KBFGTextM'; font-size: 14px; margin-bottom: 8px;}
 .item_box .tit span {color:#f26615; }
 .item_box .btn {float:right; margin-top: 0;}
 .item_box .btn button {margin: 0; margin-bottom: 12px !important;}
@@ -176,12 +190,11 @@
 }
 
 .btn_area {
-  margin-top: 32px;
+  margin: 8px 0;
   display: inline-block;
   width:100%; 
-  text-align: right; 
 }
-.btn_area button {margin:0 5px;}
+.btn_area button {margin-left: 0 !important; margin-right:10px;}
 .mg_L0 {margin-left:0 !important;} /*leftmargin*/
 
 .v-input--radio-group--row .v-input--radio-group__input {
@@ -248,7 +261,7 @@
   text-align: center;
 }
 
-..dropZone-title {
+.dropZone-title {
   color: #787878;
 }
 

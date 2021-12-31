@@ -7,6 +7,15 @@ import uniq from 'lodash/uniq.js'
 import uniqBy from 'lodash/uniqBy.js'
 
 const util = {
+	convertUrl(param) {
+		if (!param) return ''
+		const queryString = Object.entries(param)
+			.map(e => e.join('='))
+			.join('&')
+
+		return `?${queryString}`
+	},
+
 	/**
 	 * 오늘 날짜를 년월일(yyyymmdd)로 반환한다.
 	 */
