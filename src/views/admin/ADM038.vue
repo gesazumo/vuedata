@@ -16,19 +16,19 @@
 						</colgroup>
 						<tbody>
 							<!--//등록수정시 노출-->
-							<tr v-if="!adminFlag">
+							<tr v-if="bringFlag">
 								<th>회사명</th>
 								<td>KB국민은행</td>
 								<th>부서</th>
 								<td>경영연구소</td>
 							</tr>
-							<tr v-if="!adminFlag">
+							<tr v-if="bringFlag">
 								<th>이름</th>
 								<td>김국민</td>
 								<th>사번</th>
 								<td>H000000</td>
 							</tr>
-							<tr v-if="!adminFlag">
+							<tr v-if="bringFlag">
 								<th>Project ID</th>
 								<td colspan="3">PROJ-0001</td>
 							</tr>
@@ -45,6 +45,7 @@
 										v-model="selectGroup"
 										item-text="title"
 										item-value="value"
+										:rules="[rules.group_rule]"
 									>
 									</v-select>
 								</td>
@@ -58,8 +59,9 @@
 										single-line
 										clearable
 										outlined
-										v-model="packageVer"
+										v-model="ver"
 										hide-details="auto"
+										:rules="[rules.ver_rule]"
 									></v-text-field>
 								</td>
 							</tr>
@@ -73,6 +75,7 @@
 										outlined
 										v-model="libname"
 										hide-details="auto"
+										:rules="[rules.libname_rule]"
 									></v-text-field>
 								</td>
 								<th>라이브러리 버전</th>
@@ -84,6 +87,7 @@
 										outlined
 										v-model="libVer"
 										hide-details="auto"
+										:rules="[rules.libver_rule]"
 									></v-text-field>
 								</td>
 							</tr>
@@ -100,6 +104,7 @@
 										outlined
 										v-model="libdesc"
 										hide-details="auto"
+										:rules="[rules.libdesc_rule]"
 									></v-text-field>
 								</td>
 							</tr>
@@ -116,6 +121,7 @@
 										outlined
 										v-model="libfile"
 										hide-details="auto"
+										:rules="[rules.libfile_rule]"
 									></v-text-field>
 								</td>
 							</tr>
@@ -142,6 +148,7 @@
 										outlined
 										v-model="license"
 										hide-details="auto"
+										:rules="[rules.license_rule]"
 									></v-text-field>
 								</td>
 							</tr>
@@ -263,8 +270,16 @@
 				</div>
 				<div class="btn_area">
 					<v-btn color="primary" dark large outlined>취소</v-btn>
-					<v-btn color="primary" dark large> 수정하기 </v-btn>
-					<v-btn color="primary" dark large @click="dialog = true">
+					<v-btn v-if="editFlag" color="primary" dark large>
+						수정하기
+					</v-btn>
+					<v-btn
+						v-if="!editFlag"
+						color="primary"
+						dark
+						large
+						@click="dialog = true"
+					>
 						반입 요청하기
 					</v-btn>
 					<v-dialog v-model="dialog" max-width="350">
@@ -305,16 +320,18 @@
 export default {
 	data() {
 		return {
-			adminFlag: true,
+			bringFlag: false, //반입하기
+			editFlag: false, //수정하기
 			file: '',
 			dragging: false,
 			dialog: false,
 			libname: '',
 			libdesc: '',
 			libfile: '',
-			packageVer: '',
+			ver: '',
 			libVer: '',
 			license: '',
+			// group_rule: [() => !!this.group || '패키지 그룹을 선택해 주세요.'],
 			rules: {
 				group_rule: value => !!value || '패키지 그룹을 선택해 주세요.',
 				ver_rule: value => !!value || '패키지 버전을 입력해 주세요.',
@@ -339,9 +356,13 @@ export default {
 		}
 	},
 	created() {
-		if (this.$route.query.seq) {
-			console.log('router query : ' + this.$route.query.seq)
-			this.adminFlag = false
+		if (this.$route.query.bringSeq) {
+			console.log('router query : ' + this.$route.query.bringSeq)
+			this.bringFlag = true
+		}
+		if (this.$route.query.editSeq) {
+			console.log('router query : ' + this.$route.query.editSeq)
+			this.editFlag = true
 		}
 	},
 	methods: {

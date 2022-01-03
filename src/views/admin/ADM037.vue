@@ -387,7 +387,10 @@ export default {
 			console.log(this.selectedItems)
 		},
 		bringLibrary(seq) {
-			this.$router.push({ path: '/admin/adm038', query: { seq: seq } })
+			this.$router.push({
+				path: '/admin/adm038',
+				query: { bringSeq: seq },
+			})
 		},
 	},
 }
