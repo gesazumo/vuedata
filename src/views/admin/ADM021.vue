@@ -9,8 +9,8 @@
 					<div class="paging">
 						<v-pagination
 							v-model="page"
-							:length="50"
-							:total-visible="7"
+							:length="Math.ceil(totalCount / 10)"
+							:total-visible="1"
 							color="primary"
 						></v-pagination>
 					</div>

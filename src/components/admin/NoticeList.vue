@@ -2,14 +2,19 @@
 	<div>
 		<button @click="doDelete">삭제하기</button>
 		<v-data-table
+			v-model="selected"
+			item-key="seq"
 			:headers="headers"
-			:items="items"
+			:items="noticeListData"
 			:items-per-page="itemsPerPage"
-			:single-select="singleSelect"
 			show-select
 			hide-default-footer
 			class="elevation-1"
-		></v-data-table>
+		>
+			<template v-slot:[`item.datefrom`]="{ item }">
+				{{ item.datefrom }}
+			</template>
+		</v-data-table>
 	</div>
 </template>
 
@@ -24,8 +29,6 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-
-			singleSelect: false,
 			selected: [],
 			headers: [
 				{
@@ -36,27 +39,27 @@ export default {
 				{
 					text: '구분',
 					sortable: true,
-					value: 'type',
+					value: 'dstic',
 				},
 				{
 					text: '카테고리',
 					sortable: true,
-					value: 'category',
+					value: 'kategorie',
 				},
 				{
 					text: '제목',
 					sortable: true,
-					value: 'subject',
+					value: 'title',
 				},
 				{
 					text: '시작일',
 					sortable: true,
-					value: 'startdate',
+					value: 'datefrom',
 				},
 				{
 					text: '종료일',
 					sortable: true,
-					value: 'enddate',
+					value: 'dateto',
 				},
 				{
 					text: '등록자',
@@ -66,47 +69,12 @@ export default {
 				{
 					text: '등록일',
 					sortable: true,
-					value: 'date',
+					value: 'datefrom',
 				},
 				{
 					text: '조회수',
 					sortable: true,
-					value: 'hit',
-				},
-			],
-			items: [
-				{
-					status: '게시중',
-					type: '메인',
-					category: '공지사항',
-					subject: '크롬 브라우저 설치 안내',
-					startdate: '2021-00-00',
-					enddate: '2021-00-00',
-					writer: '최자영',
-					date: '2021-00-00',
-					hit: '80',
-				},
-				{
-					status: '대기중',
-					type: '일반',
-					category: '이벤트',
-					subject: '분석 아이디어 포럼 이벤트 안내',
-					startdate: '2021-00-00',
-					enddate: '2021-00-00',
-					writer: '최자영',
-					date: '2021-00-00',
-					hit: '80',
-				},
-				{
-					status: '종료',
-					type: '일반',
-					category: '공지사항',
-					subject: '포털 서비스 관련 피드백을 기다립니다.',
-					startdate: '2021-00-00',
-					enddate: '2021-00-00',
-					writer: '최자영',
-					date: '2021-00-00',
-					hit: '80',
+					value: 'views',
 				},
 			],
 		}
@@ -115,6 +83,24 @@ export default {
 		async doDelete() {
 			const result = await this.$confirm('삭제하시겠습니까?')
 			console.log(result)
+		},
+	},
+	computed: {
+		noticeListData() {
+			return this.list.map(item => {
+				return {
+					seq: item.seq,
+					status: '게시중',
+					dstic: item.dstic,
+					kategorie: item.kategorie,
+					title: item.title,
+					datefrom: item.startdate,
+					dateto: item.enddate,
+					writer: '최자영',
+					registfrom: item.startdate,
+					views: 10,
+				}
+			})
 		},
 	},
 }

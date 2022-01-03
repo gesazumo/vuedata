@@ -12,7 +12,10 @@ const listViewMixin = (apiFuc, param) => {
 			async doApiFuc(param) {
 				try {
 					const { data } = await apiFuc(param)
+					console.log(data)
 					this.list = data.list
+					this.totalCount = data.count
+					this.page = data.page
 				} catch (error) {
 					console.log(error)
 				}
