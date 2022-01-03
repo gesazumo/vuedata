@@ -4,247 +4,275 @@
 			<h5>오픈소스 라이브러리 등록 및 수정</h5>
 			<div class="item_box">
 				<div class="table_box">
-					<table class="tb_write">
-						<caption>
-							table caption
-						</caption>
-						<colgroup>
-							<col width="230" />
-							<col width="" />
-							<col width="230" />
-							<col width="" />
-						</colgroup>
-						<tbody>
-							<!--//등록수정시 노출-->
-							<tr v-if="bringFlag">
-								<th>회사명</th>
-								<td>KB국민은행</td>
-								<th>부서</th>
-								<td>경영연구소</td>
-							</tr>
-							<tr v-if="bringFlag">
-								<th>이름</th>
-								<td>김국민</td>
-								<th>사번</th>
-								<td>H000000</td>
-							</tr>
-							<tr v-if="bringFlag">
-								<th>Project ID</th>
-								<td colspan="3">PROJ-0001</td>
-							</tr>
-							<!--등록수정시 노출//-->
-							<tr>
-								<th>패키지 그룹</th>
-								<td>
-									<v-select
-										:items="group"
-										placeholder="패키지 그룹을 선택하세요"
-										single-line
-										outlined
-										hide-details="auto"
-										v-model="selectGroup"
-										item-text="title"
-										item-value="value"
-										:rules="[rules.group_rule]"
-									>
-									</v-select>
-								</td>
-								<th>
-									패키지 버전
-									<span class="asterisk">필수</span>
-								</th>
-								<td>
-									<v-text-field
-										placeholder="패키지 버전을 입력하세요"
-										single-line
-										clearable
-										outlined
-										v-model="ver"
-										hide-details="auto"
-										:rules="[rules.ver_rule]"
-									></v-text-field>
-								</td>
-							</tr>
-							<tr>
-								<th>라이브러리명</th>
-								<td>
-									<v-text-field
-										placeholder="라이브러리명을 입력하세요"
-										single-line
-										clearable
-										outlined
-										v-model="libname"
-										hide-details="auto"
-										:rules="[rules.libname_rule]"
-									></v-text-field>
-								</td>
-								<th>라이브러리 버전</th>
-								<td>
-									<v-text-field
-										placeholder="라이브러리 버전을 입력하세요"
-										single-line
-										clearable
-										outlined
-										v-model="libVer"
-										hide-details="auto"
-										:rules="[rules.libver_rule]"
-									></v-text-field>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									라이브러리 설명
-									<span class="asterisk">필수</span>
-								</th>
-								<td colspan="3">
-									<v-text-field
-										placeholder="라이브러리 설명을 입력하세요"
-										single-line
-										clearable
-										outlined
-										v-model="libdesc"
-										hide-details="auto"
-										:rules="[rules.libdesc_rule]"
-									></v-text-field>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									라이브러리 파일명
-									<span class="asterisk">필수</span>
-								</th>
-								<td colspan="3">
-									<v-text-field
-										placeholder="라이브러리 파일명을 입력하세요"
-										single-line
-										clearable
-										outlined
-										v-model="libfile"
-										hide-details="auto"
-										:rules="[rules.libfile_rule]"
-									></v-text-field>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									반입 신청 사유
-									<span class="asterisk">필수</span>
-								</th>
-								<td colspan="3">
-									SageMaker에서 bulitin으로 지원하지 않는
-									라이브러리입니다.
-								</td>
-							</tr>
-							<tr>
-								<th>
-									라이선스
-									<span class="asterisk">필수</span>
-								</th>
-								<td colspan="3">
-									<v-text-field
-										placeholder="라이선스 정보를 입력하세요"
-										single-line
-										clearable
-										outlined
-										v-model="license"
-										hide-details="auto"
-										:rules="[rules.license_rule]"
-									></v-text-field>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									라이브러리 업로드
-									<span class="asterisk">필수</span>
-								</th>
-								<td colspan="3">
-									<v-btn
-										color="primary"
-										dark
-										append-outer="fa fa-search"
-										style="margin: 0"
-									>
-										찾아보기
-										<i class="fa fa-search"></i>
-										<input type="file" class="fileinput" />
-									</v-btn>
-									<div class="filesize-info">
-										총 <span>N개</span>의 파일(00,000KB)
-									</div>
-									<div v-if="!file">
-										<div
-											:class="[
-												'dropZone',
-												dragging ? 'dropZone-over' : '',
-											]"
-											@dragenter="dragging = true"
-											@dragleave="dragging = false"
+					<v-form ref="form" onsubmit="return false;">
+						<table class="tb_write">
+							<caption>
+								table caption
+							</caption>
+							<colgroup>
+								<col width="230" />
+								<col width="" />
+								<col width="230" />
+								<col width="" />
+							</colgroup>
+							<tbody>
+								<!--//등록수정시 노출-->
+								<tr v-if="bringFlag">
+									<th>회사명</th>
+									<td>KB국민은행</td>
+									<th>부서</th>
+									<td>경영연구소</td>
+								</tr>
+								<tr v-if="bringFlag">
+									<th>이름</th>
+									<td>김국민</td>
+									<th>사번</th>
+									<td>H000000</td>
+								</tr>
+								<tr v-if="bringFlag">
+									<th>Project ID</th>
+									<td colspan="3">PROJ-0001</td>
+								</tr>
+								<!--등록수정시 노출//-->
+								<tr>
+									<th>
+										패키지 그룹
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-select
+											:items="group"
+											placeholder="패키지 그룹을 선택하세요"
+											single-line
+											outlined
+											hide-details="auto"
+											v-model="selectGroup"
+											item-text="title"
+											item-value="value"
+											:rules="[rules.group_rule]"
 										>
-											<div
-												class="dropZone-info"
-												@drag="onChange"
-											>
-												<span class="dropZone-title"
-													>첨부할 파일을 Drag & Drop
-													방식으로 추가할 수
-													있습니다.</span
-												>
-												<div
-													class="
-														dropZone-upload-limit-info
-													"
-												></div>
-											</div>
+										</v-select>
+									</td>
+									<th>
+										패키지 버전
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-text-field
+											placeholder="패키지 버전을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-model="ver"
+											hide-details="auto"
+											:rules="[rules.ver_rule]"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이브러리명
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-text-field
+											placeholder="라이브러리명을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-model="libname"
+											hide-details="auto"
+											:rules="[rules.libname_rule]"
+										></v-text-field>
+									</td>
+									<th>
+										라이브러리 버전
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-text-field
+											placeholder="라이브러리 버전을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-model="libVer"
+											hide-details="auto"
+											:rules="[rules.libver_rule]"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이브러리 설명
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-text-field
+											placeholder="라이브러리 설명을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-model="libdesc"
+											hide-details="auto"
+											:rules="[rules.libdesc_rule]"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이브러리 파일명
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-text-field
+											placeholder="라이브러리 파일명을 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-model="libfile"
+											hide-details="auto"
+											:rules="[rules.libfile_rule]"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										반입 신청 사유
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-text-field
+											placeholder="반입 신청 사유를 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-model="reason"
+											hide-details="auto"
+											:rules="[rules.reason_rule]"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이선스
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-text-field
+											placeholder="라이선스 정보를 입력하세요"
+											single-line
+											clearable
+											outlined
+											v-model="license"
+											hide-details="auto"
+											:rules="[rules.license_rule]"
+										></v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										라이브러리 업로드
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										<v-btn
+											color="primary"
+											dark
+											append-outer="fa fa-search"
+											style="margin: 0"
+										>
+											찾아보기
+											<i class="fa fa-search"></i>
 											<input
 												type="file"
-												@change="onChange"
+												class="fileinput"
 											/>
+										</v-btn>
+										<div class="filesize-info">
+											총 <span>N개</span>의 파일(00,000KB)
 										</div>
-									</div>
-									<div v-else class="dropZone-uploaded">
-										<div class="dropZone-uploaded-info">
-											<table class="fileupload-list">
-												<colgroup>
-													<col width="" />
-													<col width="20%" />
-													<col width="10%" />
-												</colgroup>
-												<tr>
-													<th>파일명</th>
-													<th>파일크기</th>
-													<th>삭제</th>
-												</tr>
-												<tr>
-													<td>filename.gif</td>
-													<td>1,234KB</td>
-													<td
-														style="
-															text-align: center;
-														"
+										<div v-if="!file">
+											<div
+												:class="[
+													'dropZone',
+													dragging
+														? 'dropZone-over'
+														: '',
+												]"
+												@dragenter="dragging = true"
+												@dragleave="dragging = false"
+											>
+												<div
+													class="dropZone-info"
+													@drag="onChange"
+												>
+													<span class="dropZone-title"
+														>첨부할 파일을 Drag &
+														Drop 방식으로 추가할 수
+														있습니다.</span
 													>
-														<v-btn
-															color="primary"
-															dark
-															x-small
-															class="removeFile"
-															append-outer="fa fa-times"
-															@click="removeFile"
-														>
-															<i
-																class="
-																	fa fa-times
-																"
-															></i>
-														</v-btn>
-													</td>
-												</tr>
-											</table>
+													<div
+														class="
+															dropZone-upload-limit-info
+														"
+													></div>
+												</div>
+												<input
+													type="file"
+													@change="onChange"
+												/>
+											</div>
 										</div>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+										<div v-else class="dropZone-uploaded">
+											<div class="dropZone-uploaded-info">
+												<table class="fileupload-list">
+													<colgroup>
+														<col width="" />
+														<col width="20%" />
+														<col width="10%" />
+													</colgroup>
+													<tr>
+														<th>파일명</th>
+														<th>파일크기</th>
+														<th>삭제</th>
+													</tr>
+													<tr>
+														<td>filename.gif</td>
+														<td>1,234KB</td>
+														<td
+															style="
+																text-align: center;
+															"
+														>
+															<v-btn
+																color="primary"
+																dark
+																x-small
+																class="
+																	removeFile
+																"
+																append-outer="fa fa-times"
+																@click="
+																	removeFile
+																"
+															>
+																<i
+																	class="
+																		fa
+																		fa-times
+																	"
+																></i>
+															</v-btn>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</v-form>
 				</div>
 				<div class="info_txt">
 					<p>
@@ -278,7 +306,7 @@
 						color="primary"
 						dark
 						large
-						@click="dialog = true"
+						@click="submit()"
 					>
 						반입 요청하기
 					</v-btn>
@@ -328,6 +356,7 @@ export default {
 			libname: '',
 			libdesc: '',
 			libfile: '',
+			reason: '',
 			ver: '',
 			libVer: '',
 			license: '',
@@ -345,6 +374,8 @@ export default {
 					!!value || '라이브러리 파일명을 입력해 주세요.',
 				license_rule: value =>
 					!!value || '라이선스 정보를 입력해 주세요.',
+				reason_rule: value =>
+					!!value || '반입 신청 사유를 입력해 주세요.',
 			},
 			selectGroup: '',
 			group: [
@@ -395,6 +426,24 @@ export default {
 		},
 		removeFile() {
 			this.file = ''
+		},
+		submit() {
+			this.$refs.form.validate()
+			if (this.$refs.form.validate()) {
+				console.log('validation ok')
+				console.log('--------------------SUBMIT--------------------')
+				console.log('selected Group : ' + this.selectGroup)
+				console.log('ver : ' + this.ver)
+				console.log('libname : ' + this.libname)
+				console.log('libVerp : ' + this.libVer)
+				console.log('libdesc : ' + this.libdesc)
+				console.log('libfile : ' + this.libfile)
+				console.log('reason : ' + this.reason)
+				console.log('license : ' + this.license)
+				this.dialog = true
+			} else {
+				console.log('validation fail')
+			}
 		},
 	},
 	computed: {

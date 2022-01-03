@@ -5,7 +5,7 @@
 			<div class="adm-search-2">
 				<v-row>
 					<v-col md="4">
-						<label>제목</label>
+						<div class="label_txt">제목</div>
 						<v-text-field
 							placeholder="제목"
 							v-model="subject"
@@ -16,7 +16,7 @@
 						></v-text-field>
 					</v-col>
 					<v-col md="4">
-						<label>등록일</label>
+						<div class="label_txt">등록일</div>
 						<div>
 							<date-picker
 								v-model="date"
@@ -29,7 +29,7 @@
 				</v-row>
 				<v-row>
 					<v-col md="4">
-						<label>구분</label>
+						<div class="label_txt">구분</div>
 						<v-select
 							v-model="select"
 							:items="selectItems"
@@ -41,44 +41,46 @@
 							return-object
 						></v-select>
 					</v-col>
-					<v-col md="4">
-						<label> Status </label>
-						<v-tooltip
-							right
-							content-class="secondary tooltip-right"
-						>
-							<template v-slot:activator="{ on, attrs }">
-								<v-btn
-									v-bind="attrs"
-									v-on="on"
-									icon
-									style="background: none !important"
-								>
-									<v-icon>mdi-help-circle</v-icon>
-								</v-btn>
-							</template>
-							<div>
-								<p
-									class="title"
-									style="
-										color: #fff !important;
-										font-size: 16px !important;
-									"
-								>
-									오픈소스 라이브러리 반입 현황 확인
-								</p>
-								<span>
-									[접수완료] 오픈소스 라이브러리 반입 신청
-									접수<br />
-									[보안점검중] 운영자가 라이브러리 파일 업로드
-									후 보안점검 진행중인 상태<br />
-									[취약점 발견] 보안점검중 취약점이 발견되어
-									반입이 불가한 상태<br />
-									[반입완료] 보언점검 완료 후 Private
-									Repository로 반입된 상태
-								</span>
-							</div>
-						</v-tooltip>
+					<v-col md="5">
+						<div class="label_txt">
+							Status
+							<v-tooltip
+								right
+								content-class="secondary tooltip-right"
+							>
+								<template v-slot:activator="{ on, attrs }">
+									<v-btn
+										v-bind="attrs"
+										v-on="on"
+										icon
+										style="background: none !important"
+									>
+										<v-icon>mdi-help-circle</v-icon>
+									</v-btn>
+								</template>
+								<div>
+									<p
+										class="title"
+										style="
+											color: #fff !important;
+											font-size: 16px !important;
+										"
+									>
+										오픈소스 라이브러리 반입 현황 확인
+									</p>
+									<span>
+										[접수완료] 오픈소스 라이브러리 반입 신청
+										접수<br />
+										[보안점검중] 운영자가 라이브러리 파일
+										업로드 후 보안점검 진행중인 상태<br />
+										[취약점 발견] 보안점검중 취약점이
+										발견되어 반입이 불가한 상태<br />
+										[반입완료] 보언점검 완료 후 Private
+										Repository로 반입된 상태
+									</span>
+								</div>
+							</v-tooltip>
+						</div>
 						<div class="checkgroup">
 							<v-checkbox
 								v-model="checkbox[0]"
@@ -102,7 +104,7 @@
 							></v-checkbox>
 						</div>
 					</v-col>
-					<v-col md="3" align="right">
+					<v-col md="2" align="right">
 						<v-btn color="primary" dark outlined @click="init()"
 							>초기화</v-btn
 						>
@@ -118,6 +120,58 @@
 						총 <span>{{ items_02.length }}</span
 						>개의 검색결과가 있습니다.
 					</p>
+				</div>
+				<div class="btn_area">
+					<v-btn color="primary" dark @click="submit()">
+						등록하기
+					</v-btn>
+					<v-btn
+						color="primary"
+						dark
+						outlined
+						@click="dialog = true"
+						v-if="selectedItems.length > 0"
+					>
+						삭제하기
+					</v-btn>
+					<v-dialog v-model="dialog" max-width="350">
+						<v-card align="center">
+							<v-card-title class="text-subtitle-1">
+								선택 항목을 삭제하시겠습니까?
+							</v-card-title>
+							<v-card-text></v-card-text>
+
+							<v-card-actions>
+								<v-spacer></v-spacer>
+
+								<v-btn
+									color="primary"
+									dark
+									outlined
+									@click="dialog = false"
+								>
+									취소
+								</v-btn>
+
+								<v-btn
+									color="primary"
+									dark
+									@click="dialog = false"
+								>
+									삭제하기
+								</v-btn>
+							</v-card-actions>
+						</v-card>
+					</v-dialog>
+					<v-btn
+						v-if="selectedItems.length == 1"
+						color="primary"
+						dark
+						outlined
+						@click="edit()"
+					>
+						수정하기
+					</v-btn>
 				</div>
 				<div class="table_box">
 					<v-data-table
@@ -167,56 +221,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="btn_area">
-				<v-btn
-					color="primary"
-					dark
-					large
-					outlined
-					@click="dialog = true"
-					v-if="selectedItems.length > 0"
-				>
-					삭제하기
-				</v-btn>
-				<v-dialog v-model="dialog" max-width="350">
-					<v-card align="center">
-						<v-card-title class="text-subtitle-1">
-							선택 항목을 삭제하시겠습니까?
-						</v-card-title>
-						<v-card-text></v-card-text>
-
-						<v-card-actions>
-							<v-spacer></v-spacer>
-
-							<v-btn
-								color="primary"
-								dark
-								outlined
-								@click="dialog = false"
-							>
-								취소
-							</v-btn>
-
-							<v-btn color="primary" dark @click="dialog = false">
-								삭제하기
-							</v-btn>
-						</v-card-actions>
-					</v-card>
-				</v-dialog>
-				<v-btn
-					v-if="selectedItems.length == 1"
-					color="primary"
-					dark
-					large
-					outlined
-				>
-					수정하기
-				</v-btn>
-				<v-btn color="primary" dark large @click="submit()">
-					등록하기
-				</v-btn>
-			</div>
-			<span>selected : {{ selectedItems.length }}</span>
 		</div>
 	</div>
 </template>
@@ -385,6 +389,13 @@ export default {
 		submit() {
 			console.log('-------------SUBMIT-------------')
 			console.log(this.selectedItems)
+		},
+		edit() {
+			console.log('-------------EDIT-------------')
+			this.$router.push({
+				path: '/admin/adm038',
+				query: { editSeq: this.selectedItems[0].seq },
+			})
 		},
 		bringLibrary(seq) {
 			this.$router.push({
