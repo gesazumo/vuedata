@@ -1,7 +1,10 @@
 <template>
 	<div class="board">
 		<div class="tit">
-			<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+			<p>
+				총 <span>{{ totalCount }}</span
+				>개의 검색결과가 있습니다.
+			</p>
 		</div>
 		<div class="btn_area">
 			<v-btn color="primary" dark> 등록하기 </v-btn>
@@ -22,7 +25,13 @@
 				class="elevation-1"
 			>
 				<template v-slot:[`item.datefrom`]="{ item }">
-					{{ item.datefrom }}
+					{{ formatDate(item.datefrom, '-') }}
+				</template>
+				<template v-slot:[`item.dateto`]="{ item }">
+					{{ formatDate(item.dateto, '-') }}
+				</template>
+				<template v-slot:[`item.registfrom`]="{ item }">
+					{{ formatDate(item.registfrom, '-') }}
 				</template>
 			</v-data-table>
 		</div>
@@ -34,6 +43,7 @@ import { deleteNoticesApi } from '@/api/modules/notieceAPI'
 export default {
 	props: {
 		list: [],
+		totalCount: String,
 	},
 	data() {
 		return {
@@ -81,7 +91,7 @@ export default {
 				{
 					text: '등록일',
 					sortable: true,
-					value: 'datefrom',
+					value: 'registfrom',
 				},
 				{
 					text: '조회수',
@@ -110,13 +120,13 @@ export default {
 				return {
 					seq: item.seq,
 					status: '게시중',
-					dstic: item.dstic,
-					kategorie: item.kategorie,
+					dstic: item.dstic == '1' ? '일반' : '메인',
+					kategorie: item.kategorie == '01' ? '공지사항' : '이벤트',
 					title: item.title,
 					datefrom: item.startdate,
 					dateto: item.enddate,
-					writer: '최자영',
-					registfrom: item.startdate,
+					writer: '데이터안와',
+					registfrom: item.sysFrstPrcssYms,
 					views: 10,
 				}
 			})

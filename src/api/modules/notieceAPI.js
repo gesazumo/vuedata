@@ -10,6 +10,9 @@ export const getNoticesApi = param => {
 		kategorie: param.kategorie,
 		page: param.page,
 		title: param.title,
+		status1: param.status1,
+		status2: param.status2,
+		status3: param.status3,
 	}
 	const queryString = util.convertUrl(parsedParam)
 	return adminInstance.get(`${url}${queryString}`)
@@ -17,7 +20,9 @@ export const getNoticesApi = param => {
 
 export const deleteNoticesApi = param => {
 	const url = '/regNoticeConDel'
-	console.log(param, url)
+	return adminInstance.post(url, {
+		seq: param,
+	})
 }
 
 export const updateNoticesApi = param => {

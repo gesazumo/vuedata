@@ -5,7 +5,7 @@ const listViewMixin = (apiFuc, initParam) => {
 				list: [],
 				page: 1,
 				param: { ...initParam },
-				totalCount: 0,
+				totalCount: '0',
 			}
 		},
 		methods: {
@@ -15,7 +15,7 @@ const listViewMixin = (apiFuc, initParam) => {
 					console.log(data)
 					this.list = data.list
 					this.totalCount = data.count
-					this.page = data.page
+					this.page = Number(data.parameters.page)
 				} catch (error) {
 					console.log(error)
 				}
@@ -31,8 +31,8 @@ const listViewMixin = (apiFuc, initParam) => {
 			this.doApiFuc(_param)
 		},
 		watch: {
-			'param.page'() {
-				const _param = this.lastParam
+			page(value) {
+				const _param = { ...this.param, page: value }
 				this.doApiFuc(_param)
 			},
 		},

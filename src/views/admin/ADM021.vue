@@ -4,12 +4,16 @@
 			<h5>공지사항 관리</h5>
 			<notice-filter @search="search" :parentParam="param" />
 			<div class="item_box">
-				<notice-list :list="list" @search="search" />
+				<notice-list
+					:list="list"
+					@search="search"
+					:totalCount="totalCount"
+				/>
 				<div class="paging">
 					<v-pagination
 						v-model="page"
 						:length="Math.ceil(totalCount / 10)"
-						:total-visible="1"
+						:total-visible="10"
 						color="primary"
 					></v-pagination>
 				</div>
@@ -29,11 +33,12 @@ export default {
 	mixins: [
 		listViewMixin(getNoticesApi, {
 			title: null,
-			dstic: 'normal',
-			kategorie: 'event',
-			status1: false,
-			status2: false,
-			status3: false,
+			dstic: '1',
+			kategorie: '01',
+			status1: true,
+			status2: true,
+			status3: true,
+			page: 1,
 		}),
 	],
 }
