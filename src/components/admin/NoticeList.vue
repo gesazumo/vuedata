@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { deleteNoticesApi } from '@/api/modules/notieceAPI'
 export default {
 	props: {
 		list: [],
@@ -92,8 +93,14 @@ export default {
 	},
 	methods: {
 		async doDelete() {
-			const result = await this.$confirm('삭제하시겠습니까?')
-			console.log(result)
+			if (!(await this.$confirm('삭제하시겠습니까?', '삭제하기'))) return
+			try {
+				const { data } = await deleteNoticesApi(this.selected)
+				console.log(data)
+			} catch (error) {
+				this.$toasted.error(this.apiErrorMsg_Blue)
+				console.log(error)
+			}
 		},
 	},
 	computed: {

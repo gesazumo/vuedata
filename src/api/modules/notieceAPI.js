@@ -14,3 +14,18 @@ export const getNoticesApi = param => {
 	const queryString = util.convertUrl(parsedParam)
 	return adminInstance.get(`${url}${queryString}`)
 }
+
+export const deleteNoticesApi = param => {
+	const url = '/regNoticeConDel'
+	console.log(param, url)
+}
+
+export const updateNoticesApi = param => {
+	const url = '/regNoticeConUpd'
+	console.log(param, url)
+}
+
+export const createNoticesApi = param => {
+	const url = '/regNoticeConIns'
+	console.log(param, url)
+}
