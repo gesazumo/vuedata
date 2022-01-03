@@ -1,9 +1,18 @@
-const listMixin = param => {
+const listMixin = () => {
 	return {
+		props: {
+			parentParam: {
+				type: Object,
+			},
+		},
 		data() {
 			return {
-				initParam: { ...param, datefrom: null, dateto: null },
-				param: { ...param, datefrom: null, dateto: null },
+				initParam: {
+					...this.parentParam,
+					datefrom: null,
+					dateto: null,
+				},
+				param: { ...this.parentParam, datefrom: null, dateto: null },
 			}
 		},
 		computed: {

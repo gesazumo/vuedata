@@ -16,29 +16,33 @@ export default new Vuex.Store({
 		confirm: false,
 		confirmRes: null,
 		confirmMsg: '',
+		confirmBtnMsg: '',
 	},
 	mutations: {
-		[SHOW_CONFIRM](state, { reslove, msg }) {
+		[SHOW_CONFIRM](state, { reslove, msg, btnMsg }) {
 			state.confirmRes = reslove
 			state.confirmMsg = msg
+			state.confirmBtnMsg = btnMsg
 			state.confirm = true
 		},
 		[OK_CONFIRM](state) {
 			state.confirmMsg = ''
+			state.confirmBtnMsg = ''
 			state.confirmRes && state.confirmRes(true)
 			state.confirmRes = null
 			state.confirm = false
 		},
 		[CANCEL_CONFIRM](state) {
 			state.confirmMsg = ''
+			state.confirmBtnMsg = ''
 			state.confirmRes && state.confirmRes(false)
 			state.confirmRes = null
 			state.confirm = false
 		},
 	},
 	actions: {
-		showConfirm({ commit }, { reslove, msg }) {
-			commit(SHOW_CONFIRM, { reslove, msg })
+		showConfirm({ commit }, { reslove, msg, btnMsg }) {
+			commit(SHOW_CONFIRM, { reslove, msg, btnMsg })
 		},
 	},
 	modules: {
