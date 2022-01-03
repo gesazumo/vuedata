@@ -57,10 +57,7 @@
 											clearable
 											outlined
 											v-model="reply"
-											:rules="[
-												rules.required,
-												rules.reply_rule,
-											]"
+											:rules="replyRules"
 											hide-details="auto"
 										></v-textarea>
 									</td>
@@ -69,44 +66,10 @@
 						</table>
 					</div>
 				</div>
-				<div class="btn_area">
-					<v-btn color="primary" dark large outlined> 취소 </v-btn>
-					<v-btn color="primary" dark large> 수정하기 </v-btn>
-					<v-btn color="primary" dark large @click="dialog = true">
-						등록하기
-					</v-btn>
-					<v-dialog v-model="dialog" max-width="350">
-						<v-card align="center">
-							<v-card-title
-								class="text-subtitle-1"
-								align="text-center"
-							>
-								답변을 등록하시겠습니까?
-							</v-card-title>
-							<v-card-text></v-card-text>
-
-							<v-card-actions>
-								<v-spacer></v-spacer>
-
-								<v-btn
-									color="primary"
-									dark
-									outlined
-									@click="dialog = false"
-								>
-									취소
-								</v-btn>
-
-								<v-btn
-									color="primary"
-									dark
-									@click="dialog = false"
-								>
-									등록하기
-								</v-btn>
-							</v-card-actions>
-						</v-card>
-					</v-dialog>
+				<div class="btn_area center">
+					<v-btn color="primary" dark outlined> 취소 </v-btn>
+					<v-btn color="primary" dark> 수정하기 </v-btn>
+					<v-btn color="primary" dark> 등록하기 </v-btn>
 				</div>
 			</div>
 		</div>
@@ -120,9 +83,8 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			rules: {
-				reply_rule: value => !!value || '답변을 입력해 주세요.',
-			},
+			reply: '',
+			replyRules: [v => !!v || '답변을 입력해 주세요.'],
 		}
 	},
 }

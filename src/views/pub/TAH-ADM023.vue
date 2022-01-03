@@ -70,91 +70,58 @@
 					</v-row>
 				</div>
 				<div class="item_box">
-					<div class="tit">
-						<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
-					</div>
-					<div class="btn_area">
-						<v-btn color="primary" dark> 답변하기 </v-btn>
-						<v-btn
-							color="primary"
-							dark
-							outlined
-							@click="dialog = true"
-						>
-							삭제하기
-						</v-btn>
-						<v-dialog v-model="dialog" max-width="350">
-							<v-card align="center">
-								<v-card-title class="text-subtitle-1">
-									선택 항목을 삭제하시겠습니까?
-								</v-card-title>
-								<v-card-text></v-card-text>
-
-								<v-card-actions>
-									<v-spacer></v-spacer>
-
-									<v-btn
-										color="primary"
-										dark
-										outlined
-										@click="dialog = false"
-									>
-										취소
-									</v-btn>
-
-									<v-btn
-										color="primary"
-										dark
-										@click="dialog = false"
-									>
-										삭제하기
-									</v-btn>
-								</v-card-actions>
-							</v-card>
-						</v-dialog>
-					</div>
-					<div class="table_box">
-						<v-data-table
-							:headers="headers"
-							:items="items"
-							:items-per-page="itemsPerPage"
-							:single-select="singleSelect"
-							show-select
-							hide-default-footer
-							class="elevation-1"
-						>
-							<template v-slot:item="row">
-								<tr>
-									<td>{{ row.item.singleselect }}</td>
-									<td>{{ row.item.a }}</td>
-									<td>{{ row.item.b }}</td>
-									<td>{{ row.item.c }}</td>
-									<td>{{ row.item.d }}</td>
-									<td>{{ row.item.e }}</td>
-									<td>{{ row.item.f }}</td>
-									<td>{{ row.item.g }}</td>
-									<td>
-										{{ row.item.h }}
-										<v-btn
-											color="primary"
-											dark
-											outlined
-											small
-											@click="ADM024"
-											>답변하기</v-btn
-										>
-									</td>
-								</tr>
-							</template>
-						</v-data-table>
-						<div class="paging">
-							<v-pagination
-								v-model="page"
-								:length="50"
-								:total-visible="7"
-								color="primary"
-							></v-pagination>
+					<div class="board">
+						<div class="tit">
+							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
 						</div>
+						<div class="btn_area">
+							<v-btn color="primary" dark> 답변하기 </v-btn>
+							<v-btn color="primary" dark outlined>
+								삭제하기
+							</v-btn>
+						</div>
+						<div class="table_box">
+							<v-data-table
+								:headers="headers"
+								:items="items"
+								:items-per-page="itemsPerPage"
+								:single-select="singleSelect"
+								show-select
+								hide-default-footer
+								class="elevation-1"
+							>
+								<template v-slot:item="row">
+									<tr>
+										<td>{{ row.item.singleselect }}</td>
+										<td>{{ row.item.a }}</td>
+										<td>{{ row.item.b }}</td>
+										<td>{{ row.item.c }}</td>
+										<td>{{ row.item.d }}</td>
+										<td>{{ row.item.e }}</td>
+										<td>{{ row.item.f }}</td>
+										<td>{{ row.item.g }}</td>
+										<td>
+											{{ row.item.h }}
+											<v-btn
+												color="primary"
+												dark
+												outlined
+												small
+												>답변하기</v-btn
+											>
+										</td>
+									</tr>
+								</template>
+							</v-data-table>
+						</div>
+					</div>
+					<div class="paging">
+						a<v-pagination
+							v-model="page"
+							:length="50"
+							:total-visible="7"
+							color="primary"
+						></v-pagination>
 					</div>
 				</div>
 			</div>
@@ -170,7 +137,6 @@ export default {
 	},
 	data() {
 		return {
-			dialog: false,
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,

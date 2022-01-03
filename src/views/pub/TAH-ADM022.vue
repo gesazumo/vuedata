@@ -95,12 +95,9 @@
 									<td>
 										<v-text-field
 											placeholder="제목"
-											v-moel="subject"
-											:rules="[
-												rules.required,
-												rules.subject_rule,
-												,
-											]"
+											v-model="subject"
+											:rules="subjectRules"
+											required
 											single-line
 											outlined
 											clearable
@@ -188,12 +185,10 @@
 										<v-textarea
 											outlined
 											clearable
+											v-model="textarea"
+											:rules="textareaRules"
+											required
 											hide-details="auto"
-											v-moel="textarea"
-											:rules="[
-												rules.required,
-												rules.textarea_rule,
-											]"
 										></v-textarea>
 									</td>
 								</tr>
@@ -301,45 +296,11 @@
 						</table>
 					</div>
 				</div>
-				<div class="btn_area">
-					<v-btn color="primary" dark large outlined> 취소 </v-btn>
-					<v-btn color="primary" dark large> 수정하기 </v-btn>
-					<v-btn color="primary" dark large> 삭제하기 </v-btn>
-					<v-btn color="primary" dark large @click="dialog = true">
-						등록하기
-					</v-btn>
-					<v-dialog v-model="dialog" max-width="350">
-						<v-card align="center">
-							<v-card-title
-								class="text-subtitle-1"
-								align="text-center"
-							>
-								공지사항을 등록하시겠습니까?
-							</v-card-title>
-							<v-card-text></v-card-text>
-
-							<v-card-actions>
-								<v-spacer></v-spacer>
-
-								<v-btn
-									color="primary"
-									dark
-									outlined
-									@click="dialog = false"
-								>
-									취소
-								</v-btn>
-
-								<v-btn
-									color="primary"
-									dark
-									@click="dialog = false"
-								>
-									등록하기
-								</v-btn>
-							</v-card-actions>
-						</v-card>
-					</v-dialog>
+				<div class="btn_area center">
+					<v-btn color="primary" dark outlined> 취소 </v-btn>
+					<v-btn color="primary" dark> 수정하기 </v-btn>
+					<v-btn color="primary" dark> 삭제하기 </v-btn>
+					<v-btn color="primary" dark> 등록하기 </v-btn>
 				</div>
 			</div>
 		</div>
@@ -354,17 +315,56 @@ export default {
 	},
 	data() {
 		return {
-			dialog: false,
+			isSelecting: '',
+			dragging: false,
+			file: '',
+			handleFileImport: '',
+			date: '',
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			rules: {
-				subject_rule: value =>
-					!!value || '공지사항 제목을 입력해 주세요.',
-				textarea_rule: value =>
-					!!value || '공지사항 본문을 입력해 주세요.',
-			},
+			subject: '',
+			subjectRules: [v => !!v || '공지사항 제목을 입력해 주세요.'],
+			textarea: '',
+			textareaRules: [v => !!v || '공지사항 본문을 입력해 주세요.'],
 		}
+	},
+	methods: {
+		onChange(e) {
+			var files = e.target.files || e.dataTransfer.files
+
+			if (!files.length) {
+				this.dragging = false
+				return
+			}
+
+			this.createFile(files[0])
+		},
+		createFile(file) {
+			if (!file.type.match('text.*')) {
+				alert('please select txt file')
+				this.dragging = false
+				return
+			}
+
+			if (file.size > 5000000) {
+				alert('please check file size no over 5 MB.')
+				this.dragging = false
+				return
+			}
+
+			this.file = file
+			console.log(this.file)
+			this.dragging = false
+		},
+		removeFile() {
+			this.file = ''
+		},
+	},
+	computed: {
+		extension() {
+			return this.file ? this.file.name.split('.').pop() : ''
+		},
 	},
 }
 </script>

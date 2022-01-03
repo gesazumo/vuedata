@@ -2011,7 +2011,7 @@ input[type="text"] {
 .v-application--is-ltr .v-input--selection-controls__input {
   margin-right: 0 !important;
 }
-
+.v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th {text-align: center !important;}
 
 
 /*서브*/
