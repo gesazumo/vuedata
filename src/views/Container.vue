@@ -29,6 +29,7 @@
 			<Header />
 			<router-view />
 			<Footer />
+			<ConfirmModal />
 		</v-main>
 	</v-app>
 </template>
@@ -36,9 +37,10 @@
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import ConfirmModal from '@/components/ConfirmModal.vue'
 
 export default {
 	name: 'Container',
-	components: { Header, Footer }, //, LoadingLottie, CheckLottie
+	components: { Header, Footer, ConfirmModal }, //, LoadingLottie, CheckLottie
 }
 </script>

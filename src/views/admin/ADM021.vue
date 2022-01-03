@@ -3,7 +3,6 @@
 		<div class="inner">
 			<h5>공지사항 관리</h5>
 			<notice-filter @search="search" />
-			<!-- 퍼블나온거에 리스트만 넣음 -->
 			<div class="item_box">
 				<div class="table_box">
 					<notice-list :list="list" />
@@ -23,23 +22,13 @@
 
 <script>
 import { getNoticesApi } from '@/api/modules/notieceAPI'
-import listMixin from '@/mixin/listMixin'
+import listViewMixin from '@/mixin/listViewMixin'
 import NoticeList from '@/components/admin/NoticeList.vue'
 import NoticeFilter from '@/components/admin/NoticeFilter.vue'
 
 export default {
 	components: { NoticeList, NoticeFilter },
-	data() {
-		return {
-			page: 1,
-		}
-	},
-	mixins: [listMixin(getNoticesApi)],
-	methods: {
-		search(param) {
-			console.log(param)
-		},
-	},
+	mixins: [listViewMixin(getNoticesApi)],
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<button @click="doDelete">삭제하기</button>
 		<v-data-table
 			:headers="headers"
 			:items="items"
@@ -109,6 +110,12 @@ export default {
 				},
 			],
 		}
+	},
+	methods: {
+		async doDelete() {
+			const result = await this.$confirm('삭제하시겠습니까?')
+			console.log(result)
+		},
 	},
 }
 </script>

@@ -1,8 +1,9 @@
-const listMixin = (apiFuc, param) => {
+const listViewMixin = (apiFuc, param) => {
 	return {
 		data() {
 			return {
 				list: [],
+				page: 1,
 				param: { ...param, page: 1 },
 				totalCount: 0,
 			}
@@ -15,6 +16,9 @@ const listMixin = (apiFuc, param) => {
 				} catch (error) {
 					console.log(error)
 				}
+			},
+			search(param) {
+				this.doApiFuc(param)
 			},
 		},
 		created() {
@@ -30,4 +34,4 @@ const listMixin = (apiFuc, param) => {
 	}
 }
 
-export default listMixin
+export default listViewMixin

@@ -67,7 +67,9 @@
 			</v-col>
 			<v-col></v-col>
 			<v-col md="2" align="right">
-				<v-btn color="primary" dark outlined>초기화</v-btn>
+				<v-btn color="primary" dark outlined @click="doInit"
+					>초기화</v-btn
+				>
 				<v-btn color="primary" dark @click="doSearch">검색하기</v-btn>
 			</v-col>
 		</v-row>
@@ -75,37 +77,18 @@
 </template>
 
 <script>
+import filterMixin from '@/mixin/filterMixin'
 export default {
-	data() {
-		return {
-			param: {
-				title: null,
-				datefrom: null,
-				dateto: null,
-				dstic: 'normal',
-				kategorie: 'event',
-				status1: false,
-				status2: false,
-				status3: false,
-			},
-		}
-	},
-	computed: {
-		registDate: {
-			get() {
-				return [this.param.datefrom, this.param.dateto]
-			},
-			set(value) {
-				this.param.datefrom = value[0]
-				this.param.dateto = value[1]
-			},
-		},
-	},
-	methods: {
-		doSearch() {
-			this.$emit('search', this.param)
-		},
-	},
+	mixins: [
+		filterMixin({
+			title: null,
+			dstic: 'normal',
+			kategorie: 'event',
+			status1: false,
+			status2: false,
+			status3: false,
+		}),
+	],
 }
 </script>
 
