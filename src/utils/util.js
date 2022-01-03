@@ -10,6 +10,9 @@ const util = {
 	convertUrl(param) {
 		if (!param) return ''
 		const queryString = Object.entries(param)
+			.filter(e => {
+				return e[1]
+			})
 			.map(e => e.join('='))
 			.join('&')
 
