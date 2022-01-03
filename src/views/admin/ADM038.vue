@@ -42,7 +42,9 @@
 										single-line
 										outlined
 										hide-details="auto"
-										v-model="group"
+										v-model="selectGroup"
+										item-text="title"
+										item-value="value"
 									>
 									</v-select>
 								</td>
@@ -56,7 +58,7 @@
 										single-line
 										clearable
 										outlined
-										v-model="ver"
+										v-model="packageVer"
 										hide-details="auto"
 									></v-text-field>
 								</td>
@@ -80,7 +82,7 @@
 										single-line
 										clearable
 										outlined
-										v-model="ver"
+										v-model="libVer"
 										hide-details="auto"
 									></v-text-field>
 								</td>
@@ -310,7 +312,8 @@ export default {
 			libname: '',
 			libdesc: '',
 			libfile: '',
-			ver: '',
+			packageVer: '',
+			libVer: '',
 			license: '',
 			rules: {
 				group_rule: value => !!value || '패키지 그룹을 선택해 주세요.',
@@ -326,7 +329,13 @@ export default {
 				license_rule: value =>
 					!!value || '라이선스 정보를 입력해 주세요.',
 			},
-			group: ['Python', 'R', 'Anaconda', '기타'],
+			selectGroup: '',
+			group: [
+				{ title: 'Python', value: '01' },
+				{ title: 'R', value: '02' },
+				{ title: 'Anaconda', value: '03' },
+				{ title: '기타', value: '04' },
+			],
 		}
 	},
 	created() {
