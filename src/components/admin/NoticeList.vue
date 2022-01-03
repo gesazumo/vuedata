@@ -19,7 +19,6 @@
 				item-key="seq"
 				:headers="headers"
 				:items="noticeListData"
-				:items-per-page="itemsPerPage"
 				show-select
 				hide-default-footer
 				class="elevation-1"
@@ -47,10 +46,6 @@ export default {
 	},
 	data() {
 		return {
-			dialog: false,
-			page: 1,
-			pageCount: 0,
-			itemsPerPage: 10,
 			selected: [],
 			headers: [
 				{
