@@ -391,7 +391,7 @@
 									dark
 									@click="dialog = false"
 								>
-									등록하기
+									등록하기111
 								</v-btn>
 							</v-card-actions>
 						</v-card>
