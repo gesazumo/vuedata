@@ -2020,6 +2020,7 @@ input[type="text"] {
   padding: 56px 0;
   margin: 0 auto;
   max-width: 1440px;
+  width:100%;
   margin-top: 72px;
 }
 #sub_wrap .title {
@@ -2126,19 +2127,18 @@ input[type="text"] {
   background-color: #ffbc00;
 }
 
-.card_board {}
-.card_board .row {
-  margin-top: 24px !important;
-}
+.card_board {margin-top: 24px !important;}
 
 .v-sheet.v-card {
   border-radius: 4px;
   padding: 32px 0 !important;
   width: 342px;
   height: 335px;
-  margin-right: 24px;
+  margin-right: 12px;
+  margin-left: 12px;
   margin-bottom: 24px;
 }
+
 
 .v-card__subtitle, .v-card__text, .v-card__title {
   padding:0 40px !important;
