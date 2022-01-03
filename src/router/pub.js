@@ -99,4 +99,20 @@ export const pubRouter = [
 		path: 'adm006', //Admin 메타관리 테이블 등록수정
 		component: () => import('@/views/pub/TAH-ADM006.vue'),
 	},
+	{
+		path: 'ana007', //Analyze 오픈소스 라이브러리 리스트
+		component: () => import('@/views/pub/TAH-ANA007.vue'),
+	},
+	{
+		path: 'ana008', //Analyze 오픈소스 라이브러리 상세
+		component: () => import('@/views/pub/TAH-ANA008.vue'),
+	},
+	{
+		path: 'ana009', //Analyze 오픈소스 라이브러리 반입신청
+		component: () => import('@/views/pub/TAH-ANA009.vue'),
+	},
+	{
+		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
+		component: () => import('@/views/pub/TAH-ANA010.vue'),
+	},
 ]

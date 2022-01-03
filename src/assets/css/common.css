@@ -2016,6 +2016,7 @@ input[type="text"] {
 
 /*서브*/
 #sub_wrap {
+  display: inline-grid;
   padding: 56px 0;
   margin: 0 auto;
   max-width: 1440px;
@@ -2039,6 +2040,18 @@ input[type="text"] {
   clear: both;
   font-weight: 600;
 }
+#sub_wrap .title_txt {
+  display: flow-root;
+  padding-bottom: 49px;
+  border-bottom: 1px solid #d8d8d8 ;
+}
+#sub_wrap .title_txt .txt {
+  float: left;
+}
+#sub_wrap .title_txt .btn {
+ float:right;
+}
+
 .subcontents {
   display: inline-block;
   min-width: 1440px;
@@ -2073,7 +2086,82 @@ input[type="text"] {
   color:#1e1909;
 }
 
+.sub_search {
+  display: inline-block;
+  margin: 48px auto 56px;
+  text-align: center;
+}
+.sub_search h5 {
+  font-size: 26px !important;
+  margin-bottom: 24px;
+}
 
+.board_list {}
+.board_list .list_tit {
+  display: flow-root;
+  margin-top:32px;
+  margin-bottom: 16px;
+}
+.board_list .list .tit {
+  float: left;
+}
+.board_list .list .tit span {
+  color: #f26615;
+}
+.board_list .list .sort {float:right;}
+.board_list .list .sort ul li {
+  float:left;
+  margin-right:25px;
+  color:#968d83;
+}
+.board_list .list .sort ul li:last-child {
+  margin-right:0;
+}
+.board_list .list .sort ul li.on {
+  color:#2c2921;
+}
+
+.v-tabs .v-tab span {color:#f26615; }
+.theme--dark.v-tabs > .v-tabs-bar {
+  background-color: #ffbc00;
+}
+
+.card_board {}
+.card_board .row {
+  margin-top: 24px !important;
+}
+
+.v-sheet.v-card {
+  border-radius: 4px;
+  padding: 32px 0 !important;
+}
+.v-card__subtitle, .v-card__text, .v-card__title {
+  padding:0 40px !important;
+}
+.v-chip-group {
+  margin-bottom: 20px !important;
+}
+.theme--light.v-chip:not(.v-chip--active) {
+  background: #60584c !important;
+  color:#fff !important;
+}
+.v-card__title {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  height: 60px !important;
+  letter-spacing: 0.0125em;
+  line-height: 2rem;
+  word-break: break-all;
+  vertical-align: top !important;
+}
+.v-card__title + .v-card__subtitle {
+  margin-top: 8px !important;
+  margin-bottom: 16px !important;
+  color:#473eab !important;
+}
 
 .page_step {
   float:right;
@@ -3149,6 +3237,7 @@ table span {
   display: inline-block;
   width:100%; 
   text-align: center; 
+  margin-top: 40px;
 }
 .btnArea button {margin:0 5px;}
 
