@@ -2,7 +2,7 @@
 	<div class="adm_contents">
 		<div class="inner">
 			<h5>FAQ 관리</h5>
-			<faq-filter />
+			<faq-filter @search="search" :parentParam="param" />
 			<div class="item_box">
 				<faq-list :list="list" />
 				<div class="paging">
@@ -28,7 +28,7 @@ export default {
 	mixins: [
 		listViewMixin(getFaqApi, {
 			ques: null,
-			dstic: '01',
+			dstic: { label: '전체', value: 'all' },
 		}),
 	],
 }

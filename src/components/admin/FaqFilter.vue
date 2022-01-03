@@ -31,13 +31,18 @@
 					placeholder="전체 카테고리"
 					single-line
 					outlined
+					item-text="label"
+					item-value="value"
 					hide-details="auto"
+					v-model="param.dstic"
 				></v-select>
 			</v-col>
 			<v-col md="5"></v-col>
 			<v-col md="2" align="right">
-				<v-btn color="primary" dark outlined>초기화</v-btn>
-				<v-btn color="primary" dark>검색하기</v-btn>
+				<v-btn color="primary" dark outlined @click="doInit"
+					>초기화</v-btn
+				>
+				<v-btn color="primary" dark @click="doSearch">검색하기</v-btn>
 			</v-col>
 		</v-row>
 	</div>
@@ -47,6 +52,17 @@
 import filterMixin from '@/mixin/filterMixin'
 export default {
 	mixins: [filterMixin()],
+	data() {
+		return {
+			items_01: [
+				{ label: '전체', value: 'all' },
+				{ label: '포털 이용', value: 'all1' },
+				{ label: '데이터 권한 신청', value: 'all2' },
+				{ label: '분석환경 활용', value: 'all3' },
+				{ label: '기타', value: 'all4' },
+			],
+		}
+	},
 }
 </script>
 
