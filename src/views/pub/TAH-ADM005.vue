@@ -112,7 +112,7 @@
 						<div class="paging">
 							<v-pagination
 								v-model="page"
-								:length="50"
+								:length="20"
 								:total-visible="7"
 								color="primary"
 							></v-pagination>
