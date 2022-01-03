@@ -93,6 +93,7 @@ export default {
 	},
 	methods: {
 		async doDelete() {
+			this.$emit('search')
 			if (!(await this.$confirm('삭제하시겠습니까?', '삭제하기'))) return
 			try {
 				const { data } = await deleteNoticesApi(this.selected)

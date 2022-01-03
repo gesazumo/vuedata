@@ -79,16 +79,7 @@
 <script>
 import filterMixin from '@/mixin/filterMixin'
 export default {
-	mixins: [
-		filterMixin({
-			title: null,
-			dstic: 'normal',
-			kategorie: 'event',
-			status1: false,
-			status2: false,
-			status3: false,
-		}),
-	],
+	mixins: [filterMixin()],
 }
 </script>
 

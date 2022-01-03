@@ -1,10 +1,10 @@
-const listViewMixin = (apiFuc, param) => {
+const listViewMixin = (apiFuc, initParam) => {
 	return {
 		data() {
 			return {
 				list: [],
 				page: 1,
-				param: { ...param, page: 1 },
+				param: { ...initParam },
 				totalCount: 0,
 			}
 		},
@@ -20,8 +20,10 @@ const listViewMixin = (apiFuc, param) => {
 					console.log(error)
 				}
 			},
-			search(param) {
-				this.doApiFuc(param)
+			search(param = this.param) {
+				this.param = { ...param }
+				const _param = this.param
+				this.doApiFuc(_param)
 			},
 		},
 		created() {
@@ -30,7 +32,7 @@ const listViewMixin = (apiFuc, param) => {
 		},
 		watch: {
 			'param.page'() {
-				const _param = this.param
+				const _param = this.lastParam
 				this.doApiFuc(_param)
 			},
 		},
