@@ -4,16 +4,14 @@
 			<h5>공지사항 관리</h5>
 			<notice-filter @search="search" />
 			<div class="item_box">
-				<div class="table_box">
-					<notice-list :list="list" />
-					<div class="paging">
-						<v-pagination
-							v-model="page"
-							:length="Math.ceil(totalCount / 10)"
-							:total-visible="1"
-							color="primary"
-						></v-pagination>
-					</div>
+				<notice-list :list="list" />
+				<div class="paging">
+					<v-pagination
+						v-model="page"
+						:length="Math.ceil(totalCount / 10)"
+						:total-visible="1"
+						color="primary"
+					></v-pagination>
 				</div>
 			</div>
 		</div>

@@ -1,20 +1,31 @@
 <template>
-	<div>
-		<button @click="doDelete">삭제하기</button>
-		<v-data-table
-			v-model="selected"
-			item-key="seq"
-			:headers="headers"
-			:items="noticeListData"
-			:items-per-page="itemsPerPage"
-			show-select
-			hide-default-footer
-			class="elevation-1"
-		>
-			<template v-slot:[`item.datefrom`]="{ item }">
-				{{ item.datefrom }}
-			</template>
-		</v-data-table>
+	<div class="board">
+		<div class="tit">
+			<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+		</div>
+		<div class="btn_area">
+			<v-btn color="primary" dark> 등록하기 </v-btn>
+			<v-btn color="primary" dark outlined @click="doDelete">
+				삭제하기
+			</v-btn>
+			<v-btn color="primary" dark outlined> 수정하기 </v-btn>
+		</div>
+		<div class="table_box">
+			<v-data-table
+				v-model="selected"
+				item-key="seq"
+				:headers="headers"
+				:items="noticeListData"
+				:items-per-page="itemsPerPage"
+				show-select
+				hide-default-footer
+				class="elevation-1"
+			>
+				<template v-slot:[`item.datefrom`]="{ item }">
+					{{ item.datefrom }}
+				</template>
+			</v-data-table>
+		</div>
 	</div>
 </template>
 
