@@ -19,7 +19,6 @@ export default {
 					employeeNum: 'employeeNum',
 				},
 			})
-			await this.$store.dispatch('commonCodeStore/fetchCmCode')
 		},
 	},
 }

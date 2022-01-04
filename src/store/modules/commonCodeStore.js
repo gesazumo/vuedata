@@ -19,7 +19,7 @@ const commonCodeStore = {
 	},
 	getters: {
 		getCmCode: state => key => {
-			return state.commonCode[key]
+			return state.cmCode[key]
 		},
 	},
 }

@@ -7,9 +7,14 @@ const methods = {
 		})
 	},
 	$getCmCode(key) {
-		return store.getters.getCmCode(key)
+		return store.getters['commonCodeStore/getCmCode'](key)
 	},
-	// todo 토스트 띄우기 메소드
+	$showError(msg) {
+		this.$toasted.error(msg)
+	},
+	$showInfo(msg) {
+		this.$toasted.info(msg)
+	},
 }
 
 export default methods

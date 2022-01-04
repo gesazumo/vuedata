@@ -104,8 +104,8 @@ export default {
 				const { data } = await deleteNoticesApi(this.selected)
 				console.log(data)
 			} catch (error) {
-				this.$toasted.error(this.apiErrorMsg_Blue)
-				console.log(error)
+				this.$showError(this.apiErrorMsg_Blue)
+				console.log('deleteNoticesApi :' + error)
 			}
 		},
 	},
