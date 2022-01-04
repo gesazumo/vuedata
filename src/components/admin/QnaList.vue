@@ -10,31 +10,11 @@
 		<div class="table_box">
 			<v-data-table
 				:headers="headers"
-				:items="items"
-				:items-per-page="itemsPerPage"
-				:single-select="singleSelect"
+				:items="qnaListData"
 				show-select
 				hide-default-footer
 				class="elevation-1"
 			>
-				<template v-slot:item="row">
-					<tr>
-						<td>{{ row.item.singleselect }}</td>
-						<td>{{ row.item.a }}</td>
-						<td>{{ row.item.b }}</td>
-						<td>{{ row.item.c }}</td>
-						<td>{{ row.item.d }}</td>
-						<td>{{ row.item.e }}</td>
-						<td>{{ row.item.f }}</td>
-						<td>{{ row.item.g }}</td>
-						<td>
-							{{ row.item.h }}
-							<v-btn color="primary" dark outlined small
-								>답변하기</v-btn
-							>
-						</td>
-					</tr>
-				</template>
 			</v-data-table>
 		</div>
 	</div>

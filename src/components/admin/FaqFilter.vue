@@ -16,6 +16,7 @@
 				<div class="label_txt">등록일</div>
 				<div>
 					<date-picker
+						:rules="[v => !!v || 'Required']"
 						valueType="format"
 						v-model="registDate"
 						range
@@ -31,6 +32,7 @@
 					:items="$getCmCode('faqCmCodeDstic')"
 					placeholder="전체 카테고리"
 					single-line
+					return-object
 					outlined
 					item-text="cmnCdNm"
 					item-value="cmnCd"
