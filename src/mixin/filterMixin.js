@@ -29,7 +29,12 @@ const listMixin = () => {
 		methods: {
 			doSearch() {
 				console.log(this.param)
-				this.$emit('search', { ...this.param })
+				const _param = {
+					...this.param,
+					datefrom: this.formatDate(this.param.datefrom, ''),
+					dateto: this.formatDate(this.param.dateto, ''),
+				}
+				this.$emit('search', { ..._param })
 			},
 			doInit() {
 				this.param = { ...this.initParam }
