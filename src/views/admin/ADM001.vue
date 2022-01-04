@@ -11,6 +11,7 @@
 							single-line
 							outlined
 							v-model="korWord"
+							clearable
 						></v-text-field>
 					</li>
 					<li class="mg_L0">
@@ -125,7 +126,7 @@ export default {
 					text: '영문약어명',
 					align: 'center',
 					sortable: true,
-					value: 'engAbrvnWordName',
+					value: 'engAbrvnName',
 				},
 				{
 					text: '영어단어명',
@@ -149,7 +150,7 @@ export default {
 					text: '등록자',
 					align: 'center',
 					sortable: true,
-					value: 'syslastempid',
+					value: 'sysLastEmpid',
 				},
 				{
 					text: '등록일시',
@@ -184,8 +185,8 @@ export default {
 			}
 
 			axios
-				.post('/api/admin/selectAdm00101', {
-					inhanglWordName: this.korWord,
+				.post('/admin/meta/getWordList', {
+					inHanglWordName: this.korWord,
 					inCon: this.mark,
 				})
 				.then(res => {
@@ -203,7 +204,8 @@ export default {
 		},
 		Modify() {
 			this.gf_router('adm002', {
-				inhanglWordName: this.checkselected[0].hanglWordName,
+				inHanglWordName: this.checkselected[0].hanglWordName,
+				inEngAbrvnName: this.checkselected[0].engAbrvnName,
 				searchKey: this.korWord,
 				searchKey2: this.mark,
 			})
@@ -211,13 +213,22 @@ export default {
 		Delete() {
 			// if (this.checkselected.length > 0) {
 			//let param = []
-			let param = ''
+			let param = []
+			let param2 = []
+			let param3 = ['S017069']
 			for (let key in this.checkselected) {
-				//param.push(this.checkselected[key].hanglWordName)
-				param = this.checkselected[key].hanglWordName
+				param.push(this.checkselected[key].hanglWordName)
+				param2.push(this.checkselected[key].engAbrvnName)
+				// hanglWordName: this.checkselected[key].hanglWordName,
+				// 	engAbrvnName: this.checkselected[key].engAbrvnName,
+				// 	sysEmpid: 'S017069',
 			}
 			axios
-				.delete('/api/admin/deleteAdm00101', { inhanglWordName: param })
+				.post('/admin/meta/delManWordCon', {
+					hanglWordName: param,
+					engAbrvnName: param2,
+					sysEmpid: param3,
+				})
 				.then(res => {
 					alert('삭제되었습니다.')
 					console.log(res)
@@ -226,6 +237,9 @@ export default {
 				.catch(err => {
 					console.log('err : ' + err)
 				})
+		},
+		handleClick(obj) {
+			alert(obj)
 		},
 	},
 }
