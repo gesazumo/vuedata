@@ -1,6 +1,5 @@
 <template>
 	<div>
-		Login
 		<button @click="login">로그인</button>
 	</div>
 </template>
@@ -20,6 +19,7 @@ export default {
 					employeeNum: 'employeeNum',
 				},
 			})
+			await this.$store.dispatch('commonCodeStore/fetchCmCode')
 		},
 	},
 }
