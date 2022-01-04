@@ -62,9 +62,27 @@
 						</div>
 						<div class="sort">
 							<ul>
-								<li><a href="#" class="on">인기순</a></li>
-								<li><a href="#">등록일순</a></li>
-								<li><a href="#">제목순</a></li>
+								<li>
+									<a
+										@click="clickLikeSort()"
+										v-bind:class="{ on: likeSortFlag }"
+										>인기순</a
+									>
+								</li>
+								<li>
+									<a
+										@click="clickRegDateSort()"
+										v-bind:class="{ on: regDateSortFlag }"
+										>등록일순</a
+									>
+								</li>
+								<li>
+									<a
+										@click="clickNameSort()"
+										v-bind:class="{ on: nameSortFlag }"
+										>제목순</a
+									>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -128,37 +146,74 @@
 export default {
 	data() {
 		return {
-			active_tab: 2,
+			active_tab: 0,
 			keyword: '',
 			categoryList: [],
 			cardList: [],
+			likeSortFlag: false,
+			regDateSortFlag: true,
+			nameSortFlag: false,
 		}
 	},
 	created() {
-		console.log(this.active_tab)
+		this.search('', '전체', '등록일순')
 	},
 	methods: {
+		initCategory() {
+			this.active_tab = 0
+		},
+		initSort() {
+			this.likeSortFlag = false
+			this.regDateSortFlag = true
+			this.nameSortFlag = false
+		},
 		search(keyword, category, sort) {
 			console.log('------------------SEARCH------------------')
 			console.log('keyword : ' + keyword)
 			console.log('category : ' + category)
 			console.log('sort : ' + sort)
-			// for (let i = 0; i < this.categoryList.length; i++) {
-			// 	if (this.categoryList[i].name == category) {
-			// 		this.active_tab = i
-			// 	}
-			// }
+			this.setCategory()
+			this.setCard()
 		},
 		searchKeyword() {
 			console.log('------------------SEARCH KEYWORD------------------')
 			console.log('keyword : ' + this.keyword)
+			this.initCategory()
+			this.initSort()
 			this.search(this.keyword, '전체', '등록일순')
 		},
 		searchCategory(category) {
 			console.log('------------------CATEGORY KEYWORD------------------')
-			console.log('keyword : ' + this.keyword)
 			console.log('category : ' + category)
+			this.initSort()
 			this.search(this.keyword, category, '등록일순')
+		},
+		searchSort(sort) {
+			console.log('------------------SORT KEYWORD------------------')
+			console.log('sort : ' + sort)
+			this.search(
+				this.keyword,
+				this.categoryList[this.active_tab].name,
+				sort,
+			)
+		},
+		clickLikeSort() {
+			this.likeSortFlag = true
+			this.regDateSortFlag = false
+			this.nameSortFlag = false
+			this.searchSort('인기순')
+		},
+		clickRegDateSort() {
+			this.likeSortFlag = false
+			this.regDateSortFlag = true
+			this.nameSortFlag = false
+			this.searchSort('등록일순')
+		},
+		clickNameSort() {
+			this.likeSortFlag = false
+			this.regDateSortFlag = false
+			this.nameSortFlag = true
+			this.searchSort('제목순')
 		},
 		setCategory() {
 			this.categoryList = [
@@ -168,6 +223,11 @@ export default {
 				{ name: 'ANACONDA', count: 2 },
 				{ name: '기타', count: 1 },
 			]
+			// for (let i = 0; i < this.categoryList.length; i++) {
+			// 	if (this.categoryList[i].name == category) {
+			// 		this.active_tab = i
+			// 	}
+			// }
 		},
 		setCard() {
 			this.cardList = [
