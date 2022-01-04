@@ -65,6 +65,7 @@ export default {
 		faqListData() {
 			return this.list.map(item => {
 				return {
+					seq: item.seq,
 					dstic: item.dstic,
 					ques: item.ques,
 					reqemp: item.reqemp,

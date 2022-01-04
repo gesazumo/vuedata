@@ -5,7 +5,10 @@ export const getCmCodeApi = () => {
 		cmCode: {
 			notiCmCodeDstic: [...constant.notiCmCodeDstic],
 			notiCmCodeKate: [...constant.notiCmCodeKate],
-			faqDstic: [...constant.faqDstic],
+			faqCmCodeDstic: [...constant.faqCmCodeDstic],
+			qnaCmCodeStatus: [...constant.qnaCmCodeStatus],
+			qnaCmCodeDstic: [...constant.qnaCmCodeDstic],
+			commCmcodeCompany: [...constant.commCmcodeCompany],
 		},
 	}
 }

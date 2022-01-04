@@ -21,7 +21,7 @@ const constant = {
 			cmnCdNm: '이벤트',
 		},
 	],
-	faqDstic: [
+	faqCmCodeDstic: [
 		{
 			cmnCd: '01',
 			cmnCdNm: '전체',
@@ -41,6 +41,52 @@ const constant = {
 		{
 			cmnCd: '05',
 			cmnCdNm: '기타',
+		},
+	],
+	qnaCmCodeStatus: [
+		{
+			cmnCd: '1',
+			cmnCdNm: '대기중',
+		},
+		{
+			cmnCd: '2',
+			cmnCdNm: '답변완료',
+		},
+	],
+	qnaCmCodeDstic: [
+		{
+			cmnCd: '01',
+			cmnCdNm: '포털',
+		},
+		{
+			cmnCd: '02',
+			cmnCdNm: '데이터',
+		},
+		{
+			cmnCd: '03',
+			cmnCdNm: '분석환경',
+		},
+		{
+			cmnCd: '04',
+			cmnCdNm: '피드백',
+		},
+		{
+			cmnCd: '99',
+			cmnCdNm: '기타',
+		},
+	],
+	commCmcodeCompany: [
+		{
+			cmnCd: 'KFG',
+			cmnCdNm: 'KB금융지주',
+		},
+		{
+			cmnCd: 'KFO',
+			cmnCdNm: 'KB국민은행',
+		},
+		{
+			cmnCd: 'KS2',
+			cmnCdNm: 'KB증권',
 		},
 	],
 }
