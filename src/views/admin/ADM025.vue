@@ -28,7 +28,7 @@ export default {
 	mixins: [
 		listViewMixin(getFaqApi, {
 			ques: null,
-			dstic: { label: '전체', value: 'all' },
+			dstic: { cmnCd: '01', cmnCdNm: '전체' },
 		}),
 	],
 }

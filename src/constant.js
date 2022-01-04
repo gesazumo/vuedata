@@ -21,6 +21,28 @@ const constant = {
 			cmnCdNm: '이벤트',
 		},
 	],
+	faqDstic: [
+		{
+			cmnCd: '01',
+			cmnCdNm: '전체',
+		},
+		{
+			cmnCd: '02',
+			cmnCdNm: '포털이용',
+		},
+		{
+			cmnCd: '03',
+			cmnCdNm: '데이터 권한 신청',
+		},
+		{
+			cmnCd: '04',
+			cmnCdNm: '분석환경 활동',
+		},
+		{
+			cmnCd: '05',
+			cmnCdNm: '기타',
+		},
+	],
 }
 
 export default constant

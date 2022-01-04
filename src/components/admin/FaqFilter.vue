@@ -16,6 +16,7 @@
 				<div class="label_txt">등록일</div>
 				<div>
 					<date-picker
+						valueType="format"
 						v-model="registDate"
 						range
 						placeholder="기간 선택"
@@ -27,12 +28,12 @@
 			<v-col md="4">
 				<div class="label_txt">구분</div>
 				<v-select
-					:items="items_01"
+					:items="$getCmCode('faqDstic')"
 					placeholder="전체 카테고리"
 					single-line
 					outlined
-					item-text="label"
-					item-value="value"
+					item-text="cmnCdNm"
+					item-value="cmnCd"
 					hide-details="auto"
 					v-model="param.dstic"
 				></v-select>
@@ -52,17 +53,6 @@
 import filterMixin from '@/mixin/filterMixin'
 export default {
 	mixins: [filterMixin()],
-	data() {
-		return {
-			items_01: [
-				{ label: '전체', value: 'all' },
-				{ label: '포털 이용', value: 'all1' },
-				{ label: '데이터 권한 신청', value: 'all2' },
-				{ label: '분석환경 활용', value: 'all3' },
-				{ label: '기타', value: 'all4' },
-			],
-		}
-	},
 }
 </script>
 
