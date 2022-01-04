@@ -40,6 +40,14 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ANA003.vue'),
 	},
 	{
+		path: 'ana005', //Analyze 분석환경신청 팀원선택
+		component: () => import('@/views/pub/TAH-ANA005.vue'),
+	},
+	{
+		path: 'ana006', //Analyze 분석환경신청 프로젝트 생성 확인
+		component: () => import('@/views/pub/TAH-ANA006.vue'),
+	},
+	{
 		path: 'ana004', //Analyze 분석환경신청 신청정보입력
 		component: () => import('@/views/pub/TAH-ANA004.vue'),
 	},
