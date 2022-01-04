@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import shareStore from './modules/shareStore'
 import userStore from './modules/userStore'
+import commonCodeStore from './modules/commonCodeStore'
 import createPersistedState from 'vuex-persistedstate'
 import { CANCEL_CONFIRM, OK_CONFIRM, SHOW_CONFIRM } from './mutation-type'
 
@@ -48,6 +49,7 @@ export default new Vuex.Store({
 	modules: {
 		shareStore: shareStore,
 		userStore: userStore,
+		commonCodeStore: commonCodeStore,
 	},
 	plugins: [userState],
 })

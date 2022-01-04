@@ -28,6 +28,7 @@ const listMixin = () => {
 		},
 		methods: {
 			doSearch() {
+				console.log(this.param)
 				this.$emit('search', { ...this.param })
 			},
 			doInit() {

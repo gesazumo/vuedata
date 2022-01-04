@@ -6,3 +6,5 @@ export const SET_TEST_FLAG = 'set_test_flag'
 export const SHOW_CONFIRM = 'show_confirm'
 export const OK_CONFIRM = 'confirm_ok'
 export const CANCEL_CONFIRM = 'confirm_no'
+
+export const SET_CM_CODE = 'set_cm_code'

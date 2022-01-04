@@ -6,6 +6,15 @@ const methods = {
 			store.dispatch('showConfirm', { reslove, msg, btnMsg })
 		})
 	},
+	$getCmCode(key) {
+		return store.getters['commonCodeStore/getCmCode'](key)
+	},
+	$showError(msg) {
+		this.$toasted.error(msg)
+	},
+	$showInfo(msg) {
+		this.$toasted.info(msg)
+	},
 }
 
 export default methods

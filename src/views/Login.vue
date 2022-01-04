@@ -1,6 +1,5 @@
 <template>
 	<div>
-		Login
 		<button @click="login">로그인</button>
 	</div>
 </template>

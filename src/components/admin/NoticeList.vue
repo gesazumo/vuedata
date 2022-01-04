@@ -19,7 +19,6 @@
 				item-key="seq"
 				:headers="headers"
 				:items="noticeListData"
-				:items-per-page="itemsPerPage"
 				show-select
 				hide-default-footer
 				class="elevation-1"
@@ -47,10 +46,6 @@ export default {
 	},
 	data() {
 		return {
-			dialog: false,
-			page: 1,
-			pageCount: 0,
-			itemsPerPage: 10,
 			selected: [],
 			headers: [
 				{
@@ -109,8 +104,8 @@ export default {
 				const { data } = await deleteNoticesApi(this.selected)
 				console.log(data)
 			} catch (error) {
-				this.$toasted.error(this.apiErrorMsg_Blue)
-				console.log(error)
+				this.$showError(this.apiErrorMsg_Blue)
+				console.log('deleteNoticesApi :' + error)
 			}
 		},
 	},

@@ -28,8 +28,12 @@
 			<v-col md="4">
 				<div class="label_txt">구분</div>
 				<v-radio-group row hide-details="auto" v-model="param.dstic">
-					<v-radio label="일반" :value="NOTI_DSTIC.NORMAL"> </v-radio>
-					<v-radio label="메인" :value="NOTI_DSTIC.MAIN"> </v-radio>
+					<v-radio
+						v-for="code in $getCmCode('notiCmCodeDstic')"
+						:key="code.cmnCd"
+						:label="code.cmnCdNm"
+						:value="code.cmnCd"
+					/>
 				</v-radio-group>
 			</v-col>
 			<v-col md="4">
@@ -39,9 +43,12 @@
 					hide-details="auto"
 					v-model="param.kategorie"
 				>
-					<v-radio label="공지사항" :value="NOTI_KATE.NOTICE">
-					</v-radio>
-					<v-radio label="이벤트" :value="NOTI_KATE.EVENT"> </v-radio>
+					<v-radio
+						v-for="code in $getCmCode('notiCmCodeKate')"
+						:key="code.cmnCd"
+						:label="code.cmnCdNm"
+						:value="code.cmnCd"
+					/>
 				</v-radio-group>
 			</v-col>
 		</v-row>
