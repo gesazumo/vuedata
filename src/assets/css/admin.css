@@ -48,6 +48,11 @@
   color: #ffbc00; 
   text-decoration: underline;
 }  
+#lnb > ul > li > ul > li .router-link-active {
+  color: #ffbc00; 
+  text-decoration: none;
+  background-color: #79706d;
+}
 #lnb > ul > li > ul > li.on a {
   color: #FF9D00; 
 }

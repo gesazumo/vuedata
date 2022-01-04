@@ -13,7 +13,9 @@
 					취소
 				</v-btn>
 
-				<v-btn color="primary" dark @click="ok()"> 삭제하기 </v-btn>
+				<v-btn color="primary" dark @click="ok()">
+					{{ confirmBtnMsg }}
+				</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>
@@ -25,7 +27,7 @@ import { CANCEL_CONFIRM, OK_CONFIRM } from '@/store/mutation-type'
 
 export default {
 	computed: {
-		...mapState(['confirm', 'confirmMsg']),
+		...mapState(['confirm', 'confirmMsg', 'confirmBtnMsg']),
 	},
 	methods: {
 		...mapMutations({ ok: OK_CONFIRM, no: CANCEL_CONFIRM }),
