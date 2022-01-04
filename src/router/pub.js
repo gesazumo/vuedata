@@ -12,70 +12,6 @@ export const pubRouter = [
 		component: () => import('@/views/pub/Admin.vue'),
 	},
 	{
-		path: 'button',
-		component: () => import('@/components/pub/button.vue'),
-	},
-	{
-		path: 'cardlist',
-		component: () => import('@/components/pub/cardlist.vue'),
-	},
-	{
-		path: 'check',
-		component: () => import('@/components/pub/checkbox.vue'),
-	},
-	{
-		path: 'dropdown',
-		component: () => import('@/components/pub/dropdown.vue'),
-	},
-	{
-		path: 'indicator',
-		component: () => import('@/components/pub/indicator.vue'),
-	},
-	{
-		path: 'popup',
-		component: () => import('@/components/pub/popup.vue'),
-	},
-	{
-		path: 'page',
-		component: () => import('@/components/pub/pagination.vue'),
-	},
-	{
-		path: 'toload',
-		component: () => import('@/components/pub/toload.vue'),
-	},
-	{
-		path: 'radio',
-		component: () => import('@/components/pub/radio.vue'),
-	},
-	{
-		path: 'tab',
-		component: () => import('@/components/pub/tab.vue'),
-	},
-	{
-		path: 'textarea',
-		component: () => import('@/components/pub/textarea.vue'),
-	},
-	{
-		path: 'textfield',
-		component: () => import('@/components/pub/texetfield.vue'),
-	},
-	{
-		path: 'toggle',
-		component: () => import('@/components/pub/toggle.vue'),
-	},
-	{
-		path: 'tooltip',
-		component: () => import('@/components/pub/tooltip.vue'),
-	},
-	{
-		path: 'bar',
-		component: () => import('@/components/pub/systembar.vue'),
-	},
-	{
-		path: 'slide',
-		component: () => import('@/components/pub/indicator.vue'),
-	},
-	{
 		path: 'error1', //대체페이지(페이지없음)
 		component: () => import('@/views/pub/TAH-COM002.vue'),
 	},
@@ -130,5 +66,53 @@ export const pubRouter = [
 	{
 		path: 'adm004', //Admin 메타관리 인스턴스 등록수정
 		component: () => import('@/views/pub/TAH-ADM004.vue'),
+	},
+	{
+		path: 'adm021', //Admin 게시판관리 공지사항 관리
+		component: () => import('@/views/pub/TAH-ADM021.vue'),
+	},
+	{
+		path: 'adm022', //Admin 게시판관리 공지사항 등록수정
+		component: () => import('@/views/pub/TAH-ADM022.vue'),
+	},
+	{
+		path: 'adm023', //Admin 게시판관리 문의하기 관리
+		component: () => import('@/views/pub/TAH-ADM023.vue'),
+	},
+	{
+		path: 'adm024', //Admin 게시판관리 문의하기 등록수정
+		component: () => import('@/views/pub/TAH-ADM024.vue'),
+	},
+	{
+		path: 'adm025', //Admin 게시판관리 FAQ 관리
+		component: () => import('@/views/pub/TAH-ADM025.vue'),
+	},
+	{
+		path: 'adm026', //Admin 게시판관리 FAQ 등록수정
+		component: () => import('@/views/pub/TAH-ADM026.vue'),
+	},
+	{
+		path: 'adm005', //Admin 메타관리 테이블관리
+		component: () => import('@/views/pub/TAH-ADM005.vue'),
+	},
+	{
+		path: 'adm006', //Admin 메타관리 테이블 등록수정
+		component: () => import('@/views/pub/TAH-ADM006.vue'),
+	},
+	{
+		path: 'ana007', //Analyze 오픈소스 라이브러리 리스트
+		component: () => import('@/views/pub/TAH-ANA007.vue'),
+	},
+	{
+		path: 'ana008', //Analyze 오픈소스 라이브러리 상세
+		component: () => import('@/views/pub/TAH-ANA008.vue'),
+	},
+	{
+		path: 'ana009', //Analyze 오픈소스 라이브러리 반입신청
+		component: () => import('@/views/pub/TAH-ANA009.vue'),
+	},
+	{
+		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
+		component: () => import('@/views/pub/TAH-ANA010.vue'),
 	},
 ]

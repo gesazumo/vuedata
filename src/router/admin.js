@@ -16,6 +16,30 @@ const adminRouter = [
 		component: () => import('@/views/admin/ADM002.vue'),
 	},
 	{
+		path: 'adm003',
+		name: 'adm003',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM003.vue'),
+	},
+	{
+		path: 'adm004',
+		name: 'adm004',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM004.vue'),
+	},
+	{
+		path: 'adm005',
+		name: 'adm005',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM005.vue'),
+	},
+	{
+		path: 'adm006',
+		name: 'adm006',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM006.vue'),
+	},
+	{
 		path: 'adm008',
 		name: 'adm008',
 		meta: { isPublic: true },
@@ -28,16 +52,28 @@ const adminRouter = [
 		component: () => import('@/views/admin/ADM027.vue'),
 	},
 	{
+		path: 'adm021',
+		name: 'adm021',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM021.vue'),
+	},
+	{
 		path: 'adm028',
 		name: 'adm028',
 		meta: { isPublic: true },
 		component: () => import('@/views/admin/ADM028.vue'),
 	},
 	{
-		path: 'adm021',
-		name: 'adm021',
+		path: 'adm037',
+		name: 'adm037',
 		meta: { isPublic: true },
-		component: () => import('@/views/admin/ADM021.vue'),
+		component: () => import('@/views/admin/ADM037.vue'),
+	},
+	{
+		path: 'adm038',
+		name: 'adm038',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM038.vue'),
 	},
 ]
 

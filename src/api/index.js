@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setInterceptors } from './common/interceptors'
+// import { setInterceptors } from './common/interceptors'
 
 function createInstance() {
 	return axios.create({
@@ -7,13 +7,14 @@ function createInstance() {
 	})
 }
 
-function createInstanceWithAuth(url = '') {
+function createInstanceWithAuth(url) {
 	const instance = axios.create({
-		baseURL: process.env.VUE_APP_API_URL + url,
+		baseURL: url,
 	})
-	return setInterceptors(instance)
+	// return setInterceptors(instance)
+	return instance
 }
 
 export const instance = createInstance()
-export const adminInstance = createInstanceWithAuth('api/admin/')
+export const adminInstance = createInstanceWithAuth('/api/admin')
 export const userInstance = createInstanceWithAuth()
