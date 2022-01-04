@@ -11,6 +11,13 @@ const analyzeRouter = [
 		meta: { isPublic: true },
 		component: () => import('@/views/analyze/ANA003.vue'),
 	},
+	{
+		path: 'ana004',
+		name: 'ana004',
+		meta: { isPublic: true },
+		component: () => import('@/views/analyze/ANA004.vue'),
+		props: true,
+	},
 ]
 
 export default analyzeRouter
