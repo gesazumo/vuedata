@@ -2263,8 +2263,11 @@ input[type="text"] {
 .board_list .list .sort ul li:last-child {
   margin-right:0;
 }
-.board_list .list .sort ul li.on {
-  color:#2c2921;
+.board_list .list .sort ul li a, a:link {
+  color: #968d83;
+}
+.board_list .list .sort ul li a.on {
+  color:#2c2921 !important;
 }
 
 .v-tabs .v-tab span {color:#f26615; }

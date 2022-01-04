@@ -57,7 +57,7 @@
 						</div>
 						<div class="sort">
 							<ul>
-								<li class="on"><a href="#">인기순</a></li>
+								<li><a href="#" class="on">인기순</a></li>
 								<li><a href="#">등록일순</a></li>
 								<li><a href="#">제목순</a></li>
 							</ul>
