@@ -3,7 +3,7 @@
 		<div class="open-popup">
 			<div class="open-inner">
 				<div class="open-head">
-					<h5>컬럼명 조회</h5>
+					<h5>인스턴스명 조회</h5>
 					<div class="close-btn">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
@@ -14,7 +14,7 @@
 						<div
 							style="float: left; width: 145px; line-height: 40px"
 						>
-							한글단어명
+							인스턴스명
 						</div>
 						<div style="float: left">
 							<v-text-field
@@ -95,41 +95,49 @@ export default {
 					text: '원천',
 					align: 'center',
 					sortable: true,
+					value: 'screnRegiYn',
 				},
 				{
 					text: '한글단어명',
 					align: 'center',
 					sortable: true,
+					value: 'hanglWordName',
 				},
 				{
 					text: '영문약어명',
 					align: 'center',
 					sortable: true,
+					value: 'engAbrvnName',
 				},
 				{
 					text: '영어단어명',
 					align: 'center',
 					sortable: true,
+					value: 'engWordName',
 				},
 				{
 					text: '단어구분',
 					align: 'center',
 					sortable: true,
+					value: 'smwrCmwrDstic',
 				},
 				{
 					text: '정의',
 					align: 'center',
 					sortable: true,
+					value: 'hanglWordDefin',
 				},
 				{
 					text: '등록자',
 					align: 'center',
 					sortable: true,
+					value: 'sysLastEmpid',
 				},
 				{
 					text: '등록일시',
 					align: 'center',
 					sortable: true,
+					value: 'sysLastPrcssYms',
 				},
 			],
 			items: [],
