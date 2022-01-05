@@ -129,6 +129,6 @@ export const pubRouter = [
 	},
 	{
 		path: 'adm045', //Analyze 오픈소스 라이브러리 반입신청완료
-		component: () => import('@/views/pub/adm045.vue'),
+		component: () => import('@/views/pub/TAH-ADM045.vue'),
 	},
 ]
