@@ -115,4 +115,8 @@ export const pubRouter = [
 		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ANA010.vue'),
 	},
+	{
+		path: 'test', //Analyze 오픈소스 라이브러리 반입신청완료
+		component: () => import('@/views/pub/test.vue'),
+	},
 ]
