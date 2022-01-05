@@ -10,17 +10,19 @@
 			<div class="sub_top_info">
 				<div class="sub_top_txt">
 					<ul>
-						<li>python</li>
+						<li>{{ libData.group }}</li>
 						<li><span></span></li>
-						<li>3.7.1 버전 이상</li>
+						<li>{{ libData.ver }} 버전 이상</li>
 					</ul>
-					<h4>Pandas</h4>
-					<p>Version : 1.3.4</p>
+					<h4>{{ libData.libName }}</h4>
+					<p>Version : {{ libData.libVer }}</p>
 					<div>
 						<i class="far fa-eye"></i>
-						<span class="subheading mr-6">55</span>
+						<span class="subheading mr-6">{{
+							libData.viewCount
+						}}</span>
 						<i class="far fa-calendar"></i>
-						<span class="subheading">2021-00-00</span>
+						<span class="subheading">{{ libData.regDate }}</span>
 					</div>
 				</div>
 				<div class="sub_top_banr">
@@ -46,35 +48,31 @@
 							<tbody>
 								<tr>
 									<th>패키지 그룹</th>
-									<td>Python</td>
+									<td>{{ libData.group }}</td>
 									<th>패키지 버전</th>
-									<td>3.7.1 버전 이상</td>
+									<td>{{ libData.ver }} 버전 이상</td>
 								</tr>
 								<tr>
 									<th>라이브러리명</th>
-									<td>Pandas</td>
+									<td>{{ libData.libName }}</td>
 									<th>라이브러리 버전</th>
-									<td>1.3.4</td>
+									<td>{{ libData.libVer }}</td>
 								</tr>
 								<tr>
 									<th>라이브러리 설명</th>
 									<td colspan="3">
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
+										{{ libData.libDesc }}
 									</td>
 								</tr>
 								<tr>
 									<th>라이브러리 파일명</th>
 									<td colspan="3">
-										pandas-1.3.4-cp37-cp37m-win32.whl
+										{{ libData.libFile }}
 									</td>
 								</tr>
 								<tr>
 									<th>라이선스</th>
-									<td colspan="3">BSD-3-Clause</td>
+									<td colspan="3">{{ libData.license }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -83,7 +81,9 @@
 						<v-btn color="primary" dark large outlined
 							>목록으로</v-btn
 						>
-						<v-btn color="primary" dark large>권한 신청하기</v-btn>
+						<v-btn color="primary" dark large
+							>오픈소스 반입 신청하기</v-btn
+						>
 					</div>
 				</div>
 				<div class="detail_02">
@@ -178,4 +178,25 @@
 	</v-app>
 </template>
 
-<script></script>
+<script>
+export default {
+	data() {
+		return {
+			libData: '',
+		}
+	},
+	created() {
+		this.libData = {
+			group: 'Python',
+			ver: '3.7.1',
+			libName: '라이브러리 이름',
+			libVer: '1.3.1',
+			libDesc: '라이브러리 상세설명',
+			libFile: '라이브러리 경로',
+			license: '라이선스',
+			viewCount: 375,
+			regDate: '2022-01-03',
+		}
+	},
+}
+</script>
