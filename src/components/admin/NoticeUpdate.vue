@@ -2,7 +2,7 @@
 	<div class="adm_contents">
 		<div class="inner">
 			<v-form ref="form">
-				<h5>공지사항 등록 및 수정</h5>
+				<h5>공지사항 수정</h5>
 				<div class="item_box">
 					<div class="table_box">
 						<table class="tb_write">
@@ -348,12 +348,11 @@
 					</div>
 				</div>
 				<div class="btn_area center">
-					<v-btn color="primary" dark outlined> 취소 </v-btn>
+					<v-btn color="primary" dark outlined @click="router.go()">
+						취소
+					</v-btn>
 					<v-btn color="primary" dark> 수정하기 </v-btn>
 					<v-btn color="primary" dark> 삭제하기 </v-btn>
-					<v-btn color="primary" dark @click="doCreate">
-						등록하기
-					</v-btn>
 				</div>
 			</v-form>
 		</div>

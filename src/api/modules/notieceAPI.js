@@ -32,5 +32,18 @@ export const updateNoticesApi = param => {
 
 export const createNoticesApi = param => {
 	const url = '/regNoticeConIns'
-	console.log(param, url)
+	debugger
+	const parsedParam = {
+		dstic: param.dstic,
+		enddate: util.formatDate(param.enddate, ''),
+		eventend: util.formatDate(param.eventend, ''),
+		kategorie: param.kategorie,
+		maintxt: param.maintxt,
+		posting: param.posting,
+		startdate: util.formatDate(param.startdate, ''),
+		title: param.title,
+	}
+	return adminInstance.post(`${url}`, {
+		...parsedParam,
+	})
 }
