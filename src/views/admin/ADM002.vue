@@ -171,9 +171,9 @@ export default {
 				return
 			}
 
-			let url = '/admin/meta/regWordCon'
+			let url = '/api/admin/meta/regWordCon'
 			if (this.btnText == '수정') {
-				url = '/admin/meta/modWordCon'
+				url = '/api/admin/meta/modWordCon'
 			}
 
 			if (this.korWord != this.jungBokChkText) {
@@ -188,6 +188,16 @@ export default {
 				return
 			}
 
+			// const str = this.convertUrl({
+			// 	hanglWordName: this.korWord, // 한글단어명
+			// 	engWordName: this.engWord, // 영어 단어명
+			// 	engAbrvnName: this.engWordShort, // 영어약어명
+			// 	smwrCmwrDstic: this.btnWordGb, // 단어구분
+			// 	hanglWordDefin: this.strSummarize, // 정의
+			// 	userNo: 'S017069',
+			// 	screnRegiYn: 'Y',
+			// })
+
 			axios
 				.post(url, {
 					hanglWordName: this.korWord, // 한글단어명
@@ -195,7 +205,7 @@ export default {
 					engAbrvnName: this.engWordShort, // 영어약어명
 					smwrCmwrDstic: this.btnWordGb, // 단어구분
 					hanglWordDefin: this.strSummarize, // 정의
-					sysEmpid: 'S017069',
+					userNo: 'S017069',
 					screnRegiYn: 'Y',
 				})
 				.then(res => {
@@ -212,10 +222,15 @@ export default {
 				})
 		},
 		Delete() {
-			let param = [this.$route.params.pageKey]
+			let param = []
+			param.push({
+				hanglWordName: this.$route.params.inHanglWordName,
+				engAbrvnName: this.$route.params.inEngAbrvnName,
+			})
 			axios
-				.post('/admin/meta/delManWordCon', {
-					hanglWordName: param,
+				.post('/api/admin/meta/delManWordCon', {
+					data: param,
+					userNo: 'S017069',
 				})
 				.then(res => {
 					if (res) {
@@ -230,8 +245,8 @@ export default {
 		// 중복체크
 		fn_jungBokChk() {
 			axios
-				.post('/admin/meta/getWordCon', {
-					inHanglWordName: this.korWord,
+				.get('/api/admin/meta/getWordCon', {
+					params: { inHanglWordName: this.korWord },
 				})
 				.then(res => {
 					if (res.data) {
@@ -259,9 +274,11 @@ export default {
 			this.btnText = '수정'
 			this.jungBokChk = true
 			axios
-				.post('/admin/meta/getWordCon?', {
-					inHanglWordName: this.$route.params.inHanglWordName,
-					inEngAbrvnName: this.$route.params.inEngAbrvnName,
+				.get('/api/admin/meta/getWordCon?', {
+					params: {
+						inHanglWordName: this.$route.params.inHanglWordName,
+						inEngAbrvnName: this.$route.params.inEngAbrvnName,
+					},
 				})
 				.then(res => {
 					this.korWord = res.data.hanglWordName
