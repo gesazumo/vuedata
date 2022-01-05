@@ -302,6 +302,135 @@
 							hide-default-footer
 							class="elevation-1"
 						>
+							<template v-slot:item="row">
+								<tr>
+									<td>{{ row.item.singleselect }}</td>
+									<td>
+										{{ row.item.aa }}
+										<v-text-field
+											label="가망고객"
+											outlined
+											single-line
+											hide-details="auto"
+										>
+											<template v-slot:prepend-inner>
+												<v-icon
+													color="gray"
+													style="
+														font-size: 14px;
+														margin-top: -4px !important;
+													"
+													@click="dialogpopup = true"
+												>
+													fa fa-search
+												</v-icon>
+											</template>
+										</v-text-field>
+									</td>
+									<td>
+										{{ row.item.bb }}
+									</td>
+									<td>
+										{{ row.item.cc }}
+										<v-select
+											label="Y"
+											outlined
+											single-line
+											hide-details="auto"
+										></v-select>
+									</td>
+									<td>
+										{{ row.item.dd }}
+										<v-select
+											label="Not null"
+											outlined
+											single-line
+											hide-details="auto"
+										></v-select>
+									</td>
+									<td>
+										{{ row.item.ee }}
+										<v-select
+											label="N"
+											outlined
+											single-line
+											hide-details="auto"
+										></v-select>
+									</td>
+									<td>
+										{{ row.item.ff }}
+										<v-select
+											label="CHAR"
+											outlined
+											single-line
+											hide-details="auto"
+										></v-select>
+									</td>
+									<td>
+										{{ row.item.gg }}
+										<v-text-field
+											label="12"
+											outlined
+											single-line
+											hide-details="auto"
+										></v-text-field>
+									</td>
+									<td>
+										{{ row.item.aaa }}
+										<v-text-field
+											label="4"
+											outlined
+											single-line
+											hide-details="auto"
+											style="width: 100%"
+										>
+										</v-text-field>
+									</td>
+									<td>
+										{{ row.item.bbb }}
+										<v-text-field
+											label="고객ID구분코드"
+											outlined
+											single-line
+											hide-details="auto"
+										>
+											<template v-slot:prepend-inner>
+												<v-icon
+													color="gray"
+													style="
+														font-size: 14px;
+														margin-top: -4px !important;
+													"
+													@click="dialogpopup = true"
+												>
+													fa fa-search
+												</v-icon>
+											</template>
+										</v-text-field>
+									</td>
+									<td>{{ row.item.ccc }}</td>
+									<td>
+										{{ row.item.ddd }}
+										<v-text-field
+											label="컬럼정의설명"
+											outlined
+											single-line
+											hide-details="auto"
+										>
+										</v-text-field>
+									</td>
+									<td>
+										{{ row.item.eee }}
+										<v-text-field
+											label=""
+											outlined
+											single-line
+											hide-details="auto"
+										>
+										</v-text-field>
+									</td>
+								</tr>
+							</template>
 						</v-data-table>
 
 						<p class="font-weight-bold pb-3 mt-10">
@@ -355,6 +484,98 @@
 				</div>
 			</div>
 		</div>
+
+		<v-dialog v-model="dialogpopup">
+			<div class="open-popup">
+				<div class="open-inner">
+					<div class="open-head">
+						<h5>컬럼명 조회</h5>
+						<div class="close-btn" @click="dialogpopup = false">
+							<img src="../../images/com_icon_close.svg" />
+						</div>
+					</div>
+
+					<div class="open-body">
+						<div class="open-body-search">
+							<div
+								style="
+									float: left;
+									width: 145px;
+									line-height: 40px;
+								"
+							>
+								한글단어명
+							</div>
+							<div style="float: left">
+								<v-text-field
+									placeholder="고객"
+									outlined
+									clearable
+									hide-details="auto"
+								></v-text-field>
+							</div>
+							<div style="float: left; margin-left: 5px">
+								<v-select
+									:items="items"
+									label="%_%"
+									single-line
+									outlined
+									hide-details="auto"
+								>
+									<template slot="append-outer">
+										<v-btn color="primary" dark>
+											검색하기
+										</v-btn>
+									</template>
+								</v-select>
+							</div>
+						</div>
+						<div class="item_box">
+							<div class="tit">
+								<p>
+									총 <span>00</span>개의 검색결과가 있습니다.
+								</p>
+							</div>
+
+							<div class="table_box">
+								<v-data-table
+									:headers="headers1"
+									:items="items1"
+									:items-per-page="itemsPerPage"
+									:single-select="singleSelect"
+									show-select
+									:height="300"
+									fixed-header
+									hide-default-footer
+									class="elevation-1"
+								>
+								</v-data-table>
+								<div class="paging">
+									<v-pagination
+										v-model="page"
+										:length="20"
+										:total-visible="7"
+										color="primary"
+									></v-pagination>
+								</div>
+							</div>
+						</div>
+						<div class="btnArea">
+							<v-btn
+								color="primary"
+								dark
+								large
+								outlined
+								@click="dialogpopup = false"
+							>
+								취소
+							</v-btn>
+							<v-btn color="primary" dark large>선택완료</v-btn>
+						</div>
+					</div>
+				</div>
+			</div>
+		</v-dialog>
 	</v-app>
 </template>
 <script>
@@ -362,6 +583,7 @@ export default {
 	data() {
 		return {
 			dialog: false,
+			dialogpopup: false,
 			page: 1,
 			pageCount: 0,
 			singleSelect: false,
@@ -371,76 +593,157 @@ export default {
 					text: '컬럼명 *',
 					align: 'center',
 					sortable: false,
-					value: 'name',
+					value: 'aa',
+					width: '150px',
+					fixed: true,
 				},
 				{
 					text: '영문컬럼명',
 					align: 'center',
 					sortable: false,
-					value: 'b',
+					value: 'bb',
+					width: '120px',
+					fixed: true,
 				},
 				{
-					text: 'PK여부 *',
+					text: 'PK 여부 *',
 					align: 'center',
 					sortable: false,
-					value: 'c',
+					value: 'cc',
+					width: '80px',
+					fixed: true,
 				},
 				{
 					text: 'Null 구분 *',
 					align: 'center',
 					sortable: false,
-					value: 'd',
+					value: 'dd',
+					width: '80px',
+					fixed: true,
 				},
 				{
 					text: '개인정보 여부 *',
 					align: 'center',
 					sortable: false,
-					value: 'e',
+					value: 'ee',
+					width: '120px',
+					fixed: true,
 				},
 				{
 					text: '데이터 타입 *',
 					align: 'center',
 					sortable: false,
-					value: 'f',
+					value: 'ff',
+					width: '100px',
+					fixed: true,
 				},
 				{
 					text: '데이터 길이 *',
 					align: 'center',
 					sortable: false,
-					value: 'g',
+					value: 'gg',
+					width: '80px',
+					fixed: true,
 				},
 				{
 					text: '소수점 길이 *',
 					align: 'center',
 					sortable: false,
-					value: 'aa',
+					value: 'aaa',
+					width: '80px',
+					fixed: true,
 				},
 				{
 					text: '인스턴스명 *',
 					align: 'center',
 					sortable: false,
-					value: 'bb',
+					value: 'bbb',
+					width: '150px',
+					fixed: true,
 				},
 				{
 					text: '식별자',
 					align: 'center',
 					sortable: false,
-					value: 'cc',
+					value: 'ccc',
+					width: '150px',
+					fixed: true,
 				},
 				{
 					text: '컬럼정의 *',
 					align: 'center',
 					sortable: false,
-					value: 'dd',
+					value: 'ddd',
+					width: '150px',
+					fixed: true,
 				},
 				{
 					text: '비고',
 					align: 'center',
 					sortable: false,
-					value: 'ee',
+					value: 'eee',
+					width: '100px',
+					fixed: true,
 				},
 			],
-			items: [],
+			items: [
+				{
+					aa: '',
+					bb: 'Probable Customer',
+					cc: '',
+					dd: '',
+					ee: '',
+					ff: '',
+					gg: '',
+					aaa: '',
+					bbb: '',
+					ccc: '100294000',
+					ddd: '',
+					eee: '',
+				},
+			],
+			headers1: [
+				{
+					text: '원천',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '한글단어명',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '영문약어명',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '영어단어명',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '단어구분',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '정의',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '등록자',
+					align: 'center',
+					sortable: true,
+				},
+				{
+					text: '등록일시',
+					align: 'center',
+					sortable: true,
+				},
+			],
 		}
 	},
 }
