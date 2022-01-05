@@ -42,7 +42,7 @@
 				<div class="tit">
 					<p v-if="itemList.legnth > 0">
 						총 <span>{{ itemList.length }}</span
-						>개의 검색결과가 있습니다.
+						>개의 단어 목록이 있습니다.
 					</p>
 				</div>
 				<div class="table_box">
@@ -185,9 +185,8 @@ export default {
 			}
 
 			axios
-				.post('/admin/meta/getWordList', {
-					inHanglWordName: this.korWord,
-					inCon: this.mark,
+				.get('/api/admin/meta/getWordList', {
+					params: { inCon: this.mark, inHanglWordName: this.korWord },
 				})
 				.then(res => {
 					this.itemList = res.data.list
@@ -211,23 +210,17 @@ export default {
 			})
 		},
 		Delete() {
-			// if (this.checkselected.length > 0) {
-			//let param = []
 			let param = []
-			let param2 = []
-			let param3 = ['S017069']
 			for (let key in this.checkselected) {
-				param.push(this.checkselected[key].hanglWordName)
-				param2.push(this.checkselected[key].engAbrvnName)
-				// hanglWordName: this.checkselected[key].hanglWordName,
-				// 	engAbrvnName: this.checkselected[key].engAbrvnName,
-				// 	sysEmpid: 'S017069',
+				param.push({
+					hanglWordName: this.checkselected[key].hanglWordName,
+					engAbrvnName: this.checkselected[key].engAbrvnName,
+				})
 			}
 			axios
-				.post('/admin/meta/delManWordCon', {
-					hanglWordName: param,
-					engAbrvnName: param2,
-					sysEmpid: param3,
+				.post('/api/admin/meta/delManWordCon', {
+					data: param,
+					userNo: 'S017069',
 				})
 				.then(res => {
 					alert('삭제되었습니다.')
