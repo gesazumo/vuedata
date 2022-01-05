@@ -401,6 +401,7 @@ export default {
 	},
 	methods: {
 		async doCreate() {
+			console.log('doCreate')
 			this.checkRegistDateValid = true
 			this.checkMainText = true
 			this.checkEventEndValid = true
@@ -408,9 +409,11 @@ export default {
 			if (this.checkRegistDateValid && this.registDateValid) return
 			if (this.isMainTextEmpty) return
 			try {
-				const { data } = await createNoticesApi(this.param)
-				console.log(data)
+				await createNoticesApi(this.param)
+				this.$showInfo('등록되었습니다.')
+				this.$router.push({ name: 'adm021' })
 			} catch (error) {
+				this.$showInfo('등록실패. ')
 				console.log(error)
 			}
 		},
