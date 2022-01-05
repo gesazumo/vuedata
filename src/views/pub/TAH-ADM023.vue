@@ -116,7 +116,7 @@
 						</div>
 					</div>
 					<div class="paging">
-						a<v-pagination
+						<v-pagination
 							v-model="page"
 							:length="50"
 							:total-visible="7"
