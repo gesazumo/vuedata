@@ -2,7 +2,7 @@
 	<div class="adm_contents">
 		<div class="inner">
 			<v-form ref="form">
-				<h5>공지사항 등록</h5>
+				<h5>공지사항 수정</h5>
 				<div class="item_box">
 					<div class="table_box">
 						<table class="tb_write">
@@ -102,6 +102,7 @@
 									</th>
 									<td>
 										<date-picker
+											valueType="format"
 											required
 											@close="checkEventEndValid = true"
 											v-model="param.eventend"
@@ -197,13 +198,19 @@
 										</v-radio-group>
 									</td>
 								</tr>
-								<tr>
+								<tr
+									v-if="
+										param.posting ==
+										$getCmCode('notiCmCodePosting')[1].cmnCd
+									"
+								>
 									<th>
 										기간
 										<span class="asterisk">필수</span>
 									</th>
 									<td>
 										<date-picker
+											valueType="format"
 											v-model="registDate"
 											range
 											placeholder="기간 선택"
@@ -228,7 +235,7 @@
 									<td>
 										<vue-editor
 											@blur="checkMainText = true"
-											v-model="param.maintxt"
+											v-model="param.maintext"
 											outlined
 											clearable
 											id="abc"
@@ -348,11 +355,14 @@
 					</div>
 				</div>
 				<div class="btn_area center">
-					<v-btn color="primary" dark outlined @click="router.go()">
+					<v-btn color="primary" dark outlined @click="$router.go()">
 						취소
 					</v-btn>
-					<v-btn color="primary" dark @click="doCreate">
-						등록하기
+					<v-btn color="primary" dark @click="doDelete">
+						삭제하기
+					</v-btn>
+					<v-btn color="primary" dark @click="doUpdate">
+						수정하기
 					</v-btn>
 				</div>
 			</v-form>
@@ -363,7 +373,7 @@
 <script>
 import DatePicker from 'vue2-datepicker'
 import { VueEditor } from 'vue2-editor'
-import { createNoticesApi } from '@/api/modules/notieceAPI'
+import { getNoticeDetailApi, updateNoticesApi } from '@/api/modules/notieceAPI'
 export default {
 	components: {
 		DatePicker,
@@ -379,7 +389,7 @@ export default {
 				posting: this.$getCmCode('notiCmCodePosting')[0].cmnCd,
 				startdate: null,
 				enddate: null,
-				maintxt: null,
+				maintext: null,
 			},
 			subjectRules: [
 				this.requiredValid('공지사항 제목을 입력해 주세요.'),
@@ -395,7 +405,10 @@ export default {
 		}
 	},
 	methods: {
-		async doCreate() {
+		doDelete() {
+			return 1
+		},
+		async doUpdate() {
 			this.checkRegistDateValid = true
 			this.checkMainText = true
 			this.checkEventEndValid = true
@@ -403,7 +416,7 @@ export default {
 			if (this.checkRegistDateValid && this.registDateValid) return
 			if (this.isMainTextEmpty) return
 			try {
-				const { data } = await createNoticesApi(this.param)
+				const { data } = await updateNoticesApi({ ...this.param })
 				console.log(data)
 			} catch (error) {
 				console.log(error)
@@ -441,7 +454,7 @@ export default {
 		},
 	},
 	watch: {
-		'param.maintxt'() {
+		'param.maintext'() {
 			this.isMainTextEmpty =
 				document
 					.getElementsByClassName('ql-editor')[0]
@@ -475,6 +488,33 @@ export default {
 		eventEndValid() {
 			return this.param.eventend == null
 		},
+	},
+	async created() {
+		const { seq } = this.$route.params
+		try {
+			const { data } = await getNoticeDetailApi(seq)
+			this.param = {
+				seq: seq,
+				dstic: data.dstic,
+				kategorie: data.kategorie,
+				eventend: data.eventend
+					? this.formatDate(data.eventend, '-')
+					: null,
+				title: data.title,
+				posting: data.posting,
+				startdate: data.startdate
+					? this.formatDate(data.startdate, '-')
+					: null,
+				enddate: data.enddate
+					? this.formatDate(data.enddate, '-')
+					: null,
+				maintext: data.maintext,
+			}
+		} catch (err) {
+			this.$showError('존재하지 않는 게시물입니다.')
+			this.$router.push({ name: 'adm021' })
+			console.log(err)
+		}
 	},
 }
 </script>

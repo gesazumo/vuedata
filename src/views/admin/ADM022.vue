@@ -2,7 +2,7 @@
 	<div class="adm_contents">
 		<div class="inner">
 			<v-form ref="form">
-				<h5>공지사항 등록 및 수정</h5>
+				<h5>공지사항 등록</h5>
 				<div class="item_box">
 					<div class="table_box">
 						<table class="tb_write">
@@ -197,7 +197,12 @@
 										</v-radio-group>
 									</td>
 								</tr>
-								<tr>
+								<tr
+									v-if="
+										param.posting ==
+										$getCmCode('notiCmCodePosting')[1].cmnCd
+									"
+								>
 									<th>
 										기간
 										<span class="asterisk">필수</span>
@@ -228,7 +233,7 @@
 									<td>
 										<vue-editor
 											@blur="checkMainText = true"
-											v-model="param.maintxt"
+											v-model="param.maintext"
 											outlined
 											clearable
 											id="abc"
@@ -348,9 +353,9 @@
 					</div>
 				</div>
 				<div class="btn_area center">
-					<v-btn color="primary" dark outlined> 취소 </v-btn>
-					<v-btn color="primary" dark> 수정하기 </v-btn>
-					<v-btn color="primary" dark> 삭제하기 </v-btn>
+					<v-btn color="primary" dark outlined @click="$router.go()">
+						취소
+					</v-btn>
 					<v-btn color="primary" dark @click="doCreate">
 						등록하기
 					</v-btn>
@@ -379,7 +384,7 @@ export default {
 				posting: this.$getCmCode('notiCmCodePosting')[0].cmnCd,
 				startdate: null,
 				enddate: null,
-				maintxt: null,
+				maintext: null,
 			},
 			subjectRules: [
 				this.requiredValid('공지사항 제목을 입력해 주세요.'),
@@ -441,7 +446,7 @@ export default {
 		},
 	},
 	watch: {
-		'param.maintxt'() {
+		'param.maintext'() {
 			this.isMainTextEmpty =
 				document
 					.getElementsByClassName('ql-editor')[0]
