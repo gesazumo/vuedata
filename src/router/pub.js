@@ -108,6 +108,10 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM006.vue'),
 	},
 	{
+		path: 'adm068', //Admin 메타관리 컬럼명 조회
+		component: () => import('@/views/pub/TAH-ADM068.vue'),
+	},
+	{
 		path: 'ana007', //Analyze 오픈소스 라이브러리 리스트
 		component: () => import('@/views/pub/TAH-ANA007.vue'),
 	},

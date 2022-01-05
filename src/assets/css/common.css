@@ -1899,6 +1899,7 @@ input[type="text"] {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   padding-left: 6px !important;
 }
+/*
 .v-text-field .v-label {
   max-width: 90%;
   overflow: hidden;
@@ -1906,7 +1907,7 @@ input[type="text"] {
   white-space: nowrap;
   pointer-events: none;
 }
-/*.v-text-field--outlined .v-label {
+.v-text-field--outlined .v-label {
   top: 5px !important;
 }*/
 .v-input {
@@ -2157,13 +2158,13 @@ input[type="text"] {
   float:left;
   display: inline-block;
   width: 1154px;
-  padding: 0 40px;
-  border-right: 1px solid #d8d8d8;
+  padding: 0 40px;  
 }
 .detail_view .detail_02 {
   float: left;
   width: 285px;
   padding: 0 40px;
+  border-left: 1px solid #d8d8d8;
 }
 .detail_view .detail_02 div:first-child {
   padding-bottom: 40px;
@@ -3435,6 +3436,7 @@ table span {
 .theme--light.v-label {
   color:#504842 !important;
   position: initial !important;
+  overflow: inherit !important;
 }
 
 /*datepicker날짜선택*/ 
