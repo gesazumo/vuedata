@@ -301,18 +301,12 @@
 						</table>
 					</div>
 				</div>
-				<div class="btn_area">
-					<v-btn color="primary" dark large outlined> 취소 </v-btn>
-					<v-btn
-						color="primary"
-						dark
-						large
-						outlined
-						@click="dialog = true"
-					>
+				<div class="btn_area" align="center">
+					<v-btn color="primary" dark outlined> 취소 </v-btn>
+					<v-btn color="primary" dark outlined @click="dialog = true">
 						삭제하기
 					</v-btn>
-					<v-btn color="primary" dark large> 등록하기 </v-btn>
+					<v-btn color="primary" dark> 등록하기 </v-btn>
 					<v-dialog v-model="dialog" max-width="350">
 						<v-card align="center">
 							<v-card-title
