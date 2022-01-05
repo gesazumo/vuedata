@@ -604,7 +604,6 @@
 </template>
 
 <script>
-import util from '@/utils/util'
 import axios from 'axios'
 import DatePicker from 'vue2-datepicker'
 // import { insertAna00301 } from '@/api/modules/anaAPI'
@@ -664,7 +663,7 @@ export default {
 			// } catch (error) {
 			// 	console.log(error)
 			// }
-			var url = '/analyze/analenvreq/ana003/selectAna00301'
+			var url = '/api/analyze/analenvreq/ana003/selectAna00301'
 			axios
 				.get(url)
 				.then(res => {
@@ -704,37 +703,66 @@ export default {
 		},
 
 		async Application() {
+			this.$router.push({
+				name: 'ana004',
+				params: { projectId: 'KB0-PROJ-0001' },
+			})
+
 			if (this.$refs.form.validate()) {
-				const param = {
-					projName: this.project, // 프로젝트명
-					projCtnt: this.project_desc, // 프로젝트 설명
-					dateFrom: this.date[0], // 프로젝트 시작일
-					dateTo: this.date[1], // 프로젝트 종료일
-					projInvlCd: this.projectDiv == 0 ? '01' : '02', // 프로젝트 구분(개인:01, 팀:02)
-					tmmmCoCd: this.GroupCoCd, // 회사코드
-					tmmmDvsnCd: this.Department, // 부서코드
-					tmmmEmpid: this.RegiEmpid, // 직원번호
-					tmmmInptCd: this.ProjInptCd, // 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
-					anlsEvirnAplcnCd: this.AnalyzeStr, // 분석환경
-					ntbkInstncCd: this.instance_N, // Notebook Instance
-					stdInstncCd: this.instance_S, // SageMaker Studio Instance Type
-					stdTmpltCd: this.template_S, // SageMaker Studio Template Type
-					vrtlInstncCd: this.instance_V, // 가상화 환경 Instance Type
-					vrtlStrgeCd: this.lstIncd7[0].cmnCd, // 가상화 환경 Storage Type
-					ciValUseYn: this.ci_useDiv, // CI값 사용 여부
-					aprvalEmpid: this.aprvalInfo.aprvalPsnEmpid, // 결재자
-				}
+				// const param = {
+				// 	projName: this.project, // 프로젝트명
+				// 	projCtnt: this.project_desc, // 프로젝트 설명
+				// 	dateFrom: this.date[0], // 프로젝트 시작일
+				// 	dateTo: this.date[1], // 프로젝트 종료일
+				// 	projInvlCd: this.projectDiv == 0 ? '01' : '02', // 프로젝트 구분(개인:01, 팀:02)
+				// 	tmmmCoCd: this.GroupCoCd(), // 회사코드
+				// 	tmmmDvsnCd: this.Department(), // 부서코드
+				// 	tmmmEmpid: this.RegiEmpid(), // 직원번호
+				// 	tmmmInptCd: this.ProjInptCd(), // 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
+				// 	anlsEvirnAplcnCd: this.AnalyzeStr(), // 분석환경
+				// 	ntbkInstncCd: this.notebook ? this.instance_N : '', // Notebook Instance
+				// 	stdInstncCd: this.sageMaker ? this.instance_S : '', // SageMaker Studio Instance Type
+				// 	stdTmpltCd: this.sageMaker ? this.template_S : '', // SageMaker Studio Template Type
+				// 	vrtlInstncCd: this.virtualization ? this.instance_V : '', // 가상화 환경 Instance Type
+				// 	vrtlStrgeCd: this.virtualization
+				// 		? this.lstIncd7[0].cmnCd
+				// 		: '', // 가상화 환경 Storage Type
+				// 	ciValUseYn: this.ci_useDiv, // CI값 사용 여부
+				// 	aprvalEmpid: this.aprvalInfo.aprvalPsnEmpid, // 결재자
+				// }
+
 				// try {
 				// 	const data = await insertAna00301(param)
 				// 	this.projectId = data.projId
 				// } catch (error) {
 				// 	console.log(error)
 				// }
-				var url = '/analyze/analenvreq/ana003/insertAna00301'
+				var url = '/api/analyze/analenvreq/ana003/insertAna00301'
 
-				const queryString = util.convertUrl(param)
 				axios
-					.post(url + queryString, {})
+					.post(url, {
+						projName: this.project, // 프로젝트명
+						projCtnt: this.project_desc, // 프로젝트 설명
+						dateFrom: this.date[0], // 프로젝트 시작일
+						dateTo: this.date[1], // 프로젝트 종료일
+						projInvlCd: this.projectDiv == 0 ? '01' : '02', // 프로젝트 구분(개인:01, 팀:02)
+						tmmmCoCd: this.GroupCoCd(), // 회사코드
+						tmmmDvsnCd: this.Department(), // 부서코드
+						tmmmEmpid: this.RegiEmpid(), // 직원번호
+						tmmmInptCd: this.ProjInptCd(), // 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
+						anlsEvirnAplcnCd: this.AnalyzeStr(), // 분석환경
+						ntbkInstncCd: this.notebook ? this.instance_N : '', // Notebook Instance
+						stdInstncCd: this.sageMaker ? this.instance_S : '', // SageMaker Studio Instance Type
+						stdTmpltCd: this.sageMaker ? this.template_S : '', // SageMaker Studio Template Type
+						vrtlInstncCd: this.virtualization
+							? this.instance_V
+							: '', // 가상화 환경 Instance Type
+						vrtlStrgeCd: this.virtualization
+							? this.lstIncd7[0].cmnCd
+							: '', // 가상화 환경 Storage Type
+						ciValUseYn: this.ci_useDiv, // CI값 사용 여부
+						aprvalEmpid: this.aprvalInfo.aprvalPsnEmpid, // 결재자
+					})
 					.then(res => {
 						this.projectId = res.data.projId
 						console.log(this.projectId)
@@ -755,9 +783,7 @@ export default {
 				name: 'ana002',
 			})
 		},
-	},
 
-	computed: {
 		AnalyzeStr() {
 			// 분석환경
 			var str = ''
@@ -771,7 +797,7 @@ export default {
 
 		GroupCoCd() {
 			// 회사코드
-			return this.userInfo.GroupCoCd
+			return this.userInfo.groupCoCd
 		},
 
 		Department() {

@@ -99,19 +99,18 @@
 								<tr>
 									<th>분석환경</th>
 									<td>
-										{{
-											this.aplcnResult != null
-												? this.aplcnResult
-														.anlsEvirnSpecInfo
-												: ''
-										}}
+										<span
+											v-html="AnlsEvirnSpecInfo()"
+										></span>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="btnArea">
-						<v-btn class="box" large>홈으로 가기</v-btn>
+						<v-btn class="box" large @click="GoHome()"
+							>홈으로 가기</v-btn
+						>
 						<v-btn color="primary" large dark>My Page 가기</v-btn>
 					</div>
 				</div>
@@ -122,7 +121,6 @@
 
 <script>
 import animationFile from '@/assets/lottie/check.json'
-import util from '@/utils/util'
 import axios from 'axios'
 
 export default {
@@ -144,16 +142,15 @@ export default {
 				projId: this.$route.params.projectId,
 			}
 			console.log('route.projectId: ' + this.$route.params.projectId)
-			const queryString = util.convertUrl(param)
+			const queryString = this.convertUrl(param)
 
-			var url = '/analyze/analenvreq/ana004/selectAna00401'
+			var url = '/api/analyze/analenvreq/ana004/selectAna00401'
 
 			axios
 				.get(url + queryString, {})
 				.then(res => {
 					this.aplcnResult = res.data.aplcnResult
 					console.log(res.data)
-					console.log(this.aplcnResult)
 				})
 				.catch(err => {
 					console.log('err : ' + err)
@@ -164,6 +161,20 @@ export default {
 			this.anim = anim
 			this.anim.setSpeed(1.5)
 		},
+
+		AnlsEvirnSpecInfo() {
+			return this.aplcnResult != null
+				? this.aplcnResult.anlsEvirnSpecInfo
+				: ''
+		},
+
+		GoHome() {
+			this.$router.push({
+				name: 'Main',
+			})
+		},
+
+		GoMyPage() {},
 	},
 }
 </script>
