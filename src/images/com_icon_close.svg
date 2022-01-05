@@ -1,0 +1,10 @@
+<svg id="com_icon_close_l" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-2{fill:#1e1909}
+        </style>
+    </defs>
+    <path id="container" style="fill:none" d="M0 0h24v24H0z"/>
+    <path id="사각형_1533" data-name="사각형 1533" class="cls-2" transform="rotate(45 -1.746 7.407)" d="M0 0h22.443v1.87H0z"/>
+    <path id="사각형_1534" data-name="사각형 1534" class="cls-2" transform="rotate(135 9.32 6.629)" d="M0 0h22.443v1.87H0z"/>
+</svg>
