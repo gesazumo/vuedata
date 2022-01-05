@@ -69,6 +69,12 @@ const adminRouter = [
 		meta: { isPublic: true },
 		component: () => import('@/views/admin/ADM025.vue'),
 	},
+	{
+		path: 'adm022',
+		name: 'adm022',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM022.vue'),
+	},
 ]
 
 export default adminRouter

@@ -9,6 +9,7 @@ export const getCmCodeApi = () => {
 			qnaCmCodeStatus: [...constant.qnaCmCodeStatus],
 			qnaCmCodeDstic: [...constant.qnaCmCodeDstic],
 			commCmcodeCompany: [...constant.commCmcodeCompany],
+			notiCmCodePosting: [...constant.notiCmCodePosting],
 		},
 	}
 }
