@@ -228,11 +228,7 @@
 export default {
 	data() {
 		return {
-			projectList: [
-				{ name: 'Project1', id: '01' },
-				{ name: 'Project2', id: '02' },
-				{ name: 'Project3', id: '03' },
-			],
+			projectList: [],
 			project: '',
 			radioPackageName: 'python',
 			etcPackageName: '',
@@ -249,9 +245,17 @@ export default {
 		}
 	},
 	created() {
-		this.project = this.projectList[0]
+		this.setProjectList()
 	},
 	methods: {
+		setProjectList() {
+			this.projectList = [
+				{ name: 'Project1', id: '01' },
+				{ name: 'Project2', id: '02' },
+				{ name: 'Project3', id: '03' },
+			]
+			this.project = this.projectList[0]
+		},
 		setPackageName() {
 			if (this.radioPackageName === 'etc') {
 				this.packageName = this.etcPackageName
