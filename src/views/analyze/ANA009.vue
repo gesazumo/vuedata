@@ -195,7 +195,11 @@
 export default {
 	data() {
 		return {
-			date: null,
+			projectList: [
+				{ name: 'Project1', id: '01' },
+				{ name: 'Project2', id: '02' },
+				{ name: 'Project3', id: '03' },
+			],
 			packagename: '',
 			packagenameRules: [v => !!v || '패키지 그룹명을 입력해 주세요'],
 			libname: '',
