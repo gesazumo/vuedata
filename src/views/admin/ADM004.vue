@@ -32,6 +32,7 @@
 										clearable
 										outlined
 										hide-details="auto"
+										v-model="instncName"
 									>
 										<template slot="append-outer">
 											<v-btn color="primary" dark>
@@ -53,6 +54,7 @@
 										clearable
 										outlined
 										hide-details="auto"
+										v-model="instncDefinCtnt"
 									>
 									</v-text-field>
 								</td>
@@ -91,15 +93,14 @@
 														/>
 													</th>
 													<td>
-														<strong
-															>인스턴스코드</strong
-														>
+														<strong>
+															인스턴스코드
+														</strong>
 													</td>
 													<td>
-														<strong
-															>인스턴스코드
-															정의</strong
-														>
+														<strong>
+															인스턴스코드 정의
+														</strong>
 													</td>
 												</tr>
 											</thead>
@@ -124,10 +125,12 @@
 													<td>
 														<input
 															type="text"
-															v-model="modelText"
+															v-model="
+																item2.instncCd
+															"
 															:rules="
 																() =>
-																	!!modelText ||
+																	!!item2.instncCd ||
 																	'인스턴스코드를 입력해주세요.'
 															"
 														/>
@@ -135,10 +138,12 @@
 													<td>
 														<input
 															type="text"
-															v-model="modelText2"
+															v-model="
+																item2.instncCtnt
+															"
 															:rules="
 																() =>
-																	!!modelText2 ||
+																	!!item2.instncCtnt ||
 																	'인스턴스코드 정의를 입력해주세요.'
 															"
 														/>
@@ -188,8 +193,8 @@ export default {
 			jungBokChk: false, // 단어중복체크
 			jungBokChkText: '', // 중복체크 완료 단어
 			instncIdnfr: '', // 식별자
-			modelText: [],
-			modelText2: [],
+			instncName: '', // 인스턴스명
+			instncDefinCtnt: '', // 인스턴스식별자
 			btnText: '등록',
 			headers: [
 				{
@@ -222,38 +227,6 @@ export default {
 					}
 				}
 			}
-
-			// let url = '/admin/meta/regInstnc'
-			// if (this.btnText == '수정') {
-			// 	url = '/admin/meta/modInstnc'
-			// }
-
-			// if (!confirm('단어를 ' + this.btnText + ' 하시겠습니까?')) {
-			// 	return
-			// }
-
-			// axios
-			// 	.post(url, {
-			// 		// hanglWordName: this.korWord, // 한글단어명
-			// 		// engWordName: this.engWord, // 영어 단어명
-			// 		// engAbrvnName: this.engWordShort, // 영어약어명
-			// 		// smwrCmwrDstic: this.btnWordGb, // 단어구분
-			// 		// hanglWordDefin: this.strSummarize, // 정의
-			// 		// sysEmpid: 'S017069',
-			// 		// screnRegiYn: 'Y',
-			// 	})
-			// 	.then(res => {
-			// 		if (res) {
-			// 			alert('등록되었습니다.')
-			// 			this.gf_router('adm003', {
-			// 				searchKey: this.$route.params.searchKey,
-			// 				searchKey2: this.$route.params.searchKey2,
-			// 			})
-			// 		}
-			// 	})
-			// 	.catch(err => {
-			// 		console.log('err : ' + err)
-			// 	})
 		},
 
 		addRow() {
@@ -291,30 +264,60 @@ export default {
 			}
 		},
 
-		// /admin/meta/getInstncCon
+		fn_jungBokChk() {
+			axios
+				.get('/api/admin/meta/getWordCon', {
+					params: { inHanglWordName: this.korWord },
+				})
+				.then(res => {
+					if (res.data) {
+						alert('이미 등록된 단어입니다.')
+						this.jungBokChk = false
+						this.$refs.form.validate()
+					} else {
+						if (
+							confirm('등록가능한 단어입니다.\n등록하시겠습니까?')
+						) {
+							this.jungBokChk = true
+							this.jungBokChkText = this.korWord
+							this.$refs.form.validate()
+						}
+					}
+				})
+				.catch(err => {
+					alert('err : ' + err)
+				})
+		},
 	},
 
 	created() {
 		// 값이 있을경우 수정
+		console.log(this.$route.params.instncIdnfr)
 		if (this.$route.params.instncIdnfr) {
 			this.btnText = '수정'
 			this.jungBokChk = true
 			axios
-				.post('/admin/meta/getInstncCon?', {
-					inInstncIdnfr: this.$route.params.instncIdnfr,
+				.get('/api/admin/meta/getInstncCon?', {
+					params: { inInstncIdnfr: this.$route.params.instncIdnfr },
 				})
 				.then(res => {
 					console.log(JSON.stringify(res))
-					// this.instncIdnfr = res.data.instncIdnfr // 식별자
-					// this.instncCd = res.data.instncCd // 인스턴스명
-					// this.instncCtnt = res.data.instncCtnt // 인스턴스 정의
+					this.instncIdnfr = res.data.instncIdnfr // 식별자
+					this.instncName = res.data.instncName // 인스턴스명
+					this.instncDefinCtnt = res.data.instncDefinCtnt // 인스턴스 정의
+				})
+				.catch(err => {
+					console.log('err : ' + err)
+				})
 
-					// this.korWord = res.data.hanglWordName
-					// this.jungBokChkText = res.data.hanglWordName
-					// this.engWord = res.data.engWordName
-					// this.engWordShort = res.data.engAbrvnName
-					// this.btnWordGb = res.data.smwrCmwrDstic
-					// this.strSummarize = res.data.hanglWordDefin
+			axios
+				.get('/api/admin/meta/getInsDtlList', {
+					params: { inInstncIdnfr: this.$route.params.instncIdnfr },
+				})
+				.then(res => {
+					console.log('상세 : ' + JSON.stringify(res))
+					this.instanceRows = res.data.list
+					// this.dtList = item
 				})
 				.catch(err => {
 					console.log('err : ' + err)
