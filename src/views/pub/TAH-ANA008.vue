@@ -59,11 +59,7 @@
 								<tr>
 									<th>라이브러리 설명</th>
 									<td colspan="3">
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
+										라이브러리 설명이 들어갑니다.
 									</td>
 								</tr>
 								<tr>
@@ -83,7 +79,9 @@
 						<v-btn color="primary" dark large outlined
 							>목록으로</v-btn
 						>
-						<v-btn color="primary" dark large>권한 신청하기</v-btn>
+						<v-btn color="primary" dark large
+							>오픈소스 반입 신청하기</v-btn
+						>
 					</div>
 				</div>
 				<div class="detail_02">
