@@ -195,8 +195,8 @@
 						<tr>
 							<th>본문 <span class="asterisk">필수</span></th>
 							<td>
-								<!-- <vue-editor v-model="content"></vue-editor> -->
-								<v-textarea
+								<vue-editor v-model="content"></vue-editor>
+								<!-- <v-textarea
 									:rules="[
 										() => !!meg || '본문을 입력해 주세요',
 									]"
@@ -204,7 +204,7 @@
 									placeholder="본문을 입력하세요/Editor"
 									clearable
 									outlined
-								></v-textarea>
+								></v-textarea> -->
 							</td>
 						</tr>
 						<tr>
@@ -387,7 +387,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<div v-html="contentTest"></div>
+				<!-- <vue-editor v-model="contentTest"></vue-editor> -->
 			</div>
 			<div class="btn_area">
 				<button class="cancel large">취소</button>
@@ -400,17 +400,17 @@
 	<!-- </div> -->
 </template>
 <script>
-// import { VueEditor } from 'vue2-editor'
+import { VueEditor } from 'vue2-editor'
 export default {
-	// components: {
-	// 	VueEditor,
-	// },
+	components: {
+		VueEditor,
+	},
 	data() {
 		return {
 			meg: '',
 			errorMessages: '',
-			// content: '',
-			// contentTest: '',
+			content: '',
+			contentTest: '',
 			items1: [
 				'Tppic:전체',
 				'머신러닝/딥러닝',
@@ -479,6 +479,7 @@ export default {
 	methods: {
 		onclickBtn() {
 			this.contentTest = this.content
+			console.log(this.content)
 		},
 	},
 }

@@ -80,7 +80,7 @@
 											single-line
 											clearable
 											outlined
-											v-model="libname"
+											v-model="libName"
 											hide-details="auto"
 											:rules="[rules.libname_rule]"
 										></v-text-field>
@@ -112,7 +112,7 @@
 											single-line
 											clearable
 											outlined
-											v-model="libdesc"
+											v-model="libDesc"
 											hide-details="auto"
 											:rules="[rules.libdesc_rule]"
 										></v-text-field>
@@ -129,7 +129,7 @@
 											single-line
 											clearable
 											outlined
-											v-model="libfile"
+											v-model="libFile"
 											hide-details="auto"
 											:rules="[rules.libfile_rule]"
 										></v-text-field>
@@ -353,9 +353,9 @@ export default {
 			file: '',
 			dragging: false,
 			dialog: false,
-			libname: '',
-			libdesc: '',
-			libfile: '',
+			libName: '',
+			libDesc: '',
+			libFile: '',
 			reason: '',
 			ver: '',
 			libVer: '',
@@ -434,10 +434,10 @@ export default {
 				console.log('--------------------SUBMIT--------------------')
 				console.log('selected Group : ' + this.selectGroup)
 				console.log('ver : ' + this.ver)
-				console.log('libname : ' + this.libname)
-				console.log('libVerp : ' + this.libVer)
-				console.log('libdesc : ' + this.libdesc)
-				console.log('libfile : ' + this.libfile)
+				console.log('libName : ' + this.libName)
+				console.log('libVer : ' + this.libVer)
+				console.log('libDesc : ' + this.libDesc)
+				console.log('libFile : ' + this.libFile)
 				console.log('reason : ' + this.reason)
 				console.log('license : ' + this.license)
 				this.dialog = true
