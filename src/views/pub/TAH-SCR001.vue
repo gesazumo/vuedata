@@ -1,15 +1,14 @@
 <template>
 	<v-app>
 		<div class="login__bg">
-			<div class="login__left">
-				<h1>마이데이터 포탈<br />로그인</h1>
-				<div class="login__discription">
-					분석가의 업무 혁신 및 협업 강화를 위한 그룹 마이데이터 통합
-					분석 플랫폼
-				</div>
+			<img src="../../images/com_logo.png" class="login__logo" />
+			<div class="login__title">마이데이터 포탈<br />로그인</div>
+			<div class="login__disc">
+				분석가의 업무 혁신 및 협업 강화를 위한 그룹 마이데이터 통합분석
+				플랫폼
 			</div>
 
-			<div class="login__right">
+			<div class="login__area">
 				<div class="login__area__select">
 					<ul>
 						<li>일반로그인</li>
