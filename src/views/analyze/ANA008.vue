@@ -119,61 +119,39 @@
 		</div>
 		<div class="other">
 			<h5>다른 라이브러리 확인하기</h5>
-			<div class="slide">
-				<ul>
-					<li>
-						<v-btn><i class="fa fa-chevron-left"></i></v-btn>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<v-btn><i class="fa fa-chevron-right"></i></v-btn>
-					</li>
-				</ul>
-			</div>
+			<v-sheet class="mx-auto" max-width="1440">
+				<v-slide-group
+					active-class="success"
+					show-arrows
+					mobile-breakpoint="1"
+				>
+					<v-slide-item
+						v-for="n in 10"
+						:key="n"
+						v-slot="{ active, toggle }"
+					>
+						<v-card
+							:color="active ? undefined : 'grey lighten-1'"
+							class="ma-3"
+							height="130"
+							width="240"
+							@click="toggle"
+						>
+							<v-row align="center" justify="center">
+								<div class="item">
+									<p>
+										Redshift Connector
+										<span>Version: {{ n }}</span>
+									</p>
+									<img
+										src="/img/main_img_mater.0d2f212a.png"
+									/>
+								</div>
+							</v-row>
+						</v-card>
+					</v-slide-item>
+				</v-slide-group>
+			</v-sheet>
 		</div>
 	</v-app>
 </template>
