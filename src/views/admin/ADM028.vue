@@ -387,7 +387,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<div v-html="contentTest"></div>
+				<vue-editor v-model="contentTest"></vue-editor>
 			</div>
 			<div class="btn_area">
 				<button class="cancel large">취소</button>

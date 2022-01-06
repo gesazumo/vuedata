@@ -40,7 +40,7 @@
 				</div>
 				<div class="s_body">
 					<div class="table_box">
-						<v-form ref="form">
+						<v-form ref="form" @submit.prevent>
 							<table class="tb_write">
 								<caption>
 									table caption
@@ -218,14 +218,15 @@
 														v-slot:append-outer
 													>
 														<button
-															@click="popup(true)"
+															@click="popupOpen"
 															class="search-in"
 														>
 															<i
 																class="
 																	fa fa-search
 																"
-															></i>
+															>
+															</i>
 														</button>
 													</template>
 												</v-text-field>
@@ -233,12 +234,30 @@
 											<v-data-table
 												:headers="headers"
 												:height="200"
+												:items="selectedMemebers"
 												fixed-header
 												disable-pagination
 												disable-sort
 												hide-default-footer
 											>
-												<template v-slot:item="row">
+												<template
+													v-slot:[`item.serno`]="{
+														item,
+													}"
+												>
+													<v-btn
+														class="box"
+														dark
+														outlined
+														@click="
+															onButtonClick(item)
+														"
+													>
+														삭제
+													</v-btn>
+												</template>
+
+												<!-- <template v-slot:item="row">
 													<tr>
 														<td>
 															{{
@@ -272,7 +291,7 @@
 															</v-btn>
 														</td>
 													</tr>
-												</template>
+												</template> -->
 											</v-data-table>
 										</td>
 									</tr>
@@ -531,7 +550,12 @@
 					</div>
 				</div>
 			</div>
-			<ANA005 v-if="flag" />
+			<div v-if="popupVal">
+				<ANA005
+					@close:popup="popupClose"
+					@selectMember="selectMember"
+				/>
+			</div>
 		</div>
 	</v-app>
 </template>
@@ -550,7 +574,8 @@ export default {
 	},
 	data() {
 		return {
-			flag: false,
+			selectedMemebers: [], //선택한 프로젝트 팀원 리스트
+			popupVal: false,
 			// 작업
 			athena: false,
 			quickSight: false,
@@ -583,7 +608,33 @@ export default {
 			project_desc: '',
 			project_desc_rule: [v => !!v || '프로젝트 설명을 입력해 주세요.'],
 			type_rule: [v => !!v || '분석환경을 선택해 주세요.'],
-			headers: [],
+			headers: [
+				{
+					text: '회사명',
+					sortable: true,
+					value: 'groupCoNm',
+				},
+				{
+					text: '부서',
+					sortable: true,
+					value: 'groupDvsnNm',
+				},
+				{
+					text: '이름',
+					sortable: true,
+					value: 'userNm',
+				},
+				{
+					text: '사번',
+					sortable: true,
+					value: 'userNo',
+				},
+				{
+					text: '삭제',
+					sortable: true,
+					value: 'serno',
+				},
+			],
 		}
 	},
 
@@ -592,8 +643,16 @@ export default {
 	},
 
 	methods: {
-		popup(value) {
-			this.flag = value
+		selectMember(members) {
+			this.popupVal = false
+			this.selectedMemebers = members
+		},
+		popupOpen() {
+			this.popupVal = true
+		},
+
+		popupClose() {
+			this.popupVal = false
 		},
 
 		init() {
@@ -639,7 +698,10 @@ export default {
 		},
 
 		onButtonClick(item) {
-			console.log('click on ' + item.no)
+			console.log('click on ' + item)
+			this.selectedMemebers = this.selectedMemebers.filter(member => {
+				return member.serno != item.serno
+			})
 		},
 
 		async Application() {

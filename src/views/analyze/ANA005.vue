@@ -4,7 +4,7 @@
 			<div class="team-inner">
 				<div class="team-head">
 					<h5>프로젝트 팀원 선택</h5>
-					<div class="close-btn">
+					<div class="close-btn" @click="popupClose()">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
 				</div>
@@ -107,7 +107,9 @@
 						>
 							취소
 						</v-btn>
-						<v-btn color="primary" dark large>선택완료</v-btn>
+						<v-btn color="primary" dark large @click="selectMember"
+							>선택완료</v-btn
+						>
 					</div>
 				</div>
 			</div>
@@ -169,6 +171,10 @@ export default {
 	},
 
 	methods: {
+		selectMember() {
+			if (this.selectList.length == 0) return
+			this.$emit('selectMember', this.selectList)
+		},
 		Search() {
 			const param = {
 				searchWrd: this.searchWrd,
@@ -222,7 +228,7 @@ export default {
 		},
 
 		popupClose() {
-			this.$emit('close:popup', false)
+			this.$emit('close:popup')
 		},
 
 		MakeList() {
