@@ -59,11 +59,7 @@
 								<tr>
 									<th>라이브러리 설명</th>
 									<td colspan="3">
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
-										라이브러리 설명이 들어갑니다. <br />
+										라이브러리 설명이 들어갑니다.
 									</td>
 								</tr>
 								<tr>
@@ -83,7 +79,9 @@
 						<v-btn color="primary" dark large outlined
 							>목록으로</v-btn
 						>
-						<v-btn color="primary" dark large>권한 신청하기</v-btn>
+						<v-btn color="primary" dark large
+							>오픈소스 반입 신청하기</v-btn
+						>
 					</div>
 				</div>
 				<div class="detail_02">
@@ -119,63 +117,47 @@
 		</div>
 		<div class="other">
 			<h5>다른 라이브러리 확인하기</h5>
-			<div class="slide">
-				<ul>
-					<li>
-						<v-btn><i class="fa fa-chevron-left"></i></v-btn>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<p>
-								Redshift Connector
-								<span>Version: 2.0.900</span>
-							</p>
-							<img src="/img/main_img_mater.0d2f212a.png" />
-						</div>
-					</li>
-					<li>
-						<v-btn><i class="fa fa-chevron-right"></i></v-btn>
-					</li>
-				</ul>
-			</div>
+			<v-sheet class="mx-auto" max-width="1440">
+				<v-slide-group
+					v-model="model"
+					active-class="success"
+					show-arrows
+				>
+					<v-slide-item
+						v-for="n in 10"
+						:key="n"
+						v-slot="{ active, toggle }"
+					>
+						<v-card
+							:color="active ? undefined : 'grey lighten-1'"
+							class="ma-3"
+							height="130"
+							width="240"
+							@click="toggle"
+						>
+							<v-row align="center" justify="center">
+								<div class="item">
+									<p>
+										Redshift Connector
+										<span>Version: 2.0.900</span>
+									</p>
+									<img
+										src="/img/main_img_mater.0d2f212a.png"
+									/>
+								</div>
+							</v-row>
+						</v-card>
+					</v-slide-item>
+				</v-slide-group>
+			</v-sheet>
 		</div>
 	</v-app>
 </template>
 
-<script></script>
+<script>
+export default {
+	data: () => ({
+		model: null,
+	}),
+}
+</script>

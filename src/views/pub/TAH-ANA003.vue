@@ -278,18 +278,23 @@
 										<v-row>
 											<v-checkbox
 												label="Athena"
+												hide-details="auto"
 											></v-checkbox>
 											<v-checkbox
 												label="QuickSight"
+												hide-details="auto"
 											></v-checkbox>
 											<v-checkbox
 												label="Notebook"
+												hide-details="auto"
 											></v-checkbox>
 											<v-checkbox
 												label="SageMaker Studio"
+												hide-details="auto"
 											></v-checkbox>
 											<v-checkbox
 												label="가상화 환경"
+												hide-details="auto"
 											></v-checkbox>
 										</v-row>
 									</td>

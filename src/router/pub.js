@@ -40,6 +40,14 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ANA003.vue'),
 	},
 	{
+		path: 'ana005', //Analyze 분석환경신청 팀원선택
+		component: () => import('@/views/pub/TAH-ANA005.vue'),
+	},
+	{
+		path: 'ana006', //Analyze 분석환경신청 프로젝트 생성 확인
+		component: () => import('@/views/pub/TAH-ANA006.vue'),
+	},
+	{
 		path: 'ana004', //Analyze 분석환경신청 신청정보입력
 		component: () => import('@/views/pub/TAH-ANA004.vue'),
 	},
@@ -100,6 +108,14 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM006.vue'),
 	},
 	{
+		path: 'adm068', //Admin 메타관리 컬럼명 조회
+		component: () => import('@/views/pub/TAH-ADM068.vue'),
+	},
+	{
+		path: 'adm069', //Admin 메타관리 인스턴스명 조회
+		component: () => import('@/views/pub/TAH-ADM069.vue'),
+	},
+	{
 		path: 'ana007', //Analyze 오픈소스 라이브러리 리스트
 		component: () => import('@/views/pub/TAH-ANA007.vue'),
 	},
@@ -114,5 +130,14 @@ export const pubRouter = [
 	{
 		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ANA010.vue'),
+	},
+
+	{
+		path: 'adm045', //Analyze 오픈소스 라이브러리 반입신청완료
+		component: () => import('@/views/pub/TAH-ADM045.vue'),
+	},
+	{
+		path: 'adm046', //Analyze 오픈소스 라이브러리 반입신청완료
+		component: () => import('@/views/pub/TAH-ADM046.vue'),
 	},
 ]

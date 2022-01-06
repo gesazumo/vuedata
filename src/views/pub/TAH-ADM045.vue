@@ -2,7 +2,7 @@
 	<v-app>
 		<div class="adm_contents">
 			<div class="inner">
-				<h5>문의하기 관리</h5>
+				<h5>마이데이터, 특화데이터 컨텐츠 조회</h5>
 				<div class="adm-search">
 					<v-row>
 						<v-col md="4">
@@ -37,31 +37,6 @@
 								hide-details="auto"
 							></v-select>
 						</v-col>
-						<v-col md="4">
-							<div class="label_txt">계열사명</div>
-							<v-select
-								:items="items_02"
-								placeholder="전체"
-								single-line
-								outlined
-								hide-details="auto"
-							></v-select>
-						</v-col>
-					</v-row>
-					<v-row>
-						<v-col md="4">
-							<div class="label_txt">Status</div>
-							<div class="checkgroup">
-								<v-checkbox
-									label="답변 대기중"
-									hide-details="auto"
-								></v-checkbox>
-								<v-checkbox
-									label="답변완료"
-									hide-details="auto"
-								></v-checkbox>
-							</div>
-						</v-col>
 						<v-col></v-col>
 						<v-col md="2" align="right">
 							<v-btn color="primary" dark outlined>초기화</v-btn>
@@ -75,13 +50,17 @@
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
 						</div>
 						<div class="btn_area">
-							<v-btn color="primary" dark> 답변하기 </v-btn>
+							<v-btn color="primary" dark> 등록하기 </v-btn>
 							<v-btn color="primary" dark outlined>
 								삭제하기
+							</v-btn>
+							<v-btn color="primary" dark outlined>
+								수정하기
 							</v-btn>
 						</div>
 						<div class="table_box">
 							<v-data-table
+								v-model="selected"
 								:headers="headers"
 								:items="items"
 								:items-per-page="itemsPerPage"
@@ -90,28 +69,6 @@
 								hide-default-footer
 								class="elevation-1"
 							>
-								<template v-slot:item="row">
-									<tr>
-										<td>{{ row.item.singleselect }}</td>
-										<td>{{ row.item.a }}</td>
-										<td>{{ row.item.b }}</td>
-										<td>{{ row.item.c }}</td>
-										<td>{{ row.item.d }}</td>
-										<td>{{ row.item.e }}</td>
-										<td>{{ row.item.f }}</td>
-										<td>{{ row.item.g }}</td>
-										<td>
-											{{ row.item.h }}
-											<v-btn
-												color="primary"
-												dark
-												outlined
-												small
-												>답변하기</v-btn
-											>
-										</td>
-									</tr>
-								</template>
 							</v-data-table>
 						</div>
 					</div>
@@ -164,66 +121,86 @@ export default {
 			selected: [],
 			headers: [
 				{
-					text: 'Status',
+					text: '카테고리',
 					sortable: true,
 					value: 'a',
 				},
 				{
-					text: '구분',
+					text: '상세구분',
 					sortable: true,
 					value: 'b',
 				},
 				{
-					text: '문의내용',
+					text: '등록자',
 					sortable: true,
 					value: 'c',
 				},
 				{
-					text: '등록자',
-					sortable: true,
-					value: 'd',
-				},
-				{
-					text: '계열사명',
-					sortable: true,
-					value: 'e',
-				},
-				{
 					text: '등록일',
 					sortable: true,
-					value: 'f',
-				},
-				{
-					text: '답변자',
-					sortable: true,
-					value: 'g',
-				},
-				{
-					text: '답변일',
-					sortable: true,
-					value: 'h',
+					value: 'd',
 				},
 			],
 			items: [
 				{
-					a: '대기중',
-					b: '포털',
-					c: '인사이트 리포트등록문의...',
-					d: '김영선',
-					e: 'KB국민은행',
-					f: '2021-00-00',
-					g: '-',
-					h: '답변하기',
+					a: '마이데이터',
+					b: '공통업권',
+					c: '2021-00-00',
+					d: '최자영',
 				},
 				{
-					a: '완료',
-					b: '기타',
-					c: '부서변경시 분석환경 반납...',
-					d: '조승연',
-					e: 'KB금융지주',
-					f: '2021-00-00',
-					g: '최자영',
-					h: '2021-00-00',
+					a: '특화데이터',
+					b: '지식그래프',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '전자금융업권',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '할부금융업권',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '보증보험업권',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '통신업권',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '은행업권',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '카드업권',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '가맹점업종',
+					c: '2021-00-00',
+					d: '최자영',
+				},
+				{
+					a: '마이데이터',
+					b: '금융투자업권',
+					c: '2021-00-00',
+					d: '최자영',
 				},
 			],
 		}
