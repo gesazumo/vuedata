@@ -4,7 +4,7 @@
 			<div class="team-inner">
 				<div class="team-head">
 					<h5>프로젝트 팀원 선택</h5>
-					<div class="close-btn">
+					<div class="close-btn" @click="popupClose()">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
 				</div>
@@ -222,7 +222,7 @@ export default {
 		},
 
 		popupClose() {
-			this.$emit('close:popup', false)
+			this.$emit('close:popup')
 		},
 
 		MakeList() {
