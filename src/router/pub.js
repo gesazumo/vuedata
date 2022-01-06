@@ -145,4 +145,8 @@ export const pubRouter = [
 		path: 'exp001', //Explore Main
 		component: () => import('@/views/pub/TAH-EXP001.vue'),
 	},
+	{
+		path: 'scr001', //Explore Main
+		component: () => import('@/views/pub/TAH-SCR001.vue'),
+	},
 ]
