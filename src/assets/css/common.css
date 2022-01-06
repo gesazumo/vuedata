@@ -3789,8 +3789,9 @@ table span {
 }
 
 .search_keyword {
-  max-width: 630px;
+  max-width: 650px;
   margin: 0 auto;
+  text-align: center;
 }
 .search_keyword .inner {
   display: inline-block;
@@ -3808,7 +3809,7 @@ table span {
   min-height: 80px;
 }
 .search_keyword .inner div.tag {
-  max-height: 90px;
+  max-height: 48px;
   text-align: left;
   overflow: hidden;
 }
@@ -3882,6 +3883,7 @@ table span {
   line-height: 32px;
   font-weight: 600;
   margin: 24px 0;
+  min-height: 64px;
 }
 #exp_sub .card_item .card_v .cardtxt {
   display: inline-block;
@@ -3927,10 +3929,7 @@ table span {
 #exp_sub .card_item .card_h .image {
   float:left;
 }
-#exp_sub .card_item .card_h .image img {
-  width: 342px;
-  height: 256px;
-}
+
 #exp_sub .card_item .card_h .text {
   float: left;
   display: inline-block;
@@ -3965,6 +3964,7 @@ table span {
   line-height: 32px;
   font-weight: 600;
   margin: 24px 0;
+  min-height: 64px;
 }
 #exp_sub .card_item .card_h .text .cardtxt {
   display: inline-block;
@@ -4000,4 +4000,162 @@ table span {
 }
 .v-btn .v-btn--text {
   background: transparent !important;
+}
+
+#exp_sub .card_list {
+  display: inline-block;
+  width: 342px;
+  height: 497px;
+  margin: 0 12px;
+}
+#exp_sub .card_list .card_profile {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 31px;
+}
+#exp_sub .card_list .card_profile .profile {
+  display: inline-block;
+  float: left;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;  
+}
+#exp_sub .card_list .card_profile .profile img {
+  width: 56px;
+  height: 56px;
+}
+#exp_sub .card_list .profile_txt {
+  float: left;
+  margin-left: 16px;
+  min-width: 270px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#exp_sub .card_list .profile_txt h6 {
+  font-weight: 600; 
+  margin-bottom: 8px;
+  max-width: 270px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#exp_sub .card_list .profile_txt .profile_info {}
+#exp_sub .card_list .profile_txt .profile_info ul li {
+  float:left;
+  font-family: 'KBFGTextM';
+  font-size: 14px;
+  color: #757575;
+  margin-right:17px;
+}
+#exp_sub .card_list .profile_txt .profile_info ul li:last-child {
+  float: right;
+  margin-right:0;
+}
+#exp_sub .card_list .profile_txt .profile_info ul li span {
+  display: inline-block;
+  border: 1px solid #473eab;
+  border-radius: 4px;
+  color: #473eab;
+  font-family: 'KBFGTextM';
+  font-size: 12px;
+  padding: 4px 8px;
+}
+#exp_sub .card_list .card_board {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 40px;
+  margin-top:0 !important;
+}
+#exp_sub .card_list .card_board .board_img {}
+#exp_sub .card_list .card_board .board_txt {
+  margin-top: 32px;
+  font-family: 'KBFGTextM';
+  font-size: 16px;
+  line-height: 24px;
+  color: #757575;
+  max-height: 73px;
+  max-width: 342px;
+  overflow: hidden;
+  white-space: pre-line;
+  text-overflow: ellipsis;
+}
+#exp_sub .card_list .card_sns {
+  border-top:1px solid #d8d8d8;
+  padding-top:24px;
+}
+#exp_sub .card_list .card_sns div {
+  float: left; 
+  margin-right: 24px;
+}
+
+#exp_sub .card_item .card_d {
+  display: inline-block;
+  width: 342px;
+  height: 363px;
+  padding: 0;
+}
+#exp_sub .card_item .card_d .keyword {
+  clear: both;
+  font-family: "KBFGTextM";
+  font-size: 16px !important;
+
+}
+#exp_sub .card_item .card_d .keyword span {
+  display: inline-block; 
+  float: left;
+  margin: 0 5px 0 0;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background-color: #60584c;
+  color:#fff;
+  font-size: 14px;
+}
+#exp_sub .card_item .card_d .keyword span.etc {
+  background-color: #efe5d8;
+  color:#4d4d4d;
+}
+#exp_sub .card_item .card_d .cardtit {
+  clear: both;
+  float: left;
+  font-family: 'KBFGTextM';
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: 600;
+  margin: 32px 0;
+  min-height: 59px;
+}
+#exp_sub .card_item .card_d .cardtxt {
+  display: inline-block;
+  clear: both;
+  font-family: 'KBFGTextM';
+  font-size: 16px;
+  line-height: 26px;
+  color: #757575; 
+  min-width: 262px;
+  max-width: 262px;
+  min-height: 100px;
+  max-height: 100px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#exp_sub .card_item .card_d .cardinfo {
+  clear: both;
+  font-family: 'KBFGTextM';
+  font-size: 12px;
+  padding-top: 24px;
+  border-top:1px solid #d8d8d8;
+}
+#exp_sub .card_item .card_d .cardinfo div.board div {
+  float: left;
+  margin-right: 24px;
+  font-size: 12px;
+  cursor: pointer;
+}
+#exp_sub .card_item .card_d .cardinfo div.board div.good .v-icon:hover  {
+  color:#ffbc00;
+  -webkit-transform:rotate(-20deg);
+    transform:rotate(-20deg);
 }
