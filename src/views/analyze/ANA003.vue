@@ -40,7 +40,7 @@
 				</div>
 				<div class="s_body">
 					<div class="table_box">
-						<v-form ref="form">
+						<v-form ref="form" @submit.prevent>
 							<table class="tb_write">
 								<caption>
 									table caption
