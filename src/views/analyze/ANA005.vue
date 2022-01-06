@@ -107,7 +107,9 @@
 						>
 							취소
 						</v-btn>
-						<v-btn color="primary" dark large>선택완료</v-btn>
+						<v-btn color="primary" dark large @click="selectMember"
+							>선택완료</v-btn
+						>
 					</div>
 				</div>
 			</div>
@@ -169,6 +171,10 @@ export default {
 	},
 
 	methods: {
+		selectMember() {
+			if (this.selectList.length == 0) return
+			this.$emit('selectMember', this.selectList)
+		},
 		Search() {
 			const param = {
 				searchWrd: this.searchWrd,
