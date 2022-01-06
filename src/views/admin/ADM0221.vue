@@ -373,7 +373,11 @@
 <script>
 import DatePicker from 'vue2-datepicker'
 import { VueEditor } from 'vue2-editor'
-import { getNoticeDetailApi, updateNoticesApi } from '@/api/modules/notieceAPI'
+import {
+	deleteNoticesApi,
+	getNoticeDetailApi,
+	updateNoticesApi,
+} from '@/api/modules/notieceAPI'
 export default {
 	components: {
 		DatePicker,
@@ -405,20 +409,50 @@ export default {
 		}
 	},
 	methods: {
-		doDelete() {
-			return 1
+		async doDelete() {
+			if (
+				!(await this.$confirm(
+					'선택 항목을 삭제하시겠습니까?',
+					'삭제하기',
+				))
+			)
+				return
+			try {
+				const { data } = await deleteNoticesApi([this.param.seq])
+				console.log(data)
+				this.$showInfo('삭제되었습니다.')
+				this.$router.push({ name: 'adm021' })
+			} catch (error) {
+				this.$showError(this.apiErrorMsg_Blue)
+				console.log('deleteNoticesApi :' + error)
+			}
 		},
 		async doUpdate() {
+			if (
+				!(await this.$confirm(
+					'공지사항을 수정하시겠습니까?',
+					'수정하기',
+				))
+			)
+				return
 			this.checkRegistDateValid = true
 			this.checkMainText = true
 			this.checkEventEndValid = true
 			if (!this.$refs.form.validate()) return
-			if (this.checkRegistDateValid && this.registDateValid) return
+			if (
+				this.param.posting ==
+				this.$getCmCode('notiCmCodePosting')[1].cmnCd
+			) {
+				if (this.checkRegistDateValid && this.registDateValid) return
+			}
 			if (this.isMainTextEmpty) return
 			try {
 				const { data } = await updateNoticesApi({ ...this.param })
 				console.log(data)
+				this.$showInfo('수정되었습니다.')
+				this.$router.push({ name: 'adm021' })
 			} catch (error) {
+				this.$showInfo('수정실패. ')
 				console.log(error)
 			}
 		},

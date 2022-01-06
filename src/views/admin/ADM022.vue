@@ -425,12 +425,23 @@ export default {
 	},
 	methods: {
 		async doCreate() {
-			console.log('doCreate')
+			if (
+				!(await this.$confirm(
+					'공지사항을 등록하시겠습니까?',
+					'등록하기',
+				))
+			)
+				return
 			this.checkRegistDateValid = true
 			this.checkMainText = true
 			this.checkEventEndValid = true
 			if (!this.$refs.form.validate()) return
-			if (this.checkRegistDateValid && this.registDateValid) return
+			if (
+				this.param.posting ==
+				this.$getCmCode('notiCmCodePosting')[1].cmnCd
+			) {
+				if (this.checkRegistDateValid && this.registDateValid) return
+			}
 			if (this.isMainTextEmpty) return
 			try {
 				await createNoticesApi(this.param)

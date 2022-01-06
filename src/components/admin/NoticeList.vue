@@ -14,7 +14,13 @@
 			>
 				등록하기
 			</v-btn>
-			<v-btn color="primary" dark outlined @click="doDelete">
+			<v-btn
+				color="primary"
+				dark
+				outlined
+				@click="doDelete"
+				v-if="this.selected.length != 0"
+			>
 				삭제하기
 			</v-btn>
 			<v-btn
@@ -40,6 +46,7 @@
 				:items="noticeListData"
 				show-select
 				hide-default-footer
+				@click:row="handleClick"
 				class="elevation-1"
 			>
 				<template v-slot:[`item.datefrom`]="{ item }">
@@ -117,12 +124,25 @@ export default {
 		}
 	},
 	methods: {
+		handleClick(item) {
+			this.$router.push({ name: 'adm0221', params: { seq: item.seq } })
+		},
 		async doDelete() {
-			this.$emit('search')
-			if (!(await this.$confirm('삭제하시겠습니까?', '삭제하기'))) return
+			if (
+				!(await this.$confirm(
+					'선택 항목을 삭제하시겠습니까?',
+					'삭제하기',
+				))
+			)
+				return
 			try {
-				const { data } = await deleteNoticesApi(this.selected)
+				const seqList = this.selected.map(item => {
+					return item.seq
+				})
+				const { data } = await deleteNoticesApi(seqList)
 				console.log(data)
+				this.$showInfo('삭제되었습니다.')
+				this.$emit('search')
 			} catch (error) {
 				this.$showError(this.apiErrorMsg_Blue)
 				console.log('deleteNoticesApi :' + error)
