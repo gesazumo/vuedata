@@ -7,6 +7,10 @@ import uniq from 'lodash/uniq.js'
 import uniqBy from 'lodash/uniqBy.js'
 
 const util = {
+	requiredValid(msg) {
+		return value => !!value || msg
+	},
+
 	convertUrl(param) {
 		if (!param) return ''
 		const queryString = Object.entries(param)

@@ -40,11 +40,9 @@
 			</div>
 			<div class="item_box">
 				<div class="table_box">
-					<div class="tit">
-						<p v-if="itemList.legnth > 0">
-							총 <span>{{ itemList.length }}</span
-							>개의 검색결과가 있습니다.
-						</p>
+					<div class="tit" v-if="itemList.legnth > 0">
+						총 <span>{{ this.itemList.length }}</span
+						>개의 인스턴스 목록이 있습니다.
 					</div>
 					<div class="table_box">
 						<template>
@@ -82,6 +80,11 @@
 										</table>
 									</td>
 								</template>
+								<template v-slot:no-data>
+									<v-alert :value="true">
+										조회된 데이터가 없습니다.
+									</v-alert>
+								</template>
 							</v-data-table>
 						</template>
 					</div>
@@ -98,20 +101,20 @@
 			</div>
 			<div class="btn_area">
 				<button
-					class="cancel large"
-					@click="
-						gf_router('adm003', {
-							searchKey: $route.params.searchKey,
-							searchKey2: $route.params.searchKey2,
-						})
-					"
+					class="delete large"
+					@click="Delete()"
+					:disabled="gf_btnDelete(this.checkselected)"
 				>
-					취소
+					삭제하기
 				</button>
-				<button class="delete large">삭제하기</button>
-				<button class="regit large" @click="Modify()">
-					{{ btnText }}하기
+				<button
+					class="edit large"
+					@click="Modify()"
+					:disabled="gf_btnModify(this.checkselected)"
+				>
+					수정하기
 				</button>
+				<button class="regit large" @click="Insert()">등록하기</button>
 			</div>
 		</div>
 	</div>
@@ -171,7 +174,7 @@ export default {
 				},
 				{
 					text: '상세보기',
-					width: '80px',
+					width: '90px',
 					align: 'center',
 					value: 'data-table-expand',
 				},
@@ -188,6 +191,15 @@ export default {
 			korWord: '', // 한글단어명
 		}
 	},
+
+	created() {
+		if (this.$route.params.searchKey) {
+			this.korWord = this.$route.params.searchKey
+			this.mark = this.$route.params.searchKey2
+			this.onSearch()
+		}
+	},
+
 	methods: {
 		onSearch() {
 			if (this.korWord == '') {
@@ -195,9 +207,8 @@ export default {
 			}
 
 			axios
-				.post('/admin/meta/getInstncList', {
-					inInstncName: this.korWord,
-					inCon: this.mark,
+				.get('/api/admin/meta/getInstncList', {
+					params: { inInstncName: this.korWord, inCon: this.mark },
 				})
 				.then(res => {
 					this.itemList = res.data.list
@@ -224,11 +235,11 @@ export default {
 		Delete() {
 			let param = []
 			for (let key in this.checkselected) {
-				param.push(this.checkselected[key].instncIdnfr)
+				param.push({ instncIdnfr: this.checkselected[key].instncIdnfr })
 			}
 
 			axios
-				.delete('/admin/mata/delInstnc', { instncIdnfr: param })
+				.post('/api/admin/mata/delInstnc', { data: param })
 				.then(res => {
 					alert('삭제되었습니다.')
 					console.log(res)
@@ -241,8 +252,8 @@ export default {
 		expandRow(item) {
 			this.dtList = [] // 초기화
 			axios
-				.post('/admin/meta/getInsDtlList', {
-					inInstncIdnfr: item.item.instncIdnfr,
+				.get('/api/admin/meta/getInsDtlList', {
+					params: { inInstncIdnfr: item.item.instncIdnfr },
 				})
 				.then(res => {
 					this.dtList = res.data.list

@@ -35,6 +35,17 @@
 					<div class="item_box">
 						<div class="tit">
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+							<p
+								style="
+									position: absolute;
+									float: right;
+									right: 80px;
+									color: #473eab;
+								"
+							>
+								<i class="mdi mdi-information-outline"></i>
+								팀원은 최대 10명까지 선택할 수 있습니다.
+							</p>
 						</div>
 
 						<div class="table_box">
@@ -44,11 +55,21 @@
 								:items-per-page="itemsPerPage"
 								:single-select="singleSelect"
 								show-select
-								:height="250"
+								:height="245"
 								fixed-header
 								hide-default-footer
 								class="elevation-1"
 							>
+								<template>
+									<div class="noti_meg">
+										<i
+											class="fas fa-exclamation-circle"
+										></i>
+										<div class="noti_txt">
+											<p>조회 내역이 없습니다.</p>
+										</div>
+									</div>
+								</template>
 							</v-data-table>
 						</div>
 
@@ -81,6 +102,14 @@
 									</span>
 									<span>
 										저스타(kb-H00001)
+										<i class="fa fa-times"></i>
+									</span>
+									<span>
+										요별(kb-H00001)
+										<i class="fa fa-times"></i>
+									</span>
+									<span>
+										요별스타(kb-H00001)
 										<i class="fa fa-times"></i>
 									</span>
 									<span>

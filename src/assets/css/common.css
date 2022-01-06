@@ -3,6 +3,7 @@
 @import "reset.css";
 @import "font.css";
 @import "admin.css";
+@import "style.css";
 
 
 /*메인*/
@@ -197,7 +198,7 @@
   margin:0 auto;
 }
 
-.keyword .inner div.tit {
+.keyword .inner div.tit .search-desc {
   float:left;
   font-family: 'KBFGDisplayM' ;
   font-size: 16px;
@@ -1899,6 +1900,7 @@ input[type="text"] {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   padding-left: 6px !important;
 }
+/*
 .v-text-field .v-label {
   max-width: 90%;
   overflow: hidden;
@@ -1906,7 +1908,7 @@ input[type="text"] {
   white-space: nowrap;
   pointer-events: none;
 }
-/*.v-text-field--outlined .v-label {
+.v-text-field--outlined .v-label {
   top: 5px !important;
 }*/
 .v-input {
@@ -2014,7 +2016,7 @@ input[type="text"] {
 .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th {text-align: center !important;}
 
 
-/*서브*/
+/*서브-분석환경신청*/
 #sub_wrap {
   display: inline-grid;
   padding: 56px 0;
@@ -2096,6 +2098,14 @@ input[type="text"] {
   font-size: 26px !important;
   margin-bottom: 24px;
 }
+.sub_main_top {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  height: 496px;
+  overflow: hidden;
+}
 .sub_top_img {
   position: relative;
   display: inline-block;
@@ -2110,6 +2120,18 @@ input[type="text"] {
   margin: 0 auto;
   color: #fff;
   margin-top: 56px;
+}
+.sub_top_info p.txt {
+  font-family: 'KBFGTextL';
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.sub_top_info h2 {
+  color: #fff;
+}
+.sub_top_btn {
+  margin-top: 48px;
 }
 .sub_top_txt {float:left;}
 .sub_top_txt ul {
@@ -2157,13 +2179,13 @@ input[type="text"] {
   float:left;
   display: inline-block;
   width: 1154px;
-  padding: 0 40px;
-  border-right: 1px solid #d8d8d8;
+  padding: 0 40px;  
 }
 .detail_view .detail_02 {
   float: left;
   width: 285px;
   padding: 0 40px;
+  border-left: 1px solid #d8d8d8;
 }
 .detail_view .detail_02 div:first-child {
   padding-bottom: 40px;
@@ -2235,6 +2257,48 @@ input[type="text"] {
   font-weight: normal;
 }
 .other .slide ul li .item img {
+  float: right;
+  width: 56px;
+  height: 56px;
+  border-radius: 100px;
+  border:1px solid #d8d8d8;
+}
+
+/*v-slide*/
+.theme--light.v-sheet {
+  background-color: transparent;
+  border-color: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+.v-sheet.v-card:not(.v-sheet--outlined) {
+  box-shadow: none !important;
+  /*box-shadow: 
+  0px 3px 1px -2px rgb(0 0 0 / 20%), 
+  0px 2px 2px 0px rgb(0 0 0 / 14%), 
+  0px 1px 5px 0px rgb(0 0 0 / 12%);*/
+}
+.v-slide-group__content .item {
+  position: absolute;
+  top: 0;
+  background:#fff;
+  width:240px;
+  height: 130px;
+  border-radius: 4px;
+  padding: 24px;
+}
+.v-slide-group__content .item p {
+  float: left;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  max-width: 100px;
+}
+.v-slide-group__content .item p span {
+  color:#473eab;
+  font-size: 13px;
+  font-weight: normal;
+}
+.v-slide-group__content .item img {
   float: right;
   width: 56px;
   height: 56px;
@@ -3404,7 +3468,7 @@ table span {
 }
 
 .v-messages {margin-bottom: 5px;}
-.v-messages__message {line-height: 16px !important;}
+. {line-height: 16px !important;}
 /*.v-input--selection-controls__ripple {left:-5px !important; margin:8px !important; }*/
 .v-input__slot {margin-bottom: 0 !important;}
 .v-system-bar .v-input--selection-controls .v-input__slot > .v-label, 
@@ -3435,6 +3499,7 @@ table span {
 .theme--light.v-label {
   color:#504842 !important;
   position: initial !important;
+  overflow: inherit !important;
 }
 
 /*datepicker날짜선택*/ 
@@ -3513,6 +3578,7 @@ table span {
 }
 .team-body-search{
   position: relative;
+  display: inline-block;
   width: 100%;
   margin: 0 auto;
   align-items: center;
@@ -3570,4 +3636,151 @@ table span {
 .team-select .inner div.tag span i {
   color: #473eab;
   cursor: pointer;
+}
+
+
+/*오픈팝업*/
+.open-popup {
+  background-color:rgba(0,0,0,.3);
+  justify-content:center;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  padding:0;
+  z-index: 12;
+}
+.open-inner {
+  width:100%;
+  max-width: 1064px;
+  height: 100%;
+  max-height: 800px;
+  margin: 0 auto;
+  background-color:#f4f3f2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.open-head{
+  width:100%;
+  margin: 0 auto;
+  padding: 20px 40px;
+  background:#fff;
+}
+.open-head h5 {
+  font-size: 24px; 
+  line-height: 36px; 
+  font-weight: 600;
+  color:#1e1909;
+}
+.open-title {
+  font-size: 38px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -3px;
+  text-align: center;
+}
+.open-body {
+  position: relative;
+  display: inline-block;
+  width:100%;
+  padding: 24px 40px 40px;
+}
+.open-body-search{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 24px;
+  border-radius: 4px;
+}
+.close-btn {
+  float: right;
+  display: inline-block;
+  margin-top: -45px;
+  padding: 15px;
+  cursor: pointer;
+}
+.close-btn button {padding:0; margin:0;}
+.close-btn i {font-size: 24px;}
+
+
+
+/*Explore*/
+.sub_main_wrap {
+  position: relative;
+  left: 0;
+  top: -70px;
+  width: 1440px;
+  margin: 0 auto;
+}
+.sub_main_search {
+  padding: 40px 0;
+  background: #fff;
+  border-radius: 4px;
+  max-height: 216px;
+  width:100%;
+}
+.search_box {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+}
+.search_box .v-text-field input {
+  flex: 1 1 auto;
+  font-size: 22px !important;
+  line-height: 22px !important;
+  padding: 22px 6px !important;
+  max-width: 100%;
+  min-width: 0px;
+  width: 100%;
+}
+.search_box .v-text-field input label {
+  line-height: 42px !important;
+}
+.search_box .v-text-field .v-input__prepend-inner i {
+  font-size: 22px;
+  margin-top: 7px
+}
+
+.search_keyword {
+  max-width: 630px;
+  margin: 0 auto;
+}
+.search_keyword .inner {
+  display: inline-block;
+  position: relative;
+  margin:0 auto;
+}
+.search_keyword .inner div.tit {
+  float:left;
+  font-family: 'KBFGDisplayM' ;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e1909;
+  margin-right: 24px; 
+  margin-top: 10px;
+  min-height: 80px;
+}
+.search_keyword .inner div.tag {
+  max-height: 90px;
+  text-align: left;
+  overflow: hidden;
+}
+.search_keyword .inner div.tag span {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #d8d8d8;
+  background: #f4f3f2 ;
+  padding: 7px 12px;
+  font-family: 'KBFGTextM';
+  font-size: 14px;
+  color: #4d4d4d;
+  margin: 4px;
+  text-align: center;
 }

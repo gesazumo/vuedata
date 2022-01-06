@@ -1,8 +1,8 @@
 <template>
-	<v-app>
-		<div class="adm_contents">
-			<div class="inner">
-				<h5>공지사항 등록 및 수정</h5>
+	<div class="adm_contents">
+		<div class="inner">
+			<v-form ref="form">
+				<h5>공지사항 수정</h5>
 				<div class="item_box">
 					<div class="table_box">
 						<table class="tb_write">
@@ -60,18 +60,38 @@
 										</v-tooltip>
 									</th>
 									<td>
-										<v-radio-group row hide-details="auto">
-											<v-radio label="일반"> </v-radio>
-											<v-radio label="메인"> </v-radio>
+										<v-radio-group
+											row
+											hide-details="auto"
+											v-model="param.dstic"
+										>
+											<v-radio
+												v-for="code in $getCmCode(
+													'notiCmCodeDstic',
+												)"
+												:key="code.cmnCd"
+												:label="code.cmnCdNm"
+												:value="code.cmnCd"
+											/>
 										</v-radio-group>
 									</td>
 								</tr>
 								<tr>
 									<th>카테고리</th>
 									<td>
-										<v-radio-group row hide-details="auto">
-											<v-radio label="공지사항"></v-radio>
-											<v-radio label="이벤트"></v-radio>
+										<v-radio-group
+											row
+											hide-details="auto"
+											v-model="param.kategorie"
+										>
+											<v-radio
+												v-for="code in $getCmCode(
+													'notiCmCodeKate',
+												)"
+												:key="code.cmnCd"
+												:label="code.cmnCdNm"
+												:value="code.cmnCd"
+											/>
 										</v-radio-group>
 									</td>
 								</tr>
@@ -82,9 +102,20 @@
 									</th>
 									<td>
 										<date-picker
-											v-model="date"
+											valueType="format"
+											required
+											@close="checkEventEndValid = true"
+											v-model="param.eventend"
 											placeholder="날짜 선택"
 										/>
+										<div
+											v-if="
+												checkEventEndValid &&
+												eventEndValid
+											"
+										>
+											날짜 선택은 필수입니다.
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -95,7 +126,7 @@
 									<td>
 										<v-text-field
 											placeholder="제목"
-											v-model="subject"
+											v-model="param.title"
 											:rules="subjectRules"
 											required
 											single-line
@@ -151,29 +182,49 @@
 										</v-tooltip>
 									</th>
 									<td>
-										<div class="checkgroup">
-											<v-checkbox
-												label="게시 기간 지정하지 않음"
-												hide-details="auto"
-											></v-checkbox>
-											<v-checkbox
-												label="게시 기간 지정"
-												hide-details="auto"
-											></v-checkbox>
-										</div>
+										<v-radio-group
+											row
+											hide-details="auto"
+											v-model="param.posting"
+										>
+											<v-radio
+												v-for="code in $getCmCode(
+													'notiCmCodePosting',
+												)"
+												:key="code.cmnCd"
+												:label="code.cmnCdNm"
+												:value="code.cmnCd"
+											/>
+										</v-radio-group>
 									</td>
 								</tr>
-								<tr>
+								<tr
+									v-if="
+										param.posting ==
+										$getCmCode('notiCmCodePosting')[1].cmnCd
+									"
+								>
 									<th>
 										기간
 										<span class="asterisk">필수</span>
 									</th>
 									<td>
 										<date-picker
-											v-model="date"
+											valueType="format"
+											v-model="registDate"
 											range
 											placeholder="기간 선택"
+											required
+											@close="checkRegistDateValid = true"
 										/>
+										<div
+											v-if="
+												checkRegistDateValid &&
+												registDateValid
+											"
+										>
+											기간선택은 필수입니다.
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -183,17 +234,21 @@
 									</th>
 									<td>
 										<vue-editor
-											v-model="textarea"
+											@blur="checkMainText = true"
+											v-model="param.maintext"
 											outlined
 											clearable
+											id="abc"
+											:rules="subjectRules"
 										></vue-editor>
-										<!-- <v-textarea
-											
-											v-model=""
-											:rules="textareaRules"
-											required
-											hide-details="auto"
-										></v-textarea> -->
+										<div
+											class="v-messages__message"
+											v-if="
+												checkMainText && isMainTextEmpty
+											"
+										>
+											본문입력은 필수입니다.
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -202,7 +257,6 @@
 										<v-btn
 											color="primary"
 											dark
-											:loading="isSelecting"
 											@click="handleFileImport"
 											append-outer="fa fa-search"
 											style="margin: 0"
@@ -301,18 +355,25 @@
 					</div>
 				</div>
 				<div class="btn_area center">
-					<v-btn color="primary" dark outlined> 취소 </v-btn>
-					<v-btn color="primary" dark> 수정하기 </v-btn>
-					<v-btn color="primary" dark> 삭제하기 </v-btn>
-					<v-btn color="primary" dark> 등록하기 </v-btn>
+					<v-btn color="primary" dark outlined @click="$router.go()">
+						취소
+					</v-btn>
+					<v-btn color="primary" dark @click="doDelete">
+						삭제하기
+					</v-btn>
+					<v-btn color="primary" dark @click="doUpdate">
+						수정하기
+					</v-btn>
 				</div>
-			</div>
+			</v-form>
 		</div>
-	</v-app>
+	</div>
 </template>
+
 <script>
 import DatePicker from 'vue2-datepicker'
 import { VueEditor } from 'vue2-editor'
+import { getNoticeDetailApi, updateNoticesApi } from '@/api/modules/notieceAPI'
 export default {
 	components: {
 		DatePicker,
@@ -320,21 +381,47 @@ export default {
 	},
 	data() {
 		return {
-			isSelecting: '',
+			param: {
+				dstic: this.$getCmCode('notiCmCodeDstic')[0].cmnCd,
+				kategorie: this.$getCmCode('notiCmCodeKate')[0].cmnCd,
+				eventend: null,
+				title: null,
+				posting: this.$getCmCode('notiCmCodePosting')[0].cmnCd,
+				startdate: null,
+				enddate: null,
+				maintext: null,
+			},
+			subjectRules: [
+				this.requiredValid('공지사항 제목을 입력해 주세요.'),
+			],
+			checkRegistDateValid: false,
+			checkEventEndValid: false,
+			checkMainText: false,
+			isMainTextEmpty: true,
+			textareaRules: [v => !!v || '공지사항 본문을 입력해 주세요.'],
+			handleFileImport: '',
 			dragging: false,
 			file: '',
-			handleFileImport: '',
-			date: '',
-			page: 1,
-			pageCount: 0,
-			itemsPerPage: 10,
-			subject: '',
-			subjectRules: [v => !!v || '공지사항 제목을 입력해 주세요.'],
-			textarea: '',
-			textareaRules: [v => !!v || '공지사항 본문을 입력해 주세요.'],
 		}
 	},
 	methods: {
+		doDelete() {
+			return 1
+		},
+		async doUpdate() {
+			this.checkRegistDateValid = true
+			this.checkMainText = true
+			this.checkEventEndValid = true
+			if (!this.$refs.form.validate()) return
+			if (this.checkRegistDateValid && this.registDateValid) return
+			if (this.isMainTextEmpty) return
+			try {
+				const { data } = await updateNoticesApi({ ...this.param })
+				console.log(data)
+			} catch (error) {
+				console.log(error)
+			}
+		},
 		onChange(e) {
 			var files = e.target.files || e.dataTransfer.files
 
@@ -366,10 +453,70 @@ export default {
 			this.file = ''
 		},
 	},
-	computed: {
-		extension() {
-			return this.file ? this.file.name.split('.').pop() : ''
+	watch: {
+		'param.maintext'() {
+			this.isMainTextEmpty =
+				document
+					.getElementsByClassName('ql-editor')[0]
+					?.outerText.trim() == ''
+					? true
+					: false
 		},
+		checkMainText(value) {
+			if (value) {
+				this.isMainTextEmpty = document.getElementsByClassName(
+					'ql-editor',
+				)[0]?.outerText
+					? false
+					: true
+			}
+		},
+	},
+	computed: {
+		registDate: {
+			get() {
+				return [this.param.startdate, this.param.enddate]
+			},
+			set(value) {
+				this.param.startdate = value[0]
+				this.param.enddate = value[1]
+			},
+		},
+		registDateValid() {
+			return this.registDate[0] == null && this.registDate[1] == null
+		},
+		eventEndValid() {
+			return this.param.eventend == null
+		},
+	},
+	async created() {
+		const { seq } = this.$route.params
+		try {
+			const { data } = await getNoticeDetailApi(seq)
+			this.param = {
+				seq: seq,
+				dstic: data.dstic,
+				kategorie: data.kategorie,
+				eventend: data.eventend
+					? this.formatDate(data.eventend, '-')
+					: null,
+				title: data.title,
+				posting: data.posting,
+				startdate: data.startdate
+					? this.formatDate(data.startdate, '-')
+					: null,
+				enddate: data.enddate
+					? this.formatDate(data.enddate, '-')
+					: null,
+				maintext: data.maintext,
+			}
+		} catch (err) {
+			this.$showError('존재하지 않는 게시물입니다.')
+			this.$router.push({ name: 'adm021' })
+			console.log(err)
+		}
 	},
 }
 </script>
+
+<style></style>

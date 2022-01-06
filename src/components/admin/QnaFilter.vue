@@ -7,7 +7,7 @@
 					placeholder="제목"
 					single-line
 					outlined
-					v-model="param.ques"
+					v-model="param.title"
 					clearable
 					hide-details="auto"
 				></v-text-field>
@@ -16,7 +16,6 @@
 				<div class="label_txt">등록일</div>
 				<div>
 					<date-picker
-						:rules="[v => !!v || 'Required']"
 						valueType="format"
 						v-model="registDate"
 						range
@@ -29,18 +28,45 @@
 			<v-col md="4">
 				<div class="label_txt">구분</div>
 				<v-select
-					:items="$getCmCode('faqCmCodeDstic')"
+					:items="$getCmCode('qnaCmCodeDstic')"
 					placeholder="전체 카테고리"
 					single-line
-					return-object
-					outlined
 					item-text="cmnCdNm"
 					item-value="cmnCd"
+					outlined
 					hide-details="auto"
 					v-model="param.dstic"
 				></v-select>
 			</v-col>
-			<v-col md="5"></v-col>
+			<v-col md="4">
+				<div class="label_txt">계열사명</div>
+				<v-select
+					:items="$getCmCode('commCmcodeCompany')"
+					placeholder="전체"
+					return-object
+					single-line
+					item-text="cmnCdNm"
+					item-value="cmnCd"
+					outlined
+					hide-details="auto"
+					v-model="param.company"
+				></v-select>
+			</v-col>
+		</v-row>
+		<v-row>
+			<v-col md="4">
+				<div class="label_txt">Status</div>
+				<div class="checkgroup">
+					<v-checkbox
+						v-for="code in $getCmCode('qnaCmCodeStatus')"
+						:key="code.cmnCd"
+						:label="code.cmnCdNm"
+						:value="code.cmnCd"
+						hide-details="auto"
+					/>
+				</div>
+			</v-col>
+			<v-col></v-col>
 			<v-col md="2" align="right">
 				<v-btn color="primary" dark outlined @click="doInit"
 					>초기화</v-btn

@@ -108,6 +108,14 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM006.vue'),
 	},
 	{
+		path: 'adm068', //Admin 메타관리 컬럼명 조회
+		component: () => import('@/views/pub/TAH-ADM068.vue'),
+	},
+	{
+		path: 'adm069', //Admin 메타관리 인스턴스명 조회
+		component: () => import('@/views/pub/TAH-ADM069.vue'),
+	},
+	{
 		path: 'ana007', //Analyze 오픈소스 라이브러리 리스트
 		component: () => import('@/views/pub/TAH-ANA007.vue'),
 	},
@@ -123,8 +131,18 @@ export const pubRouter = [
 		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ANA010.vue'),
 	},
+
 	{
-		path: 'test', //Analyze 오픈소스 라이브러리 반입신청완료
-		component: () => import('@/views/pub/test.vue'),
+		path: 'adm045', //Analyze 오픈소스 라이브러리 반입신청완료
+		component: () => import('@/views/pub/TAH-ADM045.vue'),
+	},
+	{
+		path: 'adm046', //Analyze 오픈소스 라이브러리 반입신청완료
+		component: () => import('@/views/pub/TAH-ADM046.vue'),
+	},
+	//Explore Sub Main
+	{
+		path: 'exp001', //Explore Main
+		component: () => import('@/views/pub/TAH-EXP001.vue'),
 	},
 ]

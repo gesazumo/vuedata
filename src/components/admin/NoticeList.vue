@@ -7,11 +7,30 @@
 			</p>
 		</div>
 		<div class="btn_area">
-			<v-btn color="primary" dark> 등록하기 </v-btn>
+			<v-btn
+				color="primary"
+				dark
+				@click="$router.push({ name: 'adm022' })"
+			>
+				등록하기
+			</v-btn>
 			<v-btn color="primary" dark outlined @click="doDelete">
 				삭제하기
 			</v-btn>
-			<v-btn color="primary" dark outlined> 수정하기 </v-btn>
+			<v-btn
+				color="primary"
+				dark
+				outlined
+				v-if="selected.length == 1"
+				@click="
+					$router.push({
+						name: 'adm0221',
+						params: { seq: selected[0].seq },
+					})
+				"
+			>
+				수정하기
+			</v-btn>
 		</div>
 		<div class="table_box">
 			<v-data-table
@@ -25,6 +44,7 @@
 			>
 				<template v-slot:[`item.datefrom`]="{ item }">
 					{{ formatDate(item.datefrom, '-') }}
+					{{ item.seq }}
 				</template>
 				<template v-slot:[`item.dateto`]="{ item }">
 					{{ formatDate(item.dateto, '-') }}

@@ -4,16 +4,13 @@
 			<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
 		</div>
 		<div class="btn_area">
-			<v-btn color="primary" dark> 등록하기 </v-btn>
+			<v-btn color="primary" dark> 답변하기 </v-btn>
 			<v-btn color="primary" dark outlined> 삭제하기 </v-btn>
-			<v-btn color="primary" dark outlined> 수정하기 </v-btn>
 		</div>
 		<div class="table_box">
 			<v-data-table
-				v-model="selected"
-				item-key="seq"
 				:headers="headers"
-				:items="faqListData"
+				:items="qnaListData"
 				show-select
 				hide-default-footer
 				class="elevation-1"
@@ -34,14 +31,19 @@ export default {
 			selected: [],
 			headers: [
 				{
-					text: '카테고리',
+					text: 'Status',
+					sortable: true,
+					value: 'status',
+				},
+				{
+					text: '구분',
 					sortable: true,
 					value: 'dstic',
 				},
 				{
-					text: '제목',
+					text: '문의내용',
 					sortable: true,
-					value: 'ques',
+					value: 'qatext',
 				},
 				{
 					text: '등록자',
@@ -49,28 +51,41 @@ export default {
 					value: 'reqemp',
 				},
 				{
-					text: '등록일',
+					text: '계열사명',
 					sortable: true,
-					value: 'registfrom',
+					value: 'company',
 				},
 				{
-					text: '조회수',
+					text: '등록일',
 					sortable: true,
-					value: 'views',
+					value: 'req',
+				},
+				{
+					text: '답변자',
+					sortable: true,
+					value: 'answeremp',
+				},
+				{
+					text: '답변일',
+					sortable: true,
+					value: 'answerdate',
 				},
 			],
 		}
 	},
 	computed: {
-		faqListData() {
+		qnaListData() {
 			return this.list.map(item => {
 				return {
 					seq: item.seq,
+					status: item.status,
 					dstic: item.dstic,
-					ques: item.ques,
-					reqemp: item.reqemp,
-					registfrom: item.sysFrstPrcssYms,
-					views: 0,
+					qatext: item.qatext,
+					reqemp: '등록자',
+					company: item.company,
+					req: item.req,
+					answeremp: '답변자',
+					answerdate: '1991-08-05',
 				}
 			})
 		},
