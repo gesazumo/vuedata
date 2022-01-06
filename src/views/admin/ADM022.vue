@@ -352,6 +352,21 @@
 						</table>
 					</div>
 				</div>
+				<vue-dropzone
+					ref="myVueDropzone"
+					id="dropzone"
+					@vdropzone-thumbnail="thumbnail"
+					:options="dropzoneOptions"
+				>
+					<div class="dropzone-custom-content">
+						<h3 class="dropzone-custom-title">
+							Drag and drop to upload content!
+						</h3>
+						<div class="subtitle">
+							...or click to select a file from your computer
+						</div>
+					</div>
+				</vue-dropzone>
 				<div class="btn_area center">
 					<v-btn color="primary" dark outlined @click="$router.go()">
 						취소
@@ -366,16 +381,25 @@
 </template>
 
 <script>
+import vue2Dropzone from 'vue2-dropzone'
 import DatePicker from 'vue2-datepicker'
 import { VueEditor } from 'vue2-editor'
 import { createNoticesApi } from '@/api/modules/notieceAPI'
 export default {
 	components: {
+		vueDropzone: vue2Dropzone,
 		DatePicker,
 		VueEditor,
 	},
 	data() {
 		return {
+			dropzoneOptions: {
+				url: 'https://httpbin.org/post',
+				thumbnailWidth: 0,
+				maxFilesize: 0.5,
+				addRemoveLinks: true,
+				headers: { 'My-Awesome-Header': 'header value' },
+			},
 			param: {
 				dstic: this.$getCmCode('notiCmCodeDstic')[0].cmnCd,
 				kategorie: this.$getCmCode('notiCmCodeKate')[0].cmnCd,
