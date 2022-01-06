@@ -141,7 +141,7 @@ export default {
 			const param = {
 				projId: this.$route.params.projectId,
 			}
-			console.log('route.projectId: ' + this.$route.params.projectId)
+
 			const queryString = this.convertUrl(param)
 
 			var url = '/api/analyze/analenvreq/ana004/selectAna00401'

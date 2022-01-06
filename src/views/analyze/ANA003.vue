@@ -218,6 +218,7 @@
 														v-slot:append-outer
 													>
 														<button
+															@click="popup(true)"
 															class="search-in"
 														>
 															<i
@@ -394,76 +395,7 @@
 											}}
 										</td>
 									</tr>
-									<tr v-if="sageMaker">
-										<th>
-											SageMaker Studio Template Type
-											<span class="asterisk">필수</span>
-											<v-tooltip
-												right
-												content-class="secondary tooltip-right"
-											>
-												<template
-													v-slot:activator="{
-														on,
-														attrs,
-													}"
-												>
-													<v-btn
-														v-bind="attrs"
-														v-on="on"
-														icon
-														color="secondary"
-														style="
-															background: none !important;
-														"
-													>
-														<v-icon
-															>mdi-help-circle</v-icon
-														>
-													</v-btn>
-												</template>
-												<div>
-													<p
-														class="title"
-														style="
-															color: #fff !important;
-															font-size: 16px !important;
-														"
-													>
-														프로젝트 목적에 맞는
-														Template을 신청할 수
-														있습니다.
-														<span>
-															[Building &
-															Tranining] 모델 구축
-															및 훈련 <br />
-															[Building, Tranining
-															& Deployment] 모델
-															구축, 훈련
-															후배포까지 수행
-														</span>
-													</p>
-												</div>
-											</v-tooltip>
-										</th>
-										<td colspan="3">
-											<v-select
-												v-model="template_S"
-												:items="this.lstIncd5"
-												item-text="cmnCdNm"
-												item-value="cmnCd"
-												placeholder="Project Template Type을 선택하세요"
-												single-line
-												outlined
-												hide-details="auto"
-												:rules="[
-													v =>
-														!!v ||
-														'Project Template Type을 선택해 주세요',
-												]"
-											></v-select>
-										</td>
-									</tr>
+
 									<tr v-if="virtualization">
 										<th rowspan="2">
 											가상화 환경 Instance Type
@@ -599,6 +531,7 @@
 					</div>
 				</div>
 			</div>
+			<ANA005 v-if="flag" />
 		</div>
 	</v-app>
 </template>
@@ -606,15 +539,18 @@
 <script>
 import axios from 'axios'
 import DatePicker from 'vue2-datepicker'
+import ANA005 from '@/views/analyze/ANA005.vue'
 // import { insertAna00301 } from '@/api/modules/anaAPI'
 // import { selectAna00301 } from '@/api/modules/anaAPI'
 
 export default {
 	components: {
 		DatePicker,
+		ANA005,
 	},
 	data() {
 		return {
+			flag: false,
 			// 작업
 			athena: false,
 			quickSight: false,
@@ -629,7 +565,7 @@ export default {
 			lstIncd2: null, // 분석환경신청코드
 			lstIncd3: null, // Notebook 인스턴스코드
 			lstIncd4: null, // SageMakerStudio 인스턴스코드
-			lstIncd5: null, // SageMakerStudio 템플릿코드
+			// lstIncd5: null, // SageMakerStudio 템플릿코드
 			lstIncd6: null, // 가상화환경 인스턴스코드
 			lstIncd7: null, // 가상화환경 스토리지코드
 			aprvalInfo: null, // 결재자 정보
@@ -637,7 +573,7 @@ export default {
 			projectId: '',
 			instance_N: '', // Notebook 인스턴스값
 			instance_S: '', // SageMakerStudio 인스턴스값
-			template_S: '', // SageMakerStudio 템플릿값
+			// template_S: '', // SageMakerStudio 템플릿값
 			instance_V: '', // 가상화환경 인스턴스값
 			// 퍼블
 			date: null,
@@ -656,6 +592,10 @@ export default {
 	},
 
 	methods: {
+		popup(value) {
+			this.flag = value
+		},
+
 		init() {
 			// try {
 			// 	const data = selectAna00301({})
@@ -672,7 +612,7 @@ export default {
 					this.lstIncd2 = res.data.lstIncd2
 					this.lstIncd3 = res.data.lstIncd3
 					this.lstIncd4 = res.data.lstIncd4
-					this.lstIncd5 = res.data.lstIncd5
+					// this.lstIncd5 = res.data.lstIncd5
 					this.lstIncd6 = res.data.lstIncd6
 					this.lstIncd7 = res.data.lstIncd7
 					this.aprvalInfo = res.data.aprvalInfo
@@ -703,11 +643,6 @@ export default {
 		},
 
 		async Application() {
-			this.$router.push({
-				name: 'ana004',
-				params: { projectId: 'KB0-PROJ-0001' },
-			})
-
 			if (this.$refs.form.validate()) {
 				// const param = {
 				// 	projName: this.project, // 프로젝트명
@@ -737,6 +672,7 @@ export default {
 				// } catch (error) {
 				// 	console.log(error)
 				// }
+
 				var url = '/api/analyze/analenvreq/ana003/insertAna00301'
 
 				axios
@@ -753,7 +689,7 @@ export default {
 						anlsEvirnAplcnCd: this.AnalyzeStr(), // 분석환경
 						ntbkInstncCd: this.notebook ? this.instance_N : '', // Notebook Instance
 						stdInstncCd: this.sageMaker ? this.instance_S : '', // SageMaker Studio Instance Type
-						stdTmpltCd: this.sageMaker ? this.template_S : '', // SageMaker Studio Template Type
+						// stdTmpltCd: this.sageMaker ? this.template_S : '', // SageMaker Studio Template Type
 						vrtlInstncCd: this.virtualization
 							? this.instance_V
 							: '', // 가상화 환경 Instance Type
@@ -775,6 +711,20 @@ export default {
 					.catch(err => {
 						console.log('err : ' + err)
 					})
+
+				// var url = '/api/mypage/myaprval/myp032/updateMyp03201'
+
+				// axios
+				// 	.post(url, {
+				// 		aprvalBzwkCd: 'C',
+				// 		aprvalId: 'KB0-APR-C0004',
+				// 	})
+				// 	.then(res => {
+				// 		console.log(res.data)
+				// 	})
+				// 	.catch(err => {
+				// 		console.log('err : ' + err)
+				// 	})
 			}
 		},
 
