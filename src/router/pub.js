@@ -140,4 +140,9 @@ export const pubRouter = [
 		path: 'adm046', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ADM046.vue'),
 	},
+	//Explore Sub Main
+	{
+		path: 'exp001', //Explore Main
+		component: () => import('@/views/pub/TAH-EXP001.vue'),
+	},
 ]
