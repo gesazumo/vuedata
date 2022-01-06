@@ -14,6 +14,7 @@ import Datepicker from 'vue2-datepicker'
 import Lottie from 'vue-lottie'
 import methods from './methods'
 import Toasted from 'vue-toasted'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 Vue.config.productionTip = false
 Vue.component('date-picker', Datepicker)

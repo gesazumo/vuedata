@@ -18,6 +18,11 @@ export const getNoticesApi = param => {
 	return adminInstance.get(`${url}${queryString}`)
 }
 
+export const getNoticeDetailApi = seq => {
+	const url = '/getNoticeConDetail'
+	return adminInstance.get(`${url}?seq=${seq}`)
+}
+
 export const deleteNoticesApi = param => {
 	const url = '/regNoticeConDel'
 	return adminInstance.post(url, {
@@ -27,10 +32,35 @@ export const deleteNoticesApi = param => {
 
 export const updateNoticesApi = param => {
 	const url = '/regNoticeConUpd'
-	console.log(param, url)
+	const parsedParam = {
+		seq: param.seq,
+		dstic: param.dstic,
+		enddate: util.formatDate(param.enddate, ''),
+		eventend: util.formatDate(param.eventend, ''),
+		kategorie: param.kategorie,
+		maintext: param.maintext,
+		posting: param.posting,
+		startdate: util.formatDate(param.startdate, ''),
+		title: param.title,
+	}
+	return adminInstance.post(`${url}`, {
+		...parsedParam,
+	})
 }
 
 export const createNoticesApi = param => {
 	const url = '/regNoticeConIns'
-	console.log(param, url)
+	const parsedParam = {
+		dstic: param.dstic,
+		enddate: util.formatDate(param.enddate, ''),
+		eventend: util.formatDate(param.eventend, ''),
+		kategorie: param.kategorie,
+		maintext: param.maintext,
+		posting: param.posting,
+		startdate: util.formatDate(param.startdate, ''),
+		title: param.title,
+	}
+	return adminInstance.post(`${url}`, {
+		...parsedParam,
+	})
 }

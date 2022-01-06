@@ -4,7 +4,7 @@ const listViewMixin = (apiFuc, initParam) => {
 			return {
 				list: [],
 				page: 1,
-				param: { ...initParam },
+				param: { ...initParam, page: 1 },
 				totalCount: '0',
 			}
 		},
@@ -21,7 +21,7 @@ const listViewMixin = (apiFuc, initParam) => {
 				}
 			},
 			search(param = this.param) {
-				this.param = { ...param }
+				this.param = { ...param, page: 1 }
 				const _param = this.param
 				this.doApiFuc(_param)
 			},

@@ -64,10 +64,12 @@
 				>
 				<ul v-if="showBoardSubMenu">
 					<li>
-						<router-link to="adm021">공지사항 관리</router-link>
+						<router-link :to="{ name: 'adm021' }"
+							>공지사항 관리</router-link
+						>
 					</li>
 					<li><a href="#none">Q &amp; A 관리</a></li>
-					<li><a href="#none">FAQ 관리</a></li>
+					<li><router-link to="adm025">FAQ 관리</router-link></li>
 					<li>
 						<router-link to="adm027"
 							>사이트 리포트 관리</router-link

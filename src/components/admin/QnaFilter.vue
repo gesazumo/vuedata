@@ -6,8 +6,8 @@
 				<v-text-field
 					placeholder="제목"
 					single-line
-					v-model="param.title"
 					outlined
+					v-model="param.title"
 					clearable
 					hide-details="auto"
 				></v-text-field>
@@ -27,29 +27,30 @@
 		<v-row>
 			<v-col md="4">
 				<div class="label_txt">구분</div>
-				<v-radio-group row hide-details="auto" v-model="param.dstic">
-					<v-radio
-						v-for="code in $getCmCode('notiCmCodeDstic')"
-						:key="code.cmnCd"
-						:label="code.cmnCdNm"
-						:value="code.cmnCd"
-					/>
-				</v-radio-group>
+				<v-select
+					:items="$getCmCode('qnaCmCodeDstic')"
+					placeholder="전체 카테고리"
+					single-line
+					item-text="cmnCdNm"
+					item-value="cmnCd"
+					outlined
+					hide-details="auto"
+					v-model="param.dstic"
+				></v-select>
 			</v-col>
 			<v-col md="4">
-				<div class="label_txt">카테고리</div>
-				<v-radio-group
-					row
+				<div class="label_txt">계열사명</div>
+				<v-select
+					:items="$getCmCode('commCmcodeCompany')"
+					placeholder="전체"
+					return-object
+					single-line
+					item-text="cmnCdNm"
+					item-value="cmnCd"
+					outlined
 					hide-details="auto"
-					v-model="param.kategorie"
-				>
-					<v-radio
-						v-for="code in $getCmCode('notiCmCodeKate')"
-						:key="code.cmnCd"
-						:label="code.cmnCdNm"
-						:value="code.cmnCd"
-					/>
-				</v-radio-group>
+					v-model="param.company"
+				></v-select>
 			</v-col>
 		</v-row>
 		<v-row>
@@ -57,20 +58,12 @@
 				<div class="label_txt">Status</div>
 				<div class="checkgroup">
 					<v-checkbox
-						label="게시중"
+						v-for="code in $getCmCode('qnaCmCodeStatus')"
+						:key="code.cmnCd"
+						:label="code.cmnCdNm"
+						:value="code.cmnCd"
 						hide-details="auto"
-						v-model="param.status1"
-					></v-checkbox>
-					<v-checkbox
-						label="대기중"
-						hide-details="auto"
-						v-model="param.status2"
-					></v-checkbox>
-					<v-checkbox
-						label="종료"
-						hide-details="auto"
-						v-model="param.status3"
-					></v-checkbox>
+					/>
 				</div>
 			</v-col>
 			<v-col></v-col>

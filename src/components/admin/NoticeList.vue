@@ -7,11 +7,30 @@
 			</p>
 		</div>
 		<div class="btn_area">
-			<v-btn color="primary" dark> 등록하기 </v-btn>
+			<v-btn
+				color="primary"
+				dark
+				@click="$router.push({ name: 'adm022' })"
+			>
+				등록하기
+			</v-btn>
 			<v-btn color="primary" dark outlined @click="doDelete">
 				삭제하기
 			</v-btn>
-			<v-btn color="primary" dark outlined> 수정하기 </v-btn>
+			<v-btn
+				color="primary"
+				dark
+				outlined
+				v-if="selected.length == 1"
+				@click="
+					$router.push({
+						name: 'adm0221',
+						params: { seq: selected[0].seq },
+					})
+				"
+			>
+				수정하기
+			</v-btn>
 		</div>
 		<div class="table_box">
 			<v-data-table
@@ -19,13 +38,13 @@
 				item-key="seq"
 				:headers="headers"
 				:items="noticeListData"
-				:items-per-page="itemsPerPage"
 				show-select
 				hide-default-footer
 				class="elevation-1"
 			>
 				<template v-slot:[`item.datefrom`]="{ item }">
 					{{ formatDate(item.datefrom, '-') }}
+					{{ item.seq }}
 				</template>
 				<template v-slot:[`item.dateto`]="{ item }">
 					{{ formatDate(item.dateto, '-') }}
@@ -47,10 +66,6 @@ export default {
 	},
 	data() {
 		return {
-			dialog: false,
-			page: 1,
-			pageCount: 0,
-			itemsPerPage: 10,
 			selected: [],
 			headers: [
 				{
@@ -109,8 +124,8 @@ export default {
 				const { data } = await deleteNoticesApi(this.selected)
 				console.log(data)
 			} catch (error) {
-				this.$toasted.error(this.apiErrorMsg_Blue)
-				console.log(error)
+				this.$showError(this.apiErrorMsg_Blue)
+				console.log('deleteNoticesApi :' + error)
 			}
 		},
 	},

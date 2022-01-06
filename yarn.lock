@@ -3408,6 +3408,11 @@
   "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-8.6.0.tgz"
   "version" "8.6.0"
 
+"dropzone@^5.5.1":
+  "integrity" "sha512-Azk8kD/2/nJIuVPK+zQ9sjKMRIpRvNyqn9XwbBHNq+iNuSccbJS6hwm1Woy0pMST0erSo0u4j+KJaodndDk4vA=="
+  "resolved" "https://registry.npmjs.org/dropzone/-/dropzone-5.9.3.tgz"
+  "version" "5.9.3"
+
 "duplexer@^0.1.1":
   "integrity" "sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg=="
   "resolved" "https://registry.npmjs.org/duplexer/-/duplexer-0.1.2.tgz"
@@ -8629,6 +8634,13 @@
   "version" "3.10.4"
   dependencies:
     "date-format-parse" "^0.2.7"
+
+"vue2-dropzone@^3.6.0":
+  "integrity" "sha512-YXC1nCWIZvfa98e/i6h+EshZCkFSxFEh0Sxr9ODfThAPPDVhAzLLlz/4XIx0NGO1QeSy6htwSstte47R7vVhLQ=="
+  "resolved" "https://registry.npmjs.org/vue2-dropzone/-/vue2-dropzone-3.6.0.tgz"
+  "version" "3.6.0"
+  dependencies:
+    "dropzone" "^5.5.1"
 
 "vue2-editor@^2.10.3":
   "integrity" "sha512-99rWL93xfGeFRrq8NY5L7U+Cog/Uenx+UOOJragtxtbhBE9Rv5/C3P/YhJhjMECSbQyHFjUriqv1S3mghvU9Kg=="
