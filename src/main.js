@@ -13,12 +13,15 @@ import constant from './constant'
 import Datepicker from 'vue2-datepicker'
 import Lottie from 'vue-lottie'
 import methods from './methods'
+import NoData from '@/components/Nodata.vue'
 import Toasted from 'vue-toasted'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 Vue.config.productionTip = false
 Vue.component('date-picker', Datepicker)
 Vue.component('lottie', Lottie)
+Vue.component('no-data', NoData)
+
 Object.keys(util).forEach(key => (Vue.prototype[key] = util[key]))
 Object.keys(constant).forEach(key => (Vue.prototype[key] = constant[key]))
 Object.keys(methods).forEach(key => (Vue.prototype[key] = methods[key]))

@@ -49,6 +49,9 @@
 				@click:row="handleClick"
 				class="elevation-1"
 			>
+				<template v-slot:no-data>
+					<nodata />
+				</template>
 				<template v-slot:[`item.datefrom`]="{ item }">
 					{{ formatDate(item.datefrom, '-') }}
 					{{ item.seq }}
