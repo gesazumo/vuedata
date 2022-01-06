@@ -218,14 +218,15 @@
 														v-slot:append-outer
 													>
 														<button
-															@click="popup(true)"
+															@click="popupOpen()"
 															class="search-in"
 														>
 															<i
 																class="
 																	fa fa-search
 																"
-															></i>
+															>
+															</i>
 														</button>
 													</template>
 												</v-text-field>
@@ -531,7 +532,9 @@
 					</div>
 				</div>
 			</div>
-			<ANA005 v-if="flag" />
+			<v-dialog v-if="popupVal">
+				<ANA005 @close:popup="popupClose()" />
+			</v-dialog>
 		</div>
 	</v-app>
 </template>
@@ -550,7 +553,7 @@ export default {
 	},
 	data() {
 		return {
-			flag: false,
+			popupVal: false,
 			// 작업
 			athena: false,
 			quickSight: false,
@@ -592,8 +595,12 @@ export default {
 	},
 
 	methods: {
-		popup(value) {
-			this.flag = value
+		popupOpen() {
+			this.popupVal = true
+		},
+
+		popupClose() {
+			this.popupVal = false
 		},
 
 		init() {
