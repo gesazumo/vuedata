@@ -197,7 +197,7 @@
   margin:0 auto;
 }
 
-.keyword .inner div.tit {
+.keyword .inner div.tit .search-desc {
   float:left;
   font-family: 'KBFGDisplayM' ;
   font-size: 16px;
@@ -3447,7 +3447,7 @@ table span {
 }
 
 .v-messages {margin-bottom: 5px;}
-.v-messages__message {line-height: 16px !important;}
+. {line-height: 16px !important;}
 /*.v-input--selection-controls__ripple {left:-5px !important; margin:8px !important; }*/
 .v-input__slot {margin-bottom: 0 !important;}
 .v-system-bar .v-input--selection-controls .v-input__slot > .v-label, 
