@@ -5,11 +5,11 @@
     left: 0;
     top: 0;
     overflow: hidden;
-    position: relative;
+    position: fixed;
 }
 
 .login__left {
-    position: absolute;
+    position: relative;
     margin-left: 240px;
     margin-top: 221px;
     width: 650px;
@@ -51,19 +51,18 @@
     height: 622px;
     border-radius: 3px;
     background-color: #fff;
+    z-index: 1000;
 }
+
+/* .sso-log {
+    display: none;
+} */
 
 
 .login__area__select {
     margin-top: 60px;
     margin-left: 56px;
 }
-
-.login__area__select li {
-    width: 400px;
-    height: 72px;
-}
-
 
 .login__way {
     font-size: 16px;
@@ -73,9 +72,33 @@
 .btn__login {
     font-family: KBFGTextM;
     font-weight: 600;
+    font-size: 22px;
+    color: #4d4d4d;
+
 }
 
 .login__area__desc {
     margin-top: 20px;
     margin-left: 56px;
+    font-size: ;
+}
+
+.login__num {
+    font-family: KBFGTextM;
+    font-size: 18px;
+    line-height: 18px;
+    color: #968d83;
+    margin-left: 25px;
+    z-index: 1000;
+
+}
+
+.login__textfield {left: 0;
+width: 400px;
+height: 72px;}
+
+.v-tab .login__route {
+    color: #968d83;
+    font-family: KBFGTextM;
+    font-size: 22px;
 }
