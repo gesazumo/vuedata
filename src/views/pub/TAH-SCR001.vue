@@ -8,44 +8,50 @@
 				플랫폼
 			</div>
 
-			<div class="login__area">
+			<div class="login__area General-log">
 				<ul class="login__area__select">
 					<li>
 						<v-tabs>
-							<v-tab>일반 로그인</v-tab>
-							<v-tab>SSO 로그인</v-tab>
+							<v-tab
+								><div class="login__route">
+									일반 로그인
+								</div></v-tab
+							>
+							<v-tab
+								><div class="login__route">
+									SSO 로그인
+								</div></v-tab
+							>
 						</v-tabs>
 					</li>
 				</ul>
 
 				<ul class="login__area__select">
-					<li>
-						<v-select
-							:items="items_01"
-							label="사번"
-							placeholder="사번입력"
-							single-line
+					<div class="login__textfield">
+						<v-text-field
+							:rules="[() => !!meg || '사번을 입력해 주세요']"
+							:error-messages="errorMessages"
+							placeholder="사번"
+							clearable
 							outlined
-							v-model="category"
-							:rules="[rules.required, rules.category_rules]"
-							hide-details="auto"
-						></v-select>
-					</li>
-					<li>
-						<v-select
-							:items="items_01"
-							label="비밀번호"
-							placeholder="비밀번호 입력"
-							single-line
+						>
+							<div class="login__num">사번 입력</div>
+						</v-text-field>
+					</div>
+					<div class="login__textfield">
+						<v-text-field
+							:rules="[() => !!meg || '비밀번호를 입력해 주세요']"
+							:error-messages="errorMessages"
+							placeholder="비밀번호"
+							clearable
 							outlined
-							v-model="secret"
-							:rules="[rules.required, rules.secret_rules]"
-							hide-details="auto"
-						></v-select>
-					</li>
+						>
+						</v-text-field>
+					</div>
 				</ul>
+
 				<div>
-					<div class="btn__login">
+					<div>
 						<button
 							style="
 								width: 400px;
@@ -55,7 +61,7 @@
 								margin-top: 10px;
 							"
 						>
-							로그인
+							<sapn class="btn__login">로그인</sapn>
 						</button>
 					</div>
 					<div class="login__area__desc">
@@ -96,5 +102,20 @@ export default {
 			},
 		}
 	},
+	export default {
+	data: () => ({
+		drawer: false,
+		group: null,
+	}),
+
+	watch: {
+		group() {
+			this.drawer = false
+		},
+	},
+}
+
 }
 </script>
+
+<script></script>
