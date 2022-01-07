@@ -1,7 +1,9 @@
 .login__bg {
-    background: url('../../images/login_bg.png') center center no-repeat;
+    background: url('../../images/login_bg1.png') center center no-repeat;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
     overflow: hidden;
     position: relative;
 }
@@ -27,7 +29,7 @@
     font-weight: 600;
     line-height: 88px;
     height: 166px;
-    margin-top: 68px;
+    margin-top: 60px;
     margin-left: 240px;
     color: #fff;
 }
@@ -47,7 +49,33 @@
     left: 1070px;
     width: 512px;
     height: 622px;
-    
+    border-radius: 3px;
     background-color: #fff;
+}
 
+
+.login__area__select {
+    margin-top: 60px;
+    margin-left: 56px;
+}
+
+.login__area__select li {
+    width: 400px;
+    height: 72px;
+}
+
+
+.login__way {
+    font-size: 16px;
+    color: #1e1909;
+}
+
+.btn__login {
+    font-family: KBFGTextM;
+    font-weight: 600;
+}
+
+.login__area__desc {
+    margin-top: 20px;
+    margin-left: 56px;
 }
