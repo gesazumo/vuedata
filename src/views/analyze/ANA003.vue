@@ -209,6 +209,7 @@
 										<td colspan="3">
 											<v-col md="6">
 												<v-text-field
+													v-model="searchWrd"
 													placeholder="이름을 입력하세요"
 													outlined
 													clearable
@@ -256,42 +257,6 @@
 														삭제
 													</v-btn>
 												</template>
-
-												<!-- <template v-slot:item="row">
-													<tr>
-														<td>
-															{{
-																row.item.company
-															}}
-														</td>
-														<td>
-															{{ row.item.team }}
-														</td>
-														<td>
-															{{ row.item.name }}
-														</td>
-														<td>
-															{{
-																row.item
-																	.companyid
-															}}
-														</td>
-														<td>
-															<v-btn
-																class="box"
-																dark
-																outlined
-																@click="
-																	onButtonClick(
-																		row.item,
-																	)
-																"
-															>
-																삭제
-															</v-btn>
-														</td>
-													</tr>
-												</template> -->
 											</v-data-table>
 										</td>
 									</tr>
@@ -552,6 +517,8 @@
 			</div>
 			<div v-if="popupVal">
 				<ANA005
+					v-bind:selectList="selectedMemebers"
+					v-bind:searchWrd="searchWrd"
 					@close:popup="popupClose"
 					@selectMember="selectMember"
 				/>
@@ -574,6 +541,7 @@ export default {
 	},
 	data() {
 		return {
+			searchWrd: '',
 			selectedMemebers: [], //선택한 프로젝트 팀원 리스트
 			popupVal: false,
 			// 작업
@@ -809,22 +777,37 @@ export default {
 
 		GroupCoCd() {
 			// 회사코드
-			return this.userInfo.groupCoCd
+			var str = this.userInfo.groupCoCd
+			for (var i = 0; i < this.selectedMemebers.length; i++) {
+				str += ',' + this.selectedMemebers[i].groupCoCd
+			}
+			return str
 		},
 
 		Department() {
 			// 부서코드
-			return this.userInfo.groupDvsnCd
+			var str = this.userInfo.groupDvsnCd
+			for (var i = 0; i < this.selectedMemebers.length; i++) {
+				str += ',' + this.selectedMemebers[i].groupDvsnCd
+			}
+			return str
 		},
 
 		RegiEmpid() {
 			// 직원번호
-			return this.userInfo.userNo
+			var str = this.userInfo.userNo
+			for (var i = 0; i < this.selectedMemebers.length; i++) {
+				str += ',' + this.selectedMemebers[i].userNo
+			}
+			return str
 		},
 
 		ProjInptCd() {
 			// 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
 			var str = this.projectDiv == 0 ? '01' : '02'
+			for (var i = 0; i < this.selectedMemebers.length; i++) {
+				str += ',03'
+			}
 			return str
 		},
 	},

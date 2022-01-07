@@ -121,14 +121,16 @@
 import axios from 'axios'
 
 export default {
+	props: ['searchWrd', 'selectList'],
+
 	data() {
 		return {
-			searchWrd: '',
+			//searchWrd: '',
 			nameRules: '',
 			rules: [v => !!v || '이름을 입력해 주세요.'],
 			selected: [],
 			tmmmList: null,
-			selectList: [],
+			//selectList: [],
 			totalCount: 0,
 			headers: [
 				{
@@ -171,10 +173,6 @@ export default {
 	},
 
 	methods: {
-		selectMember() {
-			if (this.selectList.length == 0) return
-			this.$emit('selectMember', this.selectList)
-		},
 		Search() {
 			const param = {
 				searchWrd: this.searchWrd,
@@ -227,17 +225,25 @@ export default {
 			)
 		},
 
-		popupClose() {
-			this.$emit('close:popup')
-		},
-
 		MakeList() {
+			console.log(this.searchWrd)
+			console.log(this.selectList)
+
 			for (var i = 0; i < this.tmmmList.length; i++) {
 				this.$set(this.tmmmList[i], 'select', false)
 				for (var j = 0; j < this.selectList.length; j++)
 					if (this.selectList[j].userNo == this.tmmmList[i].userNo)
 						this.$set(this.tmmmList[i], 'select', true)
 			}
+		},
+
+		popupClose() {
+			this.$emit('close:popup')
+		},
+
+		selectMember() {
+			if (this.selectList.length == 0) return
+			this.$emit('selectMember', this.selectList)
 		},
 	},
 }
