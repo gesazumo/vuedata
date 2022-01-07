@@ -2,6 +2,7 @@ const listViewMixin = (apiFuc, initParam) => {
 	return {
 		data() {
 			return {
+				loading: false,
 				list: [],
 				page: 1,
 				param: { ...initParam, page: 1 },
@@ -13,11 +14,14 @@ const listViewMixin = (apiFuc, initParam) => {
 				try {
 					const { data } = await apiFuc(param)
 					console.log(data)
+					this.loading = true
 					this.list = data.list
 					this.totalCount = data.count
 					this.page = Number(data.parameters.page)
 				} catch (error) {
 					console.log(error)
+				} finally {
+					this.loading = false
 				}
 			},
 			search(param = this.param) {

@@ -50,7 +50,7 @@
 				class="elevation-1"
 			>
 				<template v-slot:no-data>
-					<nodata />
+					<no-data />
 				</template>
 				<template v-slot:[`item.datefrom`]="{ item }">
 					{{ formatDate(item.datefrom, '-') }}

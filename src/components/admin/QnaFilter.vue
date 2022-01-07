@@ -61,7 +61,7 @@
 						v-for="code in $getCmCode('qnaCmCodeStatus')"
 						:key="code.cmnCd"
 						:label="code.cmnCdNm"
-						:value="code.cmnCd"
+						v-model="param[`status${code.cmnCd}`]"
 						hide-details="auto"
 					/>
 				</div>

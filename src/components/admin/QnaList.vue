@@ -15,6 +15,9 @@
 				hide-default-footer
 				class="elevation-1"
 			>
+				<template v-slot:no-data>
+					<no-data />
+				</template>
 			</v-data-table>
 		</div>
 	</div>
@@ -82,7 +85,7 @@ export default {
 					dstic: item.dstic,
 					qatext: item.qatext,
 					reqemp: '등록자',
-					company: item.company,
+					company: item.companynm,
 					req: item.req,
 					answeremp: '답변자',
 					answerdate: '1991-08-05',

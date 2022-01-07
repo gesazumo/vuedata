@@ -7,9 +7,11 @@ export const getQnaApi = param => {
 		company: param.company.cmnCd,
 		datefrom: param.datefrom,
 		dateto: param.dateto,
-		dstic: param.dstic.cmnCd,
-		status: param.status.cmnCd,
+		dstic: param.dstic,
+		status1: String(param.status1),
+		status2: String(param.status2),
 		title: param.title,
+		page: param.page,
 	}
 	console.log(param)
 	console.log(parsedParam)
