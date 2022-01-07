@@ -12,9 +12,9 @@ const commonCodeStore = {
 		},
 	},
 	actions: {
-		fetchCmCode({ commit }) {
-			const { cmCode } = getCmCodeApi()
-			commit(SET_CM_CODE, { cmCode })
+		async fetchCmCode({ commit }) {
+			const { data } = await getCmCodeApi()
+			commit(SET_CM_CODE, { cmCode: data.CmCode })
 		},
 	},
 	getters: {

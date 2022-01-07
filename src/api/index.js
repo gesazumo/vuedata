@@ -17,4 +17,4 @@ function createInstanceWithAuth(url) {
 
 export const instance = createInstance()
 export const adminInstance = createInstanceWithAuth('/api/admin')
-export const userInstance = createInstanceWithAuth()
+export const userInstance = createInstanceWithAuth('/api')

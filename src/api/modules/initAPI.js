@@ -1,15 +1,6 @@
-import constant from '@/constant'
+import { userInstance } from '..'
 
 export const getCmCodeApi = () => {
-	return {
-		cmCode: {
-			notiCmCodeDstic: [...constant.notiCmCodeDstic],
-			notiCmCodeKate: [...constant.notiCmCodeKate],
-			faqCmCodeDstic: [...constant.faqCmCodeDstic],
-			qnaCmCodeStatus: [...constant.qnaCmCodeStatus],
-			qnaCmCodeDstic: [...constant.qnaCmCodeDstic],
-			commCmcodeCompany: [...constant.commCmcodeCompany],
-			notiCmCodePosting: [...constant.notiCmCodePosting],
-		},
-	}
+	const url = '/common/selectCom00001'
+	return userInstance.get(`${url}`)
 }
