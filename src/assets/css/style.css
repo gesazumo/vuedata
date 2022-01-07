@@ -42,7 +42,7 @@
     font-size: 22px;
 }
 
-.login__area {
+.login__area{
     position: absolute;
     float: left;
     top: 179px;
@@ -60,6 +60,9 @@
 
 
 .login__area__select {
+    float: left;
+    top: 60px;
+    left: 56px;
     margin-top: 60px;
     margin-left: 56px;
 }
@@ -80,7 +83,7 @@
 .login__area__desc {
     margin-top: 20px;
     margin-left: 56px;
-    font-size: ;
+    
 }
 
 .login__num {
@@ -89,16 +92,58 @@
     line-height: 18px;
     color: #968d83;
     margin-left: 25px;
-    z-index: 1000;
 
 }
 
 .login__textfield {left: 0;
-width: 400px;
-height: 72px;}
+    width: 400px;
+    height: 62px;
+    line-height: 62px;
+    padding-left: 10px;
+    border: 1px solid #504842;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+label {
+    width: 130px;
+    margin-top: 5px;
+}
+
+input {
+    margin-left: 30px;
+}
+
+fieldset {
+    font-size: 18px;
+}
+
+.text-error {
+    font-family: KBFGTextM;
+    font-size: 11px;
+    color: #dd3300;
+    padding-left: -5px;
+    padding-bottom: 10px;
+}
+
 
 .v-tab .login__route {
     color: #968d83;
     font-family: KBFGTextM;
-    font-size: 22px;
+    font-size: 18px;
+}
+
+.red {
+   background-color:red; 
+   width: 100px;
+   height: 100px;
+   display: none;
+}
+
+.blue {
+    background-color:blue; 
+    width: 100px;
+    height: 100px;
 }

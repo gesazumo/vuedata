@@ -8,7 +8,7 @@
 				플랫폼
 			</div>
 
-			<div class="login__area General-log">
+			<div class="login__area">
 				<ul class="login__area__select">
 					<li>
 						<v-tabs>
@@ -26,29 +26,34 @@
 					</li>
 				</ul>
 
-				<ul class="login__area__select">
-					<div class="login__textfield">
-						<v-text-field
-							:rules="[() => !!meg || '사번을 입력해 주세요']"
-							:error-messages="errorMessages"
-							placeholder="사번"
-							clearable
-							outlined
-						>
-							<div class="login__num">사번 입력</div>
-						</v-text-field>
-					</div>
-					<div class="login__textfield">
-						<v-text-field
-							:rules="[() => !!meg || '비밀번호를 입력해 주세요']"
-							:error-messages="errorMessages"
-							placeholder="비밀번호"
-							clearable
-							outlined
-						>
-						</v-text-field>
-					</div>
-				</ul>
+				<div class="login__area__select">
+					<form action="#">
+						<fieldset>
+							<li class="login__textfield">
+								<label for="id">사번</label>
+								<input
+									class="login__input"
+									for="text"
+									id="id"
+									required
+									placeholder="사번 입력"
+								/>
+							</li>
+							<p class="text-error">사번을 입력해주세요</p>
+							<li class="login__textfield">
+								<label for="id">비밀번호</label>
+								<input
+									class="login__input"
+									for="pw"
+									type="password"
+									id="pw"
+									placeholder="비밀번호 입력"
+								/>
+							</li>
+							<p class="text-error">비밀번호를 입력해주세요</p>
+						</fieldset>
+					</form>
+				</div>
 
 				<div>
 					<div>
