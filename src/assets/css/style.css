@@ -1,0 +1,81 @@
+.login__bg {
+    background: url('../../images/login_bg1.png') center center no-repeat;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.login__left {
+    position: absolute;
+    margin-left: 240px;
+    margin-top: 221px;
+    width: 650px;
+    height: 340px;
+}
+
+.login__logo {
+    margin-left: 240px;
+    margin-top: 200px;
+    width: 56px;
+    height: 42px;
+}
+
+.login__title {
+    font-family: 'KBFGTextM';
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 88px;
+    height: 166px;
+    margin-top: 60px;
+    margin-left: 240px;
+    color: #fff;
+}
+
+.login__disc {
+    margin-top: 80px;
+    margin-left: 240px;
+    color: #fff;
+    font-family: 'KBFGTextl';
+    font-size: 22px;
+}
+
+.login__area {
+    position: absolute;
+    float: left;
+    top: 179px;
+    left: 1070px;
+    width: 512px;
+    height: 622px;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+
+.login__area__select {
+    margin-top: 60px;
+    margin-left: 56px;
+}
+
+.login__area__select li {
+    width: 400px;
+    height: 72px;
+}
+
+
+.login__way {
+    font-size: 16px;
+    color: #1e1909;
+}
+
+.btn__login {
+    font-family: KBFGTextM;
+    font-weight: 600;
+}
+
+.login__area__desc {
+    margin-top: 20px;
+    margin-left: 56px;
+}

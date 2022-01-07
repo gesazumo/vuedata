@@ -348,26 +348,6 @@ export default {
 			itemsPerPage: 10,
 			singleSelect: false,
 			selected: [],
-			headers: [
-				{
-					text: '인스턴스 코드',
-					align: 'center',
-					sortable: false,
-					value: 'code',
-				},
-				{
-					text: '인스턴스코드 정의',
-					align: 'center',
-					sortable: false,
-					value: 'desc',
-				},
-				{
-					text: '삭제',
-					align: 'center',
-					sortable: false,
-					value: 'delete',
-				},
-			],
 			items: [{ code: '', desc: '', delete: '' }],
 			rules: {
 				categori_rule: value => !!value || '카테고리를 선택해 주세요.',

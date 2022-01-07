@@ -34,7 +34,7 @@
 						<p>총 <span>123</span>개의 검색결과가 있습니다.</p>
 					</div>
 					<div class="btn_area">
-						<v-btn color="primary" dark> 등록하기 </v-btn>
+						<v-btn color="accent" dark> 등록하기 </v-btn>
 						<v-btn
 							color="primary"
 							dark

@@ -4,22 +4,12 @@
 			<div class="title">
 				<ul>
 					<li>홈</li>
-					<li><i class="fa fa-chevron-right"></i> Analyze</li>
-					<li><i class="fa fa-chevron-right"></i> 분석환경신청</li>
+					<li><i class="fa fa-chevron-right"></i> My Page</li>
+					<li><i class="fa fa-chevron-right"></i> My 결재함</li>
 				</ul>
-				<h3>분석환경신청</h3>
+				<h3>분석환경신청 결재상세</h3>
 			</div>
 			<div class="subcontents">
-				<div class="s_title border_no">
-					<div class="page_done_tit">
-						<CheckLottie />
-						<h4>분석환경신청이 완료되었습니다.</h4>
-						<span>
-							결재 현황 및 분석환경 신청결과는 ‘<u>My Page</u
-							>’에서 확인 할 수 있습니다.
-						</span>
-					</div>
-				</div>
 				<div class="s_body">
 					<div class="table_box">
 						<table class="tb_write">
@@ -32,7 +22,11 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th>프로젝트ID</th>
+									<th>결재 ID</th>
+									<td>KBO-C00000001</td>
+								</tr>
+								<tr>
+									<th>프로젝트 ID</th>
 									<td>KBO-PROJ-0001</td>
 								</tr>
 								<tr>
@@ -65,12 +59,43 @@
 										Building & Traning)
 									</td>
 								</tr>
+								<tr>
+									<th>요청자</th>
+									<td>최자영(KB국민은행, 데이터기획부)</td>
+								</tr>
+								<tr>
+									<th>요청일시</th>
+									<td>2022-00-00 21:00:00</td>
+								</tr>
+								<tr>
+									<th>결재자</th>
+									<td>
+										강태근(KB국민은행, 데이터엔지니어링부)
+									</td>
+								</tr>
+								<tr>
+									<th>결재현황</th>
+									<td>결재중 / 결재완료 / 반려</td>
+								</tr>
+								<tr>
+									<th>결재일</th>
+									<td>2022-00-00 21:00:00</td>
+								</tr>
+								<tr>
+									<th>반려일</th>
+									<td>2022-00-00 21:00:00</td>
+								</tr>
+								<tr>
+									<th>반려사유</th>
+									<td>개인정보 포함으로 인해 승인 불가</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="btnArea">
-						<v-btn class="box" large>홈으로 가기</v-btn>
-						<v-btn color="primary" large dark>My Page 가기</v-btn>
+						<v-btn color="primary" large outlined>목록으로</v-btn>
+						<v-btn color="primary" large>반려하기</v-btn>
+						<v-btn color="primary" large>결재하기</v-btn>
 					</div>
 				</div>
 			</div>

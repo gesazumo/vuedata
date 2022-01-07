@@ -235,11 +235,10 @@
 													placeholder="검색어를 입력해 주세요"
 													clearable
 													required
-													prepend-inner-icon="fa fa-search"
+													hide-details="auto"
+													append-inner-icon="fa fa-search"
 												>
-													<template
-														v-slot:prepend-inner
-													>
+													<template v-slot:append>
 														<i
 															class="fa fa-search"
 														></i>

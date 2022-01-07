@@ -43,7 +43,7 @@
 											single-line
 											outlined
 											hide-details="auto"
-											v-moel="group"
+											v-model="group"
 											:rules="[
 												rules.required,
 												rules.group_rule,
@@ -163,7 +163,7 @@
 											single-line
 											clearable
 											outlined
-											v-moel="license"
+											v-model="license"
 											:rules="[
 												rules.required,
 												rules.license_rule,
