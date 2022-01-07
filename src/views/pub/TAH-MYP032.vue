@@ -61,13 +61,39 @@
 								</tr>
 								<tr>
 									<th>요청자</th>
-									<td>김국민</td>
+									<td>최자영(KB국민은행, 데이터기획부)</td>
+								</tr>
+								<tr>
+									<th>요청일시</th>
+									<td>2022-00-00 21:00:00</td>
+								</tr>
+								<tr>
+									<th>결재자</th>
+									<td>
+										강태근(KB국민은행, 데이터엔지니어링부)
+									</td>
+								</tr>
+								<tr>
+									<th>결재현황</th>
+									<td>결재중 / 결재완료 / 반려</td>
+								</tr>
+								<tr>
+									<th>결재일</th>
+									<td>2022-00-00 21:00:00</td>
+								</tr>
+								<tr>
+									<th>반려일</th>
+									<td>2022-00-00 21:00:00</td>
+								</tr>
+								<tr>
+									<th>반려사유</th>
+									<td>개인정보 포함으로 인해 승인 불가</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="btnArea">
-						<v-btn color="primary" large outlined>목록</v-btn>
+						<v-btn color="primary" large outlined>목록으로</v-btn>
 						<v-btn color="primary" large>반려하기</v-btn>
 						<v-btn color="primary" large>결재하기</v-btn>
 					</div>

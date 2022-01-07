@@ -187,7 +187,10 @@
   border-radius: 4px;
 }
 .table_box .more_view p {font-size: 16px; font-weight: 600;}
-
+/*입력테이블상의 append-outer v-btn*/
+.table_box table td .v-input__append-outer {
+  margin-top: 0 !important;
+}
 
 .paging {
   clear: both;
