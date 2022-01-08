@@ -3,7 +3,6 @@
 @import "reset.css";
 @import "font.css";
 @import "admin.css";
-@import "style.css";
 
 
 /*메인*/
@@ -2531,6 +2530,12 @@ td {
   word-break: keep-all;
   min-height: 56px;
 }
+td:first-child {
+  border-left: none;
+}
+td:last-child {
+  border-right: none;
+}
 
 .tb_write {}
 .tb_write th {min-height: 56px !important; text-align: left; }
@@ -2548,7 +2553,7 @@ td {
 .tb_write .v-text-field button.search-in i {
   color:#fff;
 }
-
+.tb_write td .v-select__slot .v-icon.v-icon {margin-top: -17px !important;} 
 .v-icon.v-icon {
   background: none !important;
   padding: 0;

@@ -232,6 +232,32 @@
   line-height: 28px;
 }
 
+.v-text-field--outlined > .v-input__control > .v-input__slot {
+  background: #fff;
+}
+.v-text-field.v-text-field--enclosed.v-text-field--single-line .v-text-field__prefix, .v-text-field.v-text-field--enclosed.v-text-field--single-line .v-text-field__suffix {
+  color:#757575;
+}
+.v-select.v-text-field--outlined:not(.v-text-field--single-line) .v-select__selections {
+  padding:0 !important;
+}
+/*메뉴관리*/
+.menu_lst {
+  float:left; 
+  max-width: 400px;
+  min-height: 900px;
+  background: #fff;
+  padding: 20px;
+  margin-right:24px;
+}
+.menu_view {
+  float:left; 
+  width: 680px;
+  min-height: 900px;
+  background: #fff;
+  padding: 20px;
+  
+}
 
 
 .fileinput {
