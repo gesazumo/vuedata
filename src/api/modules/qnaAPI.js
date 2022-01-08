@@ -18,3 +18,8 @@ export const getQnaApi = param => {
 	const queryString = util.convertUrl(parsedParam)
 	return adminInstance.get(`${url}${queryString}`)
 }
+
+export const getQnaDetailApi = seq => {
+	const url = '/getQaConDetail'
+	return adminInstance.get(`${url}?seq=${seq}`)
+}

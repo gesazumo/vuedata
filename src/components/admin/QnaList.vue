@@ -10,6 +10,7 @@
 		<div class="table_box">
 			<v-data-table
 				:headers="headers"
+				item-key="seq"
 				:items="qnaListData"
 				show-select
 				hide-default-footer

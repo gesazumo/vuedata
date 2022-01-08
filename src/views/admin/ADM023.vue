@@ -26,15 +26,17 @@ import listViewMixin from '@/mixin/listViewMixin'
 import { getQnaApi } from '@/api/modules/qnaAPI'
 import methods from '@/methods'
 
-const initDistic = methods.$getCmCode('qnaCmCodeDstic')[0].cmnCd
+const initDistic = methods.$getCmCode('TAH000051')[0].cmnCd
+const initStatus = methods.$getCmCode('TAH000052')[0].cmnCd
+const initCompany = methods.$getCmCode('TAH000002')[0].cmnCd
 export default {
 	components: { QnaFilter, QnaList },
 	mixins: [
 		listViewMixin(getQnaApi, {
 			title: null,
 			dstic: initDistic,
-			status: { cmnCd: '1', cmnCdNm: '대기중' },
-			company: { cmnCd: 'KFG', cmnCdNm: 'KB금융지주' },
+			status: initStatus,
+			company: initCompany,
 			status1: true,
 			status2: false,
 		}),

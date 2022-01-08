@@ -237,7 +237,6 @@
 											outlined
 											clearable
 											id="abc"
-											:rules="subjectRules"
 										></vue-editor>
 										<div
 											class="v-messages__message"

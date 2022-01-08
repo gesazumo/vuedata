@@ -28,7 +28,7 @@
 			<v-col md="4">
 				<div class="label_txt">구분</div>
 				<v-select
-					:items="$getCmCode('qnaCmCodeDstic')"
+					:items="$getCmCode('TAH000051')"
 					placeholder="전체 카테고리"
 					single-line
 					item-text="cmnCdNm"
@@ -41,7 +41,7 @@
 			<v-col md="4">
 				<div class="label_txt">계열사명</div>
 				<v-select
-					:items="$getCmCode('commCmcodeCompany')"
+					:items="$getCmCode('TAH000002')"
 					placeholder="전체"
 					return-object
 					single-line
@@ -58,7 +58,7 @@
 				<div class="label_txt">Status</div>
 				<div class="checkgroup">
 					<v-checkbox
-						v-for="code in $getCmCode('qnaCmCodeStatus')"
+						v-for="code in $getCmCode('TAH000052')"
 						:key="code.cmnCd"
 						:label="code.cmnCdNm"
 						v-model="param[`status${code.cmnCd}`]"
