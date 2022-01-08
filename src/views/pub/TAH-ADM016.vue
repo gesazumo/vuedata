@@ -15,7 +15,7 @@
 				</div>
 				<div class="menu_view">
 					<!--메뉴관리 ppt 5p-->
-					<div class="table_box">
+					<div class="table_box" style="display: none">
 						<p class="pt-2 pb-4 font-weight-bold">
 							기본 정보
 							<v-btn
@@ -98,7 +98,7 @@
 						</table>
 					</div>
 					<!--메뉴관리 ppt 6p-->
-					<div class="table_box" style="display: none">
+					<div class="table_box">
 						<p class="pt-2 pb-4 font-weight-bold">기본 정보</p>
 						<table class="tb_write">
 							<caption>
@@ -387,7 +387,7 @@
 											:items="menu4"
 											v-model="menu"
 											:rules="menu4Rules"
-											style="width: 250px"
+											style="width: 159px"
 										></v-select>
 									</td>
 								</tr>

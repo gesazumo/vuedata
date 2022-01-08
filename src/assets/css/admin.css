@@ -238,6 +238,8 @@
 .v-text-field.v-text-field--enclosed.v-text-field--single-line .v-text-field__prefix, .v-text-field.v-text-field--enclosed.v-text-field--single-line .v-text-field__suffix {
   color:#757575;
 }
+
+.adm-search .v-select__slot .v-icon.v-icon {margin-top: -17px !important;} 
 .v-select.v-text-field--outlined:not(.v-text-field--single-line) .v-select__selections {
   padding:0 !important;
 }
