@@ -428,13 +428,6 @@ export default {
 			}
 		},
 		async doUpdate() {
-			if (
-				!(await this.$confirm(
-					'공지사항을 수정하시겠습니까?',
-					'수정하기',
-				))
-			)
-				return
 			this.checkRegistDateValid = true
 			this.checkMainText = true
 			this.checkEventEndValid = true
@@ -446,6 +439,13 @@ export default {
 				if (this.checkRegistDateValid && this.registDateValid) return
 			}
 			if (this.isMainTextEmpty) return
+			if (
+				!(await this.$confirm(
+					'공지사항을 수정하시겠습니까?',
+					'수정하기',
+				))
+			)
+				return
 			try {
 				const { data } = await updateNoticesApi({ ...this.param })
 				console.log(data)

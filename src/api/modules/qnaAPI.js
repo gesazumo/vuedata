@@ -23,3 +23,22 @@ export const getQnaDetailApi = seq => {
 	const url = '/getQaConDetail'
 	return adminInstance.get(`${url}?seq=${seq}`)
 }
+
+export const qnaReplyApi = param => {
+	const url = '/regQaConUpd'
+	const _param = {
+		seq: param.seq,
+		answeremp: param.answeremp,
+		answertext: param.maintext,
+	}
+	return adminInstance.post(`${url}`, {
+		..._param,
+	})
+}
+
+export const deleteQnaApi = param => {
+	const url = '/regQaConDel'
+	return adminInstance.post(url, {
+		seq: param,
+	})
+}

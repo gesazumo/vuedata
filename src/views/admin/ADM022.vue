@@ -424,13 +424,6 @@ export default {
 	},
 	methods: {
 		async doCreate() {
-			if (
-				!(await this.$confirm(
-					'공지사항을 등록하시겠습니까?',
-					'등록하기',
-				))
-			)
-				return
 			this.checkRegistDateValid = true
 			this.checkMainText = true
 			this.checkEventEndValid = true
@@ -442,6 +435,13 @@ export default {
 				if (this.checkRegistDateValid && this.registDateValid) return
 			}
 			if (this.isMainTextEmpty) return
+			if (
+				!(await this.$confirm(
+					'공지사항을 등록하시겠습니까?',
+					'등록하기',
+				))
+			)
+				return
 			try {
 				await createNoticesApi(this.param)
 				this.$showInfo('등록되었습니다.')

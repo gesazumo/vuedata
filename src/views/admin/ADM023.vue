@@ -5,7 +5,7 @@
 			<qna-filter @search="search" :parentParam="param" />
 			<div class="item_box">
 				<loading-lottie v-if="loading" />
-				<qna-list :list="list" v-if="!loading" />
+				<qna-list :list="list" v-if="!loading" @search="search" />
 				<div class="paging">
 					<v-pagination
 						v-model="page"
