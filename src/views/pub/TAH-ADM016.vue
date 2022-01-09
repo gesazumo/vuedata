@@ -7,9 +7,7 @@
 					<v-row>
 						<v-btn small outlined>모두 접기</v-btn>
 						<v-btn small outlined>모두 펼치기</v-btn>
-						<v-btn color="primary" dark small outlined>
-							모두 등록하기
-						</v-btn>
+						<v-btn color="primary" small outlined> 등록하기 </v-btn>
 					</v-row>
 					<v-row>메뉴트리</v-row>
 				</div>
@@ -119,6 +117,7 @@
 									<td colspan="3">
 										<v-select
 											placeholder="메뉴 구분을 선택하세요"
+											single-line
 											outlined
 											hide-details="auto"
 											:items="menu1"
@@ -135,6 +134,7 @@
 									<td colspan="3">
 										<v-select
 											placeholder="메뉴 Depth를 선택하세요"
+											single-line
 											outlined
 											hide-details="auto"
 											:items="menu2"
@@ -152,6 +152,7 @@
 										<v-row>
 											<v-select
 												placeholder="1 Depth 메뉴"
+												single-line
 												outlined
 												hide-details="auto"
 												v-model="menu"
@@ -163,6 +164,7 @@
 											></v-select>
 											<v-select
 												placeholder="2 Depth 메뉴"
+												single-line
 												outlined
 												hide-details="auto"
 												style="width: 120px"
@@ -178,6 +180,7 @@
 									<td colspan="3">
 										<v-select
 											placeholder="메뉴 순서를 선택하세요"
+											single-line
 											outlined
 											hide-details="auto"
 											:items="menu4"
@@ -326,6 +329,7 @@
 										<v-select
 											label="일반"
 											placeholder="메뉴 구분을 선택하세요"
+											single-line
 											outlined
 											hide-details="auto"
 											:items="menu1"
@@ -343,6 +347,7 @@
 										<v-select
 											label="2 Depth"
 											placeholder="메뉴 Depth를 선택하세요"
+											single-line
 											outlined
 											hide-details="auto"
 											:items="menu2"
@@ -361,6 +366,7 @@
 											<v-select
 												label="Explore"
 												placeholder=""
+												single-line
 												outlined
 												hide-details="auto"
 												v-model="menu"
@@ -382,6 +388,7 @@
 										<v-select
 											label="5"
 											placeholder="메뉴 순서를 선택하세요"
+											single-line
 											outlined
 											hide-details="auto"
 											:items="menu4"
@@ -454,7 +461,8 @@
 									</th>
 									<td>
 										<v-select
-											label="Y"
+											label="Yes"
+											single-line
 											outlined
 											hide-details="auto"
 										></v-select>
@@ -465,7 +473,8 @@
 									</th>
 									<td>
 										<v-select
-											label="N"
+											label="No"
+											single-line
 											outlined
 											hide-details="auto"
 										></v-select>
@@ -523,6 +532,7 @@
 export default {
 	data() {
 		return {
+			menu: '',
 			menu1: ['일반', 'Admin'],
 			menu2: ['1 Depth', '2 Depth', '3 Depth'],
 			menu4: ['1', '2', '3', '4', '5'],

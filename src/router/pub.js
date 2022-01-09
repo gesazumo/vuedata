@@ -99,6 +99,22 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM028.vue'),
 	},
 	{
+		path: 'adm029', //Admin 게시판관리 자료실 조회
+		component: () => import('@/views/pub/TAH-ADM029.vue'),
+	},
+	{
+		path: 'adm030', //Admin 게시판관리 자료실 관리
+		component: () => import('@/views/pub/TAH-ADM030.vue'),
+	},
+	{
+		path: 'adm035', //Admin 게시판관리 결재라인 조회
+		component: () => import('@/views/pub/TAH-ADM035.vue'),
+	},
+	{
+		path: 'adm036', //Admin 게시판관리 결재라인 관리
+		component: () => import('@/views/pub/TAH-ADM036.vue'),
+	},
+	{
 		path: 'adm037', //Admin 라이브러리 오픈소스라이브러리 관리
 		component: () => import('@/views/pub/TAH-ADM037.vue'),
 	},
@@ -166,15 +182,27 @@ export const pubRouter = [
 	},
 	//My page
 	{
-		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
-		component: () => import('@/views/pub/TAH-MYP032.vue'),
+		path: 'myp026', //My page  파일 업로드 요청 확인 팝업
+		component: () => import('@/views/pub/TAH-MYP026.vue'),
 	},
 	{
 		path: 'myp027', //My page  My Dashboard My Dataset업로드
 		component: () => import('@/views/pub/TAH-MYP027.vue'),
 	},
 	{
-		path: 'myp026', //My page  파일 업로드 요청 확인 팝업
-		component: () => import('@/views/pub/TAH-MYP026.vue'),
+		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
+		component: () => import('@/views/pub/TAH-MYP032.vue'),
+	},
+	{
+		path: 'myp033', //My page  My결재함
+		component: () => import('@/views/pub/TAH-MYP033.vue'),
+	},
+	{
+		path: 'myp034', //My page  My결재함
+		component: () => import('@/views/pub/TAH-MYP034.vue'),
+	},
+	{
+		path: 'myp037', //My page  My결재함
+		component: () => import('@/views/pub/TAH-MYP037.vue'),
 	},
 ]
