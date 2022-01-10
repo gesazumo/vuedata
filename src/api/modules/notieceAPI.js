@@ -10,9 +10,9 @@ export const getNoticesApi = param => {
 		kategorie: param.kategorie,
 		page: param.page,
 		title: param.title,
-		status1: param.status1,
-		status2: param.status2,
-		status3: param.status3,
+		status1: String(param.status1),
+		status2: String(param.status2),
+		status3: String(param.status3),
 	}
 	const queryString = util.convertUrl(parsedParam)
 	return adminInstance.get(`${url}${queryString}`)

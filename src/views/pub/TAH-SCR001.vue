@@ -12,40 +12,51 @@
 				<ul class="login__area__select">
 					<li>
 						<v-tabs>
-							<v-tab>일반 로그인</v-tab>
-							<v-tab>SSO 로그인</v-tab>
+							<v-tab
+								><div class="login__route">
+									일반 로그인
+								</div></v-tab
+							>
+							<v-tab
+								><div class="login__route">
+									SSO 로그인
+								</div></v-tab
+							>
 						</v-tabs>
 					</li>
 				</ul>
 
-				<ul class="login__area__select">
-					<li>
-						<v-select
-							:items="items_01"
-							label="사번"
-							placeholder="사번입력"
-							single-line
-							outlined
-							v-model="category"
-							:rules="[rules.required, rules.category_rules]"
-							hide-details="auto"
-						></v-select>
-					</li>
-					<li>
-						<v-select
-							:items="items_01"
-							label="비밀번호"
-							placeholder="비밀번호 입력"
-							single-line
-							outlined
-							v-model="secret"
-							:rules="[rules.required, rules.secret_rules]"
-							hide-details="auto"
-						></v-select>
-					</li>
-				</ul>
+				<div class="login__area__select">
+					<form action="#">
+						<fieldset>
+							<li class="login__textfield">
+								<label for="id">사번</label>
+								<input
+									class="login__input"
+									for="text"
+									id="id"
+									required
+									placeholder="사번 입력"
+								/>
+							</li>
+							<p class="text-error">사번을 입력해주세요</p>
+							<li class="login__textfield">
+								<label for="id">비밀번호</label>
+								<input
+									class="login__input"
+									for="pw"
+									type="password"
+									id="pw"
+									placeholder="비밀번호 입력"
+								/>
+							</li>
+							<p class="text-error">비밀번호를 입력해주세요</p>
+						</fieldset>
+					</form>
+				</div>
+
 				<div>
-					<div class="btn__login">
+					<div>
 						<button
 							style="
 								width: 400px;
@@ -55,7 +66,7 @@
 								margin-top: 10px;
 							"
 						>
-							로그인
+							<sapn class="btn__login">로그인</sapn>
 						</button>
 					</div>
 					<div class="login__area__desc">
@@ -96,5 +107,20 @@ export default {
 			},
 		}
 	},
+	export default {
+	data: () => ({
+		drawer: false,
+		group: null,
+	}),
+
+	watch: {
+		group() {
+			this.drawer = false
+		},
+	},
+}
+
 }
 </script>
+
+<script></script>

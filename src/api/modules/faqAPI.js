@@ -13,3 +13,40 @@ export const getFaqApi = param => {
 	const queryString = util.convertUrl(parsedParam)
 	return adminInstance.get(`${url}${queryString}`)
 }
+
+export const createFaqApi = param => {
+	const url = '/regFaqConIns'
+	const parsedParam = {
+		answertext: param.maintext,
+		dstic: param.dstic.cmnCd,
+		ques: param.ques,
+	}
+	return adminInstance.post(`${url}`, {
+		...parsedParam,
+	})
+}
+
+export const deleteFaqsApi = param => {
+	const url = '/regFaqConDel'
+	return adminInstance.post(url, {
+		seq: param,
+	})
+}
+
+export const updateFaqApi = param => {
+	const url = '/regFaqConUpd'
+	const _param = {
+		seq: param.seq,
+		answertext: param.maintext,
+		dstic: param.dstic,
+		ques: param.ques,
+	}
+	return adminInstance.post(`${url}`, {
+		..._param,
+	})
+}
+
+export const getFaqDetailApi = seq => {
+	const url = '/getFaqConDetail'
+	return adminInstance.get(`${url}?seq=${seq}`)
+}

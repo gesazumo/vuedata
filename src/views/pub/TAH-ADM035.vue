@@ -2,11 +2,11 @@
 	<v-app>
 		<div class="adm_contents">
 			<div class="inner">
-				<h5>권한 조회</h5>
+				<h5>결재라인 조회</h5>
 				<div class="adm-search">
 					<v-row>
 						<v-col md="4">
-							<div class="label_txt">권한명</div>
+							<div class="label_txt">결재라인명</div>
 							<v-text-field
 								single-line
 								outlined
@@ -29,7 +29,7 @@
 						<v-col md="4">
 							<div class="label_txt">구분</div>
 							<v-select
-								placeholder="메뉴 구분을 선택하세요"
+								placeholder="전체 카테고리"
 								outlined
 								hide-details="auto"
 								:items="item1"
@@ -53,7 +53,7 @@
 						<v-col md="4">
 							<div class="label_txt">사용여부</div>
 							<v-select
-								placeholder="사용여부를 선택하세요"
+								placeholder="전체"
 								outlined
 								hide-details="auto"
 								:items="item3"
@@ -72,6 +72,14 @@
 					<div class="board">
 						<div class="tit">
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+							<v-select
+								class="list_select"
+								label="10개씩 보기"
+								single-line
+								hide-details="auto"
+								:items="item4"
+							>
+							</v-select>
 						</div>
 						<div class="btn_area">
 							<v-btn color="primary" dark> 등록하기 </v-btn>
@@ -121,11 +129,20 @@ export default {
 			itemsPerPage: 10,
 
 			date: '',
+			menu: '',
 			item: '',
 
 			singleSelect: false,
 			selected: [],
-			item1: ['전체', '통합관리자', '일반관리자'],
+			item1: [
+				'전체',
+				'메타관리',
+				'데이터 권한',
+				'분석 환경',
+				'My Dataset 업로드',
+				'계열사 전송',
+				'CI 변환 신청',
+			],
 			item2: [
 				'전체',
 				'공통',
@@ -140,6 +157,7 @@ export default {
 				'KB저축은행',
 			],
 			item3: ['전체', 'Yes', 'No'],
+			item4: ['10개씩 보기', '30개씩 보기', '50개씩 보기'],
 			item1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
 			item2Rules: [v => !!v || '계열사를 선택해 주세요.'],
 			item3Rules: [v => !!v || '사용여부를 선택해 주세요.'],

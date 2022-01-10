@@ -2,7 +2,7 @@
 	<v-app>
 		<div class="adm_contents">
 			<div class="inner">
-				<h5>권한 관리</h5>
+				<h5>결재라인 관리</h5>
 				<div class="item_box">
 					<div class="table_box">
 						<table class="tb_write">
@@ -48,19 +48,19 @@
 								</tr>
 								<tr>
 									<th>
-										권한코드 ID
+										결제라인 ID
 										<span class="asterisk">필수</span>
 									</th>
-									<td>ADMIN-CMN-AUTH-001</td>
+									<td>ADMIN-CMN-APPR-001</td>
 								</tr>
 								<tr>
 									<th>
-										권한명
+										결제라인명
 										<span class="asterisk">필수</span>
 									</th>
 									<td>
 										<v-text-field
-											placeholder="권한명을 입력하세요"
+											placeholder="결제라인명을 입력하세요"
 											single-line
 											outlined
 											hide-details="auto"
@@ -71,12 +71,12 @@
 								</tr>
 								<tr>
 									<th>
-										권한 설명
+										결제라인 설명
 										<span class="asterisk">필수</span>
 									</th>
 									<td>
 										<v-text-field
-											placeholder="권한 설명을 입력하세요"
+											placeholder="결제라인 설명을 입력하세요"
 											single-line
 											outlined
 											hide-details="auto"
@@ -103,7 +103,7 @@
 								</tr>
 								<tr>
 									<th>
-										권한 그룹원
+										결제자
 										<span class="asterisk">필수</span>
 									</th>
 									<td>
@@ -210,7 +210,14 @@ export default {
 			itemsPerPage: 10,
 
 			menu: '',
-			menu1: ['전체', '통합관리자', '일반관리자'],
+			menu1: [
+				'메타 관리',
+				'데이터 권한',
+				'분석환경',
+				'My Dataset 업로드',
+				'계열사 전송',
+				'CI 변환 신청',
+			],
 			menu2: [
 				'전체',
 				'공통',
@@ -227,9 +234,9 @@ export default {
 			menu3: ['Yes', 'No'],
 			menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
 			menu2Rules: [v => !!v || '계열사를 선택해 주세요.'],
-			menu3Rules: [v => !!v || '권한명을 입력해 주세요.'],
-			menu4Rules: [v => !!v || '권한 설명을 선택해 주세요.'],
-			menu5Rules: [v => !!v || '권한 그룹원을 입력해 주세요.'],
+			menu3Rules: [v => !!v || '결제라인명을 입력해 주세요.'],
+			menu4Rules: [v => !!v || '결제라인 설명을 선택해 주세요.'],
+			menu5Rules: [v => !!v || '결제자를 입력해 주세요.'],
 			headers: [
 				{
 					text: '회사명',

@@ -237,7 +237,6 @@
 											outlined
 											clearable
 											id="abc"
-											:rules="subjectRules"
 										></vue-editor>
 										<div
 											class="v-messages__message"
@@ -368,7 +367,12 @@
 					</div>
 				</vue-dropzone>
 				<div class="btn_area center">
-					<v-btn color="primary" dark outlined @click="$router.go()">
+					<v-btn
+						color="primary"
+						dark
+						outlined
+						@click="$router.go(-1)"
+					>
 						취소
 					</v-btn>
 					<v-btn color="primary" dark @click="doCreate">
@@ -425,13 +429,24 @@ export default {
 	},
 	methods: {
 		async doCreate() {
-			console.log('doCreate')
 			this.checkRegistDateValid = true
 			this.checkMainText = true
 			this.checkEventEndValid = true
 			if (!this.$refs.form.validate()) return
-			if (this.checkRegistDateValid && this.registDateValid) return
+			if (
+				this.param.posting ==
+				this.$getCmCode('notiCmCodePosting')[1].cmnCd
+			) {
+				if (this.checkRegistDateValid && this.registDateValid) return
+			}
 			if (this.isMainTextEmpty) return
+			if (
+				!(await this.$confirm(
+					'공지사항을 등록하시겠습니까?',
+					'등록하기',
+				))
+			)
+				return
 			try {
 				await createNoticesApi(this.param)
 				this.$showInfo('등록되었습니다.')

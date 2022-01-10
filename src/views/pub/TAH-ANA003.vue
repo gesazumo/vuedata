@@ -45,9 +45,9 @@
 								table caption
 							</caption>
 							<colgroup>
-								<col width="335" />
+								<col width="300" />
 								<col width="" />
-								<col width="310" />
+								<col width="230" />
 								<col width="" />
 							</colgroup>
 							<tbody>
@@ -96,6 +96,7 @@
 										/>
 										<i
 											class="mdi mdi-information-outline"
+											style="margin-left: 8px"
 										></i>
 										프로젝트 총 기간은 1년 이하로 선택하셔야
 										합니다.
@@ -150,9 +151,12 @@
 														background: none !important;
 													"
 												>
-													<v-icon
-														>mdi-help-circle</v-icon
-													>
+													<i
+														class="
+															fas
+															fa-question-circle
+														"
+													></i>
 												</v-btn>
 											</template>
 											<div>
@@ -171,7 +175,13 @@
 										</v-tooltip>
 									</th>
 									<td colspan="3">
-										<v-col md="5">
+										<v-col
+											md="5"
+											style="
+												margin-left: 0 !important;
+												margin-bottom: 8px !important;
+											"
+										>
 											<v-text-field
 												placeholder="이름을 입력하세요"
 												outlined
@@ -185,11 +195,20 @@
 												hide-details="auto"
 											>
 												<template v-slot:append-outer>
-													<button class="search-in">
+													<v-btn
+														color="secondary"
+														dark
+														style="
+															margin-left: 4px !important;
+															width: 40px !important;
+															min-width: 40px !important;
+															max-width: 40px !important;
+														"
+													>
 														<i
 															class="fa fa-search"
 														></i>
-													</button>
+													</v-btn>
 												</template>
 											</v-text-field>
 										</v-col>
@@ -218,16 +237,21 @@
 													</td>
 													<td>
 														<v-btn
-															class="box"
+															color="primary"
 															dark
-															outlined
+															x-small
+															text
 															@click="
 																onButtonClick(
 																	row.item,
 																)
 															"
 														>
-															삭제
+															<i
+																class="
+																	fa fa-times
+																"
+															></i>
 														</v-btn>
 													</td>
 												</tr>
@@ -254,9 +278,12 @@
 														background: none !important;
 													"
 												>
-													<v-icon
-														>mdi-help-circle</v-icon
-													>
+													<i
+														class="
+															fas
+															fa-question-circle
+														"
+													></i>
 												</v-btn>
 											</template>
 											<div>
@@ -328,7 +355,8 @@
 								</tr>
 								<tr>
 									<th>
-										SageMaker Studio Template Type
+										SageMaker Studio<br />
+										Template Type
 										<span class="asterisk">필수</span>
 										<v-tooltip
 											right
@@ -345,9 +373,12 @@
 														background: none !important;
 													"
 												>
-													<v-icon
-														>mdi-help-circle</v-icon
-													>
+													<i
+														class="
+															fas
+															fa-question-circle
+														"
+													></i>
 												</v-btn>
 											</template>
 											<div>
@@ -433,9 +464,12 @@
 														background: none !important;
 													"
 												>
-													<v-icon
-														>mdi-help-circle</v-icon
-													>
+													<i
+														class="
+															fas
+															fa-question-circle
+														"
+													></i>
 												</v-btn>
 											</template>
 											<div>
@@ -497,6 +531,12 @@ export default {
 	data() {
 		return {
 			date: null,
+			project: '',
+			project_desc: '',
+			name: '',
+			instance_rules_01: '',
+			instance_rules_02: '',
+			instance_rules_03: '',
 			instance_01: [
 				'ml.t3.medium(General purpose, vCPU 2, GPU 0, Memory 4GiB)',
 				'ml.g4dn.xlarge(Accelerated computing, vCPU 4, GPU 1, 16GiB)',

@@ -29,7 +29,7 @@
 			<v-col md="4">
 				<div class="label_txt">구분</div>
 				<v-select
-					:items="$getCmCode('faqCmCodeDstic')"
+					:items="$getCmCode('TAH000053')"
 					placeholder="전체 카테고리"
 					single-line
 					return-object

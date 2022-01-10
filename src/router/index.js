@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Container from '@/views/Container.vue'
 import { pubRouter } from './pub'
 import commonRouter from './commonRouter'
-import store from '../store'
+import store from '@/store'
+import methods from '@/methods'
 
 Vue.use(VueRouter)
 
@@ -39,15 +40,31 @@ const router = new VueRouter({
 	routes,
 })
 
-router.beforeEach((to, from, next) => {
-	if (to.meta.isPublic) {
-		return next()
-	}
+router.beforeEach(async (to, from, next) => {
+	// 공통코드 없으면
+	// 호출 후 통과
+	// 있으면
+	// 아래로
 
-	if (!store.getters.getAccessToken) {
-		return next({ path: 'login' })
+	if (store.getters['commonCodeStore/cmCodeExist']) {
+		if (to.meta.isPublic) {
+			return next()
+		}
+		if (!store.getters.getAccessToken) {
+			return next({ path: 'login' })
+		}
+	} else {
+		try {
+			await store.dispatch('commonCodeStore/fetchCmCode')
+			console.log('공통코드 다 받아옴')
+			next()
+		} catch (error) {
+			methods.$showError(
+				this.apiErrorMsg_Pink + ' : 공통코드 받아오기 실패!',
+			)
+			console.log('commonCodeStore/fetchCmCode :' + error)
+		}
 	}
-
 	return next()
 })
 

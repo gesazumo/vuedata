@@ -4,7 +4,9 @@
 			<h5>공지사항 관리</h5>
 			<notice-filter @search="search" :parentParam="param" />
 			<div class="item_box">
+				<loading-lottie v-if="loading" />
 				<notice-list
+					v-if="!loading"
 					:list="list"
 					@search="search"
 					:totalCount="totalCount"
