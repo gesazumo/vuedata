@@ -262,15 +262,15 @@
 								</div>
 								<div class="card_sns">
 									<div class="card_like">
-										<i class="far fa-heart"></i>
+										<v-icon>mdi-heart</v-icon>
 										224
 									</div>
 									<div class="card_view">
-										<i class="far fa-eye"></i>
+										<v-icon>mdi-eye-outline</v-icon>
 										55
 									</div>
 									<div class="card_comment">
-										<i class="far fa-comment-alt"></i>
+										<v-icon>mdi-comment-outline</v-icon>
 										17
 									</div>
 								</div>
@@ -310,15 +310,15 @@
 								</div>
 								<div class="card_sns">
 									<div class="card_like">
-										<i class="far fa-heart"></i>
+										<v-icon>mdi-heart</v-icon>
 										224
 									</div>
 									<div class="card_view">
-										<i class="far fa-eye"></i>
+										<v-icon>mdi-eye-outline</v-icon>
 										55
 									</div>
 									<div class="card_comment">
-										<i class="far fa-comment-alt"></i>
+										<v-icon>mdi-comment-outline</v-icon>
 										17
 									</div>
 								</div>
@@ -358,15 +358,15 @@
 								</div>
 								<div class="card_sns">
 									<div class="card_like">
-										<i class="far fa-heart"></i>
+										<v-icon>mdi-heart</v-icon>
 										224
 									</div>
 									<div class="card_view">
-										<i class="far fa-eye"></i>
+										<v-icon>mdi-eye-outline</v-icon>
 										55
 									</div>
 									<div class="card_comment">
-										<i class="far fa-comment-alt"></i>
+										<v-icon>mdi-comment-outline</v-icon>
 										17
 									</div>
 								</div>
@@ -406,15 +406,15 @@
 								</div>
 								<div class="card_sns">
 									<div class="card_like">
-										<i class="far fa-heart"></i>
+										<v-icon>mdi-heart</v-icon>
 										224
 									</div>
 									<div class="card_view">
-										<i class="far fa-eye"></i>
+										<v-icon>mdi-eye-outline</v-icon>
 										55
 									</div>
 									<div class="card_comment">
-										<i class="far fa-comment-alt"></i>
+										<v-icon>mdi-comment-outline</v-icon>
 										17
 									</div>
 								</div>
