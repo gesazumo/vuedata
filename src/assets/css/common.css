@@ -3781,6 +3781,14 @@ td:last-child {
   text-align: center;
 }
 
+.sub_main_sup {
+  padding: 32px 0;
+  background: #fff;
+  border-radius: 4px;
+  max-height: 407px;
+  width: 100%;
+}
+
 .sub_main_sec {
   position: relative;
   clear: both;

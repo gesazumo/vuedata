@@ -159,3 +159,122 @@ fieldset {
     width: 100px;
     height: 100px;
 }
+
+/* Serve Main */
+.sub_main_support {
+    width: 1440px;
+    padding: 32px 50px;
+    background: #fff;
+    border-radius: 4px;
+    height: 407px;
+    width: 100%;
+}
+
+.sub_support_title > h6 {
+    font-weight: 600;
+    font-size: 32px;
+    margin-top: 32px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 32px;
+}
+
+.sub_support_menual {
+    display: flex;
+    justify-content: space-between;
+    width: 1248px;
+    height: 200px;
+    margin-left: 45px;
+}
+
+.sub_support_menual_content {
+    width: 150px;
+    height: 200px;
+    overflow: hidden;
+    margin-top: 48px;    
+}
+
+.sub_support_menu-1 {
+    margin: 8px 0;
+}
+.sub_support_menu-2 {
+    font-family: KBFGTextM;
+    font-size: 16px;
+    color: #757575;
+    height: 94px;
+}
+
+
+
+
+
+.card_v-support {
+    display: inline-block;
+    width: 465px;
+    height: 370px;
+    padding: 32px 40px;
+    border-radius: 4px;
+    background: #fff;
+  }
+  .card_v-support {
+    clear: both;
+    font-family: "KBFGTextM";
+    font-size: 16px !important;
+  
+  }
+ .card_v-support {
+    display: inline-block; 
+    float: left;
+    margin: 0 5px 0 0;
+    padding: 5px 12px;
+    border-radius: 100px;
+    background-color: #60584c;
+    color:#fff;
+    font-size: 14px;
+  }
+  .card_v-support {
+    background-color: #efe5d8;
+    color:#4d4d4d;
+  }
+  .card_v-support {
+    clear: both;
+    float: left;
+    font-family: 'KBFGTextM';
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 600;
+    margin: 24px 0;
+    min-height: 64px;
+  }
+  .card_v-support {
+    display: inline-block;
+    clear: both;
+    font-family: 'KBFGTextM';
+    font-size: 16px;
+    line-height: 26px;
+    color: #757575; 
+    min-width: 262px;
+    max-width: 262px;
+    min-height: 100px;
+    max-height: 100px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .card_v-support {
+    clear: both;
+    font-family: 'KBFGTextM';
+    font-size: 12px;
+    margin-top: 24px;
+  }
+  .card_v-support {
+    float: left;
+    margin-right: 24px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .card_v-support .v-icon:hover  {
+    color:#ffbc00;
+    -webkit-transform:rotate(-20deg);
+      transform:rotate(-20deg);
+  }
