@@ -4,11 +4,25 @@
 			<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
 		</div>
 		<div class="btn_area">
-			<v-btn color="primary" dark> 등록하기 </v-btn>
-			<v-btn color="primary" dark outlined @click="doDelete">
+			<v-btn
+				color="primary"
+				dark
+				@click="$router.push({ name: 'adm026' })"
+			>
+				등록하기
+			</v-btn>
+			<v-btn
+				color="primary"
+				dark
+				outlined
+				@click="doDelete"
+				v-if="selected.length >= 1"
+			>
 				삭제하기
 			</v-btn>
-			<v-btn color="primary" dark outlined> 수정하기 </v-btn>
+			<v-btn color="primary" dark outlined v-if="selected.length == 1">
+				수정하기
+			</v-btn>
 		</div>
 		<div class="table_box">
 			<v-data-table
@@ -81,6 +95,11 @@ export default {
 			})
 		},
 	},
+	watch: {
+		list() {
+			this.selected = []
+		},
+	},
 	methods: {
 		async doDelete() {
 			if (
@@ -98,6 +117,7 @@ export default {
 				console.log(data)
 				this.$showInfo('삭제되었습니다.')
 				this.$emit('search')
+				this.selected = []
 			} catch (error) {
 				this.$showError(this.apiErrorMsg_Blue)
 				console.log('deleteQnaApi :' + error)

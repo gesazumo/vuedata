@@ -170,6 +170,11 @@ export default {
 			})
 		},
 	},
+	watch: {
+		list() {
+			this.selected = []
+		},
+	},
 }
 </script>
 

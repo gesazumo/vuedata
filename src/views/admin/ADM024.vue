@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div class="btn_area center">
-				<v-btn color="primary" dark outlined @click="$router.go()">
+				<v-btn color="primary" dark outlined @click="$router.go(-1)">
 					취소
 				</v-btn>
 				<v-btn color="primary" dark v-if="!isCreate"> 삭제하기 </v-btn>

@@ -110,6 +110,11 @@ export default {
 			})
 		},
 	},
+	watch: {
+		list() {
+			this.selected = []
+		},
+	},
 	methods: {
 		async doDelete() {
 			if (
@@ -127,6 +132,7 @@ export default {
 				console.log(data)
 				this.$showInfo('삭제되었습니다.')
 				this.$emit('search')
+				this.selected = []
 			} catch (error) {
 				this.$showError(this.apiErrorMsg_Blue)
 				console.log('deleteQnaApi :' + error)

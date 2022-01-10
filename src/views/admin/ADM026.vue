@@ -82,7 +82,7 @@
 						dark
 						large
 						outlined
-						@click="$router.go()"
+						@click="$router.go(-1)"
 					>
 						취소
 					</v-btn>
