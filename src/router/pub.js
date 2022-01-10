@@ -193,16 +193,4 @@ export const pubRouter = [
 		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
 	},
-	{
-		path: 'myp033', //My page  My결재함
-		component: () => import('@/views/pub/TAH-MYP033.vue'),
-	},
-	{
-		path: 'myp034', //My page  My결재함
-		component: () => import('@/views/pub/TAH-MYP034.vue'),
-	},
-	{
-		path: 'myp037', //My page  My결재함
-		component: () => import('@/views/pub/TAH-MYP037.vue'),
-	},
 ]
