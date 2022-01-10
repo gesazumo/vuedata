@@ -2,10 +2,9 @@
 	<v-app>
 		<div class="adm_contents">
 			<div class="inner">
-				<h5>마이데이터, 특화데이터 컨텐츠 등록 및 수정</h5>
+				<h5>마이데이터, 특화데이터 컨텐츠 관리</h5>
 				<div class="item_box">
 					<div class="table_box">
-						<p class="font-weight-bold pb-3">테이블 정보</p>
 						<table class="tb_write">
 							<caption>
 								table caption
@@ -23,7 +22,9 @@
 									</th>
 									<td>
 										<v-select
-											label="특화데이터"
+											text-field
+											:items="categori"
+											label=""
 											placeholder="카테고리를 선택하세요"
 											single-line
 											outlined
@@ -40,8 +41,10 @@
 									</th>
 									<td>
 										<v-select
-											label="지식그래프"
-											placeholder="카테고리를 선택하세요"
+											text-field
+											:items="detail"
+											label=""
+											placeholder="상세구분을 선택하세요"
 											single-line
 											outlined
 											:rules="[
@@ -57,9 +60,11 @@
 										제목
 										<span class="asterisk">필수</span>
 									</th>
-									<td colspan="3">
-										<v-text-field
-											label="지식그래프"
+									<td>
+										<v-select
+											text-field
+											:items="title"
+											label=""
 											placeholder="제목을 입력하세요"
 											single-line
 											outlined
@@ -67,293 +72,253 @@
 												rules.required,
 												rules.title_rule,
 											]"
-										></v-text-field>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										특화데이터 구분
-										<span class="asterisk">필수</span>
-									</th>
-									<td colspan="3">
-										<v-select
-											placeholder="특화데이터 구분을 선택하세요"
-											single-line
-											outlined
 											hide-details="auto"
 										></v-select>
 									</td>
 								</tr>
 								<tr>
 									<th>
-										Feature Store 구분
+										설명
 										<span class="asterisk">필수</span>
 									</th>
 									<td colspan="3">
-										<v-select
-											placeholder="Feature Store 구분을 선택하세요"
-											single-line
-											outlined
-											hide-details="auto"
-										></v-select>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										테이블명
-										<span class="asterisk">필수</span>
-									</th>
-									<td>
-										<v-text-field
-											label="TCTAHES01"
-											placeholder="테이블명을 입력해 주세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-										>
-											<template slot="append-outer">
-												<v-btn
-													color="primary"
-													dark
-													@click="dialog = true"
-												>
-													중복체크
-												</v-btn>
-												<v-dialog
-													v-model="dialog"
-													max-width="350"
-												>
-													<v-card align="center">
-														<v-card-title
-															class="
-																text-subtitle-1
-															"
-															align="text-center"
-														>
-															사용하실 수 있는
-															테이블명입니다.<br />
-															등록하시겠습니까?
-														</v-card-title>
-														<v-card-text></v-card-text>
-
-														<v-card-actions>
-															<v-spacer></v-spacer>
-															<v-btn
-																color="primary"
-																dark
-																@click="
-																	dialog = false
-																"
-															>
-																확인
-															</v-btn>
-														</v-card-actions>
-													</v-card>
-												</v-dialog>
-											</template>
-										</v-text-field>
-									</td>
-									<th>
-										테이블한글명
-										<span class="asterisk">필수</span>
-									</th>
-									<td>
-										<v-text-field
-											label="마이데이터 가입자 정보"
-											placeholder="테이블한글명을 입력해 주세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-										></v-text-field>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										테이블 정의
-										<span class="asterisk">필수</span>
-									</th>
-									<td colspan="3">
-										<v-text-field
-											label="마이데이터 서비스 가입자 통계 수집을 위한 테이블입니다"
-											placeholder="테이블 정의를 입력해 주세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-										></v-text-field>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										보관기간
-										<span class="asterisk">필수</span>
-									</th>
-									<td>
-										<v-text-field
-											label="999"
-											placeholder="보관기간을 입력해 주세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-											style="width: 312px"
-										>
-											<template slot="append-outer">
-												<div
-													style="
-														line-height: 40px;
-														padding-left: 10px;
-													"
-												>
-													개월
-												</div>
-											</template>
-										</v-text-field>
-									</td>
-									<th>
-										전송주기
-										<span class="asterisk">필수</span>
-									</th>
-									<td>
-										<v-select
-											label="일"
-											placeholder="전송주기를 선택해 주세요"
-											single-line
-											outlined
-											hide-details="auto"
-										></v-select>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										타켓파일경로
-										<span class="asterisk">필수</span>
-									</th>
-									<td colspan="3">
-										<v-text-field
-											label="/data/{KXX, KBO}/RCV/"
-											placeholder="타겟파일경로를 입력해 주세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-										></v-text-field>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										타켓파일명1
-										<span class="asterisk">필수</span>
-									</th>
-									<td colspan="3">
-										<v-text-field
-											label="KBO_KFG_D_IRP-001_001_YYYYMMDD.dat"
-											placeholder="타겟파일명을 입력해 주세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-										></v-text-field>
-									</td>
-								</tr>
-								<tr>
-									<th>타켓파일명2</th>
-									<td colspan="3">
-										<v-text-field
-											label="KBO_KFG_D_IRP-001_001_YYYYMMDD.chk"
-											placeholder="타겟파일명을 입력해 주세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-										></v-text-field>
-									</td>
-								</tr>
-								<tr>
-									<th>파티션테이블 여부</th>
-									<td colspan="3">
-										<v-radio-group row hide-details="auto">
-											<v-radio label="No"></v-radio>
-											<v-radio label="Yes"></v-radio>
-										</v-radio-group>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										파티션타입내용
-										<span class="asterisk">필수</span>
-									</th>
-									<td colspan="3">
-										<v-text-field
-											placeholder="파티션 타입내용을 입력 하세요"
-											single-line
-											clearable
-											outlined
-											hide-details="auto"
-										></v-text-field>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-
-						<p class="font-weight-bold pb-3 mt-10">컬럼 정보</p>
-						<div class="btn_area">
-							<v-btn color="primary" dark> 행추가하기 </v-btn>
-							<v-btn color="primary" dark outlined>
-								삭제하기
-							</v-btn>
-						</div>
-						<v-data-table
-							:headers="headers"
-							:items="items"
-							:single-select="singleSelect"
-							show-select
-							hide-default-footer
-							class="elevation-1"
-						>
-						</v-data-table>
-
-						<p class="font-weight-bold pb-3 mt-10">
-							결재 요청 정보
-						</p>
-						<table class="tb_write">
-							<caption>
-								table caption
-							</caption>
-							<colgroup>
-								<col width="230" />
-								<col width="" />
-							</colgroup>
-							<tbody>
-								<tr>
-									<th>
-										테이블 수정 요청 사유
-										<span class="asterisk">필수</span>
-									</th>
-									<td>
 										<v-textarea
+											placeholder="설명을 입력하세요"
 											single-line
+											clearable
 											outlined
-											placeholder="요청 사유를 입력 하세요"
+											v-moel="project_desc"
+											:rules="[
+												rules.required,
+												rules.project_desc_rule,
+											]"
 											hide-details="auto"
 										>
 										</v-textarea>
 									</td>
 								</tr>
 								<tr>
-									<th>결재자</th>
-									<td>
-										<v-text-field
-											label="강태근 (KB 국민은행, 데이터기획부)"
-											single-line
-											outlined
-											filled
-											disabled
-											hide-details="auto"
+									<th>
+										썸네일 이미지
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3" class="thumb__area">
+										<div
+											style="float: left margin-right:10px"
 										>
-										</v-text-field>
+											<v-btn
+												color="primary"
+												dark
+												:loading="isSelecting"
+												@click="handleFileImport"
+												append-outer="fa fa-search"
+												style="margin: 0"
+											>
+												찾아보기
+												<i class="fa fa-search"></i>
+												<input
+													type="file"
+													class="fileinput"
+												/>
+											</v-btn>
+											<div class="search-desc">
+												<p>
+													썸네일 이미지는 1개까지
+													등록할 수 있습니다. 용량은
+													5MB를 넘을 수 없습니다.
+												</p>
+											</div>
+										</div>
+
+										<div v-if="!file">
+											<div
+												:class="[
+													'dropZone',
+													dragging
+														? 'dropZone-over'
+														: '',
+												]"
+												@dragenter="dragging = true"
+												@dragleave="dragging = false"
+											>
+												<div
+													class="dropZone-info"
+													@drag="onChange"
+												>
+													<span class="dropZone-title"
+														>첨부할 파일을 Drag &
+														Drop 방식으로 추가할 수
+														있습니다.</span
+													>
+													<div
+														class="
+															dropZone-upload-limit-info
+														"
+													></div>
+												</div>
+												<input
+													type="file"
+													@change="onChange"
+												/>
+											</div>
+										</div>
+										<div v-else class="dropZone-uploaded">
+											<div class="dropZone-uploaded-info">
+												<table class="fileupload-list">
+													<colgroup>
+														<col width="" />
+														<col width="20%" />
+														<col width="10%" />
+													</colgroup>
+													<tr>
+														<th>파일명</th>
+														<th>파일크기</th>
+														<th>삭제</th>
+													</tr>
+													<tr>
+														<td>filename.gif</td>
+														<td>1,234KB</td>
+														<td
+															style="
+																text-align: center;
+															"
+														>
+															<v-btn
+																color="primary"
+																dark
+																x-small
+																class="
+																	removeFile
+																"
+																append-outer="fa fa-times"
+																@click="
+																	removeFile
+																"
+															>
+																<i
+																	class="
+																		fa
+																		fa-times
+																	"
+																></i>
+															</v-btn>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										배너 이미지
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3" class="thumb__area">
+										<div
+											style="float: left margin-right:10px"
+										>
+											<v-btn
+												color="primary"
+												dark
+												:loading="isSelecting"
+												@click="handleFileImport"
+												append-outer="fa fa-search"
+												style="margin: 0"
+											>
+												찾아보기
+												<i class="fa fa-search"></i>
+												<input
+													type="file"
+													class="fileinput"
+												/>
+											</v-btn>
+											<div class="search-desc">
+												<p>
+													배너 이미지는 1개까지 등록할
+													수 있습니다. 용량은 5MB를
+													넘을 수 없습니다.
+												</p>
+											</div>
+										</div>
+
+										<div v-if="!file">
+											<div
+												:class="[
+													'dropZone',
+													dragging
+														? 'dropZone-over'
+														: '',
+												]"
+												@dragenter="dragging = true"
+												@dragleave="dragging = false"
+											>
+												<div
+													class="dropZone-info"
+													@drag="onChange"
+												>
+													<span class="dropZone-title"
+														>첨부할 파일을 Drag &
+														Drop 방식으로 추가할 수
+														있습니다.</span
+													>
+													<div
+														class="
+															dropZone-upload-limit-info
+														"
+													></div>
+												</div>
+												<input
+													type="file"
+													@change="onChange"
+												/>
+											</div>
+										</div>
+										<div v-else class="dropZone-uploaded">
+											<div class="dropZone-uploaded-info">
+												<table class="fileupload-list">
+													<colgroup>
+														<col width="" />
+														<col width="20%" />
+														<col width="10%" />
+													</colgroup>
+													<tr>
+														<th>파일명</th>
+														<th>파일크기</th>
+														<th>삭제</th>
+													</tr>
+													<tr>
+														<td>filename.gif</td>
+														<td>1,234KB</td>
+														<td
+															style="
+																text-align: center;
+															"
+														>
+															<v-btn
+																color="primary"
+																dark
+																x-small
+																class="
+																	removeFile
+																"
+																append-outer="fa fa-times"
+																@click="
+																	removeFile
+																"
+															>
+																<i
+																	class="
+																		fa
+																		fa-times
+																	"
+																></i>
+															</v-btn>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
 									</td>
 								</tr>
 							</tbody>
@@ -362,103 +327,92 @@
 				</div>
 				<div class="btn_area" align="center">
 					<v-btn color="primary" dark outlined> 취소 </v-btn>
-					<v-btn color="primary" dark> 수정요청하기 </v-btn>
+					<v-btn color="primary" dark> 등록하기 </v-btn>
 				</div>
 			</div>
 		</div>
 	</v-app>
 </template>
+
 <script>
 export default {
+	el: '#app',
 	data() {
 		return {
+			file: '',
+			dragging: false,
 			dialog: false,
+			dialog_chk: false,
 			page: 1,
 			pageCount: 0,
+			itemsPerPage: 10,
 			singleSelect: false,
 			selected: [],
 			headers: [
 				{
-					text: '컬럼명 *',
+					text: '인스턴스 코드',
 					align: 'center',
 					sortable: false,
-					value: 'name',
+					value: 'code',
 				},
 				{
-					text: '영문컬럼명',
+					text: '인스턴스코드 정의',
 					align: 'center',
 					sortable: false,
-					value: 'b',
+					value: 'desc',
 				},
 				{
-					text: 'PK여부 *',
+					text: '삭제',
 					align: 'center',
 					sortable: false,
-					value: 'c',
-				},
-				{
-					text: 'Null 구분 *',
-					align: 'center',
-					sortable: false,
-					value: 'd',
-				},
-				{
-					text: '개인정보 여부 *',
-					align: 'center',
-					sortable: false,
-					value: 'e',
-				},
-				{
-					text: '데이터 타입 *',
-					align: 'center',
-					sortable: false,
-					value: 'f',
-				},
-				{
-					text: '데이터 길이 *',
-					align: 'center',
-					sortable: false,
-					value: 'g',
-				},
-				{
-					text: '소수점 길이 *',
-					align: 'center',
-					sortable: false,
-					value: 'aa',
-				},
-				{
-					text: '인스턴스명 *',
-					align: 'center',
-					sortable: false,
-					value: 'bb',
-				},
-				{
-					text: '식별자',
-					align: 'center',
-					sortable: false,
-					value: 'cc',
-				},
-				{
-					text: '컬럼정의 *',
-					align: 'center',
-					sortable: false,
-					value: 'dd',
-				},
-				{
-					text: '비고',
-					align: 'center',
-					sortable: false,
-					value: 'ee',
+					value: 'delete',
 				},
 			],
-			items: [],
-
+			items: [{ code: '', desc: '', delete: '' }],
 			rules: {
 				categori_rule: value => !!value || '카테고리를 선택해 주세요.',
 				detail_rule: value => !!value || '상세구분을 선택해 주세요.',
 				title_rule: value => !!value || '제목을 입력해 주세요.',
+				project_desc_rule: value => !!value || '설명을 입력해 주세요.',
 			},
 		}
+	},
+	methods: {
+		onChange(e) {
+			var files = e.target.files || e.dataTransfer.files
+
+			if (!files.length) {
+				this.dragging = false
+				return
+			}
+
+			this.createFile(files[0])
+		},
+		createFile(file) {
+			if (!file.type.match('text.*')) {
+				alert('please select txt file')
+				this.dragging = false
+				return
+			}
+
+			if (file.size > 5000000) {
+				alert('please check file size no over 5 MB.')
+				this.dragging = false
+				return
+			}
+
+			this.file = file
+			console.log(this.file)
+			this.dragging = false
+		},
+		removeFile() {
+			this.file = ''
+		},
+	},
+	computed: {
+		extension() {
+			return this.file ? this.file.name.split('.').pop() : ''
+		},
 	},
 }
 </script>

@@ -57,6 +57,7 @@
 								v-model="check[0]"
 								@change="checkChange()"
 								:rules="rules(0)"
+								hide-details="auto"
 							>
 								<template v-slot:label>
 									<p>
@@ -80,6 +81,7 @@
 								v-model="check[1]"
 								@change="checkChange()"
 								:rules="rules(1)"
+								hide-details="auto"
 							>
 								<template v-slot:label>
 									<p>
@@ -101,6 +103,7 @@
 								v-model="check[2]"
 								@change="checkChange()"
 								:rules="rules(2)"
+								hide-details="auto"
 							>
 								<template v-slot:label>
 									<p>
@@ -138,9 +141,9 @@
 					</div>
 				</v-form>
 				<div class="btnArea">
-					<v-btn class="regit large" @click="nextPage()">
-						다음 페이지로
-					</v-btn>
+					<v-btn color="primary" large dark @click="nextPage()"
+						>다음 페이지로</v-btn
+					>
 				</div>
 			</div>
 		</div>
