@@ -193,4 +193,8 @@ export const pubRouter = [
 		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
 	},
+	{
+		path: 'sup001', //Analyze 오픈소스 라이브러리 리스트
+		component: () => import('@/views/pub/TAH-SUP001.vue'),
+	},
 ]
