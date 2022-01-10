@@ -169,12 +169,4 @@ export const pubRouter = [
 		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
 	},
-	{
-		path: 'myp027', //My page  My Dashboard My Dataset업로드
-		component: () => import('@/views/pub/TAH-MYP027.vue'),
-	},
-	{
-		path: 'myp026', //My page  파일 업로드 요청 확인 팝업
-		component: () => import('@/views/pub/TAH-MYP026.vue'),
-	},
 ]

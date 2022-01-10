@@ -18,7 +18,7 @@
 				>
 					프로젝트 생성 확인
 					<div style="float: right">
-						<i class="fa fa-times"></i>
+						<i class="fa fa-times" @click="Cancel"></i>
 					</div>
 				</v-toolbar-title>
 				<v-card-text style="padding: 40px !important; font-size: 16px">
@@ -33,16 +33,16 @@
 						dark
 						outlined
 						class="body-2 font-weight-bold"
-						@click.native="cancel"
-						>취소</v-btn
-					>
+						@click="Cancel"
+						>취소
+					</v-btn>
 					<v-btn
 						color="primary"
 						dark
 						class="body-2 font-weight-bold"
-						@click.native="agree"
-						>확인</v-btn
-					>
+						@click="Confirm"
+						>확인
+					</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -59,5 +59,15 @@ export default {
 			zIndex: 200,
 		},
 	}),
+
+	methods: {
+		Cancel() {},
+
+		Confirm() {
+			this.$router.push({
+				name: 'ana002',
+			})
+		},
+	},
 }
 </script>

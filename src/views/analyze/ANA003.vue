@@ -116,8 +116,10 @@
 												range
 												v-model="date"
 												value-type="YYYYMMDD"
-												:rules="Date_rules()"
 												hide-details="auto"
+												@close="
+													checkRegistDateValid = true
+												"
 											/>
 											<i
 												class="
@@ -126,6 +128,15 @@
 											></i>
 											프로젝트 총 기간은 1년 이하로
 											선택하셔야 합니다.
+											<div
+												style="color: red"
+												v-if="
+													checkRegistDateValid &&
+													registDateValid
+												"
+											>
+												프로젝트 기간을 선택해 주세요.
+											</div>
 										</td>
 									</tr>
 									<tr>
@@ -209,7 +220,7 @@
 										<td colspan="3">
 											<v-col md="6">
 												<v-text-field
-													v-model="searchWrd"
+													v-model="searchName"
 													placeholder="이름을 입력하세요"
 													outlined
 													clearable
@@ -256,6 +267,22 @@
 													>
 														삭제
 													</v-btn>
+												</template>
+												<template>
+													<div class="noti_meg">
+														<i
+															class="
+																fas
+																fa-exclamation-circle
+															"
+														></i>
+														<div class="noti_txt">
+															<p>
+																조회 내역이
+																없습니다.
+															</p>
+														</div>
+													</div>
 												</template>
 											</v-data-table>
 										</td>
@@ -517,8 +544,9 @@
 			</div>
 			<div v-if="popupVal">
 				<ANA005
-					v-bind:selectList="selectedMemebers"
-					v-bind:searchWrd="searchWrd"
+					:selectedMemebers="selectedMemebers"
+					:searchName="searchName"
+					:proposer="this.userInfo.userNo"
 					@close:popup="popupClose"
 					@selectMember="selectMember"
 				/>
@@ -541,7 +569,7 @@ export default {
 	},
 	data() {
 		return {
-			searchWrd: '',
+			searchName: '',
 			selectedMemebers: [], //선택한 프로젝트 팀원 리스트
 			popupVal: false,
 			// 작업
@@ -570,6 +598,7 @@ export default {
 			instance_V: '', // 가상화환경 인스턴스값
 			// 퍼블
 			date: null,
+			checkRegistDateValid: false,
 
 			project: '',
 			project_rule: [v => !!v || '프로젝트 명을 입력해 주세요.'],
@@ -649,10 +678,6 @@ export default {
 				})
 		},
 
-		Date_rules() {
-			return [!this.date || '프로젝트 기간을 선택해 주세요.']
-		},
-
 		Analyze_rules(strYN) {
 			if (
 				!this.athena &&
@@ -673,7 +698,9 @@ export default {
 		},
 
 		async Application() {
-			if (this.$refs.form.validate()) {
+			this.checkRegistDateValid = true
+
+			if (this.$refs.form.validate() && this.registDateValid) {
 				// const param = {
 				// 	projName: this.project, // 프로젝트명
 				// 	projCtnt: this.project_desc, // 프로젝트 설명
@@ -809,6 +836,16 @@ export default {
 				str += ',03'
 			}
 			return str
+		},
+
+		isEnabled(slot) {
+			return this.enabled === slot
+		},
+	},
+
+	computed: {
+		registDateValid() {
+			return this.date == null
 		},
 	},
 }

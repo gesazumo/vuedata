@@ -23,7 +23,7 @@
 								clearable
 								outlined
 								v-model="searchWrd"
-								:rules="rules"
+								:rules="nameRules"
 								hide-details="auto"
 							>
 								<template slot="append-outer">
@@ -44,6 +44,17 @@
 								총
 								<span>{{ this.totalCount }}</span>
 								개의 검색결과가 있습니다.
+							</p>
+							<p
+								style="
+									position: absolute;
+									float: right;
+									right: 80px;
+									color: #473eab;
+								"
+							>
+								<i class="mdi mdi-information-outline"></i>
+								팀원은 최대 10명까지 선택할 수 있습니다.
 							</p>
 						</div>
 
@@ -67,6 +78,9 @@
 												@change="
 													SelectMember(item.serno - 1)
 												"
+												:disabled="
+													Disabled(item.userNo)
+												"
 											>
 											</v-checkbox>
 										</td>
@@ -76,6 +90,16 @@
 										<td>{{ item.userNm }}</td>
 										<td>{{ item.userNo }}</td>
 									</tr>
+								</template>
+								<template>
+									<div class="noti_meg">
+										<i
+											class="fas fa-exclamation-circle"
+										></i>
+										<div class="noti_txt">
+											<p>조회 내역이 없습니다.</p>
+										</div>
+									</div>
 								</template>
 							</v-data-table>
 						</div>
@@ -121,16 +145,14 @@
 import axios from 'axios'
 
 export default {
-	props: ['searchWrd', 'selectList'],
+	props: ['searchName', 'selectedMemebers', 'proposer'],
 
 	data() {
 		return {
-			//searchWrd: '',
-			nameRules: '',
-			rules: [v => !!v || '이름을 입력해 주세요.'],
-			selected: [],
+			searchWrd: '',
+			selectList: [],
+			nameRules: [v => !!v || '이름을 입력해 주세요.'],
 			tmmmList: null,
-			//selectList: [],
 			totalCount: 0,
 			headers: [
 				{
@@ -169,6 +191,9 @@ export default {
 	},
 
 	created() {
+		this.searchWrd = this.searchName
+		this.selectList = Object.assign([], this.selectedMemebers)
+
 		this.Search()
 	},
 
@@ -188,7 +213,6 @@ export default {
 					this.tmmmList = res.data.tmmmList
 					this.totalCount = res.data.totalCount
 
-					this.selected = new Array(this.totalCount).fill(false)
 					this.MakeList()
 					console.log(res.data)
 					console.log(this.tmmmList)
@@ -199,6 +223,12 @@ export default {
 		},
 
 		SelectMember(num) {
+			if (this.proposer != null)
+				if (this.proposer == this.tmmmList[num].userNo) {
+					this.$set(this.tmmmList[num], 'select', true)
+					return
+				}
+
 			if (this.selectList.length > 10) {
 				this.$set(this.tmmmList[num], 'select', false)
 				return
@@ -209,7 +239,7 @@ export default {
 				this.$set(this.tmmmList[num], 'select', true)
 			} else {
 				this.selectList = this.selectList.filter(
-					element => element.userNo !== this.tmmmList[num].userNo,
+					element => element.userNo != this.tmmmList[num].userNo,
 				)
 				this.$set(this.tmmmList[num], 'select', false)
 			}
@@ -221,18 +251,19 @@ export default {
 					this.$set(this.tmmmList[i], 'select', false)
 			}
 			this.selectList = this.selectList.filter(
-				element => element.userNo !== this.selectList[num].userNo,
+				element => element.userNo != this.selectList[num].userNo,
 			)
 		},
 
 		MakeList() {
-			console.log(this.searchWrd)
-			console.log(this.selectList)
-
 			for (var i = 0; i < this.tmmmList.length; i++) {
 				this.$set(this.tmmmList[i], 'select', false)
-				for (var j = 0; j < this.selectList.length; j++)
+				for (var j = 0; j < this.selectList.length; j++) {
 					if (this.selectList[j].userNo == this.tmmmList[i].userNo)
+						this.$set(this.tmmmList[i], 'select', true)
+				}
+				if (this.proposer != null)
+					if (this.proposer == this.tmmmList[i].userNo)
 						this.$set(this.tmmmList[i], 'select', true)
 			}
 		},
@@ -244,6 +275,11 @@ export default {
 		selectMember() {
 			if (this.selectList.length == 0) return
 			this.$emit('selectMember', this.selectList)
+		},
+
+		Disabled(value) {
+			if (this.proposer != null) return value == this.proposer
+			else return false
 		},
 	},
 }
