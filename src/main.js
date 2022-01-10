@@ -30,6 +30,8 @@ Object.keys(util).forEach(key => (Vue.prototype[key] = util[key]))
 Object.keys(constant).forEach(key => (Vue.prototype[key] = constant[key]))
 Object.keys(methods).forEach(key => (Vue.prototype[key] = methods[key]))
 Vue.use(Toasted, { duration: 1500 })
+Vue.component('LoadingLottie', LoadingLottie)
+Vue.component('CheckLottie', CheckLottie)
 
 new Vue({
 	router,
