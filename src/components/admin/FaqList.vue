@@ -20,7 +20,18 @@
 			>
 				삭제하기
 			</v-btn>
-			<v-btn color="primary" dark outlined v-if="selected.length == 1">
+			<v-btn
+				color="primary"
+				dark
+				outlined
+				v-if="selected.length == 1"
+				@click="
+					$router.push({
+						name: 'adm0261',
+						params: { seq: selected[0].seq },
+					})
+				"
+			>
 				수정하기
 			</v-btn>
 		</div>
@@ -29,6 +40,7 @@
 				v-model="selected"
 				item-key="seq"
 				:headers="headers"
+				@click:row="handleClick"
 				:items="faqListData"
 				show-select
 				hide-default-footer
@@ -101,6 +113,9 @@ export default {
 		},
 	},
 	methods: {
+		handleClick(item) {
+			this.$router.push({ name: 'adm0261', params: { seq: item.seq } })
+		},
 		async doDelete() {
 			if (
 				!(await this.$confirm(

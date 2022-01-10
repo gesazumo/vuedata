@@ -1,7 +1,7 @@
 <template>
 	<div class="adm_contents">
 		<div class="inner">
-			<h5>FAQ 등록</h5>
+			<h5>FAQ 수정</h5>
 			<v-form ref="form">
 				<div class="item_box">
 					<div class="table_box">
@@ -86,9 +86,8 @@
 					>
 						취소
 					</v-btn>
-					<!-- <v-btn color="primary" dark large> 수정하기 </v-btn> -->
-					<v-btn color="primary" dark large @click="doCreate">
-						등록하기
+					<v-btn color="primary" dark large @click="doUpdate">
+						수정하기
 					</v-btn>
 				</div>
 			</v-form>
@@ -97,7 +96,7 @@
 </template>
 
 <script>
-import { createFaqApi } from '@/api/modules/faqAPI'
+import { updateFaqApi, getFaqDetailApi } from '@/api/modules/faqAPI'
 import { VueEditor } from 'vue2-editor'
 export default {
 	components: {
@@ -137,22 +136,38 @@ export default {
 		},
 	},
 	methods: {
-		async doCreate() {
+		async doUpdate() {
 			this.checkMainText = true
 			if (this.isMainTextEmpty) return
 			if (!this.$refs.form.validate()) return
-			if (!(await this.$confirm('FAQ를 등록하시겠습니까?', '등록하기')))
+			if (!(await this.$confirm('FAQ를 수정하시겠습니까?', '수정하기')))
 				return
 
 			try {
-				await createFaqApi({ ...this.param })
-				this.$showInfo('등록되었습니다.')
+				await updateFaqApi({ ...this.param, seq: this.seq })
+				this.$showInfo('수정되었습니다.')
 				this.$router.push({ name: 'adm025' })
 			} catch (error) {
-				this.$showInfo('등록실패. ')
+				this.$showInfo('수정실패. ')
 				console.log(error)
 			}
 		},
+	},
+	async created() {
+		const { seq } = this.$route.params
+		this.seq = seq
+		try {
+			const { data } = await getFaqDetailApi(seq)
+			this.param = {
+				maintext: data.answertext,
+				dstic: data.dstic,
+				ques: data.ques,
+			}
+		} catch (err) {
+			this.$showError('존재하지 않는 게시물입니다.')
+			this.$router.push({ name: 'adm025' })
+			console.log(err)
+		}
 	},
 }
 </script>

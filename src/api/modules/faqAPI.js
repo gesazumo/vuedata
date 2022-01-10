@@ -45,3 +45,8 @@ export const updateFaqApi = param => {
 		..._param,
 	})
 }
+
+export const getFaqDetailApi = seq => {
+	const url = '/getFaqConDetail'
+	return adminInstance.get(`${url}?seq=${seq}`)
+}
