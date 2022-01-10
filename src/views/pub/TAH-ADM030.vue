@@ -119,7 +119,9 @@
 								추가하기
 							</v-btn>
 						</v-row>
-						<v-row>메뉴트리</v-row>
+						<v-row>
+							<v-treeview :items="items"> </v-treeview>
+						</v-row>
 					</div>
 					<div class="menu_view">
 						<v-textarea
@@ -146,6 +148,17 @@ export default {
 			menu1: ['분석가 포털 사용자 매뉴얼', '분석환경 사용자 매뉴얼'],
 			menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
 			menu2Rules: [v => !!v || '카테고리를 먼저 선택해 주세요.'],
+			items: [
+				{
+					id: 1,
+					name: 'Applications :',
+					children: [
+						{ id: 2, name: 'Calendar : app' },
+						{ id: 3, name: 'Chrome : app' },
+						{ id: 4, name: 'Webstorm : app' },
+					],
+				},
+			],
 		}
 	},
 }
