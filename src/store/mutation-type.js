@@ -8,3 +8,4 @@ export const OK_CONFIRM = 'confirm_ok'
 export const CANCEL_CONFIRM = 'confirm_no'
 
 export const SET_CM_CODE = 'set_cm_code'
+export const SET_MENU = 'set_menu'

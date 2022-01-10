@@ -7,6 +7,35 @@ import uniq from 'lodash/uniq.js'
 import uniqBy from 'lodash/uniqBy.js'
 
 const util = {
+	capitalize(str) {
+		return str.charAt(0).toUpperCase() + str.slice(1)
+	},
+
+	setComponent(level, dir, name) {
+		if (level == 1) {
+			return () =>
+				import(`@/views/${dir}/${this.capitalize(dir)}Index.vue`)
+		}
+		return () => import(`@/views/${dir}/${name}.vue`)
+	},
+
+	formatMenu(menuList) {
+		const menu = menuList.map(menu => {
+			return {
+				path: menu.menuUrl,
+				name: menu.name.toLowerCase(),
+				meta: 'todo',
+				component: this.setComponent(
+					menu.menuLevle,
+					menu.dir,
+					menu.name,
+				),
+				children: menu.children ? this.formatMenu(menu.children) : null,
+			}
+		})
+		return menu
+	},
+
 	requiredValid(msg) {
 		return value => !!value || msg
 	},

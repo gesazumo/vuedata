@@ -17,7 +17,7 @@ const commonRouter = [
 	},
 	{
 		path: 'main',
-		name: 'Main',
+		name: 'main',
 		meta: { isPublic: false },
 		component: () => import('@/views/MainA.vue'),
 	},
