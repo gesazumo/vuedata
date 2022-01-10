@@ -182,6 +182,10 @@ export const pubRouter = [
 	},
 	//My page
 	{
+		path: 'myp022', //My page  My Dataset 업로드
+		component: () => import('@/views/pub/TAH-MYP022.vue'),
+	},
+	{
 		path: 'myp026', //My page  파일 업로드 요청 확인 팝업
 		component: () => import('@/views/pub/TAH-MYP026.vue'),
 	},
@@ -194,7 +198,19 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
 	},
 	{
-		path: 'sup001', //Analyze 오픈소스 라이브러리 리스트
+		path: 'myp033', //My page  My결재함 데이터 결재상세
+		component: () => import('@/views/pub/TAH-MYP033.vue'),
+	},
+	{
+		path: 'myp034', //My page  My결재함 데이터업로드 결재 상세
+		component: () => import('@/views/pub/TAH-MYP034.vue'),
+	},
+	{
+		path: 'myp037', //My page  My결재함 메타테이블 결재 상세
+		component: () => import('@/views/pub/TAH-MYP037.vue'),
+	},
+	{
+		path: 'sup001', //Support sub main
 		component: () => import('@/views/pub/TAH-SUP001.vue'),
 	},
 ]

@@ -4114,3 +4114,49 @@ td:last-child {
   -webkit-transform:rotate(-20deg);
     transform:rotate(-20deg);
 }
+
+/*file_list 첨부파일 다운로드팝업*/
+.file_list {
+  position: absolute;
+  background: #fff;
+  border:1px solid #d8d8d8;
+  border-radius: 4px;
+  width: 270px;
+  min-width: 270px;
+  max-width: 270px;
+  padding: 24px;
+  box-shadow: 3px 5px 5px 2px rgba(0,0,0,.2);
+}
+.file_list .v-list-item {
+  padding: 0 !important;
+}
+.file_list .v-list-item__content {
+  padding:0 !important;
+  padding-left: 8px !important;
+}
+.file_list .v-list-item__action {
+  margin:2px !important;
+}
+.file_list .v-list-item--link:before {
+  background: none !important;
+}
+.file_list .v-input__slot {
+  min-height: 26px !important;
+}
+.file_list .close_btn {
+  z-index: 2000;
+  float:right;
+}
+.file_list .v-btn:not(.v-btn--round).v-size--default {
+  min-width: 24px !important;
+  min-height: 24px !important;
+  max-width: 24px !important;
+  max-height: 24px !important;
+  padding: 0 !important;
+}
+.file_list .v-btn__content {
+   
+}
+.file_list .close_btn i {
+  padding: 5px;
+}
