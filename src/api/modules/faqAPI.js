@@ -18,7 +18,7 @@ export const createFaqApi = param => {
 	const url = '/regFaqConIns'
 	const parsedParam = {
 		answertext: param.maintext,
-		dstic: param.dstic,
+		dstic: param.dstic.cmnCd,
 		ques: param.ques,
 	}
 	return adminInstance.post(`${url}`, {

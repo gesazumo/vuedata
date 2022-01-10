@@ -5,7 +5,9 @@
 		</div>
 		<div class="btn_area">
 			<v-btn color="primary" dark> 등록하기 </v-btn>
-			<v-btn color="primary" dark outlined> 삭제하기 </v-btn>
+			<v-btn color="primary" dark outlined @click="doDelete">
+				삭제하기
+			</v-btn>
 			<v-btn color="primary" dark outlined> 수정하기 </v-btn>
 		</div>
 		<div class="table_box">
@@ -18,12 +20,16 @@
 				hide-default-footer
 				class="elevation-1"
 			>
+				<template v-slot:no-data>
+					<no-data />
+				</template>
 			</v-data-table>
 		</div>
 	</div>
 </template>
 
 <script>
+import { deleteFaqsApi } from '@/api/modules/faqAPI'
 export default {
 	props: {
 		list: [],
@@ -73,6 +79,29 @@ export default {
 					views: 0,
 				}
 			})
+		},
+	},
+	methods: {
+		async doDelete() {
+			if (
+				!(await this.$confirm(
+					'선택 항목을 삭제하시겠습니까?',
+					'삭제하기',
+				))
+			)
+				return
+			try {
+				const seqList = this.selected.map(item => {
+					return item.seq
+				})
+				const { data } = await deleteFaqsApi(seqList)
+				console.log(data)
+				this.$showInfo('삭제되었습니다.')
+				this.$emit('search')
+			} catch (error) {
+				this.$showError(this.apiErrorMsg_Blue)
+				console.log('deleteQnaApi :' + error)
+			}
 		},
 	},
 }

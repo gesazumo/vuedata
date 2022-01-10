@@ -4,7 +4,8 @@
 			<h5>FAQ 관리</h5>
 			<faq-filter @search="search" :parentParam="param" />
 			<div class="item_box">
-				<faq-list :list="list" />
+				<loading-lottie v-if="loading" />
+				<faq-list :list="list" v-if="!loading" @search="search" />
 				<div class="paging">
 					<v-pagination
 						v-model="page"
