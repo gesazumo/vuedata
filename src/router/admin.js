@@ -124,6 +124,12 @@ const adminRouter = [
 		component: () => import('@/views/admin/ADM022.vue'),
 	},
 	{
+		path: 'adm016',
+		name: 'adm016',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM016.vue'),
+	},
+	{
 		path: 'adm024/:seq',
 		name: 'adm024',
 		meta: { isPublic: true },

@@ -5,6 +5,7 @@ import userStore from './modules/userStore'
 import commonCodeStore from './modules/commonCodeStore'
 import createPersistedState from 'vuex-persistedstate'
 import { CANCEL_CONFIRM, OK_CONFIRM, SHOW_CONFIRM } from './mutation-type'
+import menuStore from './modules/menuStore'
 
 const userState = createPersistedState({
 	paths: ['userStore'],
@@ -50,6 +51,7 @@ export default new Vuex.Store({
 		shareStore: shareStore,
 		userStore: userStore,
 		commonCodeStore: commonCodeStore,
+		menuStore: menuStore,
 	},
 	plugins: [userState],
 })

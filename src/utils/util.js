@@ -35,6 +35,7 @@ const util = {
 					name: menu.name.toLowerCase(),
 					meta: {
 						isPublic: false,
+						screenId: menu.menuId,
 					},
 					component: this.setComponent(
 						menu.menuLevel,

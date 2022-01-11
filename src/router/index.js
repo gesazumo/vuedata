@@ -5,21 +5,26 @@ import { pubRouter } from './pub'
 import commonRouter from './commonRouter'
 import store from '@/store'
 import { getMenuApi } from '@/api/modules/initAPI'
-import util from '../utils/util'
+import util from '@/utils/util'
 
 Vue.use(VueRouter)
 
 const loadRouter = async () => {
-	const { data } = await getMenuApi()
-
-	const commonMenu = util.formatMenu(data.list)
-	console.log(commonMenu)
+	try {
+		const { data } = await getMenuApi()
+		const commonMenu = util.formatMenu(data.list)
+		console.log(commonMenu)
+	} catch (error) {
+		console.log(error)
+	}
 
 	const routes = [
 		{
 			path: '/login',
 			name: 'Login',
-			meta: { isPublic: true },
+			meta: {
+				isPublic: true,
+			},
 			component: () => import('@/views/Login.vue'),
 		},
 		{
