@@ -1,10 +1,11 @@
 import { getCmCodeApi } from '@/api/modules/initAPI'
+import constant from '@/constant'
 import { SET_CM_CODE } from '../mutation-type'
 
 const commonCodeStore = {
 	namespaced: true,
 	state: {
-		cmCode: {},
+		cmCode: null,
 	},
 	mutations: {
 		[SET_CM_CODE](state, { cmCode }) {
@@ -12,14 +13,23 @@ const commonCodeStore = {
 		},
 	},
 	actions: {
-		fetchCmCode({ commit }) {
-			const { cmCode } = getCmCodeApi()
-			commit(SET_CM_CODE, { cmCode })
+		async fetchCmCode({ commit }) {
+			const { data } = await getCmCodeApi()
+			const cmCode = {
+				...data.CmCode,
+				notiCmCodeDstic: [...constant.notiCmCodeDstic],
+				notiCmCodeKate: [...constant.notiCmCodeKate],
+				notiCmCodePosting: [...constant.notiCmCodePosting],
+			}
+			commit(SET_CM_CODE, { cmCode: cmCode })
 		},
 	},
 	getters: {
 		getCmCode: state => key => {
 			return state.cmCode[key]
+		},
+		cmCodeExist: state => {
+			return state.cmCode
 		},
 	},
 }

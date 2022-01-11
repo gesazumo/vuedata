@@ -3,6 +3,8 @@
 		<div class="inner">
 			<h5>단어 등록 및 수정</h5>
 			<div class="item_box">
+				<i class="mdi mdi-information-outline"></i>
+				단어 중복체크는 한글단어명과 영문약어명을 조합하여 수행합니다.
 				<div class="table_box">
 					<v-form ref="form2" onsubmit="return false;">
 						<table class="tb_write">
@@ -20,16 +22,32 @@
 										<span class="asterisk">필수</span>
 									</th>
 									<td>
+										<v-text-field
+											v-model="korWord"
+											placeholder="한글단어명을 입력해 주세요"
+											single-line
+											outlined
+											:rules="korWord_rule"
+										>
+										</v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										영문약어명
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
 										<v-form
 											ref="form"
 											onsubmit="return false;"
 										>
 											<v-text-field
-												v-model="korWord"
-												placeholder="한글단어명을 입력해 주세요"
+												v-model="engWordShort"
+												placeholder="영문약어명을 입력해 주세요"
 												single-line
 												outlined
-												:rules="korWord_rule"
+												:rules="engWordShort_rule"
 											>
 												<template slot="append-outer">
 													<button
@@ -38,8 +56,8 @@
 													>
 														중복체크
 													</button>
-												</template>
-											</v-text-field>
+												</template></v-text-field
+											>
 										</v-form>
 									</td>
 								</tr>
@@ -55,21 +73,6 @@
 											single-line
 											outlined
 											:rules="engWord_rule"
-										></v-text-field>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										영문약어명
-										<span class="asterisk">필수</span>
-									</th>
-									<td>
-										<v-text-field
-											v-model="engWordShort"
-											placeholder="영문약어명을 입력해 주세요"
-											single-line
-											outlined
-											:rules="engWordShort_rule"
 										></v-text-field>
 									</td>
 								</tr>
@@ -140,23 +143,24 @@ export default {
 			btnWordGb: '1', // 단어구분
 			strSummarize: '', // 정의
 			jungBokChk: false, // 단어중복체크
-			jungBokChkText: '', // 중복체크 완료 단어
+			jungBokChkKorText: '', // 중복체크 한글 단어
+			jungBokChkEngText: '', // 중복체크 영문 단어
 			btnText: '등록',
 
 			// rules
 			korWord_rule: [
 				() => !!this.korWord || '한글단어명을 입력해 주세요.',
+			],
+			engWordShort_rule: [
+				() =>
+					!!this.engWordShort ||
+					'영문약어명을 입력해 주세요.(대소문자 구분, 공백불가)',
 				() => !!this.jungBokChk || '중복체크를 해주세요.',
 			],
 			engWord_rule: [
 				() =>
 					!!this.engWord ||
 					'영문단어명을 입력해 주세요.(대소문자 구분)',
-			],
-			engWordShort_rule: [
-				() =>
-					!!this.engWordShort ||
-					'영문약어명을 입력해 주세요.(대소문자 구분, 공백불가)',
 			],
 			strSummarize_rule: [
 				() => !!this.strSummarize || '단어정의를 입력해 주세요.',
@@ -176,9 +180,17 @@ export default {
 				url = '/api/admin/meta/modWordCon'
 			}
 
-			if (this.korWord != this.jungBokChkText) {
+			if (this.korWord != this.jungBokChkKorText) {
 				alert(
 					'한글단어명이 변경되었습니다.\n중복체크를 진행해주시기 바랍니다.',
+				)
+				this.$refs.form.validate()
+				return
+			}
+
+			if (this.engWordShort != this.jungBokChkEngText) {
+				alert(
+					'영어약문명이 변경되었습니다.\n중복체크를 진행해주시기 바랍니다.',
 				)
 				this.$refs.form.validate()
 				return
@@ -246,7 +258,10 @@ export default {
 		fn_jungBokChk() {
 			axios
 				.get('/api/admin/meta/getWordCon', {
-					params: { inHanglWordName: this.korWord },
+					params: {
+						inHanglWordName: this.korWord,
+						inEngAbrvnName: this.engWordShort,
+					},
 				})
 				.then(res => {
 					if (res.data) {
@@ -258,7 +273,8 @@ export default {
 							confirm('등록가능한 단어입니다.\n등록하시겠습니까?')
 						) {
 							this.jungBokChk = true
-							this.jungBokChkText = this.korWord
+							this.jungBokChkKorText = this.korWord
+							this.jungBokChkEngText = this.engWordShort
 							this.$refs.form.validate()
 						}
 					}
@@ -282,9 +298,10 @@ export default {
 				})
 				.then(res => {
 					this.korWord = res.data.hanglWordName
-					this.jungBokChkText = res.data.hanglWordName
+					this.jungBokChkKorText = res.data.hanglWordName
 					this.engWord = res.data.engWordName
 					this.engWordShort = res.data.engAbrvnName
+					this.jungBokChkEngText = res.data.engAbrvnName
 					this.btnWordGb = res.data.smwrCmwrDstic
 					this.strSummarize = res.data.hanglWordDefin
 				})
