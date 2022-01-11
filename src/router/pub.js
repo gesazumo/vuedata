@@ -190,6 +190,30 @@ export const pubRouter = [
 	},
 	//My page
 	{
+		path: 'myp013', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP013.vue'),
+	},
+	{
+		path: 'myp014', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP014.vue'),
+	},
+	{
+		path: 'myp015', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP015.vue'),
+	},
+	{
+		path: 'myp016', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP016.vue'),
+	},
+	{
+		path: 'myp017', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP017.vue'),
+	},
+	{
+		path: 'myp018', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP018.vue'),
+	},
+	{
 		path: 'myp022', //My page  My Dataset 업로드
 		component: () => import('@/views/pub/TAH-MYP022.vue'),
 	},

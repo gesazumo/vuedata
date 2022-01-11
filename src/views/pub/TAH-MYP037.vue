@@ -7,16 +7,134 @@
 					<li><i class="fa fa-chevron-right"></i> My Page</li>
 					<li><i class="fa fa-chevron-right"></i> My 결재함</li>
 				</ul>
-				<h3>메타테이블 결재의 상세</h3>
+				<h3>메타테이블 생성 결재 상세</h3>
 			</div>
 			<div class="subcontents">
 				<div class="s_body">
 					<div class="table_box">
-						<p>테이블 정보</p>
-
-						<p>컬럼 정보</p>
-
-						<p>결재 정보</p>
+						<p class="pb-4 font-weight-bold">테이블 정보</p>
+						<table class="tb_write">
+							<caption>
+								table caption
+							</caption>
+							<colgroup>
+								<col width="230" />
+								<col width="" />
+								<col width="230" />
+								<col width="" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>
+										구분
+										<span class="asterisk">필수</span>
+									</th>
+									<td>마이데이터</td>
+									<th>
+										계열사 구분
+										<span class="asterisk">필수</span>
+									</th>
+									<td>그룹 공통</td>
+								</tr>
+								<tr>
+									<th>
+										마이데이터 업권
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">공통업권</td>
+								</tr>
+								<tr>
+									<th>
+										특화데이터 구분
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">가맹점 업종구분</td>
+								</tr>
+								<tr>
+									<th>
+										Feature Store 구분
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">Feature Store명</td>
+								</tr>
+								<tr>
+									<th>
+										테이블명
+										<span class="asterisk">필수</span>
+									</th>
+									<td>TCTAHES01</td>
+									<th>
+										테이블 한글명
+										<span class="asterisk">필수</span>
+									</th>
+									<td>마이데이터 가입자 정보</td>
+								</tr>
+								<tr>
+									<th>
+										테이블 정의
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										마이데이터 서비스 가입자 통계 수집을
+										위한 테이블입니다.
+									</td>
+								</tr>
+								<tr>
+									<th>
+										보관기간
+										<span class="asterisk">필수</span>
+									</th>
+									<td>999개월</td>
+									<th>
+										전송주기
+										<span class="asterisk">필수</span>
+									</th>
+									<td>일</td>
+								</tr>
+								<tr>
+									<th>
+										타겟파일경로
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">/data/{KXX, KBO}/RCV/</td>
+								</tr>
+								<tr>
+									<th>
+										타겟파일명1
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">
+										KBO_KFG_D_IRP-001_001_YYYYMMDD.dat
+									</td>
+								</tr>
+								<tr>
+									<th>타겟파일명2</th>
+									<td colspan="3">
+										KBO_KFG_D_IRP-001_001_YYYYMMDD.dat
+									</td>
+								</tr>
+								<tr>
+									<th>파티션 테이블 여부</th>
+									<td colspan="3">No</td>
+								</tr>
+								<tr>
+									<th>
+										파티션 타입 내용
+										<span class="asterisk">필수</span>
+									</th>
+									<td colspan="3">파티션 타입</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="pt-8 pb-4 font-weight-bold">컬럼 정보</p>
+						<v-data-table
+							:headers="headers"
+							:items="items"
+							:items-per-page="itemsPerPage"
+							hide-default-footer
+							class="elevation-1"
+						></v-data-table>
+						<p class="pt-8 pb-4 font-weight-bold">결재 정보</p>
 						<table class="tb_write">
 							<caption>
 								table caption
@@ -31,46 +149,16 @@
 									<td>KBO-C00000001</td>
 								</tr>
 								<tr>
-									<th>프로젝트 ID</th>
-									<td>KBO-PROJ-0001</td>
-								</tr>
-								<tr>
-									<th>프로젝트명</th>
-									<td>마이데이터 통합 분석 프로젝트</td>
-								</tr>
-								<tr>
-									<th>프로젝트 기간</th>
-									<td>2021.00.00 ~ 2021.00.00</td>
-								</tr>
-								<tr>
-									<th>프로젝트 설명</th>
-									<td>마이데이터 통합 분석 프로젝트 서령</td>
-								</tr>
-								<tr>
-									<th>프로젝트 구분</th>
-									<td>팀</td>
-								</tr>
-								<tr>
-									<th>프로젝트 팀원</th>
-									<td>김국민, 김스타, 이국민, 이스타</td>
-								</tr>
-								<tr>
-									<th>분석환경</th>
-									<td>
-										Athena <br />
-										QuickSight <br />
-										Notebook (ml.t3.medium) <br />
-										SageMaker Studio (ml.g4dn.xlarge,
-										Building & Traning)
-									</td>
-								</tr>
-								<tr>
 									<th>요청자</th>
-									<td>최자영(KB국민은행, 데이터기획부)</td>
+									<td>최자영(국민은행, 데이터기획부)</td>
 								</tr>
 								<tr>
 									<th>요청일시</th>
-									<td>2022-00-00 21:00:00</td>
+									<td>2022-00-00 09:00</td>
+								</tr>
+								<tr>
+									<th>요청사유</th>
+									<td>분석을 위한 테이블</td>
 								</tr>
 								<tr>
 									<th>결재자</th>
@@ -79,16 +167,16 @@
 									</td>
 								</tr>
 								<tr>
-									<th>결재현황</th>
-									<td>결재중 / 결재완료 / 반려</td>
+									<th>결재 현황</th>
+									<td>결재중/결재완료/반려</td>
 								</tr>
 								<tr>
 									<th>결재일</th>
-									<td>2022-00-00 21:00:00</td>
+									<td>2022-00-00 02:16</td>
 								</tr>
 								<tr>
 									<th>반려일</th>
-									<td>2022-00-00 21:00:00</td>
+									<td>2022-00-00 02:16</td>
 								</tr>
 								<tr>
 									<th>반려사유</th>
@@ -112,46 +200,135 @@
 export default {
 	data() {
 		return {
-			desserts: [
+			page: 1,
+			pageCount: 0,
+			itemsPerPage: 10,
+
+			headers: [
 				{
-					name: 'Frozen Yogurt',
-					calories: 159,
+					text: '순번',
+					align: 'center',
+					sortable: false,
+					value: '1',
 				},
 				{
-					name: 'Ice cream sandwich',
-					calories: 237,
+					text: '컬럼명',
+					align: 'center',
+					sortable: false,
+					value: '2',
 				},
 				{
-					name: 'Eclair',
-					calories: 262,
+					text: '영문명',
+					align: 'center',
+					sortable: false,
+					value: '3',
 				},
 				{
-					name: 'Cupcake',
-					calories: 305,
+					text: 'PK여부',
+					align: 'center',
+					sortable: false,
+					value: '4',
 				},
 				{
-					name: 'Gingerbread',
-					calories: 356,
+					text: '타입&길이',
+					align: 'center',
+					sortable: false,
+					value: '5',
 				},
 				{
-					name: 'Jelly bean',
-					calories: 375,
+					text: '널리티',
+					align: 'center',
+					sortable: false,
+					value: '6',
 				},
 				{
-					name: 'Lollipop',
-					calories: 392,
+					text: '타입',
+					align: 'center',
+					sortable: false,
+					value: '7',
 				},
 				{
-					name: 'Honeycomb',
-					calories: 408,
+					text: '길이',
+					align: 'center',
+					sortable: false,
+					value: '8',
 				},
 				{
-					name: 'Donut',
-					calories: 452,
+					text: '소수점',
+					align: 'center',
+					sortable: false,
+					value: '9',
 				},
 				{
-					name: 'KitKat',
-					calories: 518,
+					text: '인스턴스명',
+					align: 'center',
+					sortable: false,
+					value: '10',
+				},
+				{
+					text: '인스턴스식별자',
+					align: 'center',
+					sortable: false,
+					value: '11',
+				},
+				{
+					text: '개인정보여부',
+					align: 'center',
+					sortable: false,
+					value: '12',
+				},
+				{
+					text: '컬럼정의',
+					align: 'center',
+					sortable: false,
+					value: '13',
+				},
+			],
+			items: [
+				{
+					1: '1',
+					2: '그룹회사코드',
+					3: 'groupCoCd',
+					4: 'v',
+					5: 'CHAR(3)',
+					6: 'Not Null',
+					7: 'CHAR',
+					8: '10',
+					9: '',
+					10: '그룹회사코드',
+					11: '105258000',
+					12: 'N',
+					13: 'KB에서 공통으로 사용하는 그룹회사코드',
+				},
+				{
+					1: '1',
+					2: '그룹회사코드',
+					3: 'groupCoCd',
+					4: 'v',
+					5: 'CHAR(3)',
+					6: 'Not Null',
+					7: 'CHAR',
+					8: '10',
+					9: '',
+					10: '그룹회사코드',
+					11: '105258000',
+					12: 'N',
+					13: 'KB에서 공통으로 사용하는 그룹회사코드',
+				},
+				{
+					1: '1',
+					2: '그룹회사코드',
+					3: 'groupCoCd',
+					4: 'v',
+					5: 'CHAR(3)',
+					6: 'Not Null',
+					7: 'CHAR',
+					8: '10',
+					9: '',
+					10: '그룹회사코드',
+					11: '105258000',
+					12: 'N',
+					13: 'KB에서 공통으로 사용하는 그룹회사코드',
 				},
 			],
 		}

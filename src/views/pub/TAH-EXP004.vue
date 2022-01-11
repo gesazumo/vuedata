@@ -24,7 +24,7 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<td>프로젝트 명</td>
+									<th>프로젝트 명</th>
 									<td>
 										<v-select
 											label="프로젝트 01"
