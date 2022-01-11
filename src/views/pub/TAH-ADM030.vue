@@ -262,6 +262,7 @@
 											<v-textarea
 												placeholder="내용을 입력해 주세요"
 												outlined
+												hide-details="auto"
 											>
 											</v-textarea>
 										</td>
