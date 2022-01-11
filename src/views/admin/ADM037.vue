@@ -31,8 +31,8 @@
 					<v-col md="4">
 						<div class="label_txt">구분</div>
 						<v-select
-							v-model="select"
-							:items="selectItems"
+							v-model="selectGroup"
+							:items="selectGroupItems"
 							item-text="title"
 							item-value="value"
 							single-line
@@ -115,9 +115,9 @@
 				</v-row>
 			</div>
 			<div class="item_box">
-				<div class="tit" v-if="items_02.length > 0">
+				<div class="tit" v-if="tableItems.length > 0">
 					<p>
-						총 <span>{{ items_02.length }}</span
+						총 <span>{{ tableItems.length }}</span
 						>개의 검색결과가 있습니다.
 					</p>
 				</div>
@@ -130,7 +130,7 @@
 						dark
 						outlined
 						@click="dialog = true"
-						v-if="selectedItems.length > 0"
+						v-if="selectedTableItems.length > 0"
 					>
 						삭제하기
 					</v-btn>
@@ -164,7 +164,7 @@
 						</v-card>
 					</v-dialog>
 					<v-btn
-						v-if="selectedItems.length == 1"
+						v-if="selectedTableItems.length == 1"
 						color="primary"
 						dark
 						outlined
@@ -175,9 +175,9 @@
 				</div>
 				<div class="table_box">
 					<v-data-table
-						v-model="selectedItems"
+						v-model="selectedTableItems"
 						:headers="headers"
-						:items="items_02"
+						:items="tableItems"
 						show-select
 						:items-per-page="itemsPerPage"
 						:single-select="false"
@@ -236,15 +236,15 @@ export default {
 		return {
 			subject: '',
 			date: [],
-			select: '',
+			selectGroup: '',
 			dialog: false,
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			selectItems: [],
+			selectGroupItems: [],
 			checkbox: [],
 			selected: [],
-			selectedItems: [],
+			selectedTableItems: [],
 			headers: [
 				{
 					text: '구분',
@@ -292,7 +292,7 @@ export default {
 					value: 'date_02',
 				},
 			],
-			items_02: [
+			tableItems: [
 				{
 					seq: 1,
 					type: 'Anaconda',
@@ -356,8 +356,8 @@ export default {
 			console.log('from : ' + this.date[0])
 			console.log('to : ' + this.date[1])
 			console.log('-------------groupSelectBox-------------')
-			console.log('title : ' + this.select.title)
-			console.log('value : ' + this.select.value)
+			console.log('title : ' + this.selectGroup.title)
+			console.log('value : ' + this.selectGroup.value)
 			console.log('-------------checkboxArray-------------')
 			console.log(this.createCheckboxArray())
 		},
@@ -376,8 +376,8 @@ export default {
 				moment().subtract(1, 'months').format('YYYY-MM-DD'),
 				moment().format('YYYY-MM-DD'),
 			]
-			this.select = { title: '전체', value: '99' }
-			this.selectItems = [
+			this.selectGroup = { title: '전체', value: '99' }
+			this.selectGroupItems = [
 				{ title: '전체', value: '99' },
 				{ title: 'Python', value: '01' },
 				{ title: 'R', value: '02' },
@@ -388,13 +388,13 @@ export default {
 		},
 		submit() {
 			console.log('-------------SUBMIT-------------')
-			console.log(this.selectedItems)
+			console.log(this.selectedTableItems)
 		},
 		edit() {
 			console.log('-------------EDIT-------------')
 			this.$router.push({
 				path: '/admin/adm038',
-				query: { editSeq: this.selectedItems[0].seq },
+				query: { editSeq: this.selectedTableItems[0].seq },
 			})
 		},
 		bringLibrary(seq) {
