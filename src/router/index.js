@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Container from '@/views/Container.vue'
 import { pubRouter } from './pub'
-// import commonRouter from './commonRouter'
+import commonRouter from './commonRouter'
 import store from '@/store'
 import { getMenuApi } from '@/api/modules/initAPI'
 import util from '../utils/util'
@@ -13,6 +13,7 @@ const loadRouter = async () => {
 	const { data } = await getMenuApi()
 
 	const commonMenu = util.formatMenu(data.list)
+	console.log(commonMenu)
 
 	const routes = [
 		{
@@ -25,7 +26,7 @@ const loadRouter = async () => {
 			path: '/',
 			meta: { isPublic: true },
 			component: Container,
-			children: commonMenu,
+			children: commonRouter,
 		},
 		{
 			path: '*',
