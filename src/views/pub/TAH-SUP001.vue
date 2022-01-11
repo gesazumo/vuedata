@@ -108,180 +108,149 @@
 						</li>
 					</ul>
 				</div>
-				<div class="sub_main_sec">
-					<div class="row">
-						<p class="tit">자주 묻는 질문 TOP6</p>
+				<div class="sub_main_sec_support">
+					<div class="btn-plus">
+						<div class="tit_support">
+							자주 묻는 질문 <span>TOP6</span>
+						</div>
+						<div class="btn-plus-item">
+							<button>
+								FAQ 전체보기
+								<i
+									class="fa fa-chevron-right"
+									style="color: #ffbc00"
+								></i>
+							</button>
+						</div>
 					</div>
-					<div class="card_item">
-						<v-row align="start">
-							<v-card v-for="n in 3" :key="n">
-								<div class="card_v">
-									<div class="keyword">
-										<span>공통</span>
-									</div>
-									<div class="cardtit">
-										제목 표시 두줄까지 들어갑니다.
-									</div>
-								</div>
-							</v-card>
-						</v-row>
-					</div>
-				</div>
-				<div class="sub_main_sec">
-					<div class="row">
-						<p class="tit">특화데이터</p>
-					</div>
-					<div class="card_item">
-						<v-row align="start">
-							<v-card
-								v-for="n in 2"
-								:key="n"
-								style="width: 700px; height: 256px; float: left"
-							>
-								<div class="card_h">
-									<div class="image">
-										<img
-											src="@/images/main_img_mater.png"
-											width="342"
-											height="256"
-										/>
-									</div>
-									<div class="text">
-										<div class="keyword">
-											<span>카드</span>
-										</div>
-										<div class="cardtit">title 2줄까지</div>
-										<div class="cardinfo">
-											<div class="board">
-												<div class="good">
-													<v-icon>mdi-heart</v-icon>
-													224
-												</div>
-												<div class="view">
-													<v-icon
-														>mdi-eye-outline</v-icon
-													>
-													55
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</v-card>
-						</v-row>
-					</div>
-				</div>
-				<div class="sub_main_sec">
-					<div class="row">
-						<p class="tit">분석모델</p>
-					</div>
-					<div class="card_item">
-						<v-row align="start">
-							<v-card
-								v-for="n in 4"
-								:key="n"
-								style="
-									background: none;
-									width: 342px;
-									height: 497px;
-								"
-							>
-								<div class="card_list">
-									<div class="card_profile">
-										<div class="profile">
-											<img
-												src="@/images/profile_img.png"
-											/>
-										</div>
-										<div class="profile_txt">
-											<h6>
-												통장적요 분류 및 가맹점 업종분류
-											</h6>
-											<div class="profile_info">
-												<ul>
-													<li>이스타</li>
-													<li>국민은행</li>
-													<li>
-														<span
-															>Feature Store</span
-														>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="card_board">
-										<div class="board_img">
-											<img
-												src="@/images/main_img_mater.png"
-												width="342"
-												height="192"
-											/>
-										</div>
-										<div class="board_txt">
-											통장 적요정보 자연어처리를 위한
-											파싱, 토큰화 과정을 거쳐 핵심 키워드
-											추출하여 1단계 분류 후 개별고객
-											특화정보 딕셔너리를 구축하여
-											2단계... 3줄까지나옴..말줄임처리
-										</div>
-									</div>
-									<div class="card_sns">
-										<div class="card_like">
-											<v-icon>mdi-heart</v-icon>
-											224
-										</div>
-										<div class="card_view">
-											<v-icon>mdi-eye-outline</v-icon>
-											55
-										</div>
-										<div class="card_comment">
-											<v-icon>mdi-comment-outline</v-icon>
-											17
-										</div>
-									</div>
-								</div>
-							</v-card>
-						</v-row>
+					<div class="sub_main_area">
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>포털</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>데이터</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>분석</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>포털</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>데이터</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>분석</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="sub_main_sec">
-					<div class="row">
-						<p class="tit">대시보드</p>
+
+				<div class="sub_main_sec_support">
+					<div class="btn-plus">
+						<div class="tit_support">
+							자주 묻는 질문 <span>TOP6</span>
+						</div>
+						<div class="btn-plus-item">
+							<button>
+								FAQ 전체보기
+								<i
+									class="fa fa-chevron-right"
+									style="color: #ffbc00"
+								></i>
+							</button>
+						</div>
 					</div>
-					<div class="card_item">
-						<v-row align="start">
-							<v-card
-								v-for="n in 4"
-								:key="n"
-								style="background: none"
-							>
-								<div class="card_d">
-									<div class="image">
-										<img
-											src="@/images/main_img_mater.png"
-											width="342"
-											height="192"
-										/>
-									</div>
-									<div class="cardtit">
-										그룹 공통 가맹점 업종 분류 2줄까지
-									</div>
-									<div class="cardinfo">
-										<div class="board">
-											<div class="good">
-												<v-icon>mdi-heart</v-icon>
-												224
-											</div>
-											<div class="view">
-												<v-icon>mdi-eye-outline</v-icon>
-												55
-											</div>
-										</div>
-									</div>
-								</div>
-							</v-card>
-						</v-row>
+					<div class="sub_main_area">
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>포털</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>데이터</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>분석</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>포털</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>데이터</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
+						<div class="card_item_support">
+							<div class="keyword_support">
+								<span>분석</span>
+							</div>
+							<div class="cardtit_support">
+								제목 표시 두줄까지 들어갑니다. 제목 표시
+								두줄까지 들어갑니다.
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
