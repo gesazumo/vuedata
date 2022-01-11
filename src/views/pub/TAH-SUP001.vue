@@ -123,7 +123,7 @@
 							</button>
 						</div>
 					</div>
-					<div class="sub_main_area">
+					<div class="sub_main_area-1">
 						<div class="card_item_support">
 							<div class="keyword_support">
 								<span>포털</span>
@@ -181,57 +181,98 @@
 					</div>
 				</div>
 
-				<div class="sub_main_sec_support">
+				<div class="sub_main_sec_search">
 					<div class="btn-plus">
 						<div class="tit_support">
-							자주 묻는 질문 <span>TOP6</span>
-						</div>
-						<div class="btn-plus-item">
-							<button>
-								FAQ 전체보기
-								<i
-									class="fa fa-chevron-right"
-									style="color: #ffbc00"
-								></i>
-							</button>
+							운영 담당자 <span>찾기</span>
 						</div>
 					</div>
-					<div class="sub_main_area">
-						<div class="card_item">
-							<v-row align="start">
-								<v-card
-									v-for="n in 4"
-									:key="n"
-									style="background: none"
-								>
-									<div class="card_d">
-										<div class="image">
-											<img
-												src="@/images/main_img_mater.png"
-												width="342"
-												height="192"
-											/>
-										</div>
-										<div class="cardtit">
-											그룹 공통 가맹점 업종 분류 2줄까지
-										</div>
-										<div class="cardinfo">
-											<div class="board">
-												<div class="good">
-													<v-icon>mdi-heart</v-icon>
-													224
-												</div>
-												<div class="view">
-													<v-icon
-														>mdi-eye-outline</v-icon
-													>
-													55
-												</div>
-											</div>
-										</div>
-									</div>
-								</v-card>
-							</v-row>
+					<div class="sub_main_line-up">
+						<div class="sub_main_area">
+							<div class="sub_main_search-1">
+								데이터 사용 및 분석결과 활용이 궁금하신가요?
+							</div>
+							<div class="sub_main_search-2">
+								<h5>계열사별 데이터 분석 담당</h5>
+								<ul>
+									<li>&#8226;분석과제 관리 및 지원</li>
+									<li>&#8226;데이터 사용권한</li>
+									<li>&#8226;분석결과 활용</li>
+									<li>&#8226;우수사례 발굴</li>
+									<div></div>
+								</ul>
+							</div>
+							<div>
+								<ul class="sub_main_search-3">
+									<li>
+										<img
+											src="../../images/com_icon_down.png"
+											width="24"
+											height="24"
+										/>
+									</li>
+									<li>담당자 목록 다운로드</li>
+								</ul>
+							</div>
+							<div class="sub_main_search-4">
+								<img
+									src="../../images/support_illust_01.png"
+									width="128"
+									height="128"
+								/>
+							</div>
+						</div>
+
+						<div class="sub_main_area">
+							<div class="sub_main_search-1">
+								포털 운영 관련 문의/제안사항이 있으신가요?
+							</div>
+							<div class="sub_main_search-2">
+								<h5>분석가 포털 운영 담당</h5>
+								<ul>
+									<li>
+										&#8226;포털 이용 및 분석환경 신청에 대한
+										문의
+									</li>
+									<li>
+										&#8226;포털 개선방향에 대한 의견 전달
+									</li>
+									<li>&#8226;교육지원</li>
+									<li>&#8226;FAQ 문의하기 관련 문의</li>
+									<div></div>
+								</ul>
+							</div>
+							<div>
+								<ul class="sub_main_search-3">
+									<li>
+										<img
+											src="../../images/com_icon_mail.png"
+											width="24"
+											height="26"
+										/>
+									</li>
+									<li>담당자 목록 다운로드</li>
+								</ul>
+							</div>
+							<div>
+								<ul class="sub_main_search-3 down">
+									<li>
+										<img
+											src="../../images/com_icon_call.png"
+											width="24"
+											height="24"
+										/>
+									</li>
+									<li>(내선번호) 1234</li>
+								</ul>
+							</div>
+							<div class="sub_main_search-4">
+								<img
+									src="../../images/support_illust_02.png"
+									width="128"
+									height="128"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
