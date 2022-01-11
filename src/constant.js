@@ -31,10 +31,6 @@ const constant = {
 			cmnCdNm: '이벤트',
 		},
 	],
-	// TAH000053
-	// TAH000052
-	// TAH000051
-	// TAH000002
 	commCmcodeCompany: [
 		{
 			cmnCd: 'KFG',

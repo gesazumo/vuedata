@@ -23,28 +23,33 @@ const util = {
 	},
 
 	formatMenu(menuList) {
-		const menu = menuList.map(menu => {
-			const menuObject = {
-				path:
-					menu.menuLevel == 1
-						? menu.menuUrl
-						: menu.menuUrl.replace('/', ''),
-				name: menu.name.toLowerCase(),
-				meta: 'todo',
-				component: this.setComponent(
-					menu.menuLevel,
-					menu.dir,
-					menu.name,
-				),
-			}
-			if (menu.children) {
-				return {
-					...menuObject,
-					children: this.formatMenu(menu.children),
+		const menu = menuList
+			// todo 로그인한 사용자 권한에 따라 filter
+			.filter(menu => menu.menuUseYn == 'Y')
+			.map(menu => {
+				const menuObject = {
+					path:
+						menu.menuLevel == 1
+							? menu.menuUrl
+							: menu.menuUrl.replace('/', ''),
+					name: menu.name.toLowerCase(),
+					meta: {
+						isPublic: false,
+					},
+					component: this.setComponent(
+						menu.menuLevel,
+						menu.dir,
+						menu.name,
+					),
 				}
-			}
-			return menuObject
-		})
+				if (menu.children) {
+					return {
+						...menuObject,
+						children: this.formatMenu(menu.children),
+					}
+				}
+				return menuObject
+			})
 		return menu
 	},
 
