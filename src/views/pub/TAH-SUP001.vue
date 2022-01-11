@@ -197,59 +197,41 @@
 						</div>
 					</div>
 					<div class="sub_main_area">
-						<div class="card_item_support">
-							<div class="keyword_support">
-								<span>포털</span>
-							</div>
-							<div class="cardtit_support">
-								제목 표시 두줄까지 들어갑니다. 제목 표시
-								두줄까지 들어갑니다.
-							</div>
-						</div>
-						<div class="card_item_support">
-							<div class="keyword_support">
-								<span>데이터</span>
-							</div>
-							<div class="cardtit_support">
-								제목 표시 두줄까지 들어갑니다. 제목 표시
-								두줄까지 들어갑니다.
-							</div>
-						</div>
-						<div class="card_item_support">
-							<div class="keyword_support">
-								<span>분석</span>
-							</div>
-							<div class="cardtit_support">
-								제목 표시 두줄까지 들어갑니다. 제목 표시
-								두줄까지 들어갑니다.
-							</div>
-						</div>
-						<div class="card_item_support">
-							<div class="keyword_support">
-								<span>포털</span>
-							</div>
-							<div class="cardtit_support">
-								제목 표시 두줄까지 들어갑니다. 제목 표시
-								두줄까지 들어갑니다.
-							</div>
-						</div>
-						<div class="card_item_support">
-							<div class="keyword_support">
-								<span>데이터</span>
-							</div>
-							<div class="cardtit_support">
-								제목 표시 두줄까지 들어갑니다. 제목 표시
-								두줄까지 들어갑니다.
-							</div>
-						</div>
-						<div class="card_item_support">
-							<div class="keyword_support">
-								<span>분석</span>
-							</div>
-							<div class="cardtit_support">
-								제목 표시 두줄까지 들어갑니다. 제목 표시
-								두줄까지 들어갑니다.
-							</div>
+						<div class="card_item">
+							<v-row align="start">
+								<v-card
+									v-for="n in 4"
+									:key="n"
+									style="background: none"
+								>
+									<div class="card_d">
+										<div class="image">
+											<img
+												src="@/images/main_img_mater.png"
+												width="342"
+												height="192"
+											/>
+										</div>
+										<div class="cardtit">
+											그룹 공통 가맹점 업종 분류 2줄까지
+										</div>
+										<div class="cardinfo">
+											<div class="board">
+												<div class="good">
+													<v-icon>mdi-heart</v-icon>
+													224
+												</div>
+												<div class="view">
+													<v-icon
+														>mdi-eye-outline</v-icon
+													>
+													55
+												</div>
+											</div>
+										</div>
+									</div>
+								</v-card>
+							</v-row>
 						</div>
 					</div>
 				</div>
