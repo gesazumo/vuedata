@@ -22,17 +22,16 @@
 									</th>
 									<td>
 										<v-select
-											text-field
 											:items="categori"
-											label=""
 											placeholder="카테고리를 선택하세요"
 											single-line
 											outlined
+											hide-details="auto"
+											v-moel="categori"
 											:rules="[
 												rules.required,
 												rules.categori_rule,
 											]"
-											hide-details="auto"
 										></v-select>
 									</td>
 									<th>
@@ -41,17 +40,16 @@
 									</th>
 									<td>
 										<v-select
-											text-field
 											:items="detail"
-											label=""
 											placeholder="상세구분을 선택하세요"
 											single-line
 											outlined
+											hide-details="auto"
+											v-moel="detail"
 											:rules="[
 												rules.required,
 												rules.detail_rule,
 											]"
-											hide-details="auto"
 										></v-select>
 									</td>
 								</tr>
@@ -60,20 +58,20 @@
 										제목
 										<span class="asterisk">필수</span>
 									</th>
-									<td>
-										<v-select
-											text-field
+									<td colspan="3">
+										<v-text-field
 											:items="title"
-											label=""
 											placeholder="제목을 입력하세요"
 											single-line
 											outlined
+											clearable
+											hide-details="auto"
+											v-moel="title"
 											:rules="[
 												rules.required,
 												rules.title_rule,
 											]"
-											hide-details="auto"
-										></v-select>
+										></v-text-field>
 									</td>
 								</tr>
 								<tr>
@@ -101,6 +99,43 @@
 									<th>
 										썸네일 이미지
 										<span class="asterisk">필수</span>
+										<v-tooltip
+											right
+											content-class="secondary tooltip-right"
+										>
+											<template
+												v-slot:activator="{ on, attrs }"
+											>
+												<v-btn
+													v-bind="attrs"
+													v-on="on"
+													icon
+													style="
+														background: none !important;
+													"
+												>
+													<i
+														class="
+															fas
+															fa-question-circle
+														"
+													></i>
+												</v-btn>
+											</template>
+											<div>
+												<p
+													class="title"
+													style="
+														color: #fff !important;
+														font-size: 16px !important;
+													"
+												></p>
+												<span>
+													썸네일 이미지 등록을 위한
+													주의사항을 확인하세요.
+												</span>
+											</div>
+										</v-tooltip>
 									</th>
 									<td colspan="3" class="thumb__area">
 										<div
@@ -213,6 +248,43 @@
 									<th>
 										배너 이미지
 										<span class="asterisk">필수</span>
+										<v-tooltip
+											right
+											content-class="secondary tooltip-right"
+										>
+											<template
+												v-slot:activator="{ on, attrs }"
+											>
+												<v-btn
+													v-bind="attrs"
+													v-on="on"
+													icon
+													style="
+														background: none !important;
+													"
+												>
+													<i
+														class="
+															fas
+															fa-question-circle
+														"
+													></i>
+												</v-btn>
+											</template>
+											<div>
+												<p
+													class="title"
+													style="
+														color: #fff !important;
+														font-size: 16px !important;
+													"
+												></p>
+												<span>
+													배너 이미지 등록을 위한
+													주의사항을 확인하세요.
+												</span>
+											</div>
+										</v-tooltip>
 									</th>
 									<td colspan="3" class="thumb__area">
 										<div
@@ -339,6 +411,17 @@ export default {
 	el: '#app',
 	data() {
 		return {
+			categori: ['마이데이터', '특화데이터'],
+			detail: [
+				'공통업권',
+				'은행업권',
+				'카드업권',
+				'금융투자업권',
+				'보험업권',
+				'전자금융업권',
+				'할부금융업권',
+				'보증보험업권',
+			],
 			file: '',
 			dragging: false,
 			dialog: false,
