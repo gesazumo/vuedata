@@ -199,7 +199,7 @@
 .ver_txt {
   float: left;
   padding: 7px 0 !important;
-  margin-left: 8px !important;
+  margin-left: 16px !important;
 }
 
 .paging {
@@ -265,11 +265,14 @@
 }
 .menu_view {
   float:left; 
-  width: 688px;
   min-height: 900px;
   background: #fff;
   padding: 20px;
-  
+  position: absolute;
+  left: 420px;
+  width: calc(100% -420px);
+  width: -moz-calc(100% - 420px);
+  width: -webkit-calc(100% - 420px);
 }
 
 .list_select {
@@ -429,6 +432,30 @@ table .fileupload-list td {
   line-height: 18px;
   font-size: 14px;
 }
+
+
+
+/*treeview menu*/
+.v-treeview-node__root::before {
+  background-color: #D0E7FF !important;
+  color:#f26615 !important;
+}
+.v-treeview-node__content {
+	min-height: 40px;
+	border: 1px solid #473EAB;
+  border-radius: 4px;
+	padding-left: 15px;
+}
+.menu_view .v-treeview-node__root .v-treeview-node--active .primary--text {
+	color: #069cf3 !important;
+	caret-color: #069cf3 !important;
+}
+
+.v-treeview-node__label {
+  font-size: 14px !important;
+  color: #473EAB;
+}
+
 
 @media (max-width:1600px) { 
   .adm-search {
