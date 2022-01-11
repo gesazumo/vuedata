@@ -72,8 +72,17 @@
 											:items="menu1"
 											v-model="menu"
 											:rules="menu1Rules"
-											style="width: 300px"
+											style="width: 385px"
 										></v-select>
+										<!-- 수정화면에서 text-field로 변경
+										<v-text-field
+											label="분석가 포털 사용자 매뉴얼"
+											outlined
+											hide-details="auto"
+											style="width: 385px"
+										>
+										</v-text-field>
+										-->
 									</td>
 								</tr>
 								<tr>
@@ -94,7 +103,18 @@
 												width: 300px !important;
 											"
 										></v-text-field>
-
+										<v-btn
+											color="primary"
+											small
+											outlined
+											style="
+												float: left;
+												height: 40px !important;
+												margin: 0 5px;
+											"
+										>
+											복사하기
+										</v-btn>
 										<div class="ver_txt">
 											<i
 												class="
@@ -103,6 +123,7 @@
 												"
 											></i>
 											현재 등록된 버전이 없습니다.
+											<!--현재 등록된 최종 버전은 1.3.000 입니다.-->
 										</div>
 									</td>
 								</tr>
@@ -110,30 +131,151 @@
 						</table>
 					</div>
 				</div>
-				<div style="margin-top: 20px">
+				<div
+					style="
+						position: relative;
+						display: inline-block;
+						width: 100%;
+						margin-top: 20px;
+					"
+				>
 					<div class="menu_lst">
 						<v-row>
-							<v-btn small outlined>모두 접기</v-btn>
-							<v-btn small outlined>모두 펼치기</v-btn>
+							<v-btn small outlined @click="closeAllTreeview()"
+								>모두 접기</v-btn
+							>
+							<v-btn small outlined @click="openAllTreeview()"
+								>모두 펼치기</v-btn
+							>
 							<v-btn color="primary" small outlined>
 								추가하기
 							</v-btn>
 						</v-row>
-						<v-row>
-							<v-treeview :items="items"> </v-treeview>
-						</v-row>
+						<v-treeview
+							ref="treeview"
+							:active.sync="active"
+							item-key="id"
+							item-text="name"
+							hoverable
+							activatable
+							:items="listItems"
+						></v-treeview>
 					</div>
 					<div class="menu_view">
-						<v-textarea
-							placeholder="본문을 입력하세요/Editor"
-							outlined
-						></v-textarea>
+						<div class="table_box">
+							<p class="pt-2 pb-4 font-weight-bold">
+								기본 정보
+								<v-btn
+									color="primary"
+									dark
+									small
+									outlined
+									style="float: right"
+								>
+									수정하기
+								</v-btn>
+							</p>
+							{{ active[0] }}
+							<table class="tb_write">
+								<caption>
+									table caption
+								</caption>
+								<colgroup>
+									<col width="160" />
+									<col width="" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<th>
+											목차 ID
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-text-field
+												label=""
+												placeholder="목차 ID를 입력하세요"
+												single-line
+												outlined
+												hide-details="auto"
+											>
+											</v-text-field>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											순서
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-text-field
+												placeholder="순서를 입력하세요"
+												single-line
+												outlined
+												hide-details="auto"
+											></v-text-field>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											상위 ID
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-text-field
+												placeholder="상위 ID를 입력하세요"
+												single-line
+												outlined
+												hide-details="auto"
+											></v-text-field>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											제목
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-text-field
+												placeholder="제목을 입력하세요"
+												single-line
+												outlined
+												hide-details="auto"
+											></v-text-field>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											사용여부
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-switch
+												v-model="switch1"
+												color="orange"
+												value=""
+												hide-details
+											></v-switch>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<v-textarea
+												placeholder="내용을 입력해 주세요"
+												outlined
+												hide-details="auto"
+											>
+											</v-textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="btn_area center pt-8">
+							<v-btn color="primary" dark outlined> 취소 </v-btn>
+							<v-btn color="primary" dark> 수정하기 </v-btn>
+							<v-btn color="primary" dark> 등록하기 </v-btn>
+						</div>
 					</div>
-				</div>
-				<div class="btn_area center">
-					<v-btn color="primary" dark outlined> 취소 </v-btn>
-					<v-btn color="primary" dark> 수정하기 </v-btn>
-					<v-btn color="primary" dark> 등록하기 </v-btn>
 				</div>
 			</div>
 		</div>
@@ -148,18 +290,48 @@ export default {
 			menu1: ['분석가 포털 사용자 매뉴얼', '분석환경 사용자 매뉴얼'],
 			menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
 			menu2Rules: [v => !!v || '카테고리를 먼저 선택해 주세요.'],
-			items: [
+			switch1: true,
+			content: '',
+			active: [],
+			listItems: [
 				{
-					id: 1,
-					name: 'Applications :',
+					id: '1',
+					name: '1. Documents',
 					children: [
-						{ id: 2, name: 'Calendar : app' },
-						{ id: 3, name: 'Chrome : app' },
-						{ id: 4, name: 'Webstorm : app' },
+						{
+							id: '1.1',
+							name: '1.1 vuetify :',
+							children: [
+								{
+									id: '1.1.1',
+									name: '1.1.1 src :',
+								},
+								{ id: '1.1.2', name: '1.1.2 index : ts' },
+								{ id: '1.1.3', name: '1.1.3 bootstrap : ts' },
+							],
+						},
+						{
+							id: '1.2',
+							name: '1.2 material2 :',
+							children: [
+								{
+									id: '1.2.1',
+									name: '1.2.1 src :',
+								},
+							],
+						},
 					],
 				},
 			],
 		}
+	},
+	methods: {
+		closeAllTreeview() {
+			this.$refs.treeview.updateAll(false)
+		},
+		openAllTreeview() {
+			this.$refs.treeview.updateAll(true)
+		},
 	},
 }
 </script>

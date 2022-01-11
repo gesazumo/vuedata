@@ -175,12 +175,44 @@ export const pubRouter = [
 		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ANA010.vue'),
 	},
-	//Explore Sub Main
+	//Explore
 	{
-		path: 'exp001', //Explore Main
+		path: 'exp001', //Explore sub Main
 		component: () => import('@/views/pub/TAH-EXP001.vue'),
 	},
+	{
+		path: 'exp004', //Explore 테이블권한 신청
+		component: () => import('@/views/pub/TAH-EXP004.vue'),
+	},
+	{
+		path: 'exp007', //Explore 테이블권한 신청 완료
+		component: () => import('@/views/pub/TAH-EXP007.vue'),
+	},
 	//My page
+	{
+		path: 'myp013', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP013.vue'),
+	},
+	{
+		path: 'myp014', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP014.vue'),
+	},
+	{
+		path: 'myp015', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP015.vue'),
+	},
+	{
+		path: 'myp016', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP016.vue'),
+	},
+	{
+		path: 'myp017', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP017.vue'),
+	},
+	{
+		path: 'myp018', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP018.vue'),
+	},
 	{
 		path: 'myp022', //My page  My Dataset 업로드
 		component: () => import('@/views/pub/TAH-MYP022.vue'),
