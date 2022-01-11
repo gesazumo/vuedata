@@ -175,10 +175,18 @@ export const pubRouter = [
 		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ANA010.vue'),
 	},
-	//Explore Sub Main
+	//Explore
 	{
-		path: 'exp001', //Explore Main
+		path: 'exp001', //Explore sub Main
 		component: () => import('@/views/pub/TAH-EXP001.vue'),
+	},
+	{
+		path: 'exp004', //Explore 테이블권한 신청
+		component: () => import('@/views/pub/TAH-EXP004.vue'),
+	},
+	{
+		path: 'exp007', //Explore 테이블권한 신청 완료
+		component: () => import('@/views/pub/TAH-EXP007.vue'),
 	},
 	//My page
 	{
