@@ -13,25 +13,37 @@ const util = {
 
 	setComponent(level, dir, name) {
 		if (level == 1) {
+			console.log(`@/views/${dir}/${this.capitalize(dir)}Index.vue`)
 			return () =>
 				import(`@/views/${dir}/${this.capitalize(dir)}Index.vue`)
+		} else {
+			console.log(`@/views/${dir}/${name}.vue`)
+			return () => import(`@/views/${dir}/${name}.vue`)
 		}
-		return () => import(`@/views/${dir}/${name}.vue`)
 	},
 
 	formatMenu(menuList) {
 		const menu = menuList.map(menu => {
-			return {
-				path: menu.menuUrl,
+			const menuObject = {
+				path:
+					menu.menuLevel == 1
+						? menu.menuUrl
+						: menu.menuUrl.replace('/', ''),
 				name: menu.name.toLowerCase(),
 				meta: 'todo',
 				component: this.setComponent(
-					menu.menuLevle,
+					menu.menuLevel,
 					menu.dir,
 					menu.name,
 				),
-				children: menu.children ? this.formatMenu(menu.children) : null,
 			}
+			if (menu.children) {
+				return {
+					...menuObject,
+					children: this.formatMenu(menu.children),
+				}
+			}
+			return menuObject
 		})
 		return menu
 	},
