@@ -93,7 +93,6 @@
 											width: 300px !important;
 										"
 									></v-text-field>
-
 									<div class="ver_txt">
 										<i
 											class="fas fa-exclamation-circle"
@@ -109,48 +108,26 @@
 			<div style="margin-top: 20px">
 				<div class="menu_lst">
 					<v-row>
-						<v-btn small outlined>모두 접기</v-btn>
-						<v-btn small outlined>모두 펼치기</v-btn>
+						<v-btn small outlined @click="closeAllTreeview()"
+							>모두 접기</v-btn
+						>
+						<v-btn small outlined @click="openAllTreeview()"
+							>모두 펼치기</v-btn
+						>
 						<v-btn color="primary" small outlined> 추가하기 </v-btn>
 					</v-row>
-					<!-- <v-row>메뉴트리</v-row> -->
-					<!-- <div>
-						<vue-tree-list
-							@click="onClick"
-							@change-name="onChangeName"
-							@delete-node="onDel"
-							@add-node="onAddNode"
-							:model="data"
-							default-tree-node-name="New Directory"
-							default-leaf-node-name="New Content"
-							v-bind:default-expanded="false"
-						>
-							<template v-slot:leafNameDisplay="slotProps">
-								<span>
-									{{ slotProps.model.name }}
-									<span class="muted"></span>
-								</span>
-							</template>
-							<span class="icon" slot="addTreeNodeIcon">＋</span>
-							<span class="icon" slot="editNodeIcon">✏️</span>
-							<span class="icon" slot="delNodeIcon">✂️</span>
-							<span class="icon" slot="treeNodeIcon">📃</span>
-						</vue-tree-list>
-						<v-btn color="primary" dark @click="getNewTree"
-							>Get new tree</v-btn
-						>
-						<pre>{{ newTree.children }}</pre>
-					</div> -->
+					<v-treeview
+						ref="treeview"
+						:active.sync="active"
+						item-key="id"
+						item-text="name"
+						hoverable
+						activatable
+						:items="listItems"
+					></v-treeview>
 				</div>
 				<div class="menu_view">
-					<v-textarea
-						placeholder="본문을 입력하세요"
-						outlined
-						v-model="content"
-					></v-textarea>
-					<!-- <div>
-						<span>{{ currentData.id }}</span>
-					</div> -->
+					{{ active[0] }}
 				</div>
 			</div>
 			<div class="btn_area center">
@@ -162,91 +139,67 @@
 	</div>
 </template>
 <script>
-// import { VueTreeList, Tree, TreeNode } from 'vue-tree-list'
 export default {
-	components: {
-		// VueTreeList,
-	},
 	data() {
 		return {
-			// newTree: {},
-			// data: new Tree([]),
 			item: '',
 			menu: '',
 			menu1: ['분석가 포털 사용자 매뉴얼', '분석환경 사용자 매뉴얼'],
 			menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
 			menu2Rules: [v => !!v || '카테고리를 먼저 선택해 주세요.'],
 			content: '',
-			// currentData: {},
+			active: [],
+			listItems: [
+				{
+					id: '1',
+					name: '1. Documents',
+					children: [
+						{
+							id: '1.1',
+							name: '1.1 vuetify :',
+							children: [
+								{
+									id: '1.1.1',
+									name: '1.1.1 src :',
+								},
+								{ id: '1.1.2', name: '1.1.2 index : ts' },
+								{ id: '1.1.3', name: '1.1.3 bootstrap : ts' },
+							],
+						},
+						{
+							id: '1.2',
+							name: '1.2 material2 :',
+							children: [
+								{
+									id: '1.2.1',
+									name: '1.2.1 src :',
+								},
+							],
+						},
+					],
+				},
+			],
 		}
 	},
 	methods: {
-		// onDel(node) {
-		// 	console.log(node)
-		// 	node.remove()
-		// },
-		// onChangeName(params) {
-		// 	console.log('onchangeName')
-		// 	console.log(params)
-		// 	if (params.isLeaf) {
-		// 		params.content = this.content
-		// 	}
-		// },
-		// onAddNode(params) {
-		// 	console.log('onAddNode')
-		// 	if (params.parent.depth === 1) {
-		// 		params.depth = 2
-		// 		params.addLeafNodeDisabled = true
-		// 	} else if (params.parent.depth === 2) {
-		// 		params.depth = 3
-		// 		params.addTreeNodeDisabled = true
-		// 		params.addLeafNodeDisabled = true
-		// 	}
-		// 	console.log(params)
-		// },
-		// onClick(params) {
-		// 	// this.currentData = JSON.stringify(params)
-		// 	console.log('onclick')
-		// 	console.log(params)
-		// 	this.currentData = params
-		// 	console.log(this.currentData)
-		// 	if (params.isLeaf) {
-		// 		this.content = params.content
-		// 	}
-		// },
-		// addNode() {
-		// 	var node = new TreeNode({
-		// 		name: 'new node',
-		// 		isLeaf: false,
-		// 		depth: 1,
-		// 		addLeafNodeDisabled: true,
-		// 	})
-		// 	if (!this.data.children) this.data.children = []
-		// 	this.data.addChildren(node)
-		// },
-		// getNewTree() {
-		// 	var vm = this
-		// 	function _dfs(oldNode) {
-		// 		var newNode = {}
-		// 		for (var k in oldNode) {
-		// 			if (k !== 'children' && k !== 'parent') {
-		// 				newNode[k] = oldNode[k]
-		// 			}
-		// 		}
-		// 		if (oldNode.children && oldNode.children.length > 0) {
-		// 			newNode.children = []
-		// 			for (
-		// 				var i = 0, len = oldNode.children.length;
-		// 				i < len;
-		// 				i++
-		// 			) {
-		// 				newNode.children.push(_dfs(oldNode.children[i]))
-		// 			}
-		// 		}
-		// 		return newNode
-		// 	}
-		// 	vm.newTree = _dfs(vm.data)
-		// },
+		closeAllTreeview() {
+			this.$refs.treeview.updateAll(false)
+		},
+		openAllTreeview() {
+			this.$refs.treeview.updateAll(true)
+		},
 	},
 }
 </script>
+
+<style>
+.v-treeview-node__content {
+	min-height: 36px;
+	border: 1px solid #555555;
+	padding-left: 15px;
+}
+.v-application .primary--text {
+	color: #069cf3 !important;
+	caret-color: #069cf3 !important;
+}
+</style>
