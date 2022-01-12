@@ -175,12 +175,48 @@ export const pubRouter = [
 		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ANA010.vue'),
 	},
-	//Explore Sub Main
+	//Explore
 	{
-		path: 'exp001', //Explore Main
+		path: 'exp001', //Explore sub Main
 		component: () => import('@/views/pub/TAH-EXP001.vue'),
 	},
+	{
+		path: 'exp004', //Explore 테이블권한 신청
+		component: () => import('@/views/pub/TAH-EXP004.vue'),
+	},
+	{
+		path: 'exp007', //Explore 테이블권한 신청 완료
+		component: () => import('@/views/pub/TAH-EXP007.vue'),
+	},
 	//My page
+	{
+		path: 'myp013', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP013.vue'),
+	},
+	{
+		path: 'myp014', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP014.vue'),
+	},
+	{
+		path: 'myp015', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP015.vue'),
+	},
+	{
+		path: 'myp016', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP016.vue'),
+	},
+	{
+		path: 'myp017', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP017.vue'),
+	},
+	{
+		path: 'myp018', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP018.vue'),
+	},
+	{
+		path: 'myp022', //My page  My Dataset 업로드
+		component: () => import('@/views/pub/TAH-MYP022.vue'),
+	},
 	{
 		path: 'myp026', //My page  파일 업로드 요청 확인 팝업
 		component: () => import('@/views/pub/TAH-MYP026.vue'),
@@ -192,5 +228,21 @@ export const pubRouter = [
 	{
 		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
+	},
+	{
+		path: 'myp033', //My page  My결재함 데이터 결재상세
+		component: () => import('@/views/pub/TAH-MYP033.vue'),
+	},
+	{
+		path: 'myp034', //My page  My결재함 데이터업로드 결재 상세
+		component: () => import('@/views/pub/TAH-MYP034.vue'),
+	},
+	{
+		path: 'myp037', //My page  My결재함 메타테이블 결재 상세
+		component: () => import('@/views/pub/TAH-MYP037.vue'),
+	},
+	{
+		path: 'sup001', //Support sub main
+		component: () => import('@/views/pub/TAH-SUP001.vue'),
 	},
 ]
