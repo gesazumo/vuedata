@@ -17,25 +17,27 @@
 							프로젝트 팀원
 						</div>
 						<div>
-							<v-text-field
-								placeholder="이름을 입력하세요"
-								single-line
-								clearable
-								outlined
-								v-model="searchWrd"
-								:rules="nameRules"
-								hide-details="auto"
-							>
-								<template slot="append-outer">
-									<v-btn
-										color="primary"
-										dark
-										@click="Search()"
-									>
-										검색
-									</v-btn>
-								</template>
-							</v-text-field>
+							<v-form ref="form" @submit.prevent>
+								<v-text-field
+									placeholder="이름을 입력하세요"
+									single-line
+									clearable
+									outlined
+									v-model="searchWrd"
+									:rules="nameRules"
+									hide-details="auto"
+								>
+									<template slot="append-outer">
+										<v-btn
+											color="primary"
+											dark
+											@click="Search()"
+										>
+											검색
+										</v-btn>
+									</template>
+								</v-text-field>
+							</v-form>
 						</div>
 					</div>
 					<div class="item_box">
@@ -59,8 +61,9 @@
 						</div>
 
 						<div class="table_box">
+							<loading-lottie v-if="loading" />
 							<v-data-table
-								v-if="tmmmList != null"
+								v-if="!loading"
 								:headers="headers"
 								:items="tmmmList"
 								:height="250"
@@ -69,7 +72,13 @@
 								hide-default-footer
 								class="elevation-1"
 							>
-								<template #item="{ item }">
+								<template v-slot:no-data>
+									<no-data />
+								</template>
+								<template
+									v-if="tmmmList.length > 0"
+									#item="{ item }"
+								>
 									<tr>
 										<td>
 											<v-checkbox
@@ -91,17 +100,10 @@
 										<td>{{ item.userNo }}</td>
 									</tr>
 								</template>
-								<template>
-									<div class="noti_meg">
-										<i
-											class="fas fa-exclamation-circle"
-										></i>
-										<div class="noti_txt">
-											<p>조회 내역이 없습니다.</p>
-										</div>
-									</div>
-								</template>
 							</v-data-table>
+							<div style="color: red" v-if="selectMemberValid">
+								프로젝트 팀원을 선택해 주세요.
+							</div>
 						</div>
 
 						<div class="team-select">
@@ -142,18 +144,21 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { selectAna00501 } from '@/api/modules/anaAPI'
 
 export default {
 	props: ['searchName', 'selectedMemebers', 'proposer'],
 
 	data() {
 		return {
+			loading: false,
+
 			searchWrd: '',
 			selectList: [],
-			nameRules: [v => !!v || '이름을 입력해 주세요.'],
-			tmmmList: null,
+
+			tmmmList: [],
 			totalCount: 0,
+			selectMemberValid: false,
 			headers: [
 				{
 					text: '선택',
@@ -190,36 +195,35 @@ export default {
 		}
 	},
 
-	created() {
+	mounted() {
 		this.searchWrd = this.searchName
 		this.selectList = Object.assign([], this.selectedMemebers)
 
-		this.Search()
+		if (this.searchWrd != '') this.Search()
 	},
 
 	methods: {
-		Search() {
+		async Search() {
+			console.log(this.searchWrd.length)
+			if (this.searchWrd.length == 1) {
+				this.$refs.form.validate()
+				return
+			}
+
 			const param = {
 				searchWrd: this.searchWrd,
 			}
 
-			const queryString = this.convertUrl(param)
-
-			var url = '/api/analyze/analenvreq/ana005/selectAna00501'
-
-			axios
-				.get(url + queryString)
-				.then(res => {
-					this.tmmmList = res.data.tmmmList
-					this.totalCount = res.data.totalCount
-
-					this.MakeList()
-					console.log(res.data)
-					console.log(this.tmmmList)
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+			try {
+				this.loading = true
+				const { data } = await selectAna00501(param)
+				this.tmmmList = data.tmmmList
+				this.totalCount = data.totalCount
+				this.MakeList()
+				this.loading = false
+			} catch (error) {
+				console.log('err : ' + error)
+			}
 		},
 
 		SelectMember(num) {
@@ -243,6 +247,8 @@ export default {
 				)
 				this.$set(this.tmmmList[num], 'select', false)
 			}
+
+			this.selectMemberValid = this.selectList.length == 0
 		},
 
 		Delete(num) {
@@ -253,6 +259,8 @@ export default {
 			this.selectList = this.selectList.filter(
 				element => element.userNo != this.selectList[num].userNo,
 			)
+
+			this.selectMemberValid = this.selectList.length == 0
 		},
 
 		MakeList() {
@@ -273,13 +281,25 @@ export default {
 		},
 
 		selectMember() {
-			if (this.selectList.length == 0) return
+			this.selectMemberValid = this.selectList.length == 0
+			if (this.selectMemberValid) return
 			this.$emit('selectMember', this.selectList)
 		},
 
 		Disabled(value) {
 			if (this.proposer != null) return value == this.proposer
 			else return false
+		},
+	},
+
+	computed: {
+		nameRules() {
+			return [
+				v => !!v || '이름을 입력해 주세요.',
+				v =>
+					(!!v && this.searchWrd.length > 1) ||
+					'이름을 두글자 이상 입력해 주세요',
+			]
 		},
 	},
 }

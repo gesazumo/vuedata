@@ -16,7 +16,11 @@
 						font-weight: 600;
 					"
 				>
-					프로젝트 생성 확인
+					{{
+						this.popupName != null
+							? this.popupName
+							: '프로젝트 생성 확인'
+					}}
 					<div style="float: right">
 						<i class="fa fa-times" @click="Cancel"></i>
 					</div>
@@ -51,6 +55,7 @@
 
 <script>
 export default {
+	props: ['popupName'],
 	data: () => ({
 		dialog: true,
 		options: {
@@ -61,7 +66,9 @@ export default {
 	}),
 
 	methods: {
-		Cancel() {},
+		Cancel() {
+			this.$emit('close:popup')
+		},
 
 		Confirm() {
 			this.$router.push({

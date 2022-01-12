@@ -46,9 +46,9 @@
 									table caption
 								</caption>
 								<colgroup>
-									<col width="335" />
+									<col width="300" />
 									<col width="" />
-									<col width="310" />
+									<col width="230" />
 									<col width="" />
 								</colgroup>
 								<tbody>
@@ -117,6 +117,10 @@
 												v-model="date"
 												value-type="YYYYMMDD"
 												hide-details="auto"
+												:error="
+													checkRegistDateValid &&
+													registDateValid
+												"
 												@close="
 													checkRegistDateValid = true
 												"
@@ -125,6 +129,7 @@
 												class="
 													mdi mdi-information-outline
 												"
+												style="margin-left: 8px"
 											></i>
 											프로젝트 총 기간은 1년 이하로
 											선택하셔야 합니다.
@@ -194,11 +199,16 @@
 														v-bind="attrs"
 														v-on="on"
 														icon
-														color="secondary"
+														style="
+															background: none !important;
+														"
 													>
-														<v-icon
-															>mdi-help-circle</v-icon
-														>
+														<i
+															class="
+																fas
+																fa-question-circle
+															"
+														></i>
 													</v-btn>
 												</template>
 												<div>
@@ -229,17 +239,23 @@
 													<template
 														v-slot:append-outer
 													>
-														<button
+														<v-btn
 															@click="popupOpen"
-															class="search-in"
+															color="secondary"
+															dark
+															style="
+																margin-left: 4px !important;
+																width: 40px !important;
+																min-width: 40px !important;
+																max-width: 40px !important;
+															"
 														>
 															<i
 																class="
 																	fa fa-search
 																"
-															>
-															</i>
-														</button>
+															></i>
+														</v-btn>
 													</template>
 												</v-text-field>
 											</v-col>
@@ -252,39 +268,54 @@
 												disable-sort
 												hide-default-footer
 											>
-												<template
-													v-slot:[`item.serno`]="{
-														item,
-													}"
-												>
-													<v-btn
-														class="box"
-														dark
-														outlined
-														@click="
-															onButtonClick(item)
-														"
-													>
-														삭제
-													</v-btn>
+												<template v-slot:no-data>
+													<no-data />
 												</template>
-												<template>
-													<div class="noti_meg">
-														<i
-															class="
-																fas
-																fa-exclamation-circle
-															"
-														></i>
-														<div class="noti_txt">
-															<p>
-																조회 내역이
-																없습니다.
-															</p>
-														</div>
-													</div>
+												<template
+													v-if="
+														selectedMemebers.length >
+														0
+													"
+													#item="{ item }"
+												>
+													<tr>
+														<td>
+															{{ item.groupCoNm }}
+														</td>
+														<td>
+															{{
+																item.groupDvsnNm
+															}}
+														</td>
+														<td>
+															{{ item.userNm }}
+														</td>
+														<td>
+															{{ item.userNo }}
+														</td>
+														<td>
+															<v-btn
+																class="box"
+																dark
+																outlined
+																@click="
+																	onButtonClick(
+																		item,
+																	)
+																"
+															>
+																삭제
+															</v-btn>
+														</td>
+													</tr>
 												</template>
 											</v-data-table>
+											<div
+												style="color: red"
+												v-if="selectMemberValid"
+											>
+												프로젝트 팀원을 선택해 주세요.
+											</div>
 										</td>
 									</tr>
 									<tr>
@@ -305,11 +336,16 @@
 														v-bind="attrs"
 														v-on="on"
 														icon
-														color="secondary"
+														style="
+															background: none !important;
+														"
 													>
-														<v-icon
-															>mdi-help-circle</v-icon
-														>
+														<i
+															class="
+																fas
+																fa-question-circle
+															"
+														></i>
 													</v-btn>
 												</template>
 												<div>
@@ -328,46 +364,55 @@
 											</v-tooltip>
 										</th>
 										<td colspan="3">
-											<v-row>
-												<v-checkbox
-													v-model="athena"
-													label="Athena"
-													hide-details="auto"
-													:rules="Analyze_rules(true)"
-												></v-checkbox>
-												<v-checkbox
-													v-model="quickSight"
-													label="QuickSight"
-													hide-details="auto"
-													:rules="
-														Analyze_rules(false)
-													"
-												></v-checkbox>
-												<v-checkbox
-													v-model="notebook"
-													label="Notebook"
-													hide-details="auto"
-													:rules="
-														Analyze_rules(false)
-													"
-												></v-checkbox>
-												<v-checkbox
-													v-model="sageMaker"
-													label="SageMaker Studio"
-													hide-details="auto"
-													:rules="
-														Analyze_rules(false)
-													"
-												></v-checkbox>
-												<v-checkbox
-													v-model="virtualization"
-													label="가상화 환경"
-													hide-details="auto"
-													:rules="
-														Analyze_rules(false)
-													"
-												></v-checkbox>
-											</v-row>
+											<v-form
+												ref="checkform"
+												@submit.prevent
+											>
+												<v-row>
+													<v-checkbox
+														v-model="athena"
+														label="Athena"
+														hide-details="true"
+														:error="analyzeValid"
+														@click="AnalyzeSelect"
+													></v-checkbox>
+													<v-checkbox
+														v-model="quickSight"
+														label="QuickSight"
+														hide-details="true"
+														:error="analyzeValid"
+														@click="AnalyzeSelect"
+													></v-checkbox>
+													<v-checkbox
+														v-model="notebook"
+														label="Notebook"
+														hide-details="true"
+														:error="analyzeValid"
+														@click="AnalyzeSelect"
+													></v-checkbox>
+													<v-checkbox
+														v-model="sageMaker"
+														label="SageMaker Studio"
+														hide-details="true"
+														:error="analyzeValid"
+														@click="AnalyzeSelect"
+													></v-checkbox>
+													<v-checkbox
+														v-model="virtualization"
+														label="가상화 환경"
+														hide-details="true"
+														:error="analyzeValid"
+														@click="AnalyzeSelect"
+													></v-checkbox>
+												</v-row>
+
+												<div
+													style="color: red"
+													v-if="analyzeValid"
+												>
+													분석환경을 선택해 주세요.
+												</div>
+											</v-form>
 										</td>
 									</tr>
 									<tr v-if="notebook">
@@ -378,7 +423,7 @@
 										<td colspan="3">
 											<v-select
 												v-model="instance_N"
-												:items="this.lstIncd3"
+												:items="this.TAH000026"
 												item-text="cmnCdNm"
 												item-value="cmnCd"
 												placeholder="Notebook Instance Type을 선택하세요"
@@ -400,8 +445,8 @@
 										</th>
 										<td>
 											{{
-												this.lstIncd4 != null
-													? this.lstIncd4[0].cmnCdNm
+												this.TAH000027 != null
+													? this.TAH000027[0].cmnCdNm
 													: ''
 											}}
 										</td>
@@ -415,7 +460,7 @@
 										<td colspan="3">
 											<v-select
 												v-model="instance_V"
-												:items="this.lstIncd6"
+												:items="this.TAH000029"
 												item-text="cmnCdNm"
 												item-value="cmnCd"
 												placeholder="가상화 환경 Instance Type을 선택하세요"
@@ -434,8 +479,8 @@
 										<td colspan="3">
 											<strong>스토리지 : </strong>
 											{{
-												this.lstIncd7 != null
-													? this.lstIncd7[0].cmnCdNm
+												this.TAH000030 != null
+													? this.TAH000030[0].cmnCdNm
 													: ''
 											}}
 										</td>
@@ -459,11 +504,16 @@
 														v-bind="attrs"
 														v-on="on"
 														icon
-														color="secondary"
+														style="
+															background: none !important;
+														"
 													>
-														<v-icon
-															>mdi-help-circle</v-icon
-														>
+														<i
+															class="
+																fas
+																fa-question-circle
+															"
+														></i>
 													</v-btn>
 												</template>
 												<div>
@@ -511,14 +561,7 @@
 											{{
 												this.aprvalInfo != null
 													? this.aprvalInfo
-															.aprvalPsnEmpnm +
-													  ' (' +
-													  this.aprvalInfo
-															.aprvalPsnCoNm +
-													  ', ' +
-													  this.aprvalInfo
-															.aprvalPsnDvsnNm +
-													  ')'
+															.aprvalPsnInfo
 													: ''
 											}}
 										</td>
@@ -556,11 +599,11 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import DatePicker from 'vue2-datepicker'
 import ANA005 from '@/views/analyze/ANA005.vue'
-// import { insertAna00301 } from '@/api/modules/anaAPI'
-// import { selectAna00301 } from '@/api/modules/anaAPI'
+import { insertAna00301 } from '@/api/modules/anaAPI'
+import { selectAna00301 } from '@/api/modules/anaAPI'
 
 export default {
 	components: {
@@ -569,36 +612,40 @@ export default {
 	},
 	data() {
 		return {
+			// 팀원선택 팝업
 			searchName: '',
 			selectedMemebers: [], //선택한 프로젝트 팀원 리스트
 			popupVal: false,
-			// 작업
+
+			// 분석환경 체크박스
 			athena: false,
 			quickSight: false,
 			notebook: false,
 			sageMaker: false,
 			virtualization: false,
+
 			projectDiv: 0, // 프로젝트 구분 (개인, 팀)
 			ci_useDiv: 0, // ci 변환 사용여부
-
 			userInfo: null, // 신청자 정보
-			lstIncd1: null, // 프로젝트 참여코드 (개인, 팀)
-			lstIncd2: null, // 분석환경신청코드
-			lstIncd3: null, // Notebook 인스턴스코드
-			lstIncd4: null, // SageMakerStudio 인스턴스코드
-			// lstIncd5: null, // SageMakerStudio 템플릿코드
-			lstIncd6: null, // 가상화환경 인스턴스코드
-			lstIncd7: null, // 가상화환경 스토리지코드
+			TAH000020: null, // 프로젝트 참여코드 (개인, 팀)
+			TAH000025: null, // 분석환경신청코드
+			TAH000026: null, // Notebook 인스턴스코드
+			TAH000027: null, // SageMakerStudio 인스턴스코드
+			TAH000029: null, // 가상화환경 인스턴스코드
+			TAH000030: null, // 가상화환경 스토리지코드
 			aprvalInfo: null, // 결재자 정보
 
 			projectId: '',
 			instance_N: '', // Notebook 인스턴스값
 			instance_S: '', // SageMakerStudio 인스턴스값
-			// template_S: '', // SageMakerStudio 템플릿값
 			instance_V: '', // 가상화환경 인스턴스값
-			// 퍼블
+
 			date: null,
 			checkRegistDateValid: false,
+
+			selectMemberValid: false,
+
+			checkAnalyze: false,
 
 			project: '',
 			project_rule: [v => !!v || '프로젝트 명을 입력해 주세요.'],
@@ -629,13 +676,20 @@ export default {
 				{
 					text: '삭제',
 					sortable: true,
-					value: 'serno',
+					width: 150,
 				},
 			],
 		}
 	},
 
 	created() {
+		this.TAH000020 = this.$getCmCode('TAH000020')
+		this.TAH000025 = this.$getCmCode('TAH000025')
+		this.TAH000026 = this.$getCmCode('TAH000026')
+		this.TAH000027 = this.$getCmCode('TAH000027')
+		this.TAH000029 = this.$getCmCode('TAH000029')
+		this.TAH000030 = this.$getCmCode('TAH000030')
+
 		this.init()
 	},
 
@@ -643,6 +697,7 @@ export default {
 		selectMember(members) {
 			this.popupVal = false
 			this.selectedMemebers = members
+			this.selectMemberValid = this.selectedMemebers.length == 0
 		},
 		popupOpen() {
 			this.popupVal = true
@@ -652,42 +707,20 @@ export default {
 			this.popupVal = false
 		},
 
-		init() {
-			// try {
-			// 	const data = selectAna00301({})
-			// 	this.userInfo = data.userInfo
-			// } catch (error) {
-			// 	console.log(error)
-			// }
-			var url = '/api/analyze/analenvreq/ana003/selectAna00301'
-			axios
-				.get(url)
-				.then(res => {
-					this.userInfo = res.data.userInfo
-					this.lstIncd1 = res.data.lstIncd1
-					this.lstIncd2 = res.data.lstIncd2
-					this.lstIncd3 = res.data.lstIncd3
-					this.lstIncd4 = res.data.lstIncd4
-					// this.lstIncd5 = res.data.lstIncd5
-					this.lstIncd6 = res.data.lstIncd6
-					this.lstIncd7 = res.data.lstIncd7
-					this.aprvalInfo = res.data.aprvalInfo
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+		async init() {
+			try {
+				const { data } = await selectAna00301()
+				this.userInfo = data.userInfo
+				this.aprvalInfo = data.aprvalInfo
+			} catch (error) {
+				console.log('err : ' + error)
+			}
 		},
 
-		Analyze_rules(strYN) {
-			if (
-				!this.athena &&
-				!this.quickSight &&
-				!this.notebook &&
-				!this.sageMaker &&
-				!this.virtualization
-			)
-				return [false || (strYN ? '분석환경을 선택해 주세요' : '')]
-			else return [true || '']
+		Analyze_rules() {
+			if (this.analyzeValid) {
+				return false
+			} else return true
 		},
 
 		onButtonClick(item) {
@@ -695,93 +728,53 @@ export default {
 			this.selectedMemebers = this.selectedMemebers.filter(member => {
 				return member.serno != item.serno
 			})
+
+			this.selectMemberValid = this.selectedMemebers.length == 0
 		},
 
 		async Application() {
 			this.checkRegistDateValid = true
+			this.checkAnalyze = true
+			this.selectMemberValid = this.selectedMemebers.length == 0
 
-			if (this.$refs.form.validate() && this.registDateValid) {
-				// const param = {
-				// 	projName: this.project, // 프로젝트명
-				// 	projCtnt: this.project_desc, // 프로젝트 설명
-				// 	dateFrom: this.date[0], // 프로젝트 시작일
-				// 	dateTo: this.date[1], // 프로젝트 종료일
-				// 	projInvlCd: this.projectDiv == 0 ? '01' : '02', // 프로젝트 구분(개인:01, 팀:02)
-				// 	tmmmCoCd: this.GroupCoCd(), // 회사코드
-				// 	tmmmDvsnCd: this.Department(), // 부서코드
-				// 	tmmmEmpid: this.RegiEmpid(), // 직원번호
-				// 	tmmmInptCd: this.ProjInptCd(), // 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
-				// 	anlsEvirnAplcnCd: this.AnalyzeStr(), // 분석환경
-				// 	ntbkInstncCd: this.notebook ? this.instance_N : '', // Notebook Instance
-				// 	stdInstncCd: this.sageMaker ? this.instance_S : '', // SageMaker Studio Instance Type
-				// 	stdTmpltCd: this.sageMaker ? this.template_S : '', // SageMaker Studio Template Type
-				// 	vrtlInstncCd: this.virtualization ? this.instance_V : '', // 가상화 환경 Instance Type
-				// 	vrtlStrgeCd: this.virtualization
-				// 		? this.lstIncd7[0].cmnCd
-				// 		: '', // 가상화 환경 Storage Type
-				// 	ciValUseYn: this.ci_useDiv, // CI값 사용 여부
-				// 	aprvalEmpid: this.aprvalInfo.aprvalPsnEmpid, // 결재자
-				// }
+			if (
+				this.$refs.form.validate() &&
+				!this.registDateValid &&
+				!this.selectMemberValid
+			) {
+				const param = {
+					projName: this.project, // 프로젝트명
+					projCtnt: this.project_desc, // 프로젝트 설명
+					dateFrom: this.date[0], // 프로젝트 시작일
+					dateTo: this.date[1], // 프로젝트 종료일
+					projInvlCd: this.projectDiv == 0 ? '01' : '02', // 프로젝트 구분(개인:01, 팀:02)
+					tmmmCoCd: this.GroupCoCd(), // 회사코드
+					tmmmDvsnCd: this.Department(), // 부서코드
+					tmmmEmpid: this.RegiEmpid(), // 직원번호
+					tmmmInptCd: this.ProjInptCd(), // 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
+					anlsEvirnAplcnCd: this.AnalyzeStr(), // 분석환경
+					ntbkInstncCd: this.notebook ? this.instance_N : '', // Notebook Instance
+					stdInstncCd: this.sageMaker ? this.instance_S : '', // SageMaker Studio Instance Type
+					vrtlInstncCd: this.virtualization ? this.instance_V : '', // 가상화 환경 Instance Type
+					vrtlStrgeCd: this.virtualization
+						? this.TAH000030[0].cmnCd
+						: '', // 가상화 환경 Storage Type
+					ciValUseYn: this.ci_useDiv, // CI값 사용 여부
+					aprvalEmpid: this.aprvalInfo.aprvalPsnEmpid, // 결재자
+				}
 
-				// try {
-				// 	const data = await insertAna00301(param)
-				// 	this.projectId = data.projId
-				// } catch (error) {
-				// 	console.log(error)
-				// }
+				try {
+					const { data } = await insertAna00301(param)
+					this.projectId = data.projId
+					console.log(this.projectId)
 
-				var url = '/api/analyze/analenvreq/ana003/insertAna00301'
-
-				axios
-					.post(url, {
-						projName: this.project, // 프로젝트명
-						projCtnt: this.project_desc, // 프로젝트 설명
-						dateFrom: this.date[0], // 프로젝트 시작일
-						dateTo: this.date[1], // 프로젝트 종료일
-						projInvlCd: this.projectDiv == 0 ? '01' : '02', // 프로젝트 구분(개인:01, 팀:02)
-						tmmmCoCd: this.GroupCoCd(), // 회사코드
-						tmmmDvsnCd: this.Department(), // 부서코드
-						tmmmEmpid: this.RegiEmpid(), // 직원번호
-						tmmmInptCd: this.ProjInptCd(), // 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
-						anlsEvirnAplcnCd: this.AnalyzeStr(), // 분석환경
-						ntbkInstncCd: this.notebook ? this.instance_N : '', // Notebook Instance
-						stdInstncCd: this.sageMaker ? this.instance_S : '', // SageMaker Studio Instance Type
-						// stdTmpltCd: this.sageMaker ? this.template_S : '', // SageMaker Studio Template Type
-						vrtlInstncCd: this.virtualization
-							? this.instance_V
-							: '', // 가상화 환경 Instance Type
-						vrtlStrgeCd: this.virtualization
-							? this.lstIncd7[0].cmnCd
-							: '', // 가상화 환경 Storage Type
-						ciValUseYn: this.ci_useDiv, // CI값 사용 여부
-						aprvalEmpid: this.aprvalInfo.aprvalPsnEmpid, // 결재자
+					this.$router.push({
+						name: 'ana004',
+						params: { projectId: this.projectId },
 					})
-					.then(res => {
-						this.projectId = res.data.projId
-						console.log(this.projectId)
-
-						this.$router.push({
-							name: 'ana004',
-							params: { projectId: this.projectId },
-						})
-					})
-					.catch(err => {
-						console.log('err : ' + err)
-					})
-
-				// var url = '/api/mypage/myaprval/myp032/updateMyp03201'
-
-				// axios
-				// 	.post(url, {
-				// 		aprvalBzwkCd: 'C',
-				// 		aprvalId: 'KB0-APR-C0004',
-				// 	})
-				// 	.then(res => {
-				// 		console.log(res.data)
-				// 	})
-				// 	.catch(err => {
-				// 		console.log('err : ' + err)
-				// 	})
+				} catch (error) {
+					console.log(error)
+				}
 			}
 		},
 
@@ -838,14 +831,27 @@ export default {
 			return str
 		},
 
-		isEnabled(slot) {
-			return this.enabled === slot
+		AnalyzeSelect() {
+			this.checkAnalyze = true
 		},
 	},
 
 	computed: {
 		registDateValid() {
 			return this.date == null
+		},
+
+		analyzeValid() {
+			if (
+				this.checkAnalyze &&
+				!this.athena &&
+				!this.quickSight &&
+				!this.notebook &&
+				!this.sageMaker &&
+				!this.virtualization
+			)
+				return true
+			else return false
 		},
 	},
 }

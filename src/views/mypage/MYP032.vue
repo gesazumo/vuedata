@@ -95,45 +95,99 @@
 								</tr>
 								<tr>
 									<th>요청자</th>
-									<td>최자영(KB국민은행, 데이터기획부)</td>
+									<td>
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.dmndEmpInfo
+												: ''
+										}}
+									</td>
 								</tr>
 								<tr>
 									<th>요청일시</th>
-									<td>2022-00-00 21:00:00</td>
+									<td>
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.dmndYms
+												: ''
+										}}
+									</td>
 								</tr>
+
 								<tr>
 									<th>결재자</th>
 									<td>
-										강태근(KB국민은행, 데이터엔지니어링부)
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.aprvalEmpInfo
+												: ''
+										}}
 									</td>
 								</tr>
 								<tr>
 									<th>결재현황</th>
-									<td>{{ PaymentStatus() }}</td>
+									<td>
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.aprvalStusNm
+												: ''
+										}}
+									</td>
 								</tr>
-								<tr v-if="aprvalStusDstcd == 2">
+								<tr
+									v-if="
+										aprvalStusDstcd == 2 ||
+										aprvalStusDstcd == 4
+									"
+								>
 									<th>결재일</th>
-									<td>2022-00-00 21:00:00</td>
+									<td>
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.aprvalYms
+												: ''
+										}}
+									</td>
 								</tr>
-								<tr v-if="aprvalStusDstcd == 3">
+								<tr v-if="aprvalStusDstcd == 5">
 									<th>반려일</th>
-									<td>2022-00-00 21:00:00</td>
+									<td>
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.retunzYms
+												: ''
+										}}
+									</td>
 								</tr>
-								<tr v-if="aprvalStusDstcd == 3">
+								<tr v-if="aprvalStusDstcd == 5">
 									<th>반려사유</th>
-									<td>개인정보 포함으로 인해 승인 불가</td>
+									<td>
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.retunResnCtnt
+												: ''
+										}}
+									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="btnArea">
 						<v-btn color="primary" large outlined>목록으로</v-btn>
-						<v-btn color="primary" large v-if="aprvalStusDstcd == 1"
-							>반려하기</v-btn
+						<v-btn
+							color="primary"
+							large
+							v-if="aprvalStusDstcd == 1"
 						>
-						<v-btn color="primary" large v-if="aprvalStusDstcd == 1"
-							>결재하기</v-btn
+							반려하기
+						</v-btn>
+						<v-btn
+							color="primary"
+							large
+							v-if="aprvalStusDstcd == 1"
 						>
+							결재하기
+						</v-btn>
 					</div>
 				</div>
 			</div>
@@ -142,7 +196,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import { selectMyp03201 } from '@/api/modules/mypAPI'
+import { updateMyp03501 } from '@/api/modules/mypAPI'
 
 export default {
 	data() {
@@ -153,43 +209,46 @@ export default {
 	},
 
 	created() {
-		this.aprvalStusDstcd = 1 //this.$route.params.aprvalStusDstcd
 		this.init()
 	},
 
 	methods: {
-		init() {
+		async init() {
 			const param = {
 				aprvalId: 'KB0-C00000001',
 				aprvalBzwkCd: 'C',
 			}
 
-			const queryString = this.convertUrl(param)
+			try {
+				const { data } = await selectMyp03201(param)
+				this.aplcnResult = data.aplcnResult
+				this.aprvalStusDstcd = this.aplcnResult.aprvalStusCd
+				console.log(data)
+			} catch (error) {
+				console.log('err : ' + error)
+			}
+		},
 
-			var url = '/api/mypage/myaprval/myp032/selectMyp03201'
+		async Approval() {
+			const param = {
+				aprvalId: 'KB0-C00000001',
+				aprvalBzwkCd: 'C',
+				bzwkzDstcd: '',
+			}
 
-			axios
-				.get(url + queryString, {})
-				.then(res => {
-					this.aplcnResult = res.data.aplcnResult
-					console.log(res.data)
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+			try {
+				const { data } = await updateMyp03501(param)
+				if (data.aprvalId) this.$showInfo('결재가 완료 되었습니다.')
+				console.log(data)
+			} catch (error) {
+				console.log('err : ' + error)
+			}
 		},
 
 		AnlsEvirnSpecInfo() {
 			return this.aplcnResult != null
 				? this.aplcnResult.anlsEvirnSpecInfo
 				: ''
-		},
-
-		PaymentStatus() {
-			if (this.aprvalStusDstcd == 1) return '결재중'
-			else if (this.aprvalStusDstcd == 2) return '결재완료'
-			else if (this.aprvalStusDstcd == 3) return '반려'
-			else return ''
 		},
 	},
 }
