@@ -56,6 +56,10 @@ body {
   color: #1e1909;
   background: #f4f3f2 !important;
 }
+
+html, body {
+  height: 100%;
+}
 .v-application--wrap {background: #f4f3f2 !important;}
 
 a {
