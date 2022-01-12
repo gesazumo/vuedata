@@ -1,519 +1,529 @@
 <template>
-	<div class="menu_view">
-		<div class="table_box" v-if="activeNode">
-			<p class="pt-2 pb-4 font-weight-bold">
-				기본 정보
-				<v-btn color="primary" dark small outlined style="float: right"
-					>수정하기</v-btn
-				>
-			</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="180" />
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>메뉴 구분</th>
-						<td colspan="3">
-							{{
-								$getCmCodeNm(
-									'TAH000083',
-									activeNode.menuGubunCode,
-								)
-							}}
-						</td>
-					</tr>
-					<tr>
-						<th>메뉴 Depth</th>
-						<td>{{ activeNode.menuLevel }}</td>
-						<th>상위 메뉴 ID</th>
-						<td>
-							{{
-								activeNode.menuUpperId
-									? activeNode.menuUpperId
-									: 'N/A'
-							}}
-						</td>
-					</tr>
-					<tr>
-						<th>메뉴 순서</th>
-						<td>{{ activeNode.menuSort }}</td>
-						<th>메뉴 ID</th>
-						<td>{{ activeNode.menuId }}</td>
-					</tr>
-					<tr>
-						<th>메뉴명</th>
-						<td colspan="3">{{ activeNode.menuNm }}</td>
-					</tr>
-					<tr>
-						<th>설명</th>
-						<td colspan="3">{{ activeNode.menuDesc }}</td>
-					</tr>
-					<tr>
-						<th>URL 주소</th>
-						<td colspan="3">
-							{{ getParentUrl }}{{ activeNode.menuUrl }}
-						</td>
-					</tr>
-					<tr>
-						<th>사용 여부</th>
-						<td>Y</td>
-						<th>노출 여부</th>
-						<td>N</td>
-					</tr>
-				</tbody>
-			</table>
-			<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>접근 가능 그룹</th>
-						<td>일반 사용자, 일반 관리자, 통합 관리자</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!--메뉴관리 ppt 6p-->
-		<div class="table_box" style="display: none">
-			<p class="pt-2 pb-4 font-weight-bold">기본 정보</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="180" />
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>
-							메뉴 구분
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								placeholder="메뉴 구분을 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								:items="menu1"
-								v-model="menu"
-								:rules="menu1Rules"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴 Depth
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								placeholder="메뉴 Depth를 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								:items="menu2"
-								v-model="menu"
-								:rules="menu2Rules"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							상위 메뉴
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-row>
+	<div>
+		<loading-lottie v-if="detailLoading" />
+		<div class="menu_view" v-if="!detailLoading">
+			<div class="table_box" v-if="activeNode">
+				<p class="pt-2 pb-4 font-weight-bold">
+					기본 정보
+					<v-btn
+						color="primary"
+						dark
+						small
+						outlined
+						style="float: right"
+						>수정하기</v-btn
+					>
+				</p>
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="180" />
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>메뉴 구분</th>
+							<td colspan="3">
+								{{
+									$getCmCodeNm(
+										'TAH000083',
+										activeNode.menuGubunCode,
+									)
+								}}
+							</td>
+						</tr>
+						<tr>
+							<th>메뉴 Depth</th>
+							<td>{{ activeNode.menuLevel }}</td>
+							<th>상위 메뉴 ID</th>
+							<td>
+								{{
+									activeNode.menuUpperId
+										? activeNode.menuUpperId
+										: 'N/A'
+								}}
+							</td>
+						</tr>
+						<tr>
+							<th>메뉴 순서</th>
+							<td>{{ activeNode.menuSort }}</td>
+							<th>메뉴 ID</th>
+							<td>{{ activeNode.menuId }}</td>
+						</tr>
+						<tr>
+							<th>메뉴명</th>
+							<td colspan="3">{{ activeNode.menuNm }}</td>
+						</tr>
+						<tr>
+							<th>설명</th>
+							<td colspan="3">{{ activeNode.menuDesc }}</td>
+						</tr>
+						<tr>
+							<th>URL 주소</th>
+							<td colspan="3">
+								{{ getParentUrl }}{{ activeNode.menuUrl }}
+							</td>
+						</tr>
+						<tr>
+							<th>사용 여부</th>
+							<td>{{ activeNode.menuUseYn }}</td>
+							<th>노출 여부</th>
+							<td>{{ activeNode.menuViewYn }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>접근 가능 그룹</th>
+							<td>일반 사용자, 일반 관리자, 통합 관리자</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--메뉴관리 ppt 6p-->
+			<div class="table_box" style="display: none">
+				<p class="pt-2 pb-4 font-weight-bold">기본 정보</p>
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="180" />
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>
+								메뉴 구분
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
 								<v-select
-									placeholder="1 Depth 메뉴"
+									placeholder="메뉴 구분을 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									:items="menu1"
+									v-model="menu"
+									:rules="menu1Rules"
+								></v-select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴 Depth
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-select
+									placeholder="메뉴 Depth를 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									:items="menu2"
+									v-model="menu"
+									:rules="menu2Rules"
+								></v-select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								상위 메뉴
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-row>
+									<v-select
+										placeholder="1 Depth 메뉴"
+										single-line
+										outlined
+										hide-details="auto"
+										v-model="menu"
+										:rules="menu3Rules"
+										style="width: 120px; margin-right: 8px"
+									></v-select>
+									<v-select
+										placeholder="2 Depth 메뉴"
+										single-line
+										outlined
+										hide-details="auto"
+										style="width: 120px"
+									></v-select>
+								</v-row>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴 순서
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-select
+									placeholder="메뉴 순서를 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									:items="menu4"
+									v-model="menu"
+									:rules="menu4Rules"
+									style="width: 225px"
+								></v-select>
+							</td>
+						</tr>
+						<tr>
+							<th>메뉴 ID</th>
+							<td colspan="3">TAH-EXP001</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴명
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									placeholder="메뉴명을 입력하세요"
 									single-line
 									outlined
 									hide-details="auto"
 									v-model="menu"
-									:rules="menu3Rules"
-									style="width: 120px; margin-right: 8px"
-								></v-select>
-								<v-select
-									placeholder="2 Depth 메뉴"
-									single-line
-									outlined
-									hide-details="auto"
-									style="width: 120px"
-								></v-select>
-							</v-row>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴 순서
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								placeholder="메뉴 순서를 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								:items="menu4"
-								v-model="menu"
-								:rules="menu4Rules"
-								style="width: 225px"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>메뉴 ID</th>
-						<td colspan="3">TAH-EXP001</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴명
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								placeholder="메뉴명을 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="menu"
-								:rules="menu5Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							설명
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								placeholder="설명을 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="menu"
-								:rules="menu6Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							URL 주소
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								prefix="/explore/mydata/"
-								placeholder="URL 주소를 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="menu"
-								:rules="menu7Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							사용여부
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-switch
-								v-model="switch1"
-								color="orange"
-								value=""
-								hide-details
-							></v-switch>
-						</td>
-						<th>
-							노출여부
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-switch
-								v-model="switch2"
-								color="orange"
-								value=""
-								hide-details
-							></v-switch>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>
-							접근 가능 그룹
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-row>
-								<v-checkbox
-									label="일반 사용자"
-									hide-details
-								></v-checkbox>
-								<v-checkbox
-									label="일반 관리자"
-									hide-details
-								></v-checkbox>
-								<v-checkbox
-									label="통합 관리자"
-									hide-details
-								></v-checkbox>
-							</v-row>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!--메뉴관리 ppt 7p-->
-		<div class="table_box" style="display: none">
-			<p class="pt-2 pb-4 font-weight-bold">기본 정보</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="180" />
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>
-							메뉴 구분
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								label="일반"
-								placeholder="메뉴 구분을 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								:items="menu1"
-								v-model="menu"
-								:rules="menu1Rules"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴 Depth
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								label="2 Depth"
-								placeholder="메뉴 Depth를 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								:items="menu2"
-								v-model="menu"
-								:rules="menu2Rules"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							상위 메뉴
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-row>
-								<v-select
-									label="Explore"
-									placeholder=""
+									:rules="menu5Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								설명
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									placeholder="설명을 입력하세요"
 									single-line
 									outlined
 									hide-details="auto"
 									v-model="menu"
-									:rules="menu3Rules"
-									style="width: 120px; margin-right: 8px"
+									:rules="menu6Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								URL 주소
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									prefix="/explore/mydata/"
+									placeholder="URL 주소를 입력하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									v-model="menu"
+									:rules="menu7Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								사용여부
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-switch
+									v-model="switch1"
+									color="orange"
+									value=""
+									hide-details
+								></v-switch>
+							</td>
+							<th>
+								노출여부
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-switch
+									v-model="switch2"
+									color="orange"
+									value=""
+									hide-details
+								></v-switch>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>
+								접근 가능 그룹
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-row>
+									<v-checkbox
+										label="일반 사용자"
+										hide-details
+									></v-checkbox>
+									<v-checkbox
+										label="일반 관리자"
+										hide-details
+									></v-checkbox>
+									<v-checkbox
+										label="통합 관리자"
+										hide-details
+									></v-checkbox>
+								</v-row>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--메뉴관리 ppt 7p-->
+			<div class="table_box" style="display: none">
+				<p class="pt-2 pb-4 font-weight-bold">기본 정보</p>
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="180" />
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>
+								메뉴 구분
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-select
+									label="일반"
+									placeholder="메뉴 구분을 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									:items="menu1"
+									v-model="menu"
+									:rules="menu1Rules"
 								></v-select>
-							</v-row>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴 순서
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								label="5"
-								placeholder="메뉴 순서를 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								:items="menu4"
-								v-model="menu"
-								:rules="menu4Rules"
-								style="width: 159px"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>메뉴 ID</th>
-						<td colspan="3">TAH-EXP001</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴명
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								label="My Data 리스트"
-								placeholder="메뉴명을 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="menu"
-								:rules="menu5Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							설명
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								label="마이데이터 목록 및 검색"
-								placeholder="설명을 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="menu"
-								:rules="menu6Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							URL 주소
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								label="list"
-								prefix="/explore/mydata/"
-								placeholder="URL 주소를 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="menu"
-								:rules="menu7Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							사용여부
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-select
-								label="Yes"
-								single-line
-								outlined
-								hide-details="auto"
-							></v-select>
-						</td>
-						<th>
-							노출여부
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-select
-								label="No"
-								single-line
-								outlined
-								hide-details="auto"
-							></v-select>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>
-							접근 가능 그룹
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-row>
-								<v-checkbox
-									label="일반 사용자"
-									hide-details
-								></v-checkbox>
-								<v-checkbox
-									label="일반 관리자"
-									hide-details
-								></v-checkbox>
-								<v-checkbox
-									label="통합 관리자"
-									hide-details
-								></v-checkbox>
-							</v-row>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!--하단버튼 영역은 ppt기준 6, 7p에서만 나와요-->
-		<div class="btn_area center pt-8">
-			<v-btn color="primary" dark outlined> 취소 </v-btn>
-			<v-btn color="primary" dark> 수정하기 </v-btn>
-			<v-btn color="primary" dark> 등록하기 </v-btn>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴 Depth
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-select
+									label="2 Depth"
+									placeholder="메뉴 Depth를 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									:items="menu2"
+									v-model="menu"
+									:rules="menu2Rules"
+								></v-select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								상위 메뉴
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-row>
+									<v-select
+										label="Explore"
+										placeholder=""
+										single-line
+										outlined
+										hide-details="auto"
+										v-model="menu"
+										:rules="menu3Rules"
+										style="width: 120px; margin-right: 8px"
+									></v-select>
+								</v-row>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴 순서
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-select
+									label="5"
+									placeholder="메뉴 순서를 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									:items="menu4"
+									v-model="menu"
+									:rules="menu4Rules"
+									style="width: 159px"
+								></v-select>
+							</td>
+						</tr>
+						<tr>
+							<th>메뉴 ID</th>
+							<td colspan="3">TAH-EXP001</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴명
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									label="My Data 리스트"
+									placeholder="메뉴명을 입력하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									v-model="menu"
+									:rules="menu5Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								설명
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									label="마이데이터 목록 및 검색"
+									placeholder="설명을 입력하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									v-model="menu"
+									:rules="menu6Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								URL 주소
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									label="list"
+									prefix="/explore/mydata/"
+									placeholder="URL 주소를 입력하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									v-model="menu"
+									:rules="menu7Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								사용여부
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-select
+									label="Yes"
+									single-line
+									outlined
+									hide-details="auto"
+								></v-select>
+							</td>
+							<th>
+								노출여부
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-select
+									label="No"
+									single-line
+									outlined
+									hide-details="auto"
+								></v-select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>
+								접근 가능 그룹
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-row>
+									<v-checkbox
+										label="일반 사용자"
+										hide-details
+									></v-checkbox>
+									<v-checkbox
+										label="일반 관리자"
+										hide-details
+									></v-checkbox>
+									<v-checkbox
+										label="통합 관리자"
+										hide-details
+									></v-checkbox>
+								</v-row>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--하단버튼 영역은 ppt기준 6, 7p에서만 나와요-->
+			<div class="btn_area center pt-8">
+				<v-btn color="primary" dark outlined> 취소 </v-btn>
+				<v-btn color="primary" dark> 수정하기 </v-btn>
+				<v-btn color="primary" dark> 등록하기 </v-btn>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import LoadingLottie from '../LoadingLottie.vue'
 export default {
+	components: { LoadingLottie },
 	props: {
 		menuId: {
 			type: String,
@@ -531,6 +541,7 @@ export default {
 	computed: {
 		...mapState({
 			activeNode: state => state.menuStore.activeNode,
+			detailLoading: state => state.menuStore.detailLoading,
 		}),
 		...mapGetters({
 			getParentUrl: 'menuStore/getParentUrl',

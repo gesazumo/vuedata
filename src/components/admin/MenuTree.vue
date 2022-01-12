@@ -6,7 +6,9 @@
 			<v-btn color="primary" small outlined> 등록하기 </v-btn>
 		</v-row>
 		<v-row>
+			<loading-lottie v-if="treeLoading" />
 			<v-treeview
+				v-if="!treeLoading"
 				activatable
 				@update:active="clickMenu"
 				:items="$store.state.menuStore.menuTree"
@@ -19,12 +21,20 @@
 
 <script>
 import { CLOSE_ALL, OPEN_ALL, CLICK_NODE } from '@/store/mutation-type'
+import LoadingLottie from '../LoadingLottie.vue'
+import { mapState } from 'vuex'
 export default {
+	components: { LoadingLottie },
 	data() {
 		return {
 			menu: [],
 			openList: [],
 		}
+	},
+	computed: {
+		...mapState({
+			treeLoading: state => state.menuStore.treeLoading,
+		}),
 	},
 	methods: {
 		clickMenu(node) {
