@@ -5,11 +5,12 @@
 			<v-btn small outlined @click="openAll">모두 펼치기</v-btn>
 			<v-btn color="primary" small outlined> 등록하기 </v-btn>
 		</v-row>
-		<v-row v-if="menu.length > 0">
+		<v-row>
 			<v-treeview
 				activatable
-				:items="menu"
-				:open.sync="openList"
+				@update:active="clickMenu"
+				:items="$store.state.menuStore.menuTree"
+				:open.sync="$store.state.menuStore.openList"
 				item-key="menuId"
 			></v-treeview>
 		</v-row>
@@ -17,7 +18,7 @@
 </template>
 
 <script>
-import { getMenuApi } from '@/api/modules/initAPI'
+import { CLOSE_ALL, OPEN_ALL, CLICK_NODE } from '@/store/mutation-type'
 export default {
 	data() {
 		return {
@@ -26,26 +27,21 @@ export default {
 		}
 	},
 	methods: {
-		async getMenu() {
-			try {
-				const { data } = await getMenuApi()
-				this.menu = data.list
-			} catch (error) {
-				console.log(error)
-			}
+		clickMenu(node) {
+			this.$store.commit(`menuStore/${CLICK_NODE}`, { menuId: node[0] })
+		},
+		async getMenuTree() {
+			await this.$store.dispatch('menuStore/getMenuTree')
 		},
 		openAll() {
-			const a = this.menu.map(item => {
-				return item.menuId
-			})
-			this.openList = a
+			this.$store.commit(`menuStore/${OPEN_ALL}`)
 		},
 		closeAll() {
-			this.openList = []
+			this.$store.commit(`menuStore/${CLOSE_ALL}`)
 		},
 	},
 	created() {
-		this.getMenu()
+		this.getMenuTree()
 	},
 }
 </script>

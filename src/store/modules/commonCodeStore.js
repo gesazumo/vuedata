@@ -28,6 +28,10 @@ const commonCodeStore = {
 		getCmCode: state => key => {
 			return state.cmCode[key]
 		},
+		getCmCodeNm: state => (key, cmnCd) => {
+			return state.cmCode[key].filter(item => item.cmnCd == cmnCd)[0]
+				.cmnCdNm
+		},
 		cmCodeExist: state => {
 			return state.cmCode
 		},
