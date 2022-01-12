@@ -68,9 +68,6 @@
 										placeholder="카테고리를 선택하세요"
 										outlined
 										hide-details="auto"
-										:items="menu1"
-										v-model="menu"
-										:rules="menu1Rules"
 										style="width: 300px"
 									></v-select>
 								</td>
@@ -86,8 +83,6 @@
 										single-line
 										outlined
 										hide-details="auto"
-										v-model="menu"
-										:rules="menu2Rules"
 										style="
 											float: left;
 											width: 300px !important;
@@ -105,7 +100,14 @@
 					</table>
 				</div>
 			</div>
-			<div style="margin-top: 20px">
+			<div
+				style="
+					position: relative;
+					display: inline-block;
+					width: 100%;
+					margin-top: 20px;
+				"
+			>
 				<div class="menu_lst">
 					<v-row>
 						<v-btn small outlined @click="closeAllTreeview()"
@@ -114,42 +116,255 @@
 						<v-btn small outlined @click="openAllTreeview()"
 							>모두 펼치기</v-btn
 						>
-						<v-btn color="primary" small outlined> 추가하기 </v-btn>
+						<v-btn
+							color="primary"
+							small
+							outlined
+							@click="addBtnClick()"
+						>
+							추가하기
+						</v-btn>
 					</v-row>
 					<v-treeview
 						ref="treeview"
-						:active.sync="active"
+						:active.sync="treeActive"
 						item-key="id"
 						item-text="name"
 						hoverable
 						activatable
-						:items="listItems"
+						:items="treeListItems"
+						open-all
+						@update:active="treeClick()"
 					></v-treeview>
 				</div>
 				<div class="menu_view">
-					{{ active[0] }}
+					<div v-if="addAndEditDisplayFlag">
+						<div class="table_box">
+							<p
+								class="pt-2 pb-4 font-weight-bold"
+								v-if="!addDisplayFlag"
+							>
+								수정하기
+							</p>
+							<p
+								class="pt-2 pb-4 font-weight-bold"
+								v-if="addDisplayFlag"
+							>
+								추가하기
+							</p>
+							<table class="tb_write">
+								<caption>
+									table caption
+								</caption>
+								<colgroup>
+									<col width="160" />
+									<col width="" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<th>
+											목차 Depth
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-select
+												placeholder="목차 Depth를 선택하세요"
+												single-line
+												outlined
+												hide-details="auto"
+											></v-select>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											상위 목차
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-row>
+												<v-select
+													placeholder="1 Depth 메뉴"
+													single-line
+													outlined
+													hide-details="auto"
+													style="
+														width: 120px;
+														margin-right: 8px;
+													"
+												></v-select>
+												<v-select
+													placeholder="2 Depth 메뉴"
+													single-line
+													outlined
+													hide-details="auto"
+													style="width: 120px"
+												></v-select>
+											</v-row>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											메뉴 순서
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-select
+												placeholder="메뉴 순서를 선택하세요"
+												single-line
+												outlined
+												hide-details="auto"
+												style="width: 225px"
+											></v-select>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											목차 ID
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-text-field
+												placeholder="목차 ID를 입력하세요"
+												single-line
+												outlined
+												hide-details="auto"
+												v-model="menuId"
+											></v-text-field>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											제목
+											<span class="asterisk">필수</span>
+										</th>
+										<td>
+											<v-text-field
+												placeholder="제목을 입력하세요"
+												single-line
+												outlined
+												hide-details="auto"
+											></v-text-field>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<vue-editor></vue-editor>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="btn_area center pt-8">
+							<v-btn color="primary" dark> 목록으로 </v-btn>
+							<v-btn color="primary" v-if="!addDisplayFlag">
+								수정하기
+							</v-btn>
+							<v-btn color="primary" v-if="addDisplayFlag">
+								추가하기
+							</v-btn>
+						</div>
+					</div>
+					<div v-else>
+						<div class="table_box" v-if="treeActive[0]">
+							<p class="pt-2 pb-4 font-weight-bold">
+								상세보기
+								<!--등록화면에서는 등록하기 버튼 노출 / 수정하기화면에서는 삭제하기, 수정하기 버튼 노출--->
+								<v-btn
+									color="primary"
+									dark
+									small
+									outlined
+									style="float: right"
+								>
+									삭제하기
+								</v-btn>
+								<v-btn
+									color="primary"
+									dark
+									small
+									outlined
+									style="float: right"
+									@click="editBtnClick()"
+								>
+									수정하기
+								</v-btn>
+							</p>
+							<table class="tb_write">
+								<caption>
+									table caption
+								</caption>
+								<colgroup>
+									<col width="160" />
+									<col width="" />
+								</colgroup>
+								<tbody>
+									<!--
+										목차 Depth하고 상위목차 ID 설계서 확인 부탁드려요 
+										노출되는 정보 다름
+									-->
+									<tr>
+										<th>목차 Depth</th>
+										<td>{{ show.depth }}</td>
+									</tr>
+									<tr>
+										<th>상위 목차 ID</th>
+										<td>{{ show.parentId }}</td>
+									</tr>
+									<tr>
+										<th>목차 순서</th>
+										<td>{{ show.sort }}</td>
+									</tr>
+									<tr>
+										<th>목차 ID</th>
+										<td>{{ show.id }}</td>
+									</tr>
+									<tr>
+										<th>제목</th>
+										<td>{{ show.name }}</td>
+									</tr>
+									<td colspan="2">
+										<vue-editor disabled></vue-editor>
+									</td>
+								</tbody>
+							</table>
+						</div>
+						<div v-else>체크된거없을때</div>
+					</div>
 				</div>
-			</div>
-			<div class="btn_area center">
-				<v-btn color="primary" dark outlined> 취소 </v-btn>
-				<v-btn color="primary" dark> 수정하기 </v-btn>
-				<v-btn color="primary" dark> 등록하기 </v-btn>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+import { VueEditor } from 'vue2-editor'
 export default {
+	components: {
+		VueEditor,
+	},
 	data() {
 		return {
-			item: '',
-			menu: '',
-			menu1: ['분석가 포털 사용자 매뉴얼', '분석환경 사용자 매뉴얼'],
-			menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
-			menu2Rules: [v => !!v || '카테고리를 먼저 선택해 주세요.'],
-			content: '',
-			active: [],
-			listItems: [
+			// menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
+			addAndEditDisplayFlag: false,
+			addDisplayFlag: false,
+			menuId: '',
+			treeActive: [],
+			treeListItems: [],
+			show: {
+				depth: '',
+				parentId: '',
+				sort: '',
+				id: '',
+				name: '',
+				content: '',
+			},
+		}
+	},
+	created() {
+		this.init()
+	},
+	methods: {
+		init() {
+			this.treeListItems = [
 				{
 					id: '1',
 					name: '1. Documents',
@@ -178,15 +393,33 @@ export default {
 						},
 					],
 				},
-			],
-		}
-	},
-	methods: {
+			]
+		},
 		closeAllTreeview() {
 			this.$refs.treeview.updateAll(false)
 		},
 		openAllTreeview() {
 			this.$refs.treeview.updateAll(true)
+		},
+		treeClick() {
+			this.addAndEditDisplayFlag = false
+			this.show.id = this.treeActive[0]
+			console.log(this.show.id === 1)
+			//서버에서 받아올꺼임
+			// if (this.show.id === 1) {
+			// 	this.show.depth = '1'
+			// 	this.show.parentId = 'None'
+			// 	this.show.sort = '1'
+			// 	this.show.name = 'Documents'
+			// }
+		},
+		addBtnClick() {
+			this.addAndEditDisplayFlag = true
+			this.addDisplayFlag = true
+		},
+		editBtnClick() {
+			this.addAndEditDisplayFlag = true
+			this.addDisplayFlag = false
 		},
 	},
 }
@@ -197,9 +430,5 @@ export default {
 	min-height: 36px;
 	border: 1px solid #555555;
 	padding-left: 15px;
-}
-.v-application .primary--text {
-	color: #069cf3 !important;
-	caret-color: #069cf3 !important;
 }
 </style>
