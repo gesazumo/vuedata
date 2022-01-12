@@ -18,6 +18,32 @@
 									<th>
 										카테고리
 										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-select
+											placeholder="카테고리를 선택하세요"
+											outlined
+											hide-details="auto"
+											:items="menu1"
+											v-model="menu"
+											:rules="menu1Rules"
+											style="width: 385px"
+										></v-select>
+										<!-- 수정화면에서 text-field로 변경
+										<v-text-field
+											label="분석가 포털 사용자 매뉴얼"
+											outlined
+											hide-details="auto"
+											style="width: 385px"
+										>
+										</v-text-field>
+										-->
+									</td>
+								</tr>
+								<tr>
+									<th>
+										버전
+										<span class="asterisk">필수</span>
 										<v-tooltip
 											right
 											content-class="secondary tooltip-right"
@@ -63,32 +89,6 @@
 												</span>
 											</div>
 										</v-tooltip>
-									</th>
-									<td>
-										<v-select
-											placeholder="카테고리를 선택하세요"
-											outlined
-											hide-details="auto"
-											:items="menu1"
-											v-model="menu"
-											:rules="menu1Rules"
-											style="width: 385px"
-										></v-select>
-										<!-- 수정화면에서 text-field로 변경
-										<v-text-field
-											label="분석가 포털 사용자 매뉴얼"
-											outlined
-											hide-details="auto"
-											style="width: 385px"
-										>
-										</v-text-field>
-										-->
-									</td>
-								</tr>
-								<tr>
-									<th>
-										버전
-										<span class="asterisk">필수</span>
 									</th>
 									<td>
 										<v-text-field
