@@ -69,6 +69,11 @@
 										outlined
 										hide-details="auto"
 										style="width: 300px"
+										v-model="categorySelect"
+										:items="categorySelectList"
+										item-text="title"
+										item-value="value"
+										return-object
 									></v-select>
 								</td>
 							</tr>
@@ -88,11 +93,75 @@
 											width: 300px !important;
 										"
 									></v-text-field>
-									<div class="ver_txt">
-										<i
-											class="fas fa-exclamation-circle"
-										></i>
-										현재 등록된 버전이 없습니다.
+									<v-btn
+										color="primary"
+										small
+										outlined
+										style="
+											float: left;
+											height: 40px !important;
+											margin: 0 5px;
+										"
+										@click="dialog = true"
+										v-if="categorySelect"
+									>
+										버전 업데이트 하기
+									</v-btn>
+									<v-dialog v-model="dialog" max-width="280">
+										<v-card align="center">
+											<v-card-title
+												class="text-subtitle-1"
+											>
+												매뉴얼 버전을<br />
+												업데이트 하시겠습니까?
+											</v-card-title>
+											<v-card-text></v-card-text>
+
+											<v-card-actions>
+												<v-spacer></v-spacer>
+
+												<v-btn
+													color="primary"
+													dark
+													outlined
+													@click="dialog = false"
+												>
+													취소
+												</v-btn>
+
+												<v-btn
+													color="primary"
+													dark
+													@click="dialog = false"
+												>
+													업데이트하기
+												</v-btn>
+											</v-card-actions>
+										</v-card>
+									</v-dialog>
+									<div v-if="categorySelect">
+										<div
+											class="ver_txt"
+											v-if="categorySelect.ver"
+										>
+											<i
+												class="
+													fas
+													fa-exclamation-circle
+												"
+											></i>
+											현재 등록된 최종 버전은
+											{{ categorySelect.ver }} 입니다.
+										</div>
+										<div class="ver_txt" v-else>
+											<i
+												class="
+													fas
+													fa-exclamation-circle
+												"
+											></i>
+											현재 등록된 버전이 없습니다.
+										</div>
 									</div>
 								</td>
 							</tr>
@@ -328,7 +397,15 @@
 								</tbody>
 							</table>
 						</div>
-						<div v-else>체크된거없을때</div>
+						<div class="noti_meg" v-else>
+							<i class="fas fa-exclamation-circle"></i>
+							<div class="noti_txt">
+								<p>
+									선택된 항목이 없습니다.<br />
+									항목을 추가하거나 선택해 주세요.
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -344,11 +421,14 @@ export default {
 	data() {
 		return {
 			// menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
+			dialog: false,
 			addAndEditDisplayFlag: false,
 			addDisplayFlag: false,
 			menuId: '',
 			treeActive: [],
 			treeListItems: [],
+			categorySelect: '',
+			categorySelectList: [],
 			show: {
 				depth: '',
 				parentId: '',
@@ -393,6 +473,10 @@ export default {
 						},
 					],
 				},
+			]
+			this.categorySelectList = [
+				{ title: '분석가 포털 사용자 메뉴얼', value: '01', ver: '1.3' },
+				{ title: '분석환경 사용자 메뉴얼', value: '02', ver: '' },
 			]
 		},
 		closeAllTreeview() {
