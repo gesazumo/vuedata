@@ -26,20 +26,27 @@
 									<span class="asterisk">필수</span>
 								</th>
 								<td>
-									<v-text-field
-										placeholder="인스턴스명을 입력하세요"
-										single-line
-										clearable
-										outlined
-										hide-details="auto"
-										v-model="instncName"
-									>
-										<template slot="append-outer">
-											<v-btn color="primary" dark>
-												중복체크
-											</v-btn>
-										</template>
-									</v-text-field>
+									<v-form ref="form" onsubmit="return false;">
+										<v-text-field
+											placeholder="인스턴스명을 입력하세요"
+											single-line
+											clearable
+											outlined
+											hide-details="auto"
+											v-model="instncName"
+											:rules="instncName_rule"
+										>
+											<template slot="append-outer">
+												<v-btn
+													color="primary"
+													@click="fn_jungBokChk()"
+													dark
+												>
+													중복체크
+												</v-btn>
+											</template>
+										</v-text-field>
+									</v-form>
 								</td>
 							</tr>
 							<tr>
@@ -55,6 +62,7 @@
 										outlined
 										hide-details="auto"
 										v-model="instncDefinCtnt"
+										:rules="instncDefinCtnt_rule"
 									>
 									</v-text-field>
 								</td>
@@ -194,7 +202,7 @@ export default {
 			jungBokChkText: '', // 중복체크 완료 단어
 			instncIdnfr: '', // 식별자
 			instncName: '', // 인스턴스명
-			instncDefinCtnt: '', // 인스턴스식별자
+			instncDefinCtnt: '', // 인스턴스정의
 			btnText: '등록',
 			headers: [
 				{
@@ -208,11 +216,19 @@ export default {
 					sortable: false,
 				},
 			],
+
+			instncName_rule: [
+				() => !!this.instncName || '인스턴스명을 입력해 주세요.',
+				() => !!this.jungBokChk || '중복체크를 해주세요.',
+			],
+			instncDefinCtnt_rule: [
+				() =>
+					!!this.instncDefinCtnt || '인스턴스 정의를 입력해 주세요.',
+			],
 		}
 	},
 	methods: {
 		Modify() {
-			console.log(JSON.stringify(this.instanceRows.length))
 			if (this.instanceRows.length == 0) {
 				alert('인스턴스 코드를 등록해주시기 바랍니다.')
 				return
@@ -226,6 +242,33 @@ export default {
 						return
 					}
 				}
+
+				let url = '/api/admin/meta/regInstncAll'
+				if (this.btnText == '수정') {
+					url = '/api/admin/meta/modInstncAll'
+				}
+
+				axios
+					.post(url, {
+						instncIdnfr: this.instncIdnfr, // 식별자
+						instncName: this.instncName, // 인스턴스명
+						instncDefinCtnt: this.instncDefinCtnt, // 인스턴스정의
+						incdLen: this.instanceRows[0].instncCd.length, // 코드길이
+						userNo: 'S017069',
+						data: this.instanceRows,
+					})
+					.then(res => {
+						if (res) {
+							alert(this.btnText + '되었습니다.')
+							this.gf_router('adm003', {
+								searchKey: this.$route.params.searchKey,
+								searchKey2: this.$route.params.searchKey2,
+							})
+						}
+					})
+					.catch(err => {
+						console.log('err : ' + err)
+					})
 			}
 		},
 
@@ -266,11 +309,14 @@ export default {
 
 		fn_jungBokChk() {
 			axios
-				.get('/api/admin/meta/getWordCon', {
-					params: { inHanglWordName: this.korWord },
+				.get('/api/admin/meta/getInstncList', {
+					params: {
+						inInstncName: this.instncName,
+						inCon: '1',
+					},
 				})
 				.then(res => {
-					if (res.data) {
+					if (res.data.count > 0) {
 						alert('이미 등록된 단어입니다.')
 						this.jungBokChk = false
 						this.$refs.form.validate()
@@ -292,32 +338,18 @@ export default {
 
 	created() {
 		// 값이 있을경우 수정
-		console.log(this.$route.params.instncIdnfr)
 		if (this.$route.params.instncIdnfr) {
 			this.btnText = '수정'
 			this.jungBokChk = true
 			axios
-				.get('/api/admin/meta/getInstncCon?', {
+				.get('/api/admin/meta/getInstncAll?', {
 					params: { inInstncIdnfr: this.$route.params.instncIdnfr },
 				})
 				.then(res => {
-					console.log(JSON.stringify(res))
 					this.instncIdnfr = res.data.instncIdnfr // 식별자
 					this.instncName = res.data.instncName // 인스턴스명
 					this.instncDefinCtnt = res.data.instncDefinCtnt // 인스턴스 정의
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
-
-			axios
-				.get('/api/admin/meta/getInsDtlList', {
-					params: { inInstncIdnfr: this.$route.params.instncIdnfr },
-				})
-				.then(res => {
-					console.log('상세 : ' + JSON.stringify(res))
 					this.instanceRows = res.data.list
-					// this.dtList = item
 				})
 				.catch(err => {
 					console.log('err : ' + err)

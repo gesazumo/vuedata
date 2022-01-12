@@ -31,7 +31,6 @@
 							class="search"
 							@click="onSearch()"
 							:disabled="korWord == ''"
-							id="btnSearch"
 						>
 							검색하기
 						</button>
@@ -40,10 +39,12 @@
 			</div>
 			<div class="item_box">
 				<div class="tit">
-					<p v-if="itemList.legnth > 0">
-						총 <span>{{ itemList.length }}</span
-						>개의 단어 목록이 있습니다.
-					</p>
+					<div class="tit" v-if="itemList.length > 0">
+						<p>
+							총 <span>{{ itemList.length }}</span
+							>개의 단어 목록이 있습니다.
+						</p>
+					</div>
 				</div>
 				<div class="table_box">
 					<v-data-table
@@ -173,6 +174,7 @@ export default {
 	},
 	created() {
 		if (this.$route.params.searchKey) {
+			window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
 			this.korWord = this.$route.params.searchKey
 			this.mark = this.$route.params.searchKey2
 			this.onSearch()
@@ -230,9 +232,6 @@ export default {
 				.catch(err => {
 					console.log('err : ' + err)
 				})
-		},
-		handleClick(obj) {
-			alert(obj)
 		},
 	},
 }
