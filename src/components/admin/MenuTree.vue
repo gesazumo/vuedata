@@ -14,6 +14,7 @@
 				:items="$store.state.menuStore.menuTree"
 				:open.sync="$store.state.menuStore.openList"
 				item-key="menuId"
+				item-text="menuNm"
 			></v-treeview>
 		</v-row>
 	</div>
@@ -21,10 +22,8 @@
 
 <script>
 import { CLOSE_ALL, OPEN_ALL, CLICK_NODE } from '@/store/mutation-type'
-import LoadingLottie from '../LoadingLottie.vue'
 import { mapState } from 'vuex'
 export default {
-	components: { LoadingLottie },
 	data() {
 		return {
 			menu: [],

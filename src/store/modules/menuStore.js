@@ -6,6 +6,7 @@ import {
 	SET_ACTIVE_NODE,
 	SET_TREE_LOADING,
 	SET_DETAIL_LOADING,
+	SET_UPDATE_MODE,
 } from '@/store/mutation-type'
 import { getMenuApi, getMenuDetail } from '@/api/modules/initAPI'
 import Vue from 'vue'
@@ -20,6 +21,7 @@ const menuStore = {
 		activeNode: null,
 		detailLoading: false,
 		treeLoading: false,
+		updateMode: false,
 	}),
 	mutations: {
 		[SET_MENU_TREE](state, { menuTree }) {
@@ -45,6 +47,9 @@ const menuStore = {
 		[SET_TREE_LOADING](state, { flag }) {
 			state.detailLoading = flag
 		},
+		[SET_UPDATE_MODE](state, { flag }) {
+			state.updateMode = flag
+		},
 	},
 	actions: {
 		async getMenuTree({ commit }) {
@@ -61,6 +66,7 @@ const menuStore = {
 		},
 		async getMenuNode({ commit }, { menuId }) {
 			commit(SET_DETAIL_LOADING, { flag: true })
+			commit(SET_UPDATE_MODE, { flag: false })
 			try {
 				const { data } = await getMenuDetail(menuId)
 				commit(SET_ACTIVE_NODE, { node: data.list[0] })
@@ -73,12 +79,28 @@ const menuStore = {
 		},
 	},
 	getters: {
+		getMenuSortArray: state => {
+			const sortArray = []
+
+			let arrayLength = state.menuTree.length
+			if (state.activeNode.menuLevel != 1) {
+				const index = state.menuTree.findIndex(
+					item => item.menuId == state.activeNode.menuUpperId,
+				)
+				arrayLength = state.menuTree[index].children.length
+			}
+
+			for (let i = 0; i < arrayLength; i++) {
+				const value = i + 1
+				sortArray.push(value)
+			}
+			return sortArray
+		},
 		getParentUrl: state => {
 			if (state.activeNode.menuLevel == 1) return null
 			const index = state.menuTree.findIndex(
 				item => item.menuId == state.activeNode.menuUpperId,
 			)
-			console.log(index)
 			if (index != -1) return state.menuTree[index].menuUrl
 		},
 	},
