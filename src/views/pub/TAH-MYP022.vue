@@ -15,7 +15,7 @@
 			<div class="subcontents">
 				<div class="s_title border_no">
 					<div class="page_tit">
-						<h4>수정중...</h4>
+						<h4>업로드 요청 정보입력</h4>
 						<span>
 							분석업무 수행을 위해 필요한 파일은 관리자 승인 후에
 							프로젝트 분석환경으로 업로드 되어 분석에 사용할 수

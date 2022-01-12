@@ -24,9 +24,6 @@
 											placeholder="카테고리를 선택하세요"
 											outlined
 											hide-details="auto"
-											:items="menu1"
-											v-model="menu"
-											:rules="menu1Rules"
 											style="width: 385px"
 										></v-select>
 										<!-- 수정화면에서 text-field로 변경
@@ -96,8 +93,6 @@
 											single-line
 											outlined
 											hide-details="auto"
-											v-model="menu"
-											:rules="menu2Rules"
 											style="
 												float: left;
 												width: 300px !important;
@@ -172,6 +167,8 @@
 						position: relative;
 						display: inline-block;
 						width: 100%;
+						height: 100%;
+						min-height: 100%;
 						margin-top: 20px;
 					"
 				>
@@ -198,209 +195,213 @@
 						></v-treeview>
 					</div>
 					<div class="menu_view">
-						<div class="table_box">
-							<p class="pt-2 pb-4 font-weight-bold">
-								기본 정보
-								<!--등록화면에서는 등록하기 버튼 노출 / 수정하기화면에서는 삭제하기, 수정하기 버튼 노출--->
-								<v-btn
-									color="primary"
-									dark
-									small
-									outlined
-									style="float: right"
-								>
-									등록하기
-								</v-btn>
-								<v-btn
-									color="primary"
-									dark
-									small
-									outlined
-									style="float: right"
-								>
-									삭제하기
-								</v-btn>
-								<v-btn
-									color="primary"
-									dark
-									small
-									outlined
-									style="float: right"
-								>
-									수정하기
-								</v-btn>
-							</p>
+						<div>
+							<div class="table_box">
+								<p class="pt-2 pb-4 font-weight-bold">
+									기본 정보
+									<v-btn
+										color="primary"
+										dark
+										small
+										outlined
+										style="float: right"
+									>
+										삭제하기
+									</v-btn>
+									<v-btn
+										color="primary"
+										dark
+										small
+										outlined
+										style="float: right"
+									>
+										수정하기
+									</v-btn>
+								</p>
 
-							{{ active[0] }}
-							<table class="tb_write">
-								<caption>
-									table caption
-								</caption>
-								<colgroup>
-									<col width="160" />
-									<col width="" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th>
-											목차 Depth
-											<span class="asterisk">필수</span>
-										</th>
-										<td>
-											<v-select
-												placeholder="목차 Depth를 선택하세요"
-												single-line
-												outlined
-												hide-details="auto"
-												v-model="menu"
-												:rules="menu3Rules"
-											></v-select>
-										</td>
-									</tr>
-									<tr>
-										<th>
-											상위 목차
-											<span class="asterisk">필수</span>
-										</th>
-										<td>
-											<v-row>
+								{{ active[0] }}
+								<table class="tb_write">
+									<caption>
+										table caption
+									</caption>
+									<colgroup>
+										<col width="160" />
+										<col width="" />
+									</colgroup>
+									<tbody>
+										<tr>
+											<th>
+												목차 Depth
+												<span class="asterisk"
+													>필수</span
+												>
+											</th>
+											<td>
 												<v-select
-													placeholder="1 Depth 메뉴"
+													placeholder="목차 Depth를 선택하세요"
 													single-line
 													outlined
 													hide-details="auto"
-													v-model="menu"
-													:rules="menu4Rules"
-													style="
-														width: 120px;
-														margin-right: 8px;
-													"
 												></v-select>
+											</td>
+										</tr>
+										<tr>
+											<th>
+												상위 목차
+												<span class="asterisk"
+													>필수</span
+												>
+											</th>
+											<td>
+												<v-row>
+													<v-select
+														placeholder="1 Depth 메뉴"
+														single-line
+														outlined
+														hide-details="auto"
+														style="
+															width: 120px;
+															margin-right: 8px;
+														"
+													></v-select>
+													<v-select
+														placeholder="2 Depth 메뉴"
+														single-line
+														outlined
+														hide-details="auto"
+														style="width: 120px"
+													></v-select>
+												</v-row>
+											</td>
+										</tr>
+										<tr>
+											<th>
+												메뉴 순서
+												<span class="asterisk"
+													>필수</span
+												>
+											</th>
+											<td>
 												<v-select
-													placeholder="2 Depth 메뉴"
+													placeholder="메뉴 순서를 선택하세요"
 													single-line
 													outlined
 													hide-details="auto"
-													style="width: 120px"
+													style="width: 225px"
 												></v-select>
-											</v-row>
-										</td>
-									</tr>
-									<tr>
-										<th>
-											메뉴 순서
-											<span class="asterisk">필수</span>
-										</th>
-										<td>
-											<v-select
-												placeholder="메뉴 순서를 선택하세요"
-												single-line
-												outlined
-												hide-details="auto"
-												:items="menu4"
-												v-model="menu"
-												:rules="menu5Rules"
-												style="width: 225px"
-											></v-select>
-										</td>
-									</tr>
-									<tr>
-										<th>
-											목차 ID
-											<span class="asterisk">필수</span>
-										</th>
-										<td>
-											<v-text-field
-												placeholder="목차 ID를 입력하세요"
-												single-line
-												outlined
-												hide-details="auto"
-												v-model="menu"
-												:rules="menu6Rules"
-											></v-text-field>
-										</td>
-									</tr>
-									<tr>
-										<th>
-											제목
-											<span class="asterisk">필수</span>
-										</th>
-										<td>
-											<v-text-field
-												placeholder="제목을 입력하세요"
-												single-line
-												outlined
-												hide-details="auto"
-												v-model="menu"
-												:rules="menu7Rules"
-											></v-text-field>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<v-textarea
-												placeholder="내용을 입력해 주세요/Editor"
-												outlined
-												hide-details="auto"
-											>
-											</v-textarea>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+											</td>
+										</tr>
+										<tr>
+											<th>
+												목차 ID
+												<span class="asterisk"
+													>필수</span
+												>
+											</th>
+											<td>
+												<v-text-field
+													placeholder="목차 ID를 입력하세요"
+													single-line
+													outlined
+													hide-details="auto"
+												></v-text-field>
+											</td>
+										</tr>
+										<tr>
+											<th>
+												제목
+												<span class="asterisk"
+													>필수</span
+												>
+											</th>
+											<td>
+												<v-text-field
+													placeholder="제목을 입력하세요"
+													single-line
+													outlined
+													hide-details="auto"
+												></v-text-field>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">에디터 영역</td>
+										</tr>
+									</tbody>
+								</table>
 
-							<!--수정화면-->
-							<table class="tb_write">
-								<caption>
-									table caption
-								</caption>
-								<colgroup>
-									<col width="160" />
-									<col width="" />
-								</colgroup>
-								<tbody>
-									<!--
-										목차 Depth하고 상위목차 ID 설계서 확인 부탁드려요 
-										노출되는 정보 다름
-									-->
-									<tr>
-										<th>목차 Depth</th>
-										<td>1</td>
-									</tr>
-									<tr>
-										<th>상위 목차 ID</th>
-										<td>N/A</td>
-									</tr>
-									<tr>
-										<th>목차 순서</th>
-										<td>4</td>
-									</tr>
-									<tr>
-										<th>목차 ID</th>
-										<td>1.1.4</td>
-									</tr>
-									<tr>
-										<th>제목</th>
-										<td>
-											What is Amazon EC2 Auto Scaling?
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<v-textarea
-												placeholder="내용을 입력해 주세요/Editor"
-												outlined
-												hide-details="auto"
-											>
-											</v-textarea>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+								<!--수정화면-->
+								<table class="tb_write">
+									<caption>
+										table caption
+									</caption>
+									<colgroup>
+										<col width="160" />
+										<col width="" />
+									</colgroup>
+									<tbody>
+										<!--
+											목차 Depth하고 상위목차 ID 설계서 확인 부탁드려요 
+											노출되는 정보 다름
+										-->
+										<tr>
+											<th>목차 Depth</th>
+											<td>1</td>
+										</tr>
+										<tr>
+											<th>상위 목차 ID</th>
+											<td>N/A</td>
+										</tr>
+										<tr>
+											<th>목차 순서</th>
+											<td>4</td>
+										</tr>
+										<tr>
+											<th>목차 ID</th>
+											<td>1.1.4</td>
+										</tr>
+										<tr>
+											<th>제목</th>
+											<td></td>
+										</tr>
+										<tr>
+											<td colspan="2">
+												<div class="edit_text">
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다. <br />
+													내용이 노출됩니다.
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="btn_area center pt-8">
+								<v-btn color="primary" dark outlined>
+									목록으로
+								</v-btn>
+								<v-btn color="primary" dark> 등록하기 </v-btn>
+							</div>
 						</div>
-
-						<div class="btn_area center pt-8">
-							<v-btn color="primary" dark> 목록으로 </v-btn>
+						<div class="noti_meg">
+							<i class="fas fa-exclamation-circle"></i>
+							<div class="noti_txt">
+								<p>
+									선택된 항목이 없습니다.<br />
+									항목을 추가하거나 선택해 주세요.
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -413,17 +414,8 @@ export default {
 	data() {
 		return {
 			dialog: false,
-			item: '',
-			menu: '',
-			menu1: ['분석가 포털 사용자 매뉴얼', '분석환경 사용자 매뉴얼'],
-			menu1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
-			menu2Rules: [v => !!v || '카테고리를 먼저 선택해 주세요.'],
-			menu3Rules: [v => !!v || '목차 Depth를 선택해 주세요.'],
-			menu4Rules: [v => !!v || '목차 위치를 선택해 주세요.'],
-			menu5Rules: [v => !!v || '목차 순서를 선택해 주세요.'],
-			menu6Rules: [v => !!v || '목차 ID를 입력해 주세요.'],
-			menu7Rules: [v => !!v || '제목을 입력해 주세요.'],
 			switch1: true,
+
 			content: '',
 			active: [],
 			listItems: [
