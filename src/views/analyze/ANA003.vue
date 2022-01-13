@@ -364,58 +364,27 @@
 											</v-tooltip>
 										</th>
 										<td colspan="3">
-											<v-form
-												ref="checkform"
-												@submit.prevent
-											>
-												<v-row>
-													<v-checkbox
-														v-model="athena"
-														label="Athena"
-														hide-details="true"
-														:error="analyzeValid"
-														@click="AnalyzeSelect"
-													></v-checkbox>
-													<v-checkbox
-														v-model="quickSight"
-														label="QuickSight"
-														hide-details="true"
-														:error="analyzeValid"
-														@click="AnalyzeSelect"
-													></v-checkbox>
-													<v-checkbox
-														v-model="notebook"
-														label="Notebook"
-														hide-details="true"
-														:error="analyzeValid"
-														@click="AnalyzeSelect"
-													></v-checkbox>
-													<v-checkbox
-														v-model="sageMaker"
-														label="SageMaker Studio"
-														hide-details="true"
-														:error="analyzeValid"
-														@click="AnalyzeSelect"
-													></v-checkbox>
-													<v-checkbox
-														v-model="virtualization"
-														label="가상화 환경"
-														hide-details="true"
-														:error="analyzeValid"
-														@click="AnalyzeSelect"
-													></v-checkbox>
-												</v-row>
+											<v-row>
+												<v-checkbox
+													v-for="item in TAH000025"
+													v-bind:key="item.cmnCd"
+													v-model="item.select"
+													hide-details="false"
+													:label="item.cmnCdNm"
+													:error="analyzeValid"
+													@click="AnalyzeSelect"
+												></v-checkbox>
+											</v-row>
 
-												<div
-													style="color: red"
-													v-if="analyzeValid"
-												>
-													분석환경을 선택해 주세요.
-												</div>
-											</v-form>
+											<div
+												style="color: red"
+												v-if="analyzeValid"
+											>
+												분석환경을 선택해 주세요.
+											</div>
 										</td>
 									</tr>
-									<tr v-if="notebook">
+									<tr v-if="SelectValid('N')">
 										<th>
 											Notebook Instance Type
 											<span class="asterisk">필수</span>
@@ -438,7 +407,7 @@
 											></v-select>
 										</td>
 									</tr>
-									<tr v-if="sageMaker">
+									<tr v-if="SelectValid('S')">
 										<th>
 											SageMaker Studio Instance Type
 											<span class="asterisk">필수</span>
@@ -452,7 +421,7 @@
 										</td>
 									</tr>
 
-									<tr v-if="virtualization">
+									<tr v-if="SelectValid('V')">
 										<th rowspan="2">
 											가상화 환경 Instance Type
 											<span class="asterisk">필수</span>
@@ -475,7 +444,7 @@
 											></v-select>
 										</td>
 									</tr>
-									<tr v-if="virtualization">
+									<tr v-if="SelectValid('V')">
 										<td colspan="3">
 											<strong>스토리지 : </strong>
 											{{
@@ -617,13 +586,6 @@ export default {
 			selectedMemebers: [], //선택한 프로젝트 팀원 리스트
 			popupVal: false,
 
-			// 분석환경 체크박스
-			athena: false,
-			quickSight: false,
-			notebook: false,
-			sageMaker: false,
-			virtualization: false,
-
 			projectDiv: 0, // 프로젝트 구분 (개인, 팀)
 			ci_useDiv: 0, // ci 변환 사용여부
 			userInfo: null, // 신청자 정보
@@ -643,9 +605,9 @@ export default {
 			date: null,
 			checkRegistDateValid: false,
 
-			selectMemberValid: false,
-
 			checkAnalyze: false,
+
+			clickApplication: false,
 
 			project: '',
 			project_rule: [v => !!v || '프로젝트 명을 입력해 주세요.'],
@@ -690,6 +652,9 @@ export default {
 		this.TAH000029 = this.$getCmCode('TAH000029')
 		this.TAH000030 = this.$getCmCode('TAH000030')
 
+		for (var i = 0; i < this.TAH000025.length; i++)
+			this.$set(this.TAH000025[i], 'select', false)
+
 		this.init()
 	},
 
@@ -728,14 +693,12 @@ export default {
 			this.selectedMemebers = this.selectedMemebers.filter(member => {
 				return member.serno != item.serno
 			})
-
-			this.selectMemberValid = this.selectedMemebers.length == 0
 		},
 
 		async Application() {
+			this.clickApplication = true
 			this.checkRegistDateValid = true
 			this.checkAnalyze = true
-			this.selectMemberValid = this.selectedMemebers.length == 0
 
 			if (
 				this.$refs.form.validate() &&
@@ -753,10 +716,10 @@ export default {
 					tmmmEmpid: this.RegiEmpid(), // 직원번호
 					tmmmInptCd: this.ProjInptCd(), // 프로젝트 투입구분(개인:01, 팀장:02, 팀원:03)
 					anlsEvirnAplcnCd: this.AnalyzeStr(), // 분석환경
-					ntbkInstncCd: this.notebook ? this.instance_N : '', // Notebook Instance
-					stdInstncCd: this.sageMaker ? this.instance_S : '', // SageMaker Studio Instance Type
-					vrtlInstncCd: this.virtualization ? this.instance_V : '', // 가상화 환경 Instance Type
-					vrtlStrgeCd: this.virtualization
+					ntbkInstncCd: this.SelectValid('N') ? this.instance_N : '', // Notebook Instance
+					stdInstncCd: this.SelectValid('S') ? this.instance_S : '', // SageMaker Studio Instance Type
+					vrtlInstncCd: this.SelectValid('V') ? this.instance_V : '', // 가상화 환경 Instance Type
+					vrtlStrgeCd: this.SelectValid('V')
 						? this.TAH000030[0].cmnCd
 						: '', // 가상화 환경 Storage Type
 					ciValUseYn: this.ci_useDiv, // CI값 사용 여부
@@ -787,11 +750,12 @@ export default {
 		AnalyzeStr() {
 			// 분석환경
 			var str = ''
-			if (this.athena) str += !str ? 'A' : ',A'
-			if (this.quickSight) str += !str ? 'Q' : ',Q'
-			if (this.notebook) str += !str ? 'N' : ',N'
-			if (this.sageMaker) str += !str ? 'S' : ',S'
-			if (this.virtualization) str += !str ? 'V' : ',V'
+			for (var i = 0; i < this.TAH000025.length; i++) {
+				if (this.TAH000025[i].select)
+					str += !str
+						? this.TAH000025[i].cmnCd
+						: ',' + this.TAH000025[i].cmnCd
+			}
 			return str
 		},
 
@@ -834,6 +798,13 @@ export default {
 		AnalyzeSelect() {
 			this.checkAnalyze = true
 		},
+
+		SelectValid(cmnCd) {
+			for (var i = 0; i < this.TAH000025.length; i++) {
+				if (this.TAH000025[i].cmnCd == cmnCd)
+					return this.TAH000025[i].select
+			}
+		},
 	},
 
 	computed: {
@@ -842,15 +813,18 @@ export default {
 		},
 
 		analyzeValid() {
-			if (
-				this.checkAnalyze &&
-				!this.athena &&
-				!this.quickSight &&
-				!this.notebook &&
-				!this.sageMaker &&
-				!this.virtualization
-			)
-				return true
+			var select = false
+			for (var i = 0; i < this.TAH000025.length; i++) {
+				if (this.TAH000025[i].select) select = true
+			}
+
+			if (this.checkAnalyze && !select) return true
+			else return false
+		},
+
+		selectMemberValid() {
+			if (!this.clickApplication) return false
+			if (this.projectDiv == 1) return this.selectedMemebers.length == 0
 			else return false
 		},
 	},

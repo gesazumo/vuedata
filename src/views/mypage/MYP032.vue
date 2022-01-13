@@ -23,7 +23,13 @@
 							<tbody>
 								<tr>
 									<th>결재 ID</th>
-									<td>KBO-C00000001</td>
+									<td>
+										{{
+											this.aplcnResult != null
+												? this.aplcnResult.aprvalId
+												: ''
+										}}
+									</td>
 								</tr>
 								<tr>
 									<th>프로젝트 ID</th>
@@ -196,9 +202,8 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import { selectMyp03201 } from '@/api/modules/mypAPI'
-import { updateMyp03501 } from '@/api/modules/mypAPI'
+import { updateMyp03201 } from '@/api/modules/mypAPI'
 
 export default {
 	data() {
@@ -237,7 +242,7 @@ export default {
 			}
 
 			try {
-				const { data } = await updateMyp03501(param)
+				const { data } = await updateMyp03201(param)
 				if (data.aprvalId) this.$showInfo('결재가 완료 되었습니다.')
 				console.log(data)
 			} catch (error) {
