@@ -67,6 +67,14 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM018.vue'),
 	},
 	{
+		path: 'adm019', //Admin 포털관리 코드조회
+		component: () => import('@/views/pub/TAH-ADM019.vue'),
+	},
+	{
+		path: 'adm020', //Admin 포털관리 코드관리
+		component: () => import('@/views/pub/TAH-ADM020.vue'),
+	},
+	{
 		path: 'adm021', //Admin 게시판관리 공지사항 관리
 		component: () => import('@/views/pub/TAH-ADM021.vue'),
 	},

@@ -16,7 +16,7 @@
   z-index: 10;
 }
 
-#header .container {max-width: 1440px; margin: 0 auto;}
+#header .container {max-width: 1440px; margin: 0 auto; padding: 0;}
 #header .container h1 {float: left; margin-top: -10px; line-height: 72px;}
 .gnbWrap {float: right; width: 100%; max-width: 1020px;}
 .gnbWrap:after {clear: both; display: block; content: "";}
@@ -263,7 +263,11 @@
 
 .topLink .mybtn a.on {position: relative; display: inline-block; }
 .topLink .mybtn a.on:after {position: absolute; top: 0; right: 0; }
-.topLink .mybtn button {margin:0 !important;}
+.topLink .mybtn button {
+  margin:0 !important;
+  padding: 9px 16px;
+  border-radius: 4px;
+}
 .topLink .mybtn .mymenu {
   display: none;
   position: absolute; 
@@ -2023,7 +2027,6 @@ input[type="text"] {
 
 /*서브-분석환경신청*/
 #sub_wrap {
-  display: inline-grid;
   padding: 56px 0;
   margin: 0 auto;
   max-width: 1440px;
@@ -2471,12 +2474,13 @@ input[type="text"] {
   /*max-width: 30px !important;*/
 }
 .agree {
-  margin-bottom: 40px;
+  /*margin-bottom: 40px;*/
 }
 .agree .agree_chk {float: left; width: 100%;}
 .agree .agree_chk p {
-  font-family: 'KBFGTextM';
+  font-family: 'KBFGTextL';
   font-size: 18px;
+  font-weight: 600;
   line-height: 19px;
   color: #1e1909;
   margin-left: 8px;
