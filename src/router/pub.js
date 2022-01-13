@@ -55,6 +55,14 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM006.vue'),
 	},
 	{
+		path: 'adm007', //Admin 모니터링 포털접속이력
+		component: () => import('@/views/pub/TAH-ADM007.vue'),
+	},
+	{
+		path: 'adm008', //Admin 모니터링 포털접속현황
+		component: () => import('@/views/pub/TAH-ADM008.vue'),
+	},
+	{
 		path: 'adm016', //Admin 포털관리 메뉴관리
 		component: () => import('@/views/pub/TAH-ADM016.vue'),
 	},

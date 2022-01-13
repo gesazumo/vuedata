@@ -1691,7 +1691,6 @@ button.close {background: none !important;}
 }
 .v-btn.v-size--large {
   font-size: 16px !important;
-  font-weight: 600;
 }
 
 .v-btn:before {
@@ -1712,6 +1711,9 @@ button.close {background: none !important;}
   height: 22px !important;
   min-width: 22px !important;
   padding: 0 5px !important;
+  width: 80px;
+  font-size: 12px !important;
+  letter-spacing: -0.5px;
 }
 .v-btn:not(.v-btn--round).v-size--small {
   height: 32px !important;
