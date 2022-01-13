@@ -38,8 +38,8 @@
 						</v-col>
 						<v-col></v-col>
 						<v-col md="2" align="right">
-							<v-btn color="primary" dark outlined>초기화</v-btn>
-							<v-btn color="primary" dark>검색하기</v-btn>
+							<v-btn color="primary" outlined>초기화</v-btn>
+							<v-btn color="primary">검색하기</v-btn>
 						</v-col>
 					</v-row>
 				</div>
@@ -55,13 +55,8 @@
 						</v-select>
 					</div>
 					<div class="btn_area">
-						<v-btn color="primary" dark> 등록하기 </v-btn>
-						<v-btn
-							color="primary"
-							dark
-							outlined
-							@click="dialog = true"
-						>
+						<v-btn color="primary"> 등록하기 </v-btn>
+						<v-btn color="primary" outlined @click="dialog = true">
 							삭제하기
 						</v-btn>
 						<v-btn color="primary" dark outlined> 수정하기 </v-btn>

@@ -443,6 +443,10 @@ table .fileupload-list td {
   font-size: 14px;
 }
 
+.v-application .text-subtitle-1 {
+  font-family: 'KBFGDisplayL' !important;
+  margin-bottom: 30px;
+}
 
 
 /*treeview menu*/
