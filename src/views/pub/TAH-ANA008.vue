@@ -79,9 +79,7 @@
 						<v-btn color="primary" dark large outlined
 							>목록으로</v-btn
 						>
-						<v-btn color="primary" dark large
-							>오픈소스 반입 신청하기</v-btn
-						>
+						<v-btn color="primary" dark large>반입 신청하기</v-btn>
 					</div>
 				</div>
 				<div class="detail_02">

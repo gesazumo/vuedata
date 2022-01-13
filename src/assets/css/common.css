@@ -16,7 +16,7 @@
   z-index: 10;
 }
 
-#header .container {max-width: 1440px; margin: 0 auto;}
+#header .container {max-width: 1440px; margin: 0 auto; padding: 0;}
 #header .container h1 {float: left; margin-top: -10px; line-height: 72px;}
 .gnbWrap {float: right; width: 100%; max-width: 1020px;}
 .gnbWrap:after {clear: both; display: block; content: "";}
@@ -263,7 +263,11 @@
 
 .topLink .mybtn a.on {position: relative; display: inline-block; }
 .topLink .mybtn a.on:after {position: absolute; top: 0; right: 0; }
-.topLink .mybtn button {margin:0 !important;}
+.topLink .mybtn button {
+  margin:0 !important;
+  padding: 9px 16px;
+  border-radius: 4px;
+}
 .topLink .mybtn .mymenu {
   display: none;
   position: absolute; 
@@ -2023,7 +2027,6 @@ input[type="text"] {
 
 /*서브-분석환경신청*/
 #sub_wrap {
-  display: inline-grid;
   padding: 56px 0;
   margin: 0 auto;
   max-width: 1440px;
@@ -2385,7 +2388,7 @@ input[type="text"] {
   border-radius: 4px;
   padding: 32px 0 !important;
   width: 342px;
-  height: 335px;
+  /*height: 335px;*/
   margin-right: 1.25%;
   margin-bottom: 1.25%;
   background: #fff;
@@ -2471,12 +2474,13 @@ input[type="text"] {
   /*max-width: 30px !important;*/
 }
 .agree {
-  margin-bottom: 40px;
+  /*margin-bottom: 40px;*/
 }
 .agree .agree_chk {float: left; width: 100%;}
 .agree .agree_chk p {
-  font-family: 'KBFGTextM';
+  font-family: 'KBFGTextL';
   font-size: 18px;
+  font-weight: 600;
   line-height: 19px;
   color: #1e1909;
   margin-left: 8px;
@@ -2513,7 +2517,7 @@ table {
 }
 th {
   text-align: center;
-  padding: 0 24px;
+  padding: 10px 24px;
   background: #f5f5f5;
   border: 1px solid #d8d8d8;
   font-size: 14px;
@@ -2542,7 +2546,7 @@ td:last-child {
 
 .tb_write {}
 .tb_write th {min-height: 56px !important; text-align: left; }
-.tb_write td {text-align: left; padding: 10px !important; }
+.tb_write td {text-align: left; min-height: 56px !important; padding: 10px !important; }
 .tb_write td .v-text-field .v-input__slot .v-inupt {width:100% !important;}
 .tb_write th span.asterisk {
   color: #dd3300;
@@ -2564,6 +2568,11 @@ td:last-child {
   background: none !important;
   padding: 0;
   margin: 0;
+}
+.tb_write div.edit_text {
+  height: 300px;
+  padding: 20px;
+  overflow: scroll;
 }
 
 
@@ -4167,4 +4176,10 @@ td:last-child {
 }
 .file_list .close_btn i {
   padding: 5px;
+}
+
+
+
+.v-messages__message {
+  line-height: 16px !important ;
 }

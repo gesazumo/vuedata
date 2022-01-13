@@ -49,7 +49,7 @@
 							</template>
 						</v-checkbox>
 					</div>
-					<div class="agree">
+					<div class="agree mb-10">
 						<div class="agree_chk">
 							<v-checkbox
 								v-model="check1"
@@ -72,7 +72,7 @@
 							및 라이선스 일체를 즉시 반납해야 합니다.
 						</div>
 					</div>
-					<div class="agree">
+					<div class="agree mb-10">
 						<div class="agree_chk">
 							<v-checkbox
 								v-model="check2"

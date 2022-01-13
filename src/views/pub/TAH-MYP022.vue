@@ -15,7 +15,7 @@
 			<div class="subcontents">
 				<div class="s_title border_no">
 					<div class="page_tit">
-						<h4>수정중...</h4>
+						<h4>업로드 요청 정보입력</h4>
 						<span>
 							분석업무 수행을 위해 필요한 파일은 관리자 승인 후에
 							프로젝트 분석환경으로 업로드 되어 분석에 사용할 수
@@ -249,11 +249,7 @@
 					</div>
 					<div class="agree mt-5">
 						<div class="agree_chk">
-							<v-checkbox
-								v-model="check1"
-								:rules="check1Rules"
-								hide-details="auto"
-							>
+							<v-checkbox hide-details="auto">
 								<template v-slot:label>
 									<p>
 										파일 업로드를 위한 주의사항에
@@ -286,9 +282,7 @@
 export default {
 	data() {
 		return {
-			date: null,
-			project: '',
-			projectRules: [value => !!value || '프로젝트명을 입력해 주세요.'],
+			date: '',
 		}
 	},
 }

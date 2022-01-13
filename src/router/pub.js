@@ -67,6 +67,14 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM018.vue'),
 	},
 	{
+		path: 'adm019', //Admin 포털관리 코드조회
+		component: () => import('@/views/pub/TAH-ADM019.vue'),
+	},
+	{
+		path: 'adm020', //Admin 포털관리 코드관리
+		component: () => import('@/views/pub/TAH-ADM020.vue'),
+	},
+	{
 		path: 'adm021', //Admin 게시판관리 공지사항 관리
 		component: () => import('@/views/pub/TAH-ADM021.vue'),
 	},
@@ -189,6 +197,10 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-EXP007.vue'),
 	},
 	//My page
+	{
+		path: 'myp012', //My page  My Project 공유하기
+		component: () => import('@/views/pub/TAH-MYP012.vue'),
+	},
 	{
 		path: 'myp013', //My page  My Project 공유하기 완료
 		component: () => import('@/views/pub/TAH-MYP013.vue'),
