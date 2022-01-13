@@ -198,6 +198,10 @@ export const pubRouter = [
 	},
 	//My page
 	{
+		path: 'myp012', //My page  My Project 공유하기
+		component: () => import('@/views/pub/TAH-MYP012.vue'),
+	},
+	{
 		path: 'myp013', //My page  My Project 공유하기 완료
 		component: () => import('@/views/pub/TAH-MYP013.vue'),
 	},
