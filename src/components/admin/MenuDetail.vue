@@ -97,178 +97,180 @@
 		</div>
 		<div class="table_box" v-if="updateMode">
 			<p class="pt-2 pb-4 font-weight-bold">기본 정보</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="180" />
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>
-							메뉴 구분
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								label="일반"
-								placeholder="메뉴 구분을 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								item-text="cmnCdNm"
-								item-value="cmnCd"
-								v-model="nodeParam.menuGubunCode"
-								:items="$getCmCode('TAH000083')"
-								:rules="menu1Rules"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴 순서
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-select
-								label="5"
-								placeholder="메뉴 순서를 선택하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								:items="getMenuSortArray"
-								v-model="nodeParam.menuSort"
-								style="width: 159px"
-							></v-select>
-						</td>
-					</tr>
-					<tr>
-						<th>메뉴 ID</th>
-						<td colspan="3">TAH-EXP001</td>
-					</tr>
-					<tr>
-						<th>
-							메뉴명
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								label="My Data 리스트"
-								placeholder="메뉴명을 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="nodeParam.menuNm"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							설명
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								placeholder="설명을 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="nodeParam.menuDesc"
-								:rules="menu6Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							URL 주소
-							<span class="asterisk">필수</span>
-						</th>
-						<td colspan="3">
-							<v-text-field
-								:prefix="getParentUrl"
-								placeholder="URL 주소를 입력하세요"
-								single-line
-								outlined
-								hide-details="auto"
-								v-model="nodeParam.menuUrl"
-								:rules="menu7Rules"
-							></v-text-field>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							사용여부
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-switch
-								v-model="useYN"
-								color="orange"
-								hide-details
-							></v-switch>
-						</td>
-						<th>
-							노출여부
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-switch
-								v-model="exposeYN"
-								color="orange"
-								hide-details
-							></v-switch>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
-			<table class="tb_write">
-				<caption>
-					table caption
-				</caption>
-				<colgroup>
-					<col width="160" />
-					<col width="" />
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>
-							접근 가능 그룹
-							<span class="asterisk">필수</span>
-						</th>
-						<td>
-							<v-row>
-								<v-checkbox
-									label="일반 사용자"
+			<v-form ref="form">
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="180" />
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>
+								메뉴 구분
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-select
+									label="일반"
+									placeholder="메뉴 구분을 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									return-object
+									item-text="cmnCdNm"
+									item-value="cmnCd"
+									v-model="nodeParam.menuGubunCode"
+									:items="$getCmCode('TAH000083')"
+								></v-select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴 순서
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-select
+									label="5"
+									placeholder="메뉴 순서를 선택하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									:items="getMenuSortArray"
+									v-model="nodeParam.menuSort"
+									style="width: 159px"
+								></v-select>
+							</td>
+						</tr>
+						<tr>
+							<th>메뉴 ID</th>
+							<td colspan="3">TAH-EXP001</td>
+						</tr>
+						<tr>
+							<th>
+								메뉴명
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									placeholder="메뉴명을 입력하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									v-model="nodeParam.menuNm"
+									:rules="menu5Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								설명
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									placeholder="설명을 입력하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									v-model="nodeParam.menuDesc"
+									:rules="menu6Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								URL 주소
+								<span class="asterisk">필수</span>
+							</th>
+							<td colspan="3">
+								<v-text-field
+									:prefix="getParentUrl"
+									placeholder="URL 주소를 입력하세요"
+									single-line
+									outlined
+									hide-details="auto"
+									v-model="nodeParam.menuUrl"
+									:rules="menu7Rules"
+								></v-text-field>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								사용여부
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-switch
+									v-model="useYN"
+									color="orange"
 									hide-details
-									v-model="menuAllYn"
-								></v-checkbox>
-								<v-checkbox
-									label="일반 관리자"
+								></v-switch>
+							</td>
+							<th>
+								노출여부
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-switch
+									v-model="exposeYN"
+									color="orange"
 									hide-details
-									v-model="menuManagerYn"
-								></v-checkbox>
-								<v-checkbox
-									label="통합 관리자"
-									hide-details
-									v-model="menuSystemYn"
-								></v-checkbox>
-							</v-row>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+								></v-switch>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="pt-8 pb-4 font-weight-bold">권한 설정</p>
+				<table class="tb_write">
+					<caption>
+						table caption
+					</caption>
+					<colgroup>
+						<col width="160" />
+						<col width="" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>
+								접근 가능 그룹
+								<span class="asterisk">필수</span>
+							</th>
+							<td>
+								<v-row>
+									<v-checkbox
+										label="일반 사용자"
+										hide-details
+										v-model="menuAllYn"
+									></v-checkbox>
+									<v-checkbox
+										label="일반 관리자"
+										hide-details
+										v-model="menuManagerYn"
+									></v-checkbox>
+									<v-checkbox
+										label="통합 관리자"
+										hide-details
+										v-model="menuSystemYn"
+									></v-checkbox>
+								</v-row>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</v-form>
 		</div>
 		<!--하단버튼 영역은 ppt기준 6, 7p에서만 나와요-->
 		<div class="btn_area center pt-8" v-if="updateMode">
 			<v-btn color="primary" dark outlined @click="setUpdateMode(false)">
 				취소
 			</v-btn>
-			<v-btn color="primary" dark> 수정하기 </v-btn>
+			<v-btn color="primary" dark @click="doUpdate"> 수정하기 </v-btn>
 		</div>
 	</div>
 </template>
@@ -287,6 +289,26 @@ export default {
 		setUpdateMode(flag) {
 			this.nodeParam = this.activeNode
 			this.$store.commit(`menuStore/set_update_mode`, { flag })
+		},
+		doUpdate() {
+			if (!this.$refs.form.validate()) return
+			const _param = {
+				menuId: this.$store.state.menuStore.activeNodeId,
+				menuCubunCode: this.nodeParam.menuGubunCode.cmnCd,
+				menuLevel: this.nodeParam.menuLevel,
+				menuNm: this.nodeParam.menuNm,
+				menuUpperId: this.nodeParam.menuGubunCode.cmnCd,
+				menuSort: this.nodeParam.menuSort,
+				menuUseYn: this.nodeParam.menuUseYn,
+				menuViewYn: this.nodeParam.menuViewYn,
+				menuDesc: this.nodeParam.menuDesc,
+				menuUrl: this.nodeParam.menuUrl,
+				menuAllYn: this.nodeParam.menuAllYn,
+				menuManagerYn: this.nodeParam.menuManagerYn,
+				menuSystemYn: this.nodeParam.menuSystemYn,
+				sysEmpid: '수정자',
+			}
+			this.$store.dispatch('menuStore/updateMenuNode', { param: _param })
 		},
 	},
 	created() {
@@ -365,16 +387,6 @@ export default {
 	data() {
 		return {
 			nodeParam: null,
-			menu: '',
-			menu1: ['일반', 'Admin'],
-			menu2: ['1 Depth', '2 Depth', '3 Depth'],
-			menu4: ['1', '2', '3', '4', '5'],
-			switch1: false,
-			switch2: true,
-			menu1Rules: [v => !!v || '메뉴 구분을 선택해 주세요.'],
-			menu2Rules: [v => !!v || '메뉴 Depth를 선택해 주세요.'],
-			menu3Rules: [v => !!v || '메뉴 위치를 선택해 주세요.'],
-			menu4Rules: [v => !!v || '메뉴 순서를 선택해 주세요.'],
 			menu5Rules: [v => !!v || '메뉴명을 입력해 주세요.'],
 			menu6Rules: [v => !!v || '메뉴에 대한 설명을 입력해 주세요.'],
 			menu7Rules: [v => !!v || 'URL 주소를 입력해 주세요.'],

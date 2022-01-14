@@ -11,13 +11,17 @@ import {
 import { getMenuApi, getMenuDetail } from '@/api/modules/initAPI'
 import Vue from 'vue'
 import constant from '@/constant'
+import { updateMenuApi } from '@/api/modules/menuAPI'
 
 const menuStore = {
 	namespaced: true,
 	state: () => ({
 		menuTree: [],
 		openList: [],
-		activeNodeId: 'TAH-EXP000',
+		activeNodeId: {
+			cmnCd: 'TAH-EXP000',
+			cmnCdNm: 'common',
+		},
 		activeNode: null,
 		detailLoading: false,
 		treeLoading: false,
@@ -75,6 +79,18 @@ const menuStore = {
 				Vue.toasted.show(constant.apiErrorMsg)
 			} finally {
 				commit(SET_DETAIL_LOADING, { flag: false })
+			}
+		},
+		async updateMenuNode({ commit, dispatch }, { param }) {
+			commit(SET_DETAIL_LOADING, { flag: true })
+			try {
+				const { data } = await updateMenuApi(param)
+				console.log(data)
+				dispatch('getMenuTree')
+				dispatch('getMenuNode', { menuId: param.menuId })
+			} catch (error) {
+				console.log(error)
+				Vue.toasted.show(constant.apiErrorMsg)
 			}
 		},
 	},
