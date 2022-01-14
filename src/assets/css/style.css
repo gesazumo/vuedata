@@ -122,18 +122,6 @@
     font-size: 18px;
 }
 
-.red {
-   background-color:red; 
-   width: 100px;
-   height: 100px;
-   display: none;
-}
-
-.blue {
-    background-color:blue; 
-    width: 100px;
-    height: 100px;
-}
 
 /* Serve Main */
 .sub_main_sec_support {

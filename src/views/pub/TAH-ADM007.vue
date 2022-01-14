@@ -79,7 +79,7 @@
 						</v-col>
 					</v-row>
 					<v-row>
-						<v-col md="4">
+						<v-col md="6">
 							<div class="label_txt">Status</div>
 							<div class="checkgroup">
 								<v-checkbox
@@ -131,17 +131,18 @@
 								hide-default-footer
 								class="elevation-1"
 							>
-								<template> </template>
+								<template v-slot:body>
+									<v-btn color="green darken-1" x-small>
+										로그인 성공
+									</v-btn>
+									<v-btn color="red darken-1" x-small
+										>서비스 오류</v-btn
+									>
+									<v-btn color="grey darken-1" x-small>
+										ID, PW 오류
+									</v-btn>
+								</template>
 							</v-data-table>
-							<v-btn color="light-green" style="" x-small>
-								로그인 성공
-							</v-btn>
-							<v-btn color="red" x-small style=""
-								>서비스 오류</v-btn
-							>
-							<v-btn color="grey lighten-1" x-small>
-								ID, PW 오류
-							</v-btn>
 						</div>
 					</div>
 					<div class="paging">
