@@ -132,7 +132,7 @@
 												<v-btn
 													color="primary"
 													dark
-													@click="dialog = false"
+													@click="clickVerUpdateBtn()"
 												>
 													업데이트하기
 												</v-btn>
@@ -176,6 +176,7 @@
 					width: 100%;
 					margin-top: 20px;
 				"
+				v-if="verCheckFlag"
 			>
 				<div class="menu_lst">
 					<v-row>
@@ -202,7 +203,6 @@
 						hoverable
 						activatable
 						:items="treeListItems"
-						open-all
 						@update:active="treeClick()"
 					></v-treeview>
 				</div>
@@ -424,6 +424,7 @@ export default {
 			dialog: false,
 			addAndEditDisplayFlag: false,
 			addDisplayFlag: false,
+			verCheckFlag: false,
 			menuId: '',
 			treeActive: [],
 			treeListItems: [],
@@ -440,10 +441,10 @@ export default {
 		}
 	},
 	created() {
-		this.init()
+		this.getCategoryList()
 	},
 	methods: {
-		init() {
+		getTreeList() {
 			this.treeListItems = [
 				{
 					id: '1',
@@ -473,7 +474,14 @@ export default {
 						},
 					],
 				},
+				{
+					id: '2',
+					name: '2. Documents2',
+					children: [],
+				},
 			]
+		},
+		getCategoryList() {
 			this.categorySelectList = [
 				{ title: '분석가 포털 사용자 메뉴얼', value: '01', ver: '1.3' },
 				{ title: '분석환경 사용자 메뉴얼', value: '02', ver: '' },
@@ -504,6 +512,11 @@ export default {
 		editBtnClick() {
 			this.addAndEditDisplayFlag = true
 			this.addDisplayFlag = false
+		},
+		clickVerUpdateBtn() {
+			this.dialog = false
+			this.verCheckFlag = true
+			this.getTreeList()
 		},
 	},
 }
