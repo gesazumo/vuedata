@@ -63,7 +63,7 @@
 					</div>
 					<div class="btnArea">
 						<v-btn color="primay" large outlined>홈으로 가기</v-btn>
-						<v-btn color="primary" larged>My Page 가기</v-btn>
+						<v-btn color="primary" large>My Page 가기</v-btn>
 					</div>
 				</div>
 			</div>

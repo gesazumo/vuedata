@@ -249,11 +249,7 @@
 					</div>
 					<div class="agree mt-5">
 						<div class="agree_chk">
-							<v-checkbox
-								v-model="check1"
-								:rules="check1Rules"
-								hide-details="auto"
-							>
+							<v-checkbox hide-details="auto">
 								<template v-slot:label>
 									<p>
 										파일 업로드를 위한 주의사항에
@@ -286,9 +282,7 @@
 export default {
 	data() {
 		return {
-			date: null,
-			project: '',
-			projectRules: [value => !!value || '프로젝트명을 입력해 주세요.'],
+			date: '',
 		}
 	},
 }
