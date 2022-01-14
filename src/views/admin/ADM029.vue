@@ -88,8 +88,6 @@
 							hide-default-footer
 							class="elevation-1"
 							item-key="seq"
-							:page.sync="page"
-							@page-count="pageCount = $event"
 						></v-data-table>
 					</div>
 				</div>
@@ -99,6 +97,7 @@
 						:length="pageCount"
 						:total-visible="7"
 						color="primary"
+						@input="clickPageChange"
 					></v-pagination>
 				</div>
 			</div>
@@ -119,7 +118,7 @@ export default {
 			date: [],
 			selectGroup: '',
 			page: 1,
-			pageCount: 0,
+			pageCount: 50,
 			itemsPerPage: 10,
 			selectGroupItems: [
 				'전체',
@@ -217,6 +216,10 @@ export default {
 			console.log('-------------SelectBox-------------')
 			console.log('title : ' + this.selectGroup.title)
 			console.log('value : ' + this.selectGroup.value)
+		},
+		clickPageChange(value) {
+			console.log(value)
+			this.page = value
 		},
 	},
 }
