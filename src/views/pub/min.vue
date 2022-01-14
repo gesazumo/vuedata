@@ -91,6 +91,77 @@
 				</v-card-actions>
 			</v-card>
 		</v-dialog>-->
+
+		<!--파일첨부
+		<div style="float: left margin-right:10px">
+			<v-btn
+				color="primary"
+				:loading="isSelecting"
+				@click="handleFileImport"
+				append-outer="fa fa-search"
+				style="margin: 0"
+			>
+				찾아보기
+				<i class="fa fa-search"></i>
+				<input type="file" class="fileinput" />
+			</v-btn>
+			<div class="search-desc">
+				<p>
+					썸네일 이미지는 1개까지 등록할 수 있습니다. 용량은 5MB를
+					넘을 수 없습니다.
+				</p>
+			</div>
+		</div>
+
+		<div v-if="!file">
+			<div
+				:class="['dropZone', dragging ? 'dropZone-over' : '']"
+				@dragenter="dragging = true"
+				@dragleave="dragging = false"
+			>
+				<div class="dropZone-info" @drag="onChange">
+					<span class="dropZone-title"
+						>첨부할 파일을 Drag & Drop 방식으로 추가할 수
+						있습니다.</span
+					>
+					<div class="dropZone-upload-limit-info"></div>
+				</div>
+				<input type="file" @change="onChange" />
+			</div>
+		</div>
+		<div v-else class="dropZone-uploaded">
+			<div class="dropZone-uploaded-info">
+				<table class="fileupload-list">
+					<colgroup>
+						<col width="" />
+						<col width="20%" />
+						<col width="10%" />
+					</colgroup>
+					<tr>
+						<th>파일명</th>
+						<th>파일크기</th>
+						<th>삭제</th>
+					</tr>
+					<tr>
+						<td>filename.gif</td>
+						<td>1,234KB</td>
+						<td style="text-align: center">
+							<v-btn
+								color="primary"
+								dark
+								x-small
+								class="removeFile"
+								append-outer="fa fa-times"
+								@click="removeFile"
+							>
+								<i class="fa fa-times"></i>
+							</v-btn>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		-->
 	</v-app>
 </template>
 
@@ -104,5 +175,43 @@ export default {
 			zIndex: 200,
 		},
 	}),
+
+	methods: {
+		onChange(e) {
+			var files = e.target.files || e.dataTransfer.files
+
+			if (!files.length) {
+				this.dragging = false
+				return
+			}
+
+			this.createFile(files[0])
+		},
+		createFile(file) {
+			if (!file.type.match('text.*')) {
+				alert('please select txt file')
+				this.dragging = false
+				return
+			}
+
+			if (file.size > 5000000) {
+				alert('please check file size no over 5 MB.')
+				this.dragging = false
+				return
+			}
+
+			this.file = file
+			console.log(this.file)
+			this.dragging = false
+		},
+		removeFile() {
+			this.file = ''
+		},
+	},
+	computed: {
+		extension() {
+			return this.file ? this.file.name.split('.').pop() : ''
+		},
+	},
 }
 </script>
