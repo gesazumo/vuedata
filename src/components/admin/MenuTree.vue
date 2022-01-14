@@ -3,7 +3,6 @@
 		<v-row>
 			<v-btn small outlined @click="closeAll">모두 접기</v-btn>
 			<v-btn small outlined @click="openAll">모두 펼치기</v-btn>
-			<v-btn color="primary" small outlined> 등록하기 </v-btn>
 		</v-row>
 		<v-row>
 			<loading-lottie v-if="treeLoading" />

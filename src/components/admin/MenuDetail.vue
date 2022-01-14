@@ -116,13 +116,7 @@
 							</th>
 							<td colspan="3">
 								<div v-if="nodeParam.menuLevel == 1">
-									{{
-										$getCmCode('TAH000083').filter(
-											item =>
-												item.cmnCd ==
-												nodeParam.menuGubunCode,
-										)[0].cmnCdNm
-									}}
+									{{ nodeParam.menuGubunCode.cmnCdNm }}
 								</div>
 								<v-select
 									v-if="nodeParam.menuLevel != 1"
@@ -297,7 +291,15 @@ export default {
 	// method로 action빼서 watch에서도 그거 호출. 수정하기 누르면 새로 패치받아와야하므로.
 	methods: {
 		setUpdateMode(flag) {
-			this.nodeParam = this.activeNode
+			this.nodeParam = {
+				...this.activeNode,
+				menuGubunCode: {
+					cmnCd: this.activeNode.menuGubunCode,
+					cmnCdNm: this.$getCmCode('TAH000083').filter(
+						item => item.cmnCd == this.activeNode.menuGubunCode,
+					)[0].cmnCdNm,
+				},
+			}
 			this.$store.commit(`menuStore/set_update_mode`, { flag })
 		},
 		doUpdate() {
@@ -307,7 +309,10 @@ export default {
 				menuCubunCode: this.nodeParam.menuGubunCode.cmnCd,
 				menuLevel: this.nodeParam.menuLevel,
 				menuNm: this.nodeParam.menuNm,
-				menuUpperId: this.nodeParam.menuGubunCode.cmnCd,
+				menuUpperId:
+					this.nodeParam.menuLevel != 1
+						? this.nodeParam.menuGubunCode.cmnCd
+						: '',
 				menuSort: this.nodeParam.menuSort,
 				menuUseYn: this.nodeParam.menuUseYn,
 				menuViewYn: this.nodeParam.menuViewYn,
@@ -318,6 +323,7 @@ export default {
 				menuSystemYn: this.nodeParam.menuSystemYn,
 				sysEmpid: '수정자',
 			}
+			debugger
 			this.$store.dispatch('menuStore/updateMenuNode', { param: _param })
 		},
 	},
