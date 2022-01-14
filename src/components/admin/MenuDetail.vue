@@ -115,7 +115,17 @@
 								<span class="asterisk">필수</span>
 							</th>
 							<td colspan="3">
+								<div v-if="nodeParam.menuLevel == 1">
+									{{
+										$getCmCode('TAH000083').filter(
+											item =>
+												item.cmnCd ==
+												nodeParam.menuGubunCode,
+										)[0].cmnCdNm
+									}}
+								</div>
 								<v-select
+									v-if="nodeParam.menuLevel != 1"
 									label="일반"
 									placeholder="메뉴 구분을 선택하세요"
 									single-line
