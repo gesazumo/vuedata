@@ -53,11 +53,23 @@
 			</div>
 			<div class="item_box">
 				<div class="board">
-					<div class="tit" v-if="tableItems.length > 0">
-						<p>
-							총 <span>{{ tableItems.length }}</span
+					<div class="tit">
+						<p v-if="total > 0">
+							총 <span>{{ total }}</span
 							>개의 검색결과가 있습니다.
 						</p>
+						<v-select
+							class="list_select"
+							single-line
+							hide-details="auto"
+							v-model="limitSelect"
+							:items="limitSelectList"
+							item-key="value"
+							item-text="title"
+							@change="changeLimitSelect"
+							return-object
+						>
+						</v-select>
 					</div>
 					<div class="btn_area">
 						<v-btn color="primary" dark> 등록하기 </v-btn>
@@ -83,7 +95,7 @@
 							v-model="selectedTableItems"
 							:headers="headers"
 							:items="tableItems"
-							:items-per-page="itemsPerPage"
+							:items-per-page="limitSelect.value"
 							show-select
 							hide-default-footer
 							class="elevation-1"
@@ -107,6 +119,7 @@
 <script>
 import DatePicker from 'vue2-datepicker'
 import moment from 'moment'
+import axios from 'axios'
 
 export default {
 	components: {
@@ -118,79 +131,45 @@ export default {
 			date: [],
 			selectGroup: '',
 			page: 1,
-			pageCount: 50,
-			itemsPerPage: 10,
-			selectGroupItems: [
-				'전체',
-				'분석가 포털 사용자 매뉴얼',
-				'분석환경 사용자 매뉴얼',
-			],
-
+			total: 0,
+			pageCount: 0,
+			selectGroupItems: [],
 			groupRules: [v => !!v || '카테고리를 선택해 주세요.'],
 			headers: [
 				{
 					text: '카테고리',
 					sortable: true,
-					value: 'title',
+					value: 'kategorienm',
 				},
 				{
 					text: '버전',
 					sortable: true,
-					value: 'ver',
+					value: 'version',
 				},
 				{
 					text: '등록자',
 					sortable: true,
-					value: 'name',
+					value: 'sysRegiEmpid',
 				},
 				{
 					text: '등록일',
 					sortable: true,
-					value: 'date',
+					value: 'req',
 				},
 			],
 			selectedTableItems: [],
-			tableItems: [
-				{
-					seq: 1,
-					title: '분석가 포털 사용자 매뉴얼',
-					ver: '2.1',
-					name: '최자영',
-					date: '2022-00-00',
-				},
-				{
-					seq: 2,
-					title: '분석가 포털 사용자 매뉴얼',
-					ver: '2.1',
-					name: '최자영',
-					date: '2022-00-00',
-				},
-				{
-					seq: 3,
-					title: '분석환경 사용자 매뉴얼',
-					ver: '1.1',
-					name: '최자영',
-					date: '2022-00-00',
-				},
-				{
-					seq: 4,
-					title: '분석가 포털 사용자 매뉴얼',
-					ver: '2.1',
-					name: '최자영',
-					date: '2022-00-00',
-				},
-				{
-					seq: 5,
-					title: '분석가 포털 사용자 매뉴얼',
-					ver: '2.1',
-					name: '최자영',
-					date: '2022-00-00',
-				},
+			tableItems: [],
+			limitSelect: { title: '10개씩 보기', value: 10 },
+			limitSelectList: [
+				{ title: '10개씩 보기', value: 10 },
+				{ title: '30개씩 보기', value: 30 },
+				{ title: '50개씩 보기', value: 50 },
 			],
 		}
 	},
 	created() {
 		this.init()
+		this.search()
 	},
 	methods: {
 		init() {
@@ -211,15 +190,54 @@ export default {
 			console.log('-------------subject-------------')
 			console.log(this.subject)
 			console.log('-------------datePicker-------------')
-			console.log('from : ' + this.date[0])
-			console.log('to : ' + this.date[1])
+			console.log(
+				'from : ' + this.date[0].replace('-', '').replace('-', ''),
+			)
+			console.log(
+				'to : ' + this.date[1].replace('-', '').replace('-', ''),
+			)
 			console.log('-------------SelectBox-------------')
 			console.log('title : ' + this.selectGroup.title)
 			console.log('value : ' + this.selectGroup.value)
+			let tempGroup = null
+			if (this.selectGroup.value === '99') {
+				tempGroup = null
+			} else {
+				tempGroup = this.selectGroup.value
+			}
+			axios
+				.get('/api/admin/getReferenceCon', {
+					params: {
+						datefrom: this.date[0]
+							.replace('-', '')
+							.replace('-', ''),
+						dateto: this.date[1].replace('-', '').replace('-', ''),
+						kategorie: tempGroup,
+						limit: this.limitSelect.value,
+						page: this.page,
+						title: this.subject,
+					},
+				})
+				.then(res => {
+					console.log(res.data)
+					this.total = res.data.count
+					this.tableItems = res.data.list
+					this.pageCount = Math.ceil(
+						res.data.count / this.limitSelect.value,
+					)
+				})
+				.catch(err => {
+					console.log('err : ' + err)
+				})
 		},
 		clickPageChange(value) {
 			console.log(value)
 			this.page = value
+			this.search()
+		},
+		changeLimitSelect() {
+			this.page = 1
+			this.search()
 		},
 	},
 }
