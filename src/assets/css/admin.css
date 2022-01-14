@@ -3,6 +3,7 @@
   display:inline-block;
   width: 100%;
   height: 100%;
+  min-height: 100%;
   margin-top:72px;
 }  
 
@@ -80,10 +81,14 @@
   width: calc(100% -280px);
   width: -moz-calc(100% - 280px);
   width: -webkit-calc(100% - 280px);
+  height: 100%;
+  min-height: 100%;
 }
 .adm_contents .inner { 
   display: inline-block;
   width: 100%;
+  height: 100%;
+  min-height: 100%;
   padding: 32px 40px;
   padding-right: 162px;
 }
@@ -199,7 +204,7 @@
 .ver_txt {
   float: left;
   padding: 7px 0 !important;
-  margin-left: 8px !important;
+  margin-left: 16px !important;
 }
 
 .paging {
@@ -254,22 +259,30 @@
   padding:0 !important;
 }
 /*메뉴관리*/
+.menu_box {
+
+}
 .menu_lst {
   float:left; 
   min-width: 400px;
   max-width: 400px;
-  min-height: 900px;
   background: #fff;
-  padding: 20px;
+  padding: 32px;
   margin-right:24px;
+  height: 100%;
+  min-height: 900px;
 }
 .menu_view {
   float:left; 
-  width: 688px;
-  min-height: 900px;
+  position: absolute;
   background: #fff;
-  padding: 20px;
-  
+  padding: 32px;  
+  left: 420px;
+  width: calc(100% -420px);
+  width: -moz-calc(100% - 420px);
+  width: -webkit-calc(100% - 420px);
+  height: 100%;
+  min-height: 900px;
 }
 
 .list_select {
@@ -429,6 +442,33 @@ table .fileupload-list td {
   line-height: 18px;
   font-size: 14px;
 }
+
+.v-application .text-subtitle-1 {
+  font-family: 'KBFGDisplayL' !important;
+  margin-bottom: 30px;
+}
+
+
+/*treeview menu*/
+.v-treeview-node__root::before {
+  background-color: #241e5f !important;
+}
+.v-treeview-node__content {
+	min-height: 40px;
+	border: 1px solid #473EAB;
+  border-radius: 4px;
+	padding-left: 15px;
+}
+.menu_view .v-treeview-node__root .v-treeview-node--active .primary--text {
+	color: #069cf3 !important;
+	caret-color: #069cf3 !important;
+}
+
+.v-treeview-node__label {
+  font-size: 14px !important;
+  color: #473EAB;
+}
+
 
 @media (max-width:1600px) { 
   .adm-search {
