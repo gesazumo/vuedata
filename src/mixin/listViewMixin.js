@@ -19,6 +19,7 @@ const listViewMixin = (apiFuc, initParam) => {
 					this.totalCount = data.count
 					this.page = Number(data.parameters.page)
 				} catch (error) {
+					this.$showError(this.apiErrorMsg)
 					console.log(error)
 				} finally {
 					this.loading = false
