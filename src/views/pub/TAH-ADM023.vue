@@ -30,7 +30,6 @@
 						<v-col md="4">
 							<div class="label_txt">구분</div>
 							<v-select
-								:items="items_01"
 								placeholder="전체 카테고리"
 								single-line
 								outlined
@@ -40,7 +39,6 @@
 						<v-col md="4">
 							<div class="label_txt">계열사명</div>
 							<v-select
-								:items="items_02"
 								placeholder="전체"
 								single-line
 								outlined
@@ -64,8 +62,8 @@
 						</v-col>
 						<v-col></v-col>
 						<v-col md="2" align="right">
-							<v-btn color="primary" dark outlined>초기화</v-btn>
-							<v-btn color="primary" dark>검색하기</v-btn>
+							<v-btn color="primary" outlined>초기화</v-btn>
+							<v-btn color="primary">검색하기</v-btn>
 						</v-col>
 					</v-row>
 				</div>
@@ -73,17 +71,21 @@
 					<div class="board">
 						<div class="tit">
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+							<v-select
+								label="10개씩 보기"
+								class="list_select"
+								single-line
+								hide-details="auto"
+							>
+							</v-select>
 						</div>
 						<div class="btn_area">
-							<v-btn color="primary" dark> 답변하기 </v-btn>
-							<v-btn color="primary" dark outlined>
-								삭제하기
-							</v-btn>
+							<v-btn color="primary"> 답변하기 </v-btn>
+							<v-btn color="primary" outlined> 삭제하기 </v-btn>
 						</div>
 						<div class="table_box">
 							<v-data-table
 								:headers="headers"
-								:items="items"
 								:items-per-page="itemsPerPage"
 								:single-select="singleSelect"
 								show-select
@@ -104,7 +106,6 @@
 											{{ row.item.h }}
 											<v-btn
 												color="primary"
-												dark
 												outlined
 												small
 												>답변하기</v-btn
@@ -140,90 +141,58 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			items_01: [
-				'전체',
-				'포털 이용',
-				'데이터 권한 신청',
-				'분석환경 활용',
-				'기타',
-				'피드백',
-			],
-			items_02: [
-				'전체',
-				'KB금융지주',
-				'KB국민은행',
-				'KB증권',
-				'KB손해보험',
-				'KB국민카드',
-				'푸르덴셜생명',
-				'KB캐피탈',
-				'KB생명보험',
-				'KB저축은행',
-			],
+
 			singleSelect: false,
 			selected: [],
+
 			headers: [
 				{
 					text: 'Status',
+					align: 'center',
 					sortable: true,
-					value: 'a',
+					value: '',
 				},
 				{
 					text: '구분',
+					align: 'center',
 					sortable: true,
-					value: 'b',
+					value: '',
 				},
 				{
 					text: '문의내용',
+					align: 'left',
 					sortable: true,
-					value: 'c',
+					value: '',
 				},
 				{
 					text: '등록자',
+					align: 'center',
 					sortable: true,
-					value: 'd',
+					value: '',
 				},
 				{
 					text: '계열사명',
+					align: 'center',
 					sortable: true,
-					value: 'e',
+					value: '',
 				},
 				{
 					text: '등록일',
+					align: 'center',
 					sortable: true,
-					value: 'f',
+					value: '',
 				},
 				{
 					text: '답변자',
+					align: 'center',
 					sortable: true,
-					value: 'g',
+					value: '',
 				},
 				{
 					text: '답변일',
+					align: 'center',
 					sortable: true,
-					value: 'h',
-				},
-			],
-			items: [
-				{
-					a: '대기중',
-					b: '포털',
-					c: '인사이트 리포트등록문의...',
-					d: '김영선',
-					e: 'KB국민은행',
-					f: '2021-00-00',
-					g: '-',
-					h: '답변하기',
-				},
-				{
-					a: '완료',
-					b: '기타',
-					c: '부서변경시 분석환경 반납...',
-					d: '조승연',
-					e: 'KB금융지주',
-					f: '2021-00-00',
-					g: '최자영',
-					h: '2021-00-00',
+					value: '',
 				},
 			],
 		}
