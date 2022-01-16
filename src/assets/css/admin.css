@@ -172,7 +172,7 @@
   width: 100%;
   padding: 32px;
   background-color: #fff;
-  margin-top: 16px;
+  margin-bottom: 24px;
 }
 .item_box .tit {float: left;}
 .item_box .tit h5 {
@@ -186,6 +186,58 @@
 .item_box .tit span {color:#f26615; }
 .item_box .btn {float:right; margin-top: 0;}
 .item_box .btn button {margin: 0; margin-bottom: 12px !important;}
+
+.item_box .search_item {
+  float: right; 
+  display: inline-block
+}
+.item_box .search_item .v-text-field--enclosed .v-input__append-inner {
+  margin-top: 7px !important;
+}
+.item_box .box1 {
+  float: left;
+  width: 100%;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  background: #fff;
+  padding: 32px;
+  text-align: center;
+}
+.item_box .box1 div {
+  float:left;
+  width: 33.33%;
+  text-align: center;
+}
+.item_box .box1 div h4 {
+  font-weight: 600;
+}
+.item_box .box1 div h4 span {
+  font-family: 'KBFGDisplayL';
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.item_box .box3 {
+  float: left;
+  width: 32.33%;
+  margin-right: 1.5%;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  background: #fff;
+  padding: 32px;
+  text-align: center;
+}
+.item_box .box3 h4 {font-weight: 600;}
+.item_box .box3 span.txt {
+  float: right; 
+  padding-top: 20px;
+  color:#757575;
+}
+.item_box .box3 .chart {
+  width:100%;
+  margin: 10px 0;
+}
+
 
 .table_box {clear:both; width: 100%;}
 .table_box .state {max-width: 100px !important;}
@@ -481,13 +533,18 @@ table .fileupload-list td {
 }
 .adm-chart .chart_wrap {
   float: left;
-  width: 49%;
-  margin-right: 2%;  
-  padding: 25px;
+  width: 100%;  
+  padding: 32px;
   background: #fff;
 }
-.adm-chart .chart_wrap:last-child {
-  margin-right: 0;
+.chart_wrap .chart_01 {
+  float: left;
+  width: 49%;
+  margin-right: 1%;
+}
+.chart_wrap .chart_02 {
+  float: left;
+  width: 50%;
 }
 .chart {
   display: inline-block;
@@ -496,12 +553,11 @@ table .fileupload-list td {
 }
 .chart .chart_view {
   float: left;
-  background: #c0c0c0;
 }
 .chart .chart_info {
   float: left;
   width: 200px;
-  margin: 60px 40px;
+  margin: 60px 15px;
 }
 .chart .chart_info p {
   font-size: 13px;

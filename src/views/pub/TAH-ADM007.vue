@@ -123,7 +123,6 @@
 						</div>
 						<div class="table_box">
 							<v-data-table
-								:items="item"
 								:headers="headers"
 								:items-per-page="itemsPerPage"
 								:single-select="singleSelect"
@@ -224,7 +223,6 @@ export default {
 					value: '',
 				},
 			],
-			item: [],
 		}
 	},
 }

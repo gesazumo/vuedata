@@ -534,12 +534,7 @@ div {
   font-family: "KBFGTextM";
   font-weight: 600;
 }
-/*
-.v-btn--icon.v-size--default {
-  height: 0px !important;
-  width: 0px !important;
-}
-*/
+
 .cardlist_wrap .title .v-btn .v-icon {
   color: #ffbc00;
 }
@@ -953,8 +948,7 @@ button.close {background: none !important;}
 }
 .v-btn:not(.v-btn--round).v-size--default {
   height: 40px !important;
-  min-width: 80px !important;
-  padding: 0 16px !important;
+  min-width: 40px !important;
 }
 .v-btn:not(.v-btn--round).v-size--large {
   height: 50px !important;
@@ -1746,13 +1740,14 @@ input[type="text"] {
 table {
   border-collapse: collapse;
   width: 100%;
-  font-family: 'KBFGTextL' !important;
+  font-family: 'KBFGTextM' !important;
 }
 th {
   text-align: center;
   padding: 10px 24px;
   background: #f5f5f5;
   border: 1px solid #d8d8d8;
+  font-family: 'KBFGTextM' !important;
   font-size: 14px;
 }
 th:first-child {
@@ -1765,6 +1760,7 @@ td {
   text-align: center;
   padding: 10px 16px;
   border: 1px solid #d8d8d8;
+  font-family: 'KBFGTextM' !important;
   font-size: 15px;
   line-height: 26px;
   word-break: keep-all;
@@ -2763,9 +2759,9 @@ td:last-child {
   color:#757575;
 }
 
-/*팀원선택 팝업*/
-.team-popup {
-  background-color:rgba(0,0,0,.3);
+/*팝업 large*/
+#popup-L {
+  background-color:rgba(0,0,0,.5);
   justify-content:center;
   align-items:center;
   position:fixed;
@@ -2777,42 +2773,37 @@ td:last-child {
   padding:0;
   z-index: 12;
 }
-.team-inner {
+#popup-L .inner {
   width:100%;
   max-width: 1064px;
-  height: 100%;
-  max-height: 800px;
+  max-height: 880px;
   margin: 0 auto;
   background-color:#f4f3f2;
   border-radius: 4px;
   overflow: hidden;
 }
-.team-head{
+#popup-L .head {
   width:100%;
   margin: 0 auto;
   padding: 20px 40px;
   background:#fff;
 }
-.team-head h5 {
+#popup-L .head h5 {
   font-size: 24px; 
   line-height: 36px; 
   font-weight: 600;
   color:#1e1909;
 }
-.team-title {
-  font-size: 38px;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: -3px;
-  text-align: center;
-}
-.team-body {
+#popup-L .content {
   position: relative;
   display: inline-block;
-  width:100%;
-  padding: 24px 40px 40px;
+  width: 100%;
+  max-height: 680px;
+  padding: 24px 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-.team-body-search{
+#popup-L .content .search {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -2833,17 +2824,18 @@ td:last-child {
 .close-btn button {padding:0; margin:0;}
 .close-btn i {font-size: 24px;}
 
-.team-select {
+#popup-L .select-tag {
   display: inline-block;
-  max-width: 720px;
+  max-width: 920px;
   margin-top: 25px;
 }
-.team-select .inner {
+#popup-L .select-tag > .inner {
   display: inline-block;
   position: relative;
   margin:0 auto;
+  background-color: #fff;
 }
-.team-select .inner div.tit {
+#popup-L .select-tag .inner div.tit {
   float:left;
   font-family: 'KBFGDisplayM' ;
   font-size: 16px;
@@ -2853,12 +2845,12 @@ td:last-child {
   margin-top: 10px;
   min-height: 80px;
 }
-.team-select .inner div.tag {
+#popup-L .select-tag .inner div.tag {
   width: 100%; 
   min-width: 920px;
   text-align: left;
 }
-.team-select .inner div.tag span {
+#popup-L .select-tag .inner div.tag span {
   display: inline-block;
   border-radius: 4px;
   border: 1px solid #473eab;
@@ -2869,9 +2861,19 @@ td:last-child {
   margin: 4px;
   text-align: center;
 }
-.team-select .inner div.tag span i {
+#popup-L .select-tag .inner div.tag span i {
   color: #473eab;
   cursor: pointer;
+}
+
+#popup-L .footer {
+  position: relative;
+  display: inline-block;
+  width:100%;
+  padding: 16px 40px 40px;
+}
+#popup-L .footer .btnArea {
+  margin: 0;
 }
 
 

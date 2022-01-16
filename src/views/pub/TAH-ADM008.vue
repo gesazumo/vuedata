@@ -12,64 +12,85 @@
 
 				<div class="adm-chart">
 					<div class="chart_wrap">
-						<p class="pt-2 pb-4 font-weight-bold">
-							유형별 사용자 현황
-						</p>
-						<div class="chart">
-							<div class="chart_view">
-								<div
-									style="
-										width: 300px;
-										height: 260px;
-										text-align: center;
-									"
-								></div>
-							</div>
-							<div class="chart_info">
-								<p>
-									총 사용자수 <span class="tot">114명</span>
-								</p>
-								<ul>
-									<li>
-										<span
-											class="chart-color pink lighten-1"
-										></span>
-										파워유저
-										<span class="tot">1,182명 (00.0%)</span>
-									</li>
-									<li>
-										<span
-											class="chart-color blue lighten-1"
-										></span>
-										일반유저
-										<span class="tot">32명 (00.0%)</span>
-									</li>
-								</ul>
+						<div class="chart_01">
+							<p class="pt-2 pb-4 font-weight-bold">
+								유형별 사용자 현황
+							</p>
+							<div class="chart">
+								<div class="chart_view">
+									<div
+										style="
+											width: 250px;
+											height: 250px;
+											background: #c0c0c0;
+										"
+									>
+										차트 사이즈 250x250
+									</div>
+								</div>
+								<div class="chart_info">
+									<p>
+										총 사용자수
+										<span class="tot">0,000명</span>
+									</p>
+									<ul>
+										<li>
+											<span
+												class="
+													chart-color
+													pink
+													lighten-1
+												"
+											></span>
+											파워유저
+											<span class="tot"
+												>0,000명 (00.0%)</span
+											>
+										</li>
+										<li>
+											<span
+												class="
+													chart-color
+													blue
+													lighten-1
+												"
+											></span>
+											일반유저
+											<span class="tot"
+												>00명 (00.0%)</span
+											>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="chart_wrap">
-						<p class="pt-2 pb-4 font-weight-bold">
-							계열사별 사용자 현황
-						</p>
-						<div class="chart">
-							<div
-								style="
-									float: left;
-									width: 100%;
-									height: 260px;
-									background: #c0c0c0;
-								"
-							></div>
+						<div class="chart_02">
+							<p class="pt-2 pb-4 font-weight-bold">
+								계열사별 사용자 현황
+							</p>
+							<div class="chart">
+								<div class="chart_view">
+									<div
+										style="
+											width: 524px;
+											height: 250px;
+											background: #c0c0c0;
+										"
+									>
+										차트 사이즈 524x250
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
+
 				<div class="item_box">
 					<div>
 						<p class="float-left pt-4 pb-4 font-weight-bold">
 							기간별 방문 현황
 						</p>
-						<div style="float: right; display: inline-block">
+						<div class="search_item">
 							<div style="float: left; margin-right: 6px">
 								<v-select
 									placeholder="전체"
@@ -89,14 +110,17 @@
 						</div>
 
 						<div class="chart">
-							<div
-								style="
-									float: left;
-									width: 100%;
-									height: 360px;
-									background: #c0c0c0;
-								"
-							></div>
+							<div class="chart_view">
+								<div
+									style="
+										width: 1049px;
+										height: 360px;
+										background: #c0c0c0;
+									"
+								>
+									차트 사이즈 1049x360
+								</div>
+							</div>
 						</div>
 					</div>
 					<div style="margin-top: 40px">
@@ -123,7 +147,7 @@
 							</div>
 						</div>
 
-						<div style="float: right; display: inline-block">
+						<div class="search_item">
 							<div
 								style="
 									display: inline-block;
@@ -198,19 +222,19 @@ export default {
 				},
 				{
 					text: '페이지뷰',
-					align: 'center',
+					align: 'right',
 					sortable: true,
 					value: '',
 				},
 				{
 					text: '순페이지뷰',
-					align: 'center',
+					align: 'right',
 					sortable: true,
 					value: '',
 				},
 				{
 					text: '평균 페이지 체류 시간',
-					align: 'center',
+					align: 'right',
 					sortable: true,
 					value: '',
 				},

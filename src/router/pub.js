@@ -63,6 +63,18 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM008.vue'),
 	},
 	{
+		path: 'adm010', //Admin 모니터링 데이터 처리 현황
+		component: () => import('@/views/pub/TAH-ADM010.vue'),
+	},
+	{
+		path: 'adm011', //Admin 모니터링 개인정보 탐지 결과
+		component: () => import('@/views/pub/TAH-ADM011.vue'),
+	},
+	{
+		path: 'adm013', //Admin 모니터링 클라우드 자원 사용 현황
+		component: () => import('@/views/pub/TAH-ADM013.vue'),
+	},
+	{
 		path: 'adm016', //Admin 포털관리 메뉴관리
 		component: () => import('@/views/pub/TAH-ADM016.vue'),
 	},
@@ -256,6 +268,10 @@ export const pubRouter = [
 	{
 		path: 'myp034', //My page  My결재함 데이터업로드 결재 상세
 		component: () => import('@/views/pub/TAH-MYP034.vue'),
+	},
+	{
+		path: 'myp035', //My page  My결재함 공유하기 결제 상세
+		component: () => import('@/views/pub/TAH-MYP035.vue'),
 	},
 	{
 		path: 'myp037', //My page  My결재함 메타테이블 결재 상세
