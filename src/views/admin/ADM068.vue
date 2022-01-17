@@ -4,7 +4,7 @@
 			<div class="open-inner">
 				<div class="open-head">
 					<h5>컬럼명 조회</h5>
-					<div class="close-btn">
+					<div class="close-btn" @click="popupClose()">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
 				</div>
@@ -49,8 +49,11 @@
 						</div>
 					</div>
 					<div class="item_box">
-						<div class="tit">
-							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+						<div class="tit" v-if="itemList.length > 0">
+							<p>
+								총 <span>{{ itemList.length }}</span
+								>개의 단어 목록이 있습니다.
+							</p>
 						</div>
 
 						<div class="table_box">
@@ -66,6 +69,7 @@
 								class="elevation-1"
 								:page.sync="page"
 								@page-count="pageCount = $event"
+								:height="300"
 							>
 								<template v-slot:no-data>
 									<v-alert :value="true">
@@ -85,10 +89,22 @@
 						</div>
 					</div>
 					<div class="btnArea">
-						<v-btn color="primary" dark large outlined>
+						<v-btn
+							color="primary"
+							dark
+							large
+							outlined
+							@click="popupClose()"
+						>
 							취소
 						</v-btn>
-						<v-btn color="primary" dark large>선택완료</v-btn>
+						<v-btn
+							color="primary"
+							dark
+							large
+							@click="selectColumn()"
+							>선택완료</v-btn
+						>
 					</div>
 				</div>
 			</div>
@@ -186,6 +202,18 @@ export default {
 				.catch(err => {
 					console.log('err : ' + err)
 				})
+		},
+
+		selectColumn() {
+			if (this.checkselected.length == 0) {
+				alert('컬럼을 선택해 주세요.')
+				return
+			}
+			this.$emit('selectColumn', this.checkselected)
+		},
+
+		popupClose() {
+			this.$emit('close:popup')
 		},
 	},
 }

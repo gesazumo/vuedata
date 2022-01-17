@@ -5,9 +5,10 @@
 			<div class="adm-search">
 				<v-row>
 					<v-col md="4">
-						<div class="label_txt">제목</div>
+						<div class="label_txt">테이블명</div>
 						<v-text-field
-							placeholder="제목"
+							v-model="tblHanglName"
+							placeholder="테이블명"
 							single-line
 							outlined
 							clearable
@@ -30,21 +31,24 @@
 					<v-col md="4">
 						<div class="label_txt">구분</div>
 						<v-select
-							:items="selectGb"
-							item-text="str"
-							item-value="value"
-							value="A"
+							:items="$getCmCode('TAH000004')"
+							item-text="cmnCdNm"
+							item-value="cmnCd"
+							v-model="dtCgry"
+							placeholder="카테고리를 선택하세요"
 							single-line
 							outlined
+							hide-details="auto"
 						></v-select>
 					</v-col>
 					<v-col md="4">
 						<div class="label_txt">계열사</div>
 						<v-select
-							:items="selectSub"
-							item-text="str"
-							item-value="value"
-							value="01"
+							:items="$getCmCode('TAH000002')"
+							item-text="cmnCdNm"
+							item-value="cmnCd"
+							v-model="groupCoCd"
+							placeholder="계열사를 선택하세요"
 							single-line
 							outlined
 							hide-details="auto"
@@ -60,6 +64,12 @@
 				</v-row>
 			</div>
 			<div class="item_box">
+				<div class="tit" v-if="itemList.length > 0">
+					<p>
+						총 <span>{{ itemList.length }}</span
+						>개의 테이블 목록이 있습니다.
+					</p>
+				</div>
 				<div class="table_box">
 					<v-data-table
 						v-model="checkselected"
@@ -120,12 +130,14 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			singleSelect: false,
+			singleSelect: true,
 			checkselected: [], // 체크박스
 			itemList: [], // jsonData
-			selectGb: [], // 구분
-			selectSub: [], // 계열사
+			tblHanglName: '', // 테이블명
+			dtCgry: 'A', // 구분
+			groupCoCd: 'K00', // 계열사
 			searchKey: {},
+			searchYn: false,
 			headers: [
 				{
 					text: '구분',
@@ -182,19 +194,19 @@ export default {
 
 	methods: {
 		onSearch() {
+			this.searchYn = true
 			this.searchKey = {
-				// inTblHanglName: '수신', // 테이블명
-				// inFrDt: this.date[0], // 시작일자
-				// inToDt: this.date[1], // 종료일자
-				// inDtCgry: '', // 구분
-				// inGroupCoCd: '', // 계열사
+				inTblHanglName: this.tblHanglName, // 테이블명
+				inFrDt: this.date[0], // 시작일자
+				inToDt: this.date[1], // 종료일자
+				inDtCgry: this.dtCgry, // 구분
+				inGroupCoCd: this.groupCoCd, // 계열사
 			}
 			axios
 				.get('/api/admin/meta/getTblList', {
 					params: this.searchKey,
 				})
 				.then(res => {
-					console.log(JSON.stringify(res))
 					this.itemList = res.data.list
 				})
 				.catch(err => {
@@ -205,6 +217,7 @@ export default {
 		Insert() {
 			this.gf_router('adm006', {
 				searchKey: this.searchKey,
+				searchKey2: this.searchYn,
 			})
 		},
 
@@ -213,33 +226,28 @@ export default {
 				inGroupCoCd: this.checkselected[0].groupCoCd,
 				inTblId: this.checkselected[0].tblId,
 				searchKey: this.searchKey,
+				searchKey2: this.searchYn,
 			})
 		},
 	},
 
 	created() {
-		this.subject = ''
-		this.date = [
-			moment().subtract(1, 'months').format('YYYY-MM-DD'),
-			moment().format('YYYY-MM-DD'),
-		]
-		this.selectGb = [
-			{ str: '마이데이터', value: 'A' },
-			{ str: '특화데이터', value: 'B' },
-			{ str: 'Feature Store', value: 'C' },
-		]
-		this.selectSub = [
-			{ str: '공통업권', value: '01' },
-			{ str: '은행업권', value: '02' },
-			{ str: '카드업권', value: '03' },
-			{ str: '금융투자업권', value: '04' },
-			{ str: '보험업권', value: '05' },
-			{ str: '전자금융업권', value: '06' },
-			{ str: '할부금융업권', value: '07' },
-			{ str: '보증보험업권', value: '08' },
-			{ str: '통신업권', value: '09' },
-			{ str: 'P2P업권', value: '10' },
-		]
+		window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+
+		if (this.$route.params.searchKey2) {
+			this.tblHanglName = this.$route.params.searchKey.inTblHanglName // 테이블명
+			this.date[0] = this.$route.params.searchKey.inFrDt // 시작일자
+			this.date[1] = this.$route.params.searchKey.inToDt // 종료일자
+			this.dtCgry = this.$route.params.searchKey.inDtCgry // 구분
+			this.groupCoCd = this.$route.params.searchKey.inGroupCoCd // 계열사
+			this.onSearch()
+		} else {
+			this.subject = ''
+			this.date = [
+				moment().subtract(1, 'months').format('YYYY-MM-DD'),
+				moment().format('YYYY-MM-DD'),
+			]
+		}
 	},
 }
 </script>

@@ -4,7 +4,7 @@
 			<div class="open-inner">
 				<div class="open-head">
 					<h5>인스턴스명 조회</h5>
-					<div class="close-btn">
+					<div class="close-btn" @click="popupClose()">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
 				</div>
@@ -119,10 +119,22 @@
 						</div>
 					</div>
 					<div class="btnArea">
-						<v-btn color="primary" dark large outlined>
+						<v-btn
+							color="primary"
+							dark
+							large
+							outlined
+							@click="popupClose()"
+						>
 							취소
 						</v-btn>
-						<v-btn color="primary" dark large>선택완료</v-btn>
+						<v-btn
+							color="primary"
+							dark
+							large
+							@click="selectInstance()"
+							>선택완료</v-btn
+						>
 					</div>
 				</div>
 			</div>
@@ -232,6 +244,18 @@ export default {
 				.catch(err => {
 					console.log('err : ' + err)
 				})
+		},
+
+		selectInstance() {
+			if (this.checkselected.length == 0) {
+				alert('인스턴스명을 선택해 주세요.')
+				return
+			}
+			this.$emit('selectInstance', this.checkselected)
+		},
+
+		popupClose() {
+			this.$emit('close:popup')
 		},
 	},
 }
