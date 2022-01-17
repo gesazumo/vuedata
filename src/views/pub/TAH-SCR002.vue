@@ -23,7 +23,7 @@
 				<div class="inner">
 					<h5>안녕하세요, 무엇을 도와드릴까요?</h5>
 					<v-select
-						placeholder="카테고리를 선택해 주세요."
+						label="피드백"
 						outlined
 						clearable
 						hide-details="auto"
@@ -59,12 +59,12 @@
 							</tr>
 							<tr>
 								<th>
-									문의 내용
+									피드백 내용
 									<span class="asterisk">필수</span>
 								</th>
 								<td colspan="3">
 									<v-textarea
-										placeholder="문의내용을 작성해 주세요."
+										placeholder="피드백 내용을 작성해 주세요."
 										clearable
 										outlined
 										hide-details="auto"
@@ -76,7 +76,7 @@
 					</table>
 				</div>
 				<div class="btnArea">
-					<v-btn color="primary" large>문의하기</v-btn>
+					<v-btn color="primary" large>의견 제출하기</v-btn>
 				</div>
 			</div>
 		</div>

@@ -20,10 +20,13 @@ export const pubRouter = [
 		path: 'error3', //대체페이지(권한없음)
 		component: () => import('@/views/pub/TAH-COM004.vue'),
 	},
-	//login
 	{
 		path: 'scr001', //로그인
 		component: () => import('@/views/pub/TAH-SCR001.vue'),
+	},
+	{
+		path: 'scr002', //메인화면 의견작성으로 진입시
+		component: () => import('@/views/pub/TAH-SCR002.vue'),
 	},
 	//Admin
 	{
@@ -292,6 +295,10 @@ export const pubRouter = [
 	{
 		path: 'sup003', //Support FAQ
 		component: () => import('@/views/pub/TAH-SUP003.vue'),
+	},
+	{
+		path: 'sup004', //Support 문의하기
+		component: () => import('@/views/pub/TAH-SUP004.vue'),
 	},
 	{
 		path: 'min',
