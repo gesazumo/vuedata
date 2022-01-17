@@ -12,7 +12,7 @@
 			</div>
 			<div class="sub_search">
 				<div class="inner">
-					<h5>최신뉴스톼 진행중인 이벤트를 검색하세요.</h5>
+					<h5>최신뉴스와 진행중인 이벤트를 검색하세요.</h5>
 					<v-text-field
 						placeholder="검색어를 입력해 주세요"
 						outlined
@@ -85,7 +85,135 @@
 									</v-expansion-panel-header>
 									<v-expansion-panel-content>
 										<div class="notice_content">
+											<div class="attach_file">
+												첨부파일 : file_name.pdf [3]
+												<v-btn
+													text
+													style="
+														min-width: 24px !important;
+														max-height: 24px !important;
+														padding: 0 !important;
+													"
+													@click="toggleShow"
+												>
+													<i
+														class="
+															fa fa-chevron-down
+														"
+													></i>
+												</v-btn>
+												<div
+													v-if="show"
+													class="file_list"
+												>
+													<v-btn
+														class="close_btn"
+														@click="toggleShow"
+													>
+														<i
+															class="fa fa-times"
+														></i>
+													</v-btn>
+													<v-list-item-group
+														v-model="settings"
+														multiple
+														active-class=""
+													>
+														<v-list-item>
+															<template
+																v-slot:default="{
+																	active,
+																}"
+															>
+																<v-list-item-action>
+																	<v-checkbox
+																		:input-value="
+																			active
+																		"
+																		hide-details="auto"
+																	></v-checkbox>
+																</v-list-item-action>
+
+																<v-list-item-content>
+																	<v-list-item-title
+																		>file_name_01.gif</v-list-item-title
+																	>
+																</v-list-item-content>
+															</template>
+														</v-list-item>
+
+														<v-list-item>
+															<template
+																v-slot:default="{
+																	active,
+																}"
+															>
+																<v-list-item-action>
+																	<v-checkbox
+																		:input-value="
+																			active
+																		"
+																		hide-details="auto"
+																	></v-checkbox>
+																</v-list-item-action>
+
+																<v-list-item-content>
+																	<v-list-item-title
+																		>file_name_02.pdf</v-list-item-title
+																	>
+																</v-list-item-content>
+															</template>
+														</v-list-item>
+
+														<v-list-item>
+															<template
+																v-slot:default="{
+																	active,
+																}"
+															>
+																<v-list-item-action>
+																	<v-checkbox
+																		:input-value="
+																			active
+																		"
+																		hide-details="auto"
+																	></v-checkbox>
+																</v-list-item-action>
+
+																<v-list-item-content>
+																	<v-list-item-title
+																		>file_name_03.png</v-list-item-title
+																	>
+																</v-list-item-content>
+															</template>
+														</v-list-item>
+													</v-list-item-group>
+													<v-row
+														align="center"
+														style="
+															margin-bottom: 0 !important;
+														"
+													>
+														<v-btn
+															color="primary"
+															small
+															outlined
+														>
+															전체 다운로드
+														</v-btn>
+														<v-btn
+															color="primary"
+															small
+														>
+															다운로드
+														</v-btn>
+													</v-row>
+												</div>
+											</div>
 											공지사항 내용입니다. <br />
+											공지사항 내용입니다. <br />
+											공지사항 내용입니다. <br />
+											공지사항 내용입니다. <br /><br />
 											<img
 												src="@/images/main_illust_01.png"
 											/>
@@ -107,4 +235,17 @@
 	</v-app>
 </template>
 
-<script></script>
+<script>
+export default {
+	data() {
+		return {
+			show: false,
+		}
+	},
+	methods: {
+		toggleShow() {
+			this.show = !this.show
+		},
+	},
+}
+</script>
