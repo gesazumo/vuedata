@@ -21,7 +21,7 @@
 				<div class="inner">
 					<h5>자주 묻는 질문을 모았습니다.</h5>
 					<v-text-field
-						placeholder="검색어를 입력해 주세요"
+						placeholder="검색어를 입력해 주세요."
 						outlined
 						clearable
 						hide-details="auto"

@@ -14,7 +14,7 @@
 				<div class="inner">
 					<h5>최신뉴스와 진행중인 이벤트를 검색하세요.</h5>
 					<v-text-field
-						placeholder="검색어를 입력해 주세요"
+						placeholder="검색어를 입력해 주세요."
 						outlined
 						clearable
 						hide-details="auto"
