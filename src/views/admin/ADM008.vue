@@ -44,8 +44,8 @@
 								<doughnut-chart
 									:chartdata="doughnutChartData"
 									:options="doughnutChartOption"
-									height="250"
-									width="250"
+									:height="250"
+									:width="350"
 								/>
 							</div>
 							<div class="chart_info">
@@ -81,8 +81,8 @@
 								<bar-chart
 									:chartdata="barChartData"
 									:options="barChartOption"
-									width="650"
-									height="250"
+									:width="680"
+									:height="250"
 								/>
 							</div>
 						</div>
@@ -117,8 +117,8 @@
 							<line-chart
 								:chartdata="lineChartData"
 								:options="lineChartOptions"
-								width="1335"
-								height="360"
+								:width="1370"
+								:height="360"
 							/>
 						</div>
 					</div>
@@ -166,7 +166,6 @@
 					<div class="table_box">
 						<v-data-table
 							:headers="headers"
-							:items="item"
 							:items-per-page="itemsPerPage"
 							hide-default-footer
 							class="elevation-1"
@@ -386,13 +385,13 @@ export default {
 							{
 								text: 'Total',
 								font: {
-									size: '30',
+									size: '20',
 								},
 							},
 							{
 								text: '114',
 								font: {
-									size: '30',
+									size: '20',
 									weight: 'bold',
 								},
 							},
