@@ -26,7 +26,9 @@ const util = {
 	formatMenu(menuList) {
 		const menu = menuList
 			// todo 로그인한 사용자 권한에 따라 filter
-			.filter(menu => menu.menuUseYn == 'Y')
+			.filter(menu => {
+				return menu.menuUseYn == 'Y'
+			})
 			.map(menu => {
 				const menuObject = {
 					path:

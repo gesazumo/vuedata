@@ -326,7 +326,6 @@ export default {
 				menuSystemYn: this.nodeParam.menuSystemYn,
 				sysEmpid: '수정자',
 			}
-			debugger
 			this.$store.dispatch('menuStore/updateMenuNode', { param: _param })
 		},
 	},
