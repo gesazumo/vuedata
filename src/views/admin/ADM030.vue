@@ -544,6 +544,18 @@ export default {
 				{ title: '분석환경 사용자 메뉴얼', value: '02' },
 				{ title: '테스트용 사용자 메뉴얼', value: '03' },
 			]
+			if (this.$route.query.kategorie) {
+				console.log('router query : ' + this.$route.query.kategorie)
+				for (let i = 0; i < this.categorySelectList.length; i++) {
+					if (
+						this.categorySelectList[i].value ==
+						this.$route.query.kategorie
+					) {
+						this.categorySelect = this.categorySelectList[i]
+					}
+				}
+				this.changeCategorySelect()
+			}
 		},
 		initFirstDepthSelectList() {
 			this.firstDepthSelect = ''

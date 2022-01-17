@@ -60,7 +60,9 @@
 						</v-select>
 					</div>
 					<div class="btn_area">
-						<v-btn color="primary" dark> 등록하기 </v-btn>
+						<v-btn color="primary" dark @click="clickAddBtn()">
+							등록하기
+						</v-btn>
 						<v-btn
 							color="primary"
 							dark
@@ -104,6 +106,7 @@
 							dark
 							outlined
 							v-if="selectedTableItems.length == 1"
+							@click="clickEditBtn()"
 						>
 							수정하기
 						</v-btn>
@@ -241,7 +244,14 @@ export default {
 			this.limitSelect = { title: '10개씩 보기', value: 10 }
 			this.search()
 		},
+		clickAddBtn() {
+			console.log('clickAddBtn')
+			this.$router.push({
+				name: 'adm030',
+			})
+		},
 		clickDeleteBtn() {
+			// console.log(JSON.stringify(this.selectedTableItems))
 			axios
 				.post('/api/admin/regReferenceConDelVer', {
 					data: this.selectedTableItems,
@@ -255,6 +265,12 @@ export default {
 				.catch(err => {
 					console.log('err : ' + err)
 				})
+		},
+		clickEditBtn() {
+			this.$router.push({
+				name: 'adm030',
+				query: { kategorie: this.selectedTableItems[0].kategorie },
+			})
 		},
 		clickPageChange(value) {
 			console.log(value)
