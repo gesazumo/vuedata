@@ -107,6 +107,13 @@
 				<div class="item_box">
 					<div class="tit">
 						<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+						<v-select
+							label="10개씩 보기"
+							class="list_select"
+							single-line
+							hide-details="auto"
+						>
+						</v-select>
 					</div>
 					<div class="btn_area">
 						<v-btn color="primary" dark> 등록하기 </v-btn>
@@ -225,6 +232,7 @@ export default {
 	},
 	data() {
 		return {
+			date: '',
 			dialog: false,
 			page: 1,
 			pageCount: 0,

@@ -1,20 +1,20 @@
 <template>
 	<v-app>
-		<div class="team-popup">
-			<div class="team-inner">
-				<div class="team-head">
+		<div id="popup-L">
+			<div class="inner">
+				<div class="head">
 					<h5>프로젝트 팀원 선택</h5>
 					<div class="close-btn">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
 				</div>
 
-				<div class="team-body">
-					<div class="team-body-search">
+				<div class="content">
+					<div class="search">
 						<div
 							style="float: left; width: 145px; line-height: 40px"
 						>
-							프로젝트 팀원
+							<p class="font-weight-bold">프로젝트 팀원</p>
 						</div>
 						<div>
 							<v-text-field
@@ -73,7 +73,7 @@
 							</v-data-table>
 						</div>
 
-						<div class="team-select">
+						<div class="select-tag">
 							<div class="inner">
 								<div class="tag">
 									<span>
@@ -120,6 +120,9 @@
 							</div>
 						</div>
 					</div>
+				</div>
+
+				<div class="footer">
 					<div class="btnArea">
 						<v-btn color="primary" dark large outlined>
 							취소
@@ -147,26 +150,31 @@ export default {
 					text: '순번',
 					sortable: false,
 					value: 'no',
+					align: 'center',
 				},
 				{
 					text: '회사명',
 					sortable: false,
 					value: 'company',
+					align: 'center',
 				},
 				{
 					text: '부서',
 					sortable: false,
 					value: 'team',
+					align: 'center',
 				},
 				{
 					text: '이름',
 					sortable: false,
 					value: 'name',
+					align: 'center',
 				},
 				{
 					text: '사번',
 					sortable: false,
 					value: 'companyid',
+					align: 'center',
 				},
 			],
 			team: [

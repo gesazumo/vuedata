@@ -25,19 +25,21 @@
 				</div>
 			</div>
 			<div class="sub_search">
-				<h5>오픈소스를 검색해 보세요.</h5>
-				<v-text-field
-					placeholder="검색어를 입력해 주세요"
-					outlined
-					clearable
-					hide-details="auto"
-					append-inner-icon="fa fa-search"
-					style="width: 446px"
-				>
-					<template v-slot:append>
-						<i class="fa fa-search"></i>
-					</template>
-				</v-text-field>
+				<div class="inner">
+					<h5>오픈소스를 검색해 보세요.</h5>
+					<v-text-field
+						placeholder="검색어를 입력해 주세요"
+						outlined
+						clearable
+						hide-details="auto"
+						append-inner-icon="fa fa-search"
+						style="width: 446px"
+					>
+						<template v-slot:append>
+							<i class="fa fa-search"></i>
+						</template>
+					</v-text-field>
+				</div>
 			</div>
 			<div class="board_list">
 				<div class="tab">
