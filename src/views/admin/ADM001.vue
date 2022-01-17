@@ -111,7 +111,9 @@
 	</div>
 </template>
 <script>
-import axios from 'axios'
+//import axios from 'axios'
+import { getAxios } from '@/api/modules/commonAPI'
+import { postAxios } from '@/api/modules/commonAPI'
 
 export default {
 	data() {
@@ -200,21 +202,34 @@ export default {
 		}
 	},
 	methods: {
-		onSearch() {
+		async onSearch() {
 			if (this.korWord == '') {
 				return
 			}
 
-			axios
-				.get('/api/admin/meta/getWordList', {
-					params: { inCon: this.mark, inHanglWordName: this.korWord },
-				})
-				.then(res => {
-					this.itemList = res.data.list
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+			const _param = {
+				inCon: this.mark,
+				inHanglWordName: this.korWord,
+			}
+
+			try {
+				const url = '/admin/meta/getWordList'
+				const { data } = await getAxios(url, _param)
+				this.itemList = data.list
+			} catch (err) {
+				this.$showError(err)
+			}
+
+			// axios
+			// 	.get('/api/admin/meta/getWordList', {
+			// 		params: { inCon: this.mark, inHanglWordName: this.korWord },
+			// 	})
+			// 	.then(res => {
+			// 		this.itemList = res.data.list
+			// 	})
+			// 	.catch(err => {
+			// 		this.$showError(err)
+			// 	})
 		},
 		Insert() {
 			this.gf_router('adm002', {
@@ -230,7 +245,7 @@ export default {
 				searchKey2: this.mark,
 			})
 		},
-		Delete() {
+		async Delete() {
 			let param = []
 			for (let key in this.checkselected) {
 				param.push({
@@ -238,19 +253,42 @@ export default {
 					engAbrvnName: this.checkselected[key].engAbrvnName,
 				})
 			}
-			axios
-				.post('/api/admin/meta/delManWordCon', {
-					data: param,
-					userNo: 'S017069',
-				})
-				.then(res => {
-					alert('삭제되었습니다.')
-					console.log(res)
-					this.onSearch
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+
+			if (
+				!(await this.$confirm(
+					'선택 항목을 삭제하시겠습니까?',
+					'삭제하기',
+				))
+			)
+				return
+
+			const _param = {
+				data: param,
+				userNo: 'S017069',
+			}
+
+			try {
+				const url = '/admin/meta/delManWordCon'
+				await postAxios(url, _param)
+				this.$showInfo('삭제되었습니다.')
+				this.onSearch()
+			} catch (err) {
+				this.$showError(err)
+			}
+
+			// axios
+			// 	.post('/api/admin/meta/delManWordCon', {
+			// 		data: param,
+			// 		userNo: 'S017069',
+			// 	})
+			// 	.then(res => {
+			// 		console.log(res)
+			// 		this.$showInfo('삭제되었습니다.')
+			// 		this.onSearch()
+			// 	})
+			// 	.catch(err => {
+			// 		this.$showError(err)
+			// 	})
 		},
 		moreCount(val) {
 			this.itemsPerPage = Number(val)
