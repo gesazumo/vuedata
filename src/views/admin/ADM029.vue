@@ -5,29 +5,6 @@
 			<div class="adm-search">
 				<v-row>
 					<v-col md="4">
-						<div class="label_txt">제목</div>
-						<v-text-field
-							v-model="subject"
-							single-line
-							outlined
-							clearable
-							hide-details="auto"
-						></v-text-field>
-					</v-col>
-					<v-col md="4">
-						<div class="label_txt">등록일</div>
-						<div>
-							<date-picker
-								v-model="date"
-								valueType="format"
-								range
-								placeholder="기간 선택"
-							/>
-						</div>
-					</v-col>
-				</v-row>
-				<v-row>
-					<v-col md="4">
 						<div class="label_txt">구분</div>
 						<v-select
 							placeholder="전체 카테고리"
@@ -40,12 +17,23 @@
 							:rules="groupRules"
 						></v-select>
 					</v-col>
+					<v-col md="4">
+						<div class="label_txt">등록일</div>
+						<div>
+							<date-picker
+								v-model="date"
+								valueType="format"
+								range
+								placeholder="기간 선택"
+							/>
+						</div>
+					</v-col>
 					<v-col></v-col>
 					<v-col md="2" align="right">
 						<v-btn color="primary" dark outlined @click="init()"
 							>초기화</v-btn
 						>
-						<v-btn color="primary" dark @click="search()"
+						<v-btn color="primary" dark @click="clickSearchBtn()"
 							>검색하기</v-btn
 						>
 					</v-col>
@@ -78,9 +66,39 @@
 							dark
 							outlined
 							v-if="selectedTableItems.length > 0"
+							@click="dialog = true"
 						>
 							삭제하기
 						</v-btn>
+						<v-dialog v-model="dialog" max-width="280">
+							<v-card align="center">
+								<v-card-title class="text-subtitle-1">
+									선택 항목을 삭제하시겠습니까?
+								</v-card-title>
+								<v-card-text></v-card-text>
+
+								<v-card-actions>
+									<v-spacer></v-spacer>
+
+									<v-btn
+										color="primary"
+										dark
+										outlined
+										@click="dialog = false"
+									>
+										취소
+									</v-btn>
+
+									<v-btn
+										color="primary"
+										dark
+										@click="clickDeleteBtn()"
+									>
+										삭제하기
+									</v-btn>
+								</v-card-actions>
+							</v-card>
+						</v-dialog>
 						<v-btn
 							color="primary"
 							dark
@@ -127,7 +145,7 @@ export default {
 	},
 	data() {
 		return {
-			subject: '',
+			dialog: false,
 			date: [],
 			selectGroup: '',
 			page: 1,
@@ -145,16 +163,19 @@ export default {
 					text: '버전',
 					sortable: true,
 					value: 'version',
+					align: 'center',
 				},
 				{
 					text: '등록자',
 					sortable: true,
-					value: 'sysRegiEmpid',
+					value: 'reqempnm',
+					align: 'center',
 				},
 				{
 					text: '등록일',
 					sortable: true,
 					value: 'req',
+					align: 'center',
 				},
 			],
 			selectedTableItems: [],
@@ -173,7 +194,6 @@ export default {
 	},
 	methods: {
 		init() {
-			this.subject = ''
 			this.date = [
 				moment().subtract(1, 'months').format('YYYY-MM-DD'),
 				moment().format('YYYY-MM-DD'),
@@ -186,19 +206,6 @@ export default {
 			]
 		},
 		search() {
-			console.log('-------------SEARCH-------------')
-			console.log('-------------subject-------------')
-			console.log(this.subject)
-			console.log('-------------datePicker-------------')
-			console.log(
-				'from : ' + this.date[0].replace('-', '').replace('-', ''),
-			)
-			console.log(
-				'to : ' + this.date[1].replace('-', '').replace('-', ''),
-			)
-			console.log('-------------SelectBox-------------')
-			console.log('title : ' + this.selectGroup.title)
-			console.log('value : ' + this.selectGroup.value)
 			let tempGroup = null
 			if (this.selectGroup.value === '99') {
 				tempGroup = null
@@ -215,7 +222,6 @@ export default {
 						kategorie: tempGroup,
 						limit: this.limitSelect.value,
 						page: this.page,
-						title: this.subject,
 					},
 				})
 				.then(res => {
@@ -225,6 +231,26 @@ export default {
 					this.pageCount = Math.ceil(
 						res.data.count / this.limitSelect.value,
 					)
+				})
+				.catch(err => {
+					console.log('err : ' + err)
+				})
+		},
+		clickSearchBtn() {
+			this.page = 1
+			this.limitSelect = { title: '10개씩 보기', value: 10 }
+			this.search()
+		},
+		clickDeleteBtn() {
+			axios
+				.post('/api/admin/regReferenceConDelVer', {
+					data: this.selectedTableItems,
+				})
+				.then(res => {
+					console.log(res)
+					this.dialog = false
+					this.page = 1
+					this.search()
 				})
 				.catch(err => {
 					console.log('err : ' + err)
