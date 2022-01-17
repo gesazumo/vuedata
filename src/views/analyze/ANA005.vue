@@ -204,8 +204,7 @@ export default {
 
 	methods: {
 		async Search() {
-			console.log(this.searchWrd.length)
-			if (this.searchWrd.length == 1) {
+			if (this.searchWrd && this.searchWrd.length == 1) {
 				this.$refs.form.validate()
 				return
 			}

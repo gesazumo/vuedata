@@ -12,8 +12,7 @@
 				dark
 				@click="
 					$router.push({
-						name: 'adm024',
-						params: { seq: selected[0].seq },
+						name: 'adm018',
 					})
 				"
 			>
