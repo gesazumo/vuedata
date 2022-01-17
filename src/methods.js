@@ -12,6 +12,9 @@ const methods = {
 	$getCmCodeNm(key, value) {
 		return store.getters['commonCodeStore/getCmCodeNm'](key, value)
 	},
+	$getCmCodeVal(key, name) {
+		return store.getters['commonCodeStore/getCmCodeVal'](key, name)
+	},
 	$showError(msg) {
 		this.$toasted.error(msg)
 	},

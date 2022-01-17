@@ -24,8 +24,8 @@
 				v-if="selected.length == 1"
 				@click="
 					$router.push({
-						name: 'adm024',
-						params: { seq: selected[0].seq },
+						name: 'adm0181',
+						params: { athId: selected[0].athId },
 					})
 				"
 			>
@@ -38,6 +38,7 @@
 				:headers="headers"
 				item-key="athId"
 				:items="authListData"
+				@click:row="handleClick"
 				show-select
 				hide-default-footer
 				class="elevation-1"
@@ -124,6 +125,12 @@ export default {
 		},
 	},
 	methods: {
+		handleClick(item) {
+			this.$router.push({
+				name: 'adm0181',
+				params: { athId: item.athId },
+			})
+		},
 		async doDelete() {
 			if (
 				!(await this.$confirm(

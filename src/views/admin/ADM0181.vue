@@ -181,7 +181,7 @@
 														{{ row.item.userNm }}
 													</td>
 													<td>
-														{{ row.item.userNo }}
+														{{ row.item.userId }}
 													</td>
 													<td>
 														<v-btn
@@ -216,7 +216,7 @@
 				<v-btn color="primary" dark outlined @click="$router.go(-1)">
 					취소
 				</v-btn>
-				<v-btn color="primary" dark @click="doCreate"> 등록하기 </v-btn>
+				<v-btn color="primary" dark @click="doUpdate"> 수정하기 </v-btn>
 			</div>
 			<div v-if="popupVal">
 				<ANA005
@@ -231,7 +231,11 @@
 	</div>
 </template>
 <script>
-import { createAuthApi, getAuthIdApi } from '@/api/modules/authAPI'
+import {
+	updateAuthApi,
+	getAuthIdApi,
+	getAuthDetailApi,
+} from '@/api/modules/authAPI'
 import ANA005 from '@/views/analyze/ANA005.vue'
 export default {
 	components: {
@@ -276,53 +280,72 @@ export default {
 			menu4Rules: [v => !!v || '권한 설명을 선택해 주세요.'],
 			menu5Rules: [v => !!v || '권한 그룹원을 입력해 주세요.'],
 			menu6Rules: [v => !!v || '사용여부를 선택해 주세요.'],
+
 			param: {
 				athDesc: null,
 				athId: null,
 				athNm: null,
 				athType: null,
 				groupCoCd: null,
-				sysEmpid: null,
 				useYn: null,
 				userList: [],
 			},
 		}
 	},
-	methods: {
-		async doCreate() {
-			if (!this.$refs.form.validate()) return
-			if (this.selectedMemebers.length == 0) return
-			const _param = {
-				athDesc: this.param.athDesc,
-				athId: this.param.athId,
-				athNm: this.param.athNm,
-				athType: this.param.athType,
-				groupCoCd: this.param.groupCoCd,
-				sysEmpid: 'sysEmpid',
-				useYn: this.param.useYn,
-				userList: this.selectedMemebers.map(item => {
-					return {
-						userId: item.userNo,
-					}
-				}),
+	async created() {
+		const { athId } = this.$route.params
+		try {
+			const { data } = await getAuthDetailApi(athId)
+			this.param = {
+				athId: athId,
+				athDesc: data.detail[0].athDesc,
+				athNm: data.detail[0].athNm,
+				athType: data.detail[0].athType,
+				groupCoCd: data.detail[0].groupCoCd,
+				useYn: data.detail[0].useYn,
 			}
+			this.selectedMemebers = data.userList
+		} catch (err) {
+			this.$showError('존재하지 않는 게시물입니다.')
+			this.$router.push({ name: 'adm017' })
+			console.log(err)
+		}
+	},
+	methods: {
+		async doUpdate() {
+			if (this.selectedMemebers.length == 0) return
+			if (
+				!(await this.$confirm(
+					'권한정보를 수정하시겠습니까?',
+					'수정하기',
+				))
+			)
+				return
+
 			try {
-				const { data } = await createAuthApi(_param)
-				console.log(data)
+				await updateAuthApi({
+					...this.param,
+					userList: this.selectedMemebers.map(item => {
+						return { userId: item.userId }
+					}),
+				})
+				this.$showInfo('수정되었습니다.')
 				this.$router.push({ name: 'adm017' })
 			} catch (error) {
+				this.$showInfo('수정실패. ')
 				console.log(error)
-				this.$showError(this.apiErrorMsg)
 			}
 		},
 		deleteMember(member) {
 			this.selectedMemebers = this.selectedMemebers.filter(
-				item => item.userNo != member.userNo,
+				item => item.userId != member.userId,
 			)
 		},
 		selectMember(members) {
 			this.popupVal = false
-			this.selectedMemebers = members
+			this.selectedMemebers = members.map(item => {
+				return { ...item, userId: item.userNo }
+			})
 			this.selectMemberValid = this.selectedMemebers.length == 0
 		},
 		popupOpen() {
