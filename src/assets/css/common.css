@@ -4,6 +4,7 @@
 @import "font.css";
 @import "main.css";
 @import "admin.css";
+
 /*@import "style.css";*/
 
 
@@ -1609,9 +1610,51 @@ input[type="text"] {
   color:#2c2921 !important;
 }
 
-.v-tabs .v-tab span {color:#f26615; }
-.theme--dark.v-tabs > .v-tabs-bar {
-  background-color: #ffbc00;
+.board_list .v-sheet.v-card {
+  padding: 0 !important;
+}
+.board_list .tab3 {
+  width:100%;
+}
+.board_list .tab3 .v-tab {
+  width: 33.33%;
+  max-width: 33.33% !important;
+  font-family: 'KBFGDisplayM';
+  font-weight: 600;
+}
+.board_list .tab3 .v-tab span {
+  font-weight: normal;
+  margin-left: 10px;  
+}
+.v-tab--active {
+  color: #1e1909;
+  background-color: #f4f3f2;
+}
+.v-tab--active span {
+  color: #f26615;
+}
+.board_list .tab3 .v-tabs-slider-wrapper {
+  transition: 0.5s cubic-bezier(0.25, 0.8, 0.5, 1);
+  padding: 0 140px;
+}
+.board_list .tab3 .v-tabs-slider-wrapper .v-tabs-slider {
+  background-color: #ffbc00 !important;
+}
+
+.tab {
+  width: 100%;
+}
+.tab > .v-tabs .v-tab {
+  font-family: 'KBFGDisplayM';
+  font-size: 18px;
+  font-weight: 600;
+
+}
+.tab > .v-tabs .v-tab span {
+  margin-left: 18px;
+  font-weight: normal;
+  /*color:#f26615; */
+
 }
 
 .card_board {margin-top: 24px !important;}
@@ -3380,8 +3423,8 @@ td:last-child {
   border-radius: 4px;
   width: 280px;
   min-width: 280px;
-  max-width: 280px;
-  padding: 24px;
+  max-width: 280px;  
+  padding: 32px; 
   box-shadow: 3px 5px 5px 2px rgba(0,0,0,.2);
 }
 .file_list .v-list-item {

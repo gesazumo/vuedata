@@ -258,6 +258,10 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-MYP027.vue'),
 	},
 	{
+		path: 'myp031', //My page  My결재함 목록
+		component: () => import('@/views/pub/TAH-MYP031.vue'),
+	},
+	{
 		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
 	},
@@ -288,5 +292,9 @@ export const pubRouter = [
 	{
 		path: 'sup003', //Support FAQ
 		component: () => import('@/views/pub/TAH-SUP003.vue'),
+	},
+	{
+		path: 'min',
+		component: () => import('@/views/pub/min.vue'),
 	},
 ]
