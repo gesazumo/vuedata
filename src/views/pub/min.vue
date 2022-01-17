@@ -1,5 +1,19 @@
 <template>
 	<v-app>
+		<div style="width: 100%; height: 100%; position: relative">
+			<div
+				style="
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-left: -50px;
+				"
+			>
+				<LoadingLottie />
+			</div>
+		</div>
+	</v-app>
+	<!--v-app>
 		<div class="text-center">
 			<v-dialog
 				v-model="dialog"
@@ -56,7 +70,7 @@
 			</v-dialog>
 		</div>
 
-		<!--<v-btn
+		<v-btn
 			color="primary"
 			small
 			outlined
@@ -92,7 +106,7 @@
 			</v-card>
 		</v-dialog>-->
 
-		<!--파일첨부
+	<!--파일첨부
 		<div style="float: left margin-right:10px">
 			<v-btn
 				color="primary"
@@ -161,57 +175,8 @@
 				</table>
 			</div>
 		</div>
-		-->
-	</v-app>
+		
+	</v-app-->
 </template>
 
-<script>
-export default {
-	data: () => ({
-		dialog: false,
-		options: {
-			color: 'primary',
-			width: 320,
-			zIndex: 200,
-		},
-	}),
-
-	methods: {
-		onChange(e) {
-			var files = e.target.files || e.dataTransfer.files
-
-			if (!files.length) {
-				this.dragging = false
-				return
-			}
-
-			this.createFile(files[0])
-		},
-		createFile(file) {
-			if (!file.type.match('text.*')) {
-				alert('please select txt file')
-				this.dragging = false
-				return
-			}
-
-			if (file.size > 5000000) {
-				alert('please check file size no over 5 MB.')
-				this.dragging = false
-				return
-			}
-
-			this.file = file
-			console.log(this.file)
-			this.dragging = false
-		},
-		removeFile() {
-			this.file = ''
-		},
-	},
-	computed: {
-		extension() {
-			return this.file ? this.file.name.split('.').pop() : ''
-		},
-	},
-}
-</script>
+<script></script>
