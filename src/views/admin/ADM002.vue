@@ -46,7 +46,7 @@
 										>
 											<v-text-field
 												v-model="engWordShort"
-												placeholder="그룹코드 ID를 입력하세요"
+												placeholder="영어약문명을 입력해 주세요."
 												single-line
 												clearable
 												outlined
@@ -106,7 +106,7 @@
 									<td>
 										<v-textarea
 											v-model="strSummarize"
-											placeholder="단어정의를 입력하세요./Editor"
+											placeholder="단어정의를 입력해 주세요."
 											single-line
 											clearable
 											outlined
@@ -141,7 +141,9 @@
 	</div>
 </template>
 <script>
-import axios from 'axios'
+//import axios from 'axios'
+import { getAxios } from '@/api/modules/commonAPI'
+import { postAxios } from '@/api/modules/commonAPI'
 
 export default {
 	data() {
@@ -177,16 +179,57 @@ export default {
 		}
 	},
 	methods: {
-		Modify() {
+		async init() {
+			// 값이 있을경우 수정
+			if (this.$route.params.inHanglWordName) {
+				this.btnText = '수정'
+				this.jungBokChk = true
+
+				const _param = {
+					inHanglWordName: this.$route.params.inHanglWordName,
+					inEngAbrvnName: this.$route.params.inEngAbrvnName,
+				}
+
+				try {
+					const url = '/admin/meta/getWordCon'
+					const { data } = await getAxios(url, _param)
+					this.korWord = data.hanglWordName
+					this.jungBokChkKorText = data.hanglWordName
+					this.engWord = data.engWordName
+					this.engWordShort = data.engAbrvnName
+					this.jungBokChkEngText = data.engAbrvnName
+					this.btnWordGb = data.smwrCmwrDstic
+					this.strSummarize = data.hanglWordDefin
+				} catch (err) {
+					this.$showError(err)
+				}
+
+				// axios
+				// 	.get('/api/admin/meta/getWordCon?', {
+				// 		params: {
+				// 			inHanglWordName: this.$route.params.inHanglWordName,
+				// 			inEngAbrvnName: this.$route.params.inEngAbrvnName,
+				// 		},
+				// 	})
+				// 	.then(res => {
+				// 		this.korWord = res.data.hanglWordName
+				// 		this.jungBokChkKorText = res.data.hanglWordName
+				// 		this.engWord = res.data.engWordName
+				// 		this.engWordShort = res.data.engAbrvnName
+				// 		this.jungBokChkEngText = res.data.engAbrvnName
+				// 		this.btnWordGb = res.data.smwrCmwrDstic
+				// 		this.strSummarize = res.data.hanglWordDefin
+				// 	})
+				// 	.catch(err => {
+				// 		console.log('err : ' + err)
+				// 	})
+			}
+		},
+		async Modify() {
 			const jbCheck = this.$refs.form.validate()
 			const mainCheck = this.$refs.form2.validate()
 			if (!jbCheck || !mainCheck) {
 				return
-			}
-
-			let url = '/api/admin/meta/regWordCon'
-			if (this.btnText == '수정') {
-				url = '/api/admin/meta/modWordCon'
 			}
 
 			if (this.korWord != this.jungBokChkKorText) {
@@ -205,66 +248,108 @@ export default {
 				return
 			}
 
-			if (!confirm('단어를 ' + this.btnText + ' 하시겠습니까?')) {
+			if (
+				!(await this.$confirm(
+					'단어를 ' + this.btnText + ' 하시겠습니까?',
+					this.btnText + '하기',
+				))
+			)
 				return
+
+			// if (!confirm('단어를 ' + this.btnText + ' 하시겠습니까?')) {
+			// 	return
+			// }
+
+			let _url = '/admin/meta/regWordCon'
+			if (this.btnText == '수정') {
+				_url = '/admin/meta/modWordCon'
 			}
 
-			// const str = this.convertUrl({
-			// 	hanglWordName: this.korWord, // 한글단어명
-			// 	engWordName: this.engWord, // 영어 단어명
-			// 	engAbrvnName: this.engWordShort, // 영어약어명
-			// 	smwrCmwrDstic: this.btnWordGb, // 단어구분
-			// 	hanglWordDefin: this.strSummarize, // 정의
-			// 	userNo: 'S017069',
-			// 	screnRegiYn: 'Y',
-			// })
+			const _param = {
+				hanglWordName: this.korWord, // 한글단어명
+				engWordName: this.engWord, // 영어 단어명
+				engAbrvnName: this.engWordShort, // 영어약어명
+				smwrCmwrDstic: this.btnWordGb, // 단어구분
+				hanglWordDefin: this.strSummarize, // 정의
+				userNo: 'S017069', // 하드코딩
+				screnRegiYn: 'Y',
+			}
 
-			axios
-				.post(url, {
-					hanglWordName: this.korWord, // 한글단어명
-					engWordName: this.engWord, // 영어 단어명
-					engAbrvnName: this.engWordShort, // 영어약어명
-					smwrCmwrDstic: this.btnWordGb, // 단어구분
-					hanglWordDefin: this.strSummarize, // 정의
-					userNo: 'S017069',
-					screnRegiYn: 'Y',
+			try {
+				await postAxios(_url, _param)
+				this.$showInfo(this.btnText + '되었습니다.')
+				this.gf_router('adm001', {
+					searchKey: this.$route.params.searchKey,
+					searchKey2: this.$route.params.searchKey2,
 				})
-				.then(res => {
-					if (res) {
-						alert('등록되었습니다.')
-						this.gf_router('adm001', {
-							searchKey: this.$route.params.searchKey,
-							searchKey2: this.$route.params.searchKey2,
-						})
-					}
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+			} catch (err) {
+				this.$showError(err)
+			}
+
+			// axios
+			// 	.post(url, {
+			// 		hanglWordName: this.korWord, // 한글단어명
+			// 		engWordName: this.engWord, // 영어 단어명
+			// 		engAbrvnName: this.engWordShort, // 영어약어명
+			// 		smwrCmwrDstic: this.btnWordGb, // 단어구분
+			// 		hanglWordDefin: this.strSummarize, // 정의
+			// 		userNo: 'S017069',
+			// 		screnRegiYn: 'Y',
+			// 	})
+			// 	.then(res => {
+			// 		if (res) {
+			// 			alert('등록되었습니다.')
+			// 			this.gf_router('adm001', {
+			// 				searchKey: this.$route.params.searchKey,
+			// 				searchKey2: this.$route.params.searchKey2,
+			// 			})
+			// 		}
+			// 	})
+			// 	.catch(err => {
+			// 		console.log('err : ' + err)
+			// 	})
 		},
-		Delete() {
+		async Delete() {
 			let param = []
 			param.push({
 				hanglWordName: this.$route.params.inHanglWordName,
 				engAbrvnName: this.$route.params.inEngAbrvnName,
 			})
-			axios
-				.post('/api/admin/meta/delManWordCon', {
-					data: param,
-					userNo: 'S017069',
+
+			const _param = []
+			_param.push({
+				hanglWordName: this.$route.params.inHanglWordName,
+				engAbrvnName: this.$route.params.inEngAbrvnName,
+			})
+
+			try {
+				const url = '/admin/meta/delManWordCon'
+				await postAxios(url, _param)
+				this.$showInfo('삭제되었습니다.')
+				this.gf_router('adm001', {
+					searchKey: this.$route.params.searchKey,
+					searchKey2: this.$route.params.searchKey2,
 				})
-				.then(res => {
-					if (res) {
-						alert('삭제되었습니다.')
-					}
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+			} catch (err) {
+				this.$showError(err)
+			}
+			// axios
+			// 	.post('/api/admin/meta/delManWordCon', {
+			// 		data: param,
+			// 		userNo: 'S017069',
+			// 	})
+			// 	.then(res => {
+			// 		if (res) {
+			// 			alert('삭제되었습니다.')
+			// 		}
+			// 	})
+			// 	.catch(err => {
+			// 		console.log('err : ' + err)
+			// 	})
 		},
 
 		// 중복체크
-		fn_jungBokChk() {
+		async fn_jungBokChk() {
 			if (!this.korWord) {
 				alert('한글단어명을 입력해주세요.')
 				return
@@ -275,59 +360,65 @@ export default {
 				return
 			}
 
-			axios
-				.get('/api/admin/meta/getWordCon', {
-					params: {
-						inHanglWordName: this.korWord,
-						inEngAbrvnName: this.engWordShort,
-					},
-				})
-				.then(res => {
-					if (res.data) {
-						alert('이미 등록된 단어입니다.')
-						this.jungBokChk = false
+			const _param = {
+				inHanglWordName: this.korWord,
+				inEngAbrvnName: this.engWordShort,
+			}
+
+			try {
+				const _url = '/admin/meta/getWordCon'
+				const { data } = await getAxios(_url, _param)
+				if (data) {
+					alert('이미 등록된 단어입니다.')
+					this.jungBokChk = false
+					this.$refs.form.validate()
+				} else {
+					if (
+						await this.$confirm(
+							'등록가능한 단어입니다.\n등록하시겠습니까?',
+							'등록하기',
+						)
+					) {
+						this.jungBokChk = true
+						this.jungBokChkKorText = this.korWord
+						this.jungBokChkEngText = this.engWordShort
 						this.$refs.form.validate()
-					} else {
-						if (
-							confirm('등록가능한 단어입니다.\n등록하시겠습니까?')
-						) {
-							this.jungBokChk = true
-							this.jungBokChkKorText = this.korWord
-							this.jungBokChkEngText = this.engWordShort
-							this.$refs.form.validate()
-						}
 					}
-				})
-				.catch(err => {
-					alert('err : ' + err)
-				})
+				}
+			} catch (err) {
+				this.$showError(err)
+			}
+
+			// axios
+			// 	.get('/api/admin/meta/getWordCon', {
+			// 		params: {
+			// 			inHanglWordName: this.korWord,
+			// 			inEngAbrvnName: this.engWordShort,
+			// 		},
+			// 	})
+			// 	.then(res => {
+			// 		if (res.data) {
+			// 			alert('이미 등록된 단어입니다.')
+			// 			this.jungBokChk = false
+			// 			this.$refs.form.validate()
+			// 		} else {
+			// 			if (
+			// 				confirm('등록가능한 단어입니다.\n등록하시겠습니까?')
+			// 			) {
+			// 				this.jungBokChk = true
+			// 				this.jungBokChkKorText = this.korWord
+			// 				this.jungBokChkEngText = this.engWordShort
+			// 				this.$refs.form.validate()
+			// 			}
+			// 		}
+			// 	})
+			// 	.catch(err => {
+			// 		alert('err : ' + err)
+			// 	})
 		},
 	},
 	created() {
-		// 값이 있을경우 수정
-		if (this.$route.params.inHanglWordName) {
-			this.btnText = '수정'
-			this.jungBokChk = true
-			axios
-				.get('/api/admin/meta/getWordCon?', {
-					params: {
-						inHanglWordName: this.$route.params.inHanglWordName,
-						inEngAbrvnName: this.$route.params.inEngAbrvnName,
-					},
-				})
-				.then(res => {
-					this.korWord = res.data.hanglWordName
-					this.jungBokChkKorText = res.data.hanglWordName
-					this.engWord = res.data.engWordName
-					this.engWordShort = res.data.engAbrvnName
-					this.jungBokChkEngText = res.data.engAbrvnName
-					this.btnWordGb = res.data.smwrCmwrDstic
-					this.strSummarize = res.data.hanglWordDefin
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
-		}
+		this.init()
 	},
 }
 </script>
