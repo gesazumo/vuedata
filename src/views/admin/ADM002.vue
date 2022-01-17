@@ -26,7 +26,9 @@
 											v-model="korWord"
 											placeholder="한글단어명을 입력해 주세요"
 											single-line
+											clearable
 											outlined
+											hide-details="auto"
 											:rules="korWord_rule"
 										>
 										</v-text-field>
@@ -44,18 +46,21 @@
 										>
 											<v-text-field
 												v-model="engWordShort"
-												placeholder="영문약어명을 입력해 주세요"
+												placeholder="그룹코드 ID를 입력하세요"
 												single-line
+												clearable
 												outlined
+												hide-details="auto"
 												:rules="engWordShort_rule"
 											>
 												<template slot="append-outer">
-													<button
-														class="check"
+													<v-btn
+														color="primary"
 														@click="fn_jungBokChk()"
+														dark
 													>
 														중복체크
-													</button>
+													</v-btn>
 												</template></v-text-field
 											>
 										</v-form>
@@ -71,7 +76,9 @@
 											v-model="engWord"
 											placeholder="영문단어명을 입력해 주세요"
 											single-line
+											clearable
 											outlined
+											hide-details="auto"
 											:rules="engWord_rule"
 										></v-text-field>
 									</td>
@@ -100,8 +107,10 @@
 										<v-textarea
 											v-model="strSummarize"
 											placeholder="단어정의를 입력하세요./Editor"
+											single-line
 											clearable
 											outlined
+											hide-details="auto"
 											:rules="strSummarize_rule"
 										></v-textarea>
 									</td>
@@ -169,9 +178,9 @@ export default {
 	},
 	methods: {
 		Modify() {
-			const aa = this.$refs.form.validate()
-			const bb = this.$refs.form2.validate()
-			if (!aa || !bb) {
+			const jbCheck = this.$refs.form.validate()
+			const mainCheck = this.$refs.form2.validate()
+			if (!jbCheck || !mainCheck) {
 				return
 			}
 
@@ -256,6 +265,16 @@ export default {
 
 		// 중복체크
 		fn_jungBokChk() {
+			if (!this.korWord) {
+				alert('한글단어명을 입력해주세요.')
+				return
+			}
+
+			if (!this.engWordShort) {
+				alert('영문약어명을 입력해주세요.')
+				return
+			}
+
 			axios
 				.get('/api/admin/meta/getWordCon', {
 					params: {

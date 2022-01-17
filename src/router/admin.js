@@ -46,6 +46,18 @@ const adminRouter = [
 		component: () => import('@/views/admin/ADM008.vue'),
 	},
 	{
+		path: 'adm019',
+		name: 'adm019',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM019.vue'),
+	},
+	{
+		path: 'adm020',
+		name: 'adm020',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM020.vue'),
+	},
+	{
 		path: 'adm027',
 		name: 'adm027',
 		meta: { isPublic: true },
@@ -62,6 +74,12 @@ const adminRouter = [
 		name: 'adm028',
 		meta: { isPublic: true },
 		component: () => import('@/views/admin/ADM028.vue'),
+	},
+	{
+		path: 'adm035',
+		name: 'adm035',
+		meta: { isPublic: true },
+		component: () => import('@/views/admin/ADM035.vue'),
 	},
 	{
 		path: 'adm037',
