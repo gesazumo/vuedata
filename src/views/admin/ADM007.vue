@@ -39,10 +39,13 @@
 							</v-tooltip>
 						</div>
 						<v-select
-							placeholder="전체"
 							single-line
 							outlined
 							hide-details="auto"
+							v-model="userSelect"
+							:items="userSelectList"
+							item-text="cmnCdNm"
+							item-value="cmnCd"
 						></v-select>
 					</v-col>
 					<v-col md="4">
@@ -50,6 +53,7 @@
 						<div>
 							<date-picker
 								v-model="date"
+								valueType="format"
 								range
 								placeholder="기간 선택"
 							/>
@@ -60,10 +64,13 @@
 					<v-col md="4">
 						<div class="label_txt">계열사</div>
 						<v-select
-							placeholder="전체"
 							single-line
 							outlined
 							hide-details="auto"
+							v-model="groupSelect"
+							:items="groupSelectList"
+							item-text="cmnCdNm"
+							item-value="cmnCd"
 						></v-select>
 					</v-col>
 					<v-col md="4">
@@ -80,16 +87,11 @@
 						<div class="label_txt">Status</div>
 						<div class="checkgroup">
 							<v-checkbox
-								label="로그인 성공"
-								hide-details="auto"
-							></v-checkbox>
-							<v-checkbox
-								label="ID, PW 오류"
-								hide-details="auto"
-							></v-checkbox>
-							<v-checkbox
-								label="서비스 오류"
-								hide-details="auto"
+								v-for="status in statusSelectList"
+								v-bind:key="status.cmnCd"
+								:label="status.cmnCdNm"
+								:value="status.cmnCd"
+								v-model="statusSelectList"
 							></v-checkbox>
 						</div>
 					</v-col>
@@ -162,7 +164,7 @@ export default {
 	},
 	data() {
 		return {
-			date: '',
+			date: [],
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
@@ -219,7 +221,48 @@ export default {
 					value: '',
 				},
 			],
+			groupSelect: '',
+			groupSelectList: [],
+			userSelect: '',
+			userSelectList: [],
+			statusSelectList: [],
 		}
+	},
+	created() {
+		console.log(this.today())
+		console.log(this.formatDate(this.today(), '-'))
+		this.init()
+	},
+	methods: {
+		init() {
+			this.date = [
+				this.formatDate(this.addMonth(-1), '-'),
+				this.formatDate(this.today(), '-'),
+			]
+			console.log(this.$getCmCode('TAH000001'))
+			console.log(this.$getCmCode('TAH000084'))
+			console.log(this.$getCmCode('TAH000085'))
+			// this.groupSelectList = this.$getCmCode('TAH000001')
+			this.initGroupSelect()
+			this.initUserSelect()
+			this.initStatusSelect()
+		},
+		initGroupSelect() {
+			this.groupSelectList.push({ cmnCdNm: '전체', cmnCd: '' })
+			this.groupSelectList.push(...this.$getCmCode('TAH000001'))
+			console.log(this.groupSelectList)
+			this.groupSelect = { cmnCdNm: '전체', cmnCd: '' }
+		},
+		initUserSelect() {
+			this.userSelectList.push({ cmnCdNm: '전체', cmnCd: '' })
+			this.userSelectList.push(...this.$getCmCode('TAH000084'))
+			console.log(this.userSelectList)
+			this.userSelect = { cmnCdNm: '전체', cmnCd: '' }
+		},
+		initStatusSelect() {
+			this.statusSelectList = this.$getCmCode('TAH000085')
+			console.log(this.statusSelectList)
+		},
 	},
 }
 </script>

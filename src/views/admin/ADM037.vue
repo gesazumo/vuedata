@@ -226,7 +226,6 @@
 </template>
 <script>
 import DatePicker from 'vue2-datepicker'
-import moment from 'moment'
 
 export default {
 	components: {
@@ -373,8 +372,8 @@ export default {
 		init() {
 			this.subject = ''
 			this.date = [
-				moment().subtract(1, 'months').format('YYYY-MM-DD'),
-				moment().format('YYYY-MM-DD'),
+				this.formatDate(this.addMonth(-1), '-'),
+				this.formatDate(this.today(), '-'),
 			]
 			this.selectGroup = { title: '전체', value: '99' }
 			this.selectGroupItems = [
