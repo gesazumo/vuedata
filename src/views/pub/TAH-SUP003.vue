@@ -35,7 +35,7 @@
 				</div>
 			</div>
 
-			<div class="board_list">
+			<div class="board_list_tab">
 				<v-card style="width: 100%">
 					<v-tabs class="tab5" center-active centered v-model="tab">
 						<v-tab> 전체 <span>00</span> </v-tab>

@@ -212,12 +212,36 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-EXP001.vue'),
 	},
 	{
+		path: 'exp002', //Explore 마이데이터 목록
+		component: () => import('@/views/pub/TAH-EXP002.vue'),
+	},
+	{
+		path: 'exp003', //Explore 마이데이터 상세
+		component: () => import('@/views/pub/TAH-EXP003.vue'),
+	},
+	{
+		path: 'exp005', //Explore 특화데이터 목록
+		component: () => import('@/views/pub/TAH-EXP005.vue'),
+	},
+	{
+		path: 'exp006', //Explore 특화데이터 상세
+		component: () => import('@/views/pub/TAH-EXP006.vue'),
+	},
+	{
 		path: 'exp004', //Explore 테이블권한 신청
 		component: () => import('@/views/pub/TAH-EXP004.vue'),
 	},
 	{
 		path: 'exp007', //Explore 테이블권한 신청 완료
 		component: () => import('@/views/pub/TAH-EXP007.vue'),
+	},
+	{
+		path: 'exp010', //Explore 대시보드 리스트
+		component: () => import('@/views/pub/TAH-EXP010.vue'),
+	},
+	{
+		path: 'exp011', //Explore 대시보드 상세
+		component: () => import('@/views/pub/TAH-EXP011.vue'),
 	},
 	//My page
 	{

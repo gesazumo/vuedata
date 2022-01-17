@@ -27,7 +27,7 @@
 				<div class="sub_main_search">
 					<div class="search_box">
 						<v-text-field
-							placeholder="검색어를 입력해 주세요"
+							placeholder="검색어를 입력해 주세요."
 							clearable
 							required
 							hide-details="auto"
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="sub_main_sec">
-					<div class="row">
+					<div class="row pb-8">
 						<p class="tit">마이데이터</p>
 					</div>
 					<div class="card_item">
@@ -98,7 +98,7 @@
 					</div>
 				</div>
 				<div class="sub_main_sec">
-					<div class="row">
+					<div class="row pb-8">
 						<p class="tit">특화데이터</p>
 					</div>
 					<div class="card_item">
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 				<div class="sub_main_sec">
-					<div class="row">
+					<div class="row pb-8">
 						<p class="tit">분석모델</p>
 					</div>
 					<div class="card_item">
@@ -196,7 +196,25 @@
 											2단계... 3줄까지나옴..말줄임처리
 										</div>
 									</div>
-									<div class="card_sns">
+									<div class="cardinfo">
+										<div class="board">
+											<div class="good">
+												<v-icon>mdi-heart</v-icon>
+												224
+											</div>
+											<div class="view">
+												<v-icon>mdi-eye-outline</v-icon>
+												55
+											</div>
+											<div class="comment">
+												<v-icon
+													>mdi-comment-outline</v-icon
+												>
+												17
+											</div>
+										</div>
+									</div>
+									<!--<div class="card_sns">
 										<div class="card_like">
 											<v-icon>mdi-heart</v-icon>
 											224
@@ -209,14 +227,14 @@
 											<v-icon>mdi-comment-outline</v-icon>
 											17
 										</div>
-									</div>
+									</div>-->
 								</div>
 							</v-card>
 						</v-row>
 					</div>
 				</div>
 				<div class="sub_main_sec">
-					<div class="row">
+					<div class="row pb-8">
 						<p class="tit">대시보드</p>
 					</div>
 					<div class="card_item">
