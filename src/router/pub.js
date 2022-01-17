@@ -281,4 +281,12 @@ export const pubRouter = [
 		path: 'sup001', //Support sub main
 		component: () => import('@/views/pub/TAH-SUP001.vue'),
 	},
+	{
+		path: 'sup002', //Support 공지사항
+		component: () => import('@/views/pub/TAH-SUP002.vue'),
+	},
+	{
+		path: 'sup003', //Support FAQ
+		component: () => import('@/views/pub/TAH-SUP003.vue'),
+	},
 ]

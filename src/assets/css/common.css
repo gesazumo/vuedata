@@ -1326,8 +1326,13 @@ input[type="text"] {
 
 .sub_search {
   display: inline-block;
-  margin: 48px auto 56px;
+  width: 100%;
+  padding: 48px 0 56px;
   text-align: center;
+}
+.sub_search .inner {
+  margin: 0 auto;
+  width: 445px;
 }
 .sub_search h5 {
   font-size: 26px !important;
@@ -3417,4 +3422,102 @@ td:last-child {
 
 .v-messages__message {
   line-height: 16px !important ;
+}
+
+
+/*faq*/
+.faq {
+  /*border-top: 2px solid #504842;*/
+  width: 100%;
+  font-family: 'KBFGDispalyM';
+}
+.faq .faq_list ul li {  
+  font-size: 15px;
+  color: #1e1909;
+  float: left;
+}
+.faq .faq_list ul li.type {  
+  color: #79706d;
+  margin-right:20px;
+}
+.faq .faq_list ul li span.q {
+  background-color: #504842;
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  margin-right: 15px;
+  padding: 8px 11px 7px;
+}
+.faq .faq_content {
+  padding-top: 32px;
+}
+.v-expansion-panel-content__wrap {
+  background-color: #f4f3f2;
+  padding: 0 24px 32px !important;
+}
+.faq .faq_content ul li {  
+  font-size: 14px;
+  line-height: 24px;
+  color: #757575;
+  float: left;
+  max-width: 1300px;
+}
+.faq .faq_content ul li img {
+  clear: both;
+}
+.faq .faq_content ul li.type {  
+  color: #79706d;
+  margin-right:20px;
+}
+.faq .faq_content ul li span.a {
+  background-color: #473eab;
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 11px 7px;
+}
+
+
+/*notice*/
+.notice {
+  /*border-top: 2px solid #504842;*/
+  width: 100%;
+  font-family: 'KBFGDispalyM';
+}
+.notice .notice_list ul li {  
+  font-size: 15px;
+  color: #1e1909;
+  float: left;
+}
+.notice .notice_list ul li.type {  
+  color: #79706d;
+  margin-right:20px;
+}
+.notice .notice_list ul li.evnt {
+  margin-right: 56px;
+}
+.notice .notice_list ul li.evnt span {  
+  color: #473eab;
+  font-size: 12px;
+  margin-right: 20px;
+  border: 1px solid #474eab;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+.notice .notice_list ul li.date { 
+  font-size: 12px;
+  color: #79706d;
+  margin-right:20px;
+}
+.notice .notice_list ul li span.file {
+  cursor: pointer;
+}
+.notice .notice_content {
+  padding-top: 32px;
 }
