@@ -41,6 +41,7 @@
 										<v-select
 											placeholder="계열사를 선택하세요"
 											outlined
+											readonly
 											hide-details="auto"
 											:items="$getCmCode('TAH000001')"
 											item-text="cmnCdNm"
@@ -231,11 +232,7 @@
 	</div>
 </template>
 <script>
-import {
-	updateAuthApi,
-	getAuthIdApi,
-	getAuthDetailApi,
-} from '@/api/modules/authAPI'
+import { updateAuthApi, getAuthDetailApi } from '@/api/modules/authAPI'
 import ANA005 from '@/views/analyze/ANA005.vue'
 export default {
 	components: {
@@ -354,15 +351,6 @@ export default {
 
 		popupClose() {
 			this.popupVal = false
-		},
-		async getId(groupCoCd) {
-			const { data } = await getAuthIdApi(groupCoCd)
-			this.param.athId = data.athId
-		},
-	},
-	watch: {
-		'param.groupCoCd'(value) {
-			if (value) this.getId(value)
 		},
 	},
 }

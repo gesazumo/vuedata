@@ -10,14 +10,6 @@
 						잠시 후 다시 접속해 주세요.
 					</span>
 				</div>
-				<div class="meg-btn">
-					<button
-						class="primary large"
-						onclick="location.href='/pub/main'"
-					>
-						홈으로
-					</button>
-				</div>
 			</div>
 		</div>
 	</div>

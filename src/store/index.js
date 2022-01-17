@@ -4,7 +4,12 @@ import shareStore from './modules/shareStore'
 import userStore from './modules/userStore'
 import commonCodeStore from './modules/commonCodeStore'
 import createPersistedState from 'vuex-persistedstate'
-import { CANCEL_CONFIRM, OK_CONFIRM, SHOW_CONFIRM } from './mutation-type'
+import {
+	CANCEL_CONFIRM,
+	OK_CONFIRM,
+	SHOW_CONFIRM,
+	SET_GLOBAL_LOADING,
+} from './mutation-type'
 import menuStore from './modules/menuStore'
 
 const userState = createPersistedState({
@@ -19,6 +24,7 @@ export default new Vuex.Store({
 		confirmRes: null,
 		confirmMsg: '',
 		confirmBtnMsg: '',
+		globalLoading: false,
 	},
 	mutations: {
 		[SHOW_CONFIRM](state, { reslove, msg, btnMsg }) {
@@ -40,6 +46,9 @@ export default new Vuex.Store({
 			state.confirmRes && state.confirmRes(false)
 			state.confirmRes = null
 			state.confirm = false
+		},
+		[SET_GLOBAL_LOADING](state, { flag }) {
+			state.globalLoading = flag
 		},
 	},
 	actions: {

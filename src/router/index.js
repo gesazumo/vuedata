@@ -6,6 +6,7 @@ import commonRouter from './commonRouter'
 import store from '@/store'
 import { getMenuApi } from '@/api/modules/initAPI'
 import util from '@/utils/util'
+import { SET_GLOBAL_LOADING } from '../store/mutation-type'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,14 @@ const loadRouter = async () => {
 				isPublic: true,
 			},
 			component: () => import('@/views/Login.vue'),
+		},
+		{
+			path: '/notConnected',
+			name: 'ConnetError',
+			meta: {
+				isPublic: true,
+			},
+			component: () => import('@/views/error/NotConnected.vue'),
 		},
 		{
 			path: '/',
@@ -62,12 +71,16 @@ const loadRouter = async () => {
 			}
 		} else {
 			try {
+				store.commit(SET_GLOBAL_LOADING, { flag: true })
 				await store.dispatch('commonCodeStore/fetchCmCode')
 				console.log('get commcode')
 				next()
 			} catch (error) {
 				console.log('get commcode fail')
 				console.log('commonCodeStore/fetchCmCode :' + error)
+				next({ name: 'ConnetError' })
+			} finally {
+				store.commit(SET_GLOBAL_LOADING, { flag: false })
 			}
 		}
 		return next()
