@@ -153,7 +153,7 @@
 						</tr>
 						<tr>
 							<th>메뉴 ID</th>
-							<td colspan="3">TAH-EXP001</td>
+							<td colspan="3">{{ activeNode.menuId }}</td>
 						</tr>
 						<tr>
 							<th>
@@ -211,6 +211,9 @@
 							</th>
 							<td>
 								<v-switch
+									:readonly="
+										activeNode.menuId == 'TAH-ADM016'
+									"
 									v-model="useYN"
 									color="orange"
 									hide-details
