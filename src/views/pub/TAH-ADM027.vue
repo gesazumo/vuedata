@@ -1,80 +1,89 @@
 <template>
-	<div class="adm_wrap">
-		<div id="lnb"></div>
+	<v-app>
 		<div class="adm_contents">
 			<div class="inner">
 				<h5>인사이트 리포트 관리</h5>
-				<div class="adm-search-2">
-					<ul>
-						<li>
-							<label>제목</label>
+				<div class="adm-search">
+					<v-row>
+						<v-col md="4">
+							<div class="label_txt">제목</div>
 							<v-text-field
 								placeholder="제목"
 								single-line
 								outlined
 								clearable
+								hide-details="auto"
 							></v-text-field>
-						</li>
-						<li>
-							<label>등록일</label>
-							<date-picker
-								v-model="date"
-								range
-								placeholder="날짜선택"
-							/>
-						</li>
-						<li></li>
-					</ul>
-					<ul>
-						<li>
-							<label>구분</label>
+						</v-col>
+						<v-col md="4">
+							<div class="label_txt">등록일</div>
+							<div>
+								<date-picker
+									v-model="date"
+									range
+									placeholder="기간 선택"
+								/>
+							</div>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col md="4">
+							<div class="label_txt">구분</div>
 							<v-select
-								:items="items1"
 								label="전체 카테고리"
 								single-line
 								outlined
+								hide-details="auto"
 							></v-select>
-						</li>
-						<li>
-							<label>Topic</label>
+						</v-col>
+						<v-col md="4">
+							<div class="label_txt">Topic</div>
 							<v-select
-								:items="items2"
 								label="전체 Topic"
 								single-line
 								outlined
+								hide-details="auto"
 							></v-select>
-						</li>
-						<li></li>
-					</ul>
-					<ul>
-						<li>
-							<label>작성자</label>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col md="4">
+							<div class="label_txt">작성자</div>
 							<v-text-field
-								placeholder=""
 								single-line
 								outlined
 								clearable
 							></v-text-field>
-						</li>
-						<li></li>
-						<li>
-							<button class="reset">초기화</button>
-							<button class="search">검색하기</button>
-						</li>
-					</ul>
+						</v-col>
+						<v-col></v-col>
+						<v-col md="2" align="right">
+							<v-btn color="primary" outlined>초기화</v-btn>
+							<v-btn color="primary">검색하기</v-btn>
+						</v-col>
+					</v-row>
 				</div>
+
 				<div class="item_box">
 					<div class="tit">
 						<p>총 <span>74</span>개의 검색결과가 있습니다.</p>
+						<v-select
+							label="10개씩 보기"
+							class="list_select"
+							single-line
+							hide-details="auto"
+						>
+						</v-select>
+					</div>
+					<div class="btn_area">
+						<v-btn color="primary" dark> 등록하기 </v-btn>
+						<v-btn color="primary" dark outlined> 삭제하기 </v-btn>
+						<v-btn color="primary" dark outlined> 수정하기 </v-btn>
 					</div>
 					<div class="table_box">
 						<v-data-table
-							v-model="selected"
 							:headers="headers"
-							:items="items3"
 							:items-per-page="itemsPerPage"
 							:single-select="singleSelect"
-							item-key="aaa"
 							show-select
 							hide-default-footer
 							class="elevation-1"
@@ -89,14 +98,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="btn_area">
-					<button class="delete large">삭제하기</button>
-					<button class="edit large">수정하기</button>
-					<button class="regit large">등록하기</button>
-				</div>
 			</div>
 		</div>
-	</div>
+	</v-app>
 </template>
 <script>
 import DatePicker from 'vue2-datepicker'
