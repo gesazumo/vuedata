@@ -5,6 +5,7 @@ import moment from 'moment'
 import cloneDeep from 'lodash/cloneDeep.js'
 import uniq from 'lodash/uniq.js'
 import uniqBy from 'lodash/uniqBy.js'
+import { selectAna00601 } from '@/api/modules/anaAPI'
 
 const util = {
 	requiredValid(msg) {
@@ -263,6 +264,31 @@ const util = {
 			params: param,
 		}
 		this.$router.push(page)
+	},
+
+	/**
+	 * 프로젝트 여부 체크
+	 * @param {function} popupOpen 프로젝트가 없을때 호출되는 함수(팝업출력)
+	 * @param {function} next 프로젝트가 있을때 호출되는 함수
+	 */
+	async projectValid(popupOpen, next) {
+		const param = {
+			groupCoCd: 'KB0',
+			userNo: 'B0000001',
+		}
+
+		try {
+			const { data } = await selectAna00601(param)
+			console.log(data.totalCount)
+			if (data.totalCount == '0') {
+				popupOpen()
+			} else {
+				console.log(typeof next)
+				if (typeof next == 'function') next()
+			}
+		} catch (error) {
+			console.log('err : ' + error)
+		}
 	},
 }
 
