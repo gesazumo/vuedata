@@ -1,16 +1,16 @@
 <template>
 	<v-app>
-		<div class="open-popup">
-			<div class="open-inner">
-				<div class="open-head">
+		<div id="popup-L">
+			<div class="inner">
+				<div class="head">
 					<h5>컬럼명 조회</h5>
 					<div class="close-btn">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
 				</div>
 
-				<div class="open-body">
-					<div class="open-body-search">
+				<div class="content">
+					<div class="search">
 						<div
 							style="float: left; width: 145px; line-height: 40px"
 						>
@@ -26,16 +26,13 @@
 						</div>
 						<div style="float: left; margin-left: 5px">
 							<v-select
-								:items="items"
 								label="%_%"
 								single-line
 								outlined
 								hide-details="auto"
 							>
 								<template slot="append-outer">
-									<v-btn color="primary" dark>
-										검색하기
-									</v-btn>
+									<v-btn color="primary"> 검색하기 </v-btn>
 								</template>
 							</v-select>
 						</div>
@@ -48,7 +45,6 @@
 						<div class="table_box">
 							<v-data-table
 								:headers="headers"
-								:items="items"
 								:items-per-page="itemsPerPage"
 								:single-select="singleSelect"
 								show-select
@@ -68,6 +64,8 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="footer">
 					<div class="btnArea">
 						<v-btn color="primary" dark large outlined>
 							취소
@@ -83,11 +81,6 @@
 export default {
 	data() {
 		return {
-			name: '',
-			nameRules: '',
-			rules: {
-				nameRules: v => !!v || '이름을 입력해 주세요.',
-			},
 			singleSelect: false,
 			selected: [],
 			headers: [
@@ -132,7 +125,6 @@ export default {
 					sortable: true,
 				},
 			],
-			items: [],
 		}
 	},
 }

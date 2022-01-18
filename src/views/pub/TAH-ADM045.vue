@@ -30,7 +30,6 @@
 						<v-col md="4">
 							<div class="label_txt">구분</div>
 							<v-select
-								:items="items_01"
 								placeholder="전체 카테고리"
 								single-line
 								outlined
@@ -39,8 +38,8 @@
 						</v-col>
 						<v-col></v-col>
 						<v-col md="2" align="right">
-							<v-btn color="primary" dark outlined>초기화</v-btn>
-							<v-btn color="primary" dark>검색하기</v-btn>
+							<v-btn color="primary" outlined>초기화</v-btn>
+							<v-btn color="primary">검색하기</v-btn>
 						</v-col>
 					</v-row>
 				</div>
@@ -48,21 +47,22 @@
 					<div class="board">
 						<div class="tit">
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+							<v-select
+								label="10개씩 보기"
+								class="list_select"
+								single-line
+								hide-details="auto"
+							>
+							</v-select>
 						</div>
 						<div class="btn_area">
-							<v-btn color="primary" dark> 등록하기 </v-btn>
-							<v-btn color="primary" dark outlined>
-								삭제하기
-							</v-btn>
-							<v-btn color="primary" dark outlined>
-								수정하기
-							</v-btn>
+							<v-btn color="primary"> 등록하기 </v-btn>
+							<v-btn color="primary" outlined> 삭제하기 </v-btn>
+							<v-btn color="primary" outlined> 수정하기 </v-btn>
 						</div>
 						<div class="table_box">
 							<v-data-table
-								v-model="selected"
 								:headers="headers"
-								:items="items"
 								:items-per-page="itemsPerPage"
 								:single-select="singleSelect"
 								show-select
@@ -94,113 +94,37 @@ export default {
 	},
 	data() {
 		return {
+			date: '',
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			items_01: [
-				'전체',
-				'포털 이용',
-				'데이터 권한 신청',
-				'분석환경 활용',
-				'기타',
-				'피드백',
-			],
-			items_02: [
-				'전체',
-				'KB금융지주',
-				'KB국민은행',
-				'KB증권',
-				'KB손해보험',
-				'KB국민카드',
-				'푸르덴셜생명',
-				'KB캐피탈',
-				'KB생명보험',
-				'KB저축은행',
-			],
+
 			singleSelect: false,
 			selected: [],
 			headers: [
 				{
 					text: '카테고리',
+					align: 'center',
 					sortable: true,
-					value: 'a',
+					value: '',
 				},
 				{
 					text: '상세구분',
+					align: 'center',
 					sortable: true,
-					value: 'b',
+					value: '',
 				},
 				{
 					text: '등록자',
+					align: 'center',
 					sortable: true,
-					value: 'c',
+					value: '',
 				},
 				{
 					text: '등록일',
+					align: 'center',
 					sortable: true,
-					value: 'd',
-				},
-			],
-			items: [
-				{
-					a: '마이데이터',
-					b: '공통업권',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '특화데이터',
-					b: '지식그래프',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '전자금융업권',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '할부금융업권',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '보증보험업권',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '통신업권',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '은행업권',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '카드업권',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '가맹점업종',
-					c: '2021-00-00',
-					d: '최자영',
-				},
-				{
-					a: '마이데이터',
-					b: '금융투자업권',
-					c: '2021-00-00',
-					d: '최자영',
+					value: '',
 				},
 			],
 		}

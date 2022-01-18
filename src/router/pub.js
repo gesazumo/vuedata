@@ -20,10 +20,13 @@ export const pubRouter = [
 		path: 'error3', //대체페이지(권한없음)
 		component: () => import('@/views/pub/TAH-COM004.vue'),
 	},
-	//login
 	{
 		path: 'scr001', //로그인
 		component: () => import('@/views/pub/TAH-SCR001.vue'),
+	},
+	{
+		path: 'scr002', //메인화면 의견작성으로 진입시
+		component: () => import('@/views/pub/TAH-SCR002.vue'),
 	},
 	//Admin
 	{
@@ -55,6 +58,26 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-ADM006.vue'),
 	},
 	{
+		path: 'adm007', //Admin 모니터링 포털접속이력
+		component: () => import('@/views/pub/TAH-ADM007.vue'),
+	},
+	{
+		path: 'adm008', //Admin 모니터링 포털접속현황
+		component: () => import('@/views/pub/TAH-ADM008.vue'),
+	},
+	{
+		path: 'adm010', //Admin 모니터링 데이터 처리 현황
+		component: () => import('@/views/pub/TAH-ADM010.vue'),
+	},
+	{
+		path: 'adm011', //Admin 모니터링 개인정보 탐지 결과
+		component: () => import('@/views/pub/TAH-ADM011.vue'),
+	},
+	{
+		path: 'adm013', //Admin 모니터링 클라우드 자원 사용 현황
+		component: () => import('@/views/pub/TAH-ADM013.vue'),
+	},
+	{
 		path: 'adm016', //Admin 포털관리 메뉴관리
 		component: () => import('@/views/pub/TAH-ADM016.vue'),
 	},
@@ -65,6 +88,14 @@ export const pubRouter = [
 	{
 		path: 'adm018', //Admin 포털관리 권한관리
 		component: () => import('@/views/pub/TAH-ADM018.vue'),
+	},
+	{
+		path: 'adm019', //Admin 포털관리 코드조회
+		component: () => import('@/views/pub/TAH-ADM019.vue'),
+	},
+	{
+		path: 'adm020', //Admin 포털관리 코드관리
+		component: () => import('@/views/pub/TAH-ADM020.vue'),
 	},
 	{
 		path: 'adm021', //Admin 게시판관리 공지사항 관리
@@ -175,12 +206,76 @@ export const pubRouter = [
 		path: 'ana010', //Analyze 오픈소스 라이브러리 반입신청완료
 		component: () => import('@/views/pub/TAH-ANA010.vue'),
 	},
-	//Explore Sub Main
+	//Explore
 	{
-		path: 'exp001', //Explore Main
+		path: 'exp001', //Explore sub Main
 		component: () => import('@/views/pub/TAH-EXP001.vue'),
 	},
+	{
+		path: 'exp002', //Explore 마이데이터 목록
+		component: () => import('@/views/pub/TAH-EXP002.vue'),
+	},
+	{
+		path: 'exp003', //Explore 마이데이터 상세
+		component: () => import('@/views/pub/TAH-EXP003.vue'),
+	},
+	{
+		path: 'exp005', //Explore 특화데이터 목록
+		component: () => import('@/views/pub/TAH-EXP005.vue'),
+	},
+	{
+		path: 'exp006', //Explore 특화데이터 상세
+		component: () => import('@/views/pub/TAH-EXP006.vue'),
+	},
+	{
+		path: 'exp004', //Explore 테이블권한 신청
+		component: () => import('@/views/pub/TAH-EXP004.vue'),
+	},
+	{
+		path: 'exp007', //Explore 테이블권한 신청 완료
+		component: () => import('@/views/pub/TAH-EXP007.vue'),
+	},
+	{
+		path: 'exp010', //Explore 대시보드 리스트
+		component: () => import('@/views/pub/TAH-EXP010.vue'),
+	},
+	{
+		path: 'exp011', //Explore 대시보드 상세
+		component: () => import('@/views/pub/TAH-EXP011.vue'),
+	},
 	//My page
+	{
+		path: 'myp012', //My page  My Project 공유하기
+		component: () => import('@/views/pub/TAH-MYP012.vue'),
+	},
+	{
+		path: 'myp013', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP013.vue'),
+	},
+	{
+		path: 'myp014', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP014.vue'),
+	},
+	{
+		path: 'myp015', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP015.vue'),
+	},
+	{
+		path: 'myp016', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP016.vue'),
+	},
+	{
+		path: 'myp017', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP017.vue'),
+	},
+	{
+		path: 'myp018', //My page  My Project 공유하기 완료
+		component: () => import('@/views/pub/TAH-MYP018.vue'),
+	},
+	{
+		path: 'myp022', //My page  My Dataset 업로드
+		component: () => import('@/views/pub/TAH-MYP022.vue'),
+	},
 	{
 		path: 'myp026', //My page  파일 업로드 요청 확인 팝업
 		component: () => import('@/views/pub/TAH-MYP026.vue'),
@@ -190,7 +285,47 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-MYP027.vue'),
 	},
 	{
+		path: 'myp031', //My page  My결재함 목록
+		component: () => import('@/views/pub/TAH-MYP031.vue'),
+	},
+	{
 		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
+	},
+	{
+		path: 'myp033', //My page  My결재함 데이터 결재상세
+		component: () => import('@/views/pub/TAH-MYP033.vue'),
+	},
+	{
+		path: 'myp034', //My page  My결재함 데이터업로드 결재 상세
+		component: () => import('@/views/pub/TAH-MYP034.vue'),
+	},
+	{
+		path: 'myp035', //My page  My결재함 공유하기 결제 상세
+		component: () => import('@/views/pub/TAH-MYP035.vue'),
+	},
+	{
+		path: 'myp037', //My page  My결재함 메타테이블 결재 상세
+		component: () => import('@/views/pub/TAH-MYP037.vue'),
+	},
+	{
+		path: 'sup001', //Support sub main
+		component: () => import('@/views/pub/TAH-SUP001.vue'),
+	},
+	{
+		path: 'sup002', //Support 공지사항
+		component: () => import('@/views/pub/TAH-SUP002.vue'),
+	},
+	{
+		path: 'sup003', //Support FAQ
+		component: () => import('@/views/pub/TAH-SUP003.vue'),
+	},
+	{
+		path: 'sup004', //Support 문의하기
+		component: () => import('@/views/pub/TAH-SUP004.vue'),
+	},
+	{
+		path: 'min',
+		component: () => import('@/views/pub/min.vue'),
 	},
 ]

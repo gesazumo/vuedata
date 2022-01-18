@@ -5,8 +5,58 @@ import moment from 'moment'
 import cloneDeep from 'lodash/cloneDeep.js'
 import uniq from 'lodash/uniq.js'
 import uniqBy from 'lodash/uniqBy.js'
+import { selectAna00601 } from '@/api/modules/anaAPI'
 
 const util = {
+	capitalize(str) {
+		return str.charAt(0).toUpperCase() + str.slice(1)
+	},
+
+	setComponent(level, dir, name) {
+		if (level == 1) {
+			console.log(`@/views/${dir}/${this.capitalize(dir)}Index.vue`)
+			return () =>
+				import(`@/views/${dir}/${this.capitalize(dir)}Index.vue`)
+		} else {
+			console.log(`@/views/${dir}/${name}.vue`)
+			return () => import(`@/views/${dir}/${name}.vue`)
+		}
+	},
+
+	formatMenu(menuList) {
+		const menu = menuList
+			// todo 로그인한 사용자 권한에 따라 filter
+			.filter(menu => {
+				return menu.menuUseYn == 'Y'
+			})
+			.map(menu => {
+				const menuObject = {
+					path:
+						menu.menuLevel == 1
+							? menu.menuUrl
+							: menu.menuUrl.replace('/', ''),
+					name: menu.name.toLowerCase(),
+					meta: {
+						isPublic: false,
+						screenId: menu.menuId,
+					},
+					component: this.setComponent(
+						menu.menuLevel,
+						menu.dir,
+						menu.name,
+					),
+				}
+				if (menu.children) {
+					return {
+						...menuObject,
+						children: this.formatMenu(menu.children),
+					}
+				}
+				return menuObject
+			})
+		return menu
+	},
+
 	requiredValid(msg) {
 		return value => !!value || msg
 	},
@@ -263,6 +313,31 @@ const util = {
 			params: param,
 		}
 		this.$router.push(page)
+	},
+
+	/**
+	 * 프로젝트 여부 체크
+	 * @param {function} popupOpen 프로젝트가 없을때 호출되는 함수(팝업출력)
+	 * @param {function} next 프로젝트가 있을때 호출되는 함수
+	 */
+	async projectValid(popupOpen, next) {
+		const param = {
+			groupCoCd: 'KB0',
+			userNo: 'B0000001',
+		}
+
+		try {
+			const { data } = await selectAna00601(param)
+			console.log(data.totalCount)
+			if (data.totalCount == '0') {
+				popupOpen()
+			} else {
+				console.log(typeof next)
+				if (typeof next == 'function') next()
+			}
+		} catch (error) {
+			console.log('err : ' + error)
+		}
 	},
 }
 

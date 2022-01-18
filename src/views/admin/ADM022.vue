@@ -260,90 +260,9 @@
 										>
 											찾아보기
 											<i class="fa fa-search"></i>
-											<input
-												type="file"
-												class="fileinput"
-											/>
 										</v-btn>
 										<div class="filesize-info">
 											총 <span>N개</span>의 파일(00,000KB)
-										</div>
-										<div v-if="!file">
-											<div
-												:class="[
-													'dropZone',
-													dragging
-														? 'dropZone-over'
-														: '',
-												]"
-												@dragenter="dragging = true"
-												@dragleave="dragging = false"
-											>
-												<div
-													class="dropZone-info"
-													@drag="onChange"
-												>
-													<span class="dropZone-title"
-														>첨부할 파일을 Drag &
-														Drop 방식으로 추가할 수
-														있습니다.</span
-													>
-													<div
-														class="
-															dropZone-upload-limit-info
-														"
-													></div>
-												</div>
-												<input
-													type="file"
-													@change="onChange"
-												/>
-											</div>
-										</div>
-										<div v-else class="dropZone-uploaded">
-											<div class="dropZone-uploaded-info">
-												<table class="fileupload-list">
-													<colgroup>
-														<col width="" />
-														<col width="20%" />
-														<col width="10%" />
-													</colgroup>
-													<tr>
-														<th>파일명</th>
-														<th>파일크기</th>
-														<th>삭제</th>
-													</tr>
-													<tr>
-														<td>filename.gif</td>
-														<td>1,234KB</td>
-														<td
-															style="
-																text-align: center;
-															"
-														>
-															<v-btn
-																color="primary"
-																dark
-																x-small
-																class="
-																	removeFile
-																"
-																append-outer="fa fa-times"
-																@click="
-																	removeFile
-																"
-															>
-																<i
-																	class="
-																		fa
-																		fa-times
-																	"
-																></i>
-															</v-btn>
-														</td>
-													</tr>
-												</table>
-											</div>
 										</div>
 									</td>
 								</tr>
@@ -353,9 +272,9 @@
 				</div>
 				<vue-dropzone
 					ref="myVueDropzone"
-					id="dropzone"
-					@vdropzone-thumbnail="thumbnail"
+					id="customdropzone"
 					:options="dropzoneOptions"
+					:include-styling="false"
 				>
 					<div class="dropzone-custom-content">
 						<h3 class="dropzone-custom-title">
@@ -422,12 +341,14 @@ export default {
 			checkMainText: false,
 			isMainTextEmpty: true,
 			textareaRules: [v => !!v || '공지사항 본문을 입력해 주세요.'],
-			handleFileImport: '',
 			dragging: false,
 			file: '',
 		}
 	},
 	methods: {
+		handleFileImport() {
+			return this.$refs.myVueDropzone.$el.click()
+		},
 		async doCreate() {
 			this.checkRegistDateValid = true
 			this.checkMainText = true
@@ -526,4 +447,46 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+#customdropzone {
+	background-color: orange;
+	font-family: 'Arial', sans-serif;
+	letter-spacing: 0.2px;
+	color: #777;
+	transition: background-color 0.2s linear;
+	height: 100px;
+	padding: 40px;
+}
+
+#customdropzone .dz-preview {
+	width: 160px;
+	display: inline-block;
+}
+#customdropzone .dz-preview .dz-image {
+	display: none;
+}
+#customdropzone .dz-preview .dz-image > div {
+	width: inherit;
+	height: inherit;
+	border-radius: 50%;
+	background-size: contain;
+}
+#customdropzone .dz-preview .dz-image > img {
+	width: 100%;
+}
+
+#customdropzone .dz-preview .dz-details {
+	color: white;
+	transition: opacity 0.2s linear;
+	text-align: center;
+}
+#customdropzone .dz-success-mark {
+	display: none;
+}
+.dz-error-mark {
+	display: none;
+}
+.dz-remove {
+	display: none;
+}
+</style>

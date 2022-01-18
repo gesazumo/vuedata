@@ -3,6 +3,7 @@ import shareRouter from './share'
 import supportRouter from './support'
 import analyzeRouter from './analyze'
 import exploreRouter from './explore'
+import mypageRouter from './mypage'
 
 const commonRouter = [
 	{
@@ -17,7 +18,7 @@ const commonRouter = [
 	},
 	{
 		path: 'main',
-		name: 'Main',
+		name: 'main',
 		meta: { isPublic: false },
 		component: () => import('@/views/MainA.vue'),
 	},
@@ -40,6 +41,11 @@ const commonRouter = [
 		path: '/support',
 		component: () => import('@/views/support/SupportIndex.vue'),
 		children: supportRouter,
+	},
+	{
+		path: '/mypage',
+		component: () => import('@/views/mypage/MyPageIndex.vue'),
+		children: mypageRouter,
 	},
 ]
 

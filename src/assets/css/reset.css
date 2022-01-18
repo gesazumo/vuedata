@@ -40,6 +40,11 @@ address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
 table{width:100%;border-collapse:collapse;border:0;border-spacing:0}
 caption{visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0}
 
+code, kbd, pre, samp {font-family: 'KBFGTextM' !important;}
+pre {
+  word-wrap : break-word;
+  white-space: pre-wrap;
+}
 table, th, td, input, select, textarea, button {  
   color: inherit;
 }
@@ -55,6 +60,10 @@ body {
   font-weight: normal;
   color: #1e1909;
   background: #f4f3f2 !important;
+}
+
+html, body {
+  height: 100%;
 }
 .v-application--wrap {background: #f4f3f2 !important;}
 

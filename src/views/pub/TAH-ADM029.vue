@@ -48,6 +48,13 @@
 					<div class="board">
 						<div class="tit">
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+							<v-select
+								label="10개씩 보기"
+								class="list_select"
+								single-line
+								hide-details="auto"
+							>
+							</v-select>
 						</div>
 						<div class="btn_area">
 							<v-btn color="primary" dark> 등록하기 </v-btn>
@@ -117,50 +124,22 @@ export default {
 					text: '버전',
 					sortable: true,
 					value: '2',
+					align: 'center',
 				},
 				{
 					text: '등록자',
 					sortable: true,
 					value: '3',
+					align: 'center',
 				},
 				{
 					text: '등록일',
 					sortable: true,
 					value: '4',
+					align: 'center',
 				},
 			],
-			items: [
-				{
-					1: '분석가 포털 사용자 매뉴얼',
-					2: '2.1',
-					3: '최자영',
-					4: '2022-00-00',
-				},
-				{
-					1: '분석가 포털 사용자 매뉴얼',
-					2: '2.1',
-					3: '최자영',
-					4: '2022-00-00',
-				},
-				{
-					1: '분석환경 사용자 매뉴얼',
-					2: '1.1',
-					3: '최자영',
-					4: '2022-00-00',
-				},
-				{
-					1: '분석가 포털 사용자 매뉴얼',
-					2: '2.1',
-					3: '최자영',
-					4: '2022-00-00',
-				},
-				{
-					1: '분석가 포털 사용자 매뉴얼',
-					2: '2.1',
-					3: '최자영',
-					4: '2022-00-00',
-				},
-			],
+			items: [],
 		}
 	},
 }

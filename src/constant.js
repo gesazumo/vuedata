@@ -1,6 +1,7 @@
 const constant = {
 	apiErrorMsg_Blue: '서버에 문제가 있습니다. 정원준님에게 문의하세요',
 	apiErrorMsg_Pink: '서버에 문제가 있습니다. 이민수님에게 문의하세요',
+	apiErrorMsg: '서버에 문제가 있습니다. 관리자에게 문의하세요.',
 	notiCmCodePosting: [
 		{
 			cmnCd: '0',
@@ -31,10 +32,6 @@ const constant = {
 			cmnCdNm: '이벤트',
 		},
 	],
-	// TAH000053
-	// TAH000052
-	// TAH000051
-	// TAH000002
 	commCmcodeCompany: [
 		{
 			cmnCd: 'KFG',

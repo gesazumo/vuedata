@@ -22,16 +22,9 @@
 									</th>
 									<td>
 										<v-select
-											text-field
-											:items="categori"
-											label=""
 											placeholder="카테고리를 선택하세요"
 											single-line
 											outlined
-											:rules="[
-												rules.required,
-												rules.categori_rule,
-											]"
 											hide-details="auto"
 										></v-select>
 									</td>
@@ -41,16 +34,9 @@
 									</th>
 									<td>
 										<v-select
-											text-field
-											:items="detail"
-											label=""
 											placeholder="상세구분을 선택하세요"
 											single-line
 											outlined
-											:rules="[
-												rules.required,
-												rules.detail_rule,
-											]"
 											hide-details="auto"
 										></v-select>
 									</td>
@@ -60,20 +46,14 @@
 										제목
 										<span class="asterisk">필수</span>
 									</th>
-									<td>
-										<v-select
-											text-field
-											:items="title"
-											label=""
+									<td colspan="3">
+										<v-text-field
 											placeholder="제목을 입력하세요"
 											single-line
 											outlined
-											:rules="[
-												rules.required,
-												rules.title_rule,
-											]"
+											clearable
 											hide-details="auto"
-										></v-select>
+										></v-text-field>
 									</td>
 								</tr>
 								<tr>
@@ -87,11 +67,6 @@
 											single-line
 											clearable
 											outlined
-											v-moel="project_desc"
-											:rules="[
-												rules.required,
-												rules.project_desc_rule,
-											]"
 											hide-details="auto"
 										>
 										</v-textarea>
@@ -101,224 +76,94 @@
 									<th>
 										썸네일 이미지
 										<span class="asterisk">필수</span>
-									</th>
-									<td colspan="3" class="thumb__area">
-										<div
-											style="float: left margin-right:10px"
+										<v-tooltip
+											right
+											content-class="secondary tooltip-right"
 										>
-											<v-btn
-												color="primary"
-												dark
-												:loading="isSelecting"
-												@click="handleFileImport"
-												append-outer="fa fa-search"
-												style="margin: 0"
+											<template
+												v-slot:activator="{ on, attrs }"
 											>
-												찾아보기
-												<i class="fa fa-search"></i>
-												<input
-													type="file"
-													class="fileinput"
-												/>
-											</v-btn>
-											<div class="search-desc">
-												<p>
-													썸네일 이미지는 1개까지
-													등록할 수 있습니다. 용량은
-													5MB를 넘을 수 없습니다.
-												</p>
-											</div>
-										</div>
-
-										<div v-if="!file">
-											<div
-												:class="[
-													'dropZone',
-													dragging
-														? 'dropZone-over'
-														: '',
-												]"
-												@dragenter="dragging = true"
-												@dragleave="dragging = false"
-											>
-												<div
-													class="dropZone-info"
-													@drag="onChange"
+												<v-btn
+													v-bind="attrs"
+													v-on="on"
+													icon
+													style="
+														background: none !important;
+													"
 												>
-													<span class="dropZone-title"
-														>첨부할 파일을 Drag &
-														Drop 방식으로 추가할 수
-														있습니다.</span
-													>
-													<div
+													<i
 														class="
-															dropZone-upload-limit-info
+															fas
+															fa-question-circle
 														"
-													></div>
-												</div>
-												<input
-													type="file"
-													@change="onChange"
-												/>
+													></i>
+												</v-btn>
+											</template>
+											<div>
+												<p
+													class="title"
+													style="
+														color: #fff !important;
+														font-size: 16px !important;
+													"
+												></p>
+												<span>
+													썸네일 이미지 등록을 위한
+													주의사항을 확인하세요.
+												</span>
 											</div>
-										</div>
-										<div v-else class="dropZone-uploaded">
-											<div class="dropZone-uploaded-info">
-												<table class="fileupload-list">
-													<colgroup>
-														<col width="" />
-														<col width="20%" />
-														<col width="10%" />
-													</colgroup>
-													<tr>
-														<th>파일명</th>
-														<th>파일크기</th>
-														<th>삭제</th>
-													</tr>
-													<tr>
-														<td>filename.gif</td>
-														<td>1,234KB</td>
-														<td
-															style="
-																text-align: center;
-															"
-														>
-															<v-btn
-																color="primary"
-																dark
-																x-small
-																class="
-																	removeFile
-																"
-																append-outer="fa fa-times"
-																@click="
-																	removeFile
-																"
-															>
-																<i
-																	class="
-																		fa
-																		fa-times
-																	"
-																></i>
-															</v-btn>
-														</td>
-													</tr>
-												</table>
-											</div>
-										</div>
+										</v-tooltip>
+									</th>
+									<td colspan="3">
+										파일첨부 component
+										<!--파일첨부 component는 태우 대리님께-->
 									</td>
 								</tr>
 								<tr>
 									<th>
 										배너 이미지
 										<span class="asterisk">필수</span>
-									</th>
-									<td colspan="3" class="thumb__area">
-										<div
-											style="float: left margin-right:10px"
+										<v-tooltip
+											right
+											content-class="secondary tooltip-right"
 										>
-											<v-btn
-												color="primary"
-												dark
-												:loading="isSelecting"
-												@click="handleFileImport"
-												append-outer="fa fa-search"
-												style="margin: 0"
+											<template
+												v-slot:activator="{ on, attrs }"
 											>
-												찾아보기
-												<i class="fa fa-search"></i>
-												<input
-													type="file"
-													class="fileinput"
-												/>
-											</v-btn>
-											<div class="search-desc">
-												<p>
-													배너 이미지는 1개까지 등록할
-													수 있습니다. 용량은 5MB를
-													넘을 수 없습니다.
-												</p>
-											</div>
-										</div>
-
-										<div v-if="!file">
-											<div
-												:class="[
-													'dropZone',
-													dragging
-														? 'dropZone-over'
-														: '',
-												]"
-												@dragenter="dragging = true"
-												@dragleave="dragging = false"
-											>
-												<div
-													class="dropZone-info"
-													@drag="onChange"
+												<v-btn
+													v-bind="attrs"
+													v-on="on"
+													icon
+													style="
+														background: none !important;
+													"
 												>
-													<span class="dropZone-title"
-														>첨부할 파일을 Drag &
-														Drop 방식으로 추가할 수
-														있습니다.</span
-													>
-													<div
+													<i
 														class="
-															dropZone-upload-limit-info
+															fas
+															fa-question-circle
 														"
-													></div>
-												</div>
-												<input
-													type="file"
-													@change="onChange"
-												/>
+													></i>
+												</v-btn>
+											</template>
+											<div>
+												<p
+													class="title"
+													style="
+														color: #fff !important;
+														font-size: 16px !important;
+													"
+												></p>
+												<span>
+													배너 이미지 등록을 위한
+													주의사항을 확인하세요.
+												</span>
 											</div>
-										</div>
-										<div v-else class="dropZone-uploaded">
-											<div class="dropZone-uploaded-info">
-												<table class="fileupload-list">
-													<colgroup>
-														<col width="" />
-														<col width="20%" />
-														<col width="10%" />
-													</colgroup>
-													<tr>
-														<th>파일명</th>
-														<th>파일크기</th>
-														<th>삭제</th>
-													</tr>
-													<tr>
-														<td>filename.gif</td>
-														<td>1,234KB</td>
-														<td
-															style="
-																text-align: center;
-															"
-														>
-															<v-btn
-																color="primary"
-																dark
-																x-small
-																class="
-																	removeFile
-																"
-																append-outer="fa fa-times"
-																@click="
-																	removeFile
-																"
-															>
-																<i
-																	class="
-																		fa
-																		fa-times
-																	"
-																></i>
-															</v-btn>
-														</td>
-													</tr>
-												</table>
-											</div>
-										</div>
+										</v-tooltip>
+									</th>
+									<td colspan="3">
+										파일첨부 component
+										<!--파일첨부 component는 태우 대리님께-->
 									</td>
 								</tr>
 							</tbody>
@@ -326,8 +171,8 @@
 					</div>
 				</div>
 				<div class="btn_area" align="center">
-					<v-btn color="primary" dark outlined> 취소 </v-btn>
-					<v-btn color="primary" dark> 등록하기 </v-btn>
+					<v-btn color="primary" large outlined> 취소 </v-btn>
+					<v-btn color="primary" large> 등록하기 </v-btn>
 				</div>
 			</div>
 		</div>
@@ -336,63 +181,8 @@
 
 <script>
 export default {
-	el: '#app',
 	data() {
-		return {
-			file: '',
-			dragging: false,
-			dialog: false,
-			dialog_chk: false,
-			page: 1,
-			pageCount: 0,
-			itemsPerPage: 10,
-			singleSelect: false,
-			selected: [],
-			items: [{ code: '', desc: '', delete: '' }],
-			rules: {
-				categori_rule: value => !!value || '카테고리를 선택해 주세요.',
-				detail_rule: value => !!value || '상세구분을 선택해 주세요.',
-				title_rule: value => !!value || '제목을 입력해 주세요.',
-				project_desc_rule: value => !!value || '설명을 입력해 주세요.',
-			},
-		}
-	},
-	methods: {
-		onChange(e) {
-			var files = e.target.files || e.dataTransfer.files
-
-			if (!files.length) {
-				this.dragging = false
-				return
-			}
-
-			this.createFile(files[0])
-		},
-		createFile(file) {
-			if (!file.type.match('text.*')) {
-				alert('please select txt file')
-				this.dragging = false
-				return
-			}
-
-			if (file.size > 5000000) {
-				alert('please check file size no over 5 MB.')
-				this.dragging = false
-				return
-			}
-
-			this.file = file
-			console.log(this.file)
-			this.dragging = false
-		},
-		removeFile() {
-			this.file = ''
-		},
-	},
-	computed: {
-		extension() {
-			return this.file ? this.file.name.split('.').pop() : ''
-		},
+		return {}
 	},
 }
 </script>

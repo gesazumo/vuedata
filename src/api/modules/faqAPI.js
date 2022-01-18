@@ -8,6 +8,7 @@ export const getFaqApi = param => {
 		dateto: param.dateto,
 		ques: param.ques,
 		dstic: param.dstic.cmnCd,
+		page: param.page,
 	}
 	console.log(parsedParam)
 	const queryString = util.convertUrl(parsedParam)
