@@ -220,21 +220,24 @@ import { selectMyp01301 } from '@/api/modules/mypAPI'
 export default {
 	data() {
 		return {
+			dmndRsult: null,
 			shareResult: null,
 		}
 	},
 
 	created() {
+		this.dmndRsult = this.$route.params.dmndRsult
 		this.init()
 	},
 
 	methods: {
 		async init() {
 			const param = {
-				anlsRsultShareId: 'KB0-PRTL-0001',
-				anlsShareCgryCd: 'SC1',
-				anlsShareModCd: 'SM1',
-				projId: 'KB0-PROJ-0001',
+				anlsRsultShareId: this.dmndRsult.anlsRsultShareId,
+				anlsRsultShareSerno: this.dmndRsult.anlsRsultShareSerno,
+				anlsShareCgryCd: this.dmndRsult.anlsShareCgryCd,
+				anlsShareModCd: this.dmndRsult.anlsShareModCd,
+				projId: this.dmndRsult.projId,
 			}
 
 			try {

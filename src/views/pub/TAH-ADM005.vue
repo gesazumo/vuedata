@@ -30,7 +30,6 @@
 						<v-col md="4">
 							<div class="label_txt">구분</div>
 							<v-select
-								:items="items_01"
 								placeholder="전체 카테고리"
 								single-line
 								outlined
@@ -40,7 +39,6 @@
 						<v-col md="4">
 							<div class="label_txt">계열사</div>
 							<v-select
-								:items="items_02"
 								placeholder="전체"
 								single-line
 								outlined
@@ -49,23 +47,25 @@
 						</v-col>
 						<v-col></v-col>
 						<v-col md="2" align="right">
-							<v-btn color="primary" dark outlined>초기화</v-btn>
-							<v-btn color="primary" dark>검색하기</v-btn>
+							<v-btn color="primary" outlined>초기화</v-btn>
+							<v-btn color="primary">검색하기</v-btn>
 						</v-col>
 					</v-row>
 				</div>
 				<div class="item_box">
 					<div class="tit">
 						<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+						<v-select
+							label="10개씩 보기"
+							class="list_select"
+							single-line
+							hide-details="auto"
+						>
+						</v-select>
 					</div>
 					<div class="btn_area">
-						<v-btn color="primary" dark> 답변하기 </v-btn>
-						<v-btn
-							color="primary"
-							dark
-							outlined
-							@click="dialog = true"
-						>
+						<v-btn color="primary"> 답변하기 </v-btn>
+						<v-btn color="primary" outlined @click="dialog = true">
 							삭제하기
 						</v-btn>
 						<v-dialog v-model="dialog" max-width="350">
@@ -80,7 +80,6 @@
 
 									<v-btn
 										color="primary"
-										dark
 										outlined
 										@click="dialog = false"
 									>
@@ -89,7 +88,6 @@
 
 									<v-btn
 										color="primary"
-										dark
 										@click="dialog = false"
 									>
 										삭제하기
@@ -101,7 +99,6 @@
 					<div class="table_box">
 						<v-data-table
 							:headers="headers"
-							:items="items"
 							:items-per-page="itemsPerPage"
 							:single-select="singleSelect"
 							show-select
@@ -133,89 +130,56 @@ export default {
 	data() {
 		return {
 			dialog: false,
+
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			items_01: ['전체', '마이데이터', '특화데이터', 'Feature Store'],
-			items_02: [
-				'전체',
-				'그룹공통',
-				'KB금융지주',
-				'KB국민은행',
-				'KB증권',
-				'KB손해보험',
-				'KB국민카드',
-				'푸르덴셜생명',
-				'KB캐피탈',
-				'KB생명보험',
-				'KB저축은행',
-			],
+
 			singleSelect: false,
 			selected: [],
+
 			headers: [
 				{
 					text: '구분',
+					align: 'center',
 					sortable: true,
-					value: 'a',
+					value: '',
 				},
 				{
 					text: '계열사',
+					align: 'center',
 					sortable: true,
-					value: 'b',
+					value: '',
 				},
 				{
 					text: '테이블명',
+					align: 'center',
 					sortable: true,
-					value: 'c',
+					value: '',
 				},
 				{
 					text: '테이블한글명',
+					align: 'center',
 					sortable: true,
-					value: 'd',
+					value: '',
 				},
 				{
 					text: '버전',
+					align: 'center',
 					sortable: true,
-					value: 'e',
+					value: '',
 				},
 				{
 					text: '등록자',
+					align: 'center',
 					sortable: true,
-					value: 'f',
+					value: '',
 				},
 				{
 					text: '등록일시',
+					align: 'center',
 					sortable: true,
-					value: 'g',
-				},
-			],
-			items: [
-				{
-					a: '마이데이터',
-					b: '그룹공통',
-					c: 'TCTAHES01',
-					d: '마이데이터 가입자 정보',
-					e: '1',
-					f: '최자영',
-					g: '2021-00-00 00:00:00',
-				},
-				{
-					a: '특화데이터',
-					b: '공통업권',
-					c: 'TCTAHES02',
-					d: '마이데이터 해지 이력',
-					e: '1',
-					f: '최자영',
-					g: '2021-00-00 00:00:00',
-				},
-				{
-					a: 'Feature Store',
-					b: '그룹공통',
-					c: 'TCTAHES06',
-					d: '전송요구 신청이력',
-					e: '1',
-					f: '최자영',
-					g: '2021-00-00 00:00:00',
+					value: '',
 				},
 			],
 		}

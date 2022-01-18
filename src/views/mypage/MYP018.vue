@@ -121,21 +121,6 @@
 										}}
 									</td>
 								</tr>
-								<!-- <tr>
-									<th>분석환경</th>
-									<td colspan="3">
-										<v-row>
-											<v-checkbox
-												v-for="item in myAnlsEvirnList"
-												v-bind:key="item.cmnCd"
-												v-model="item.anlsEvirnVal"
-												hide-details="false"
-												:label="item.cmnCdNm"
-												disabled
-											></v-checkbox>
-										</v-row>
-									</td>
-								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -155,26 +140,26 @@
 
 <script>
 import { selectMyp01302 } from '@/api/modules/mypAPI'
-// import { selectMyp01202 } from '@/api/modules/mypAPI'
 
 export default {
 	data() {
 		return {
+			dmndRsult: null,
 			shareResult: null,
-			myAnlsEvirnList: [],
 		}
 	},
 
 	created() {
+		this.dmndRsult = this.$route.params.dmndRsult
 		this.init()
 	},
 
 	methods: {
 		async init() {
 			const param = {
-				anlsRsultShareId: 'KB0-CICH-0001',
-				anlsShareModCd: 'SM3',
-				projId: 'KB0-PROJ-0012',
+				anlsRsultShareId: this.dmndRsult.anlsRsultShareId,
+				anlsShareModCd: this.dmndRsult.anlsShareModCd,
+				projId: this.dmndRsult.projId,
 			}
 
 			try {
@@ -186,18 +171,6 @@ export default {
 			} catch (error) {
 				console.log('err : ' + error)
 			}
-
-			// const param1 = {
-			// 	projId: 'KB0-PROJ-0043',
-			// }
-
-			// try {
-			// 	const { data } = await selectMyp01202(param1)
-			// 	this.myAnlsEvirnList = data.myAnlsEvirnList
-			// 	console.log(data)
-			// } catch (error) {
-			// 	console.log('err : ' + error)
-			// }
 		},
 
 		GoHome() {

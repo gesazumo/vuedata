@@ -1,5 +1,11 @@
 const analyzeRouter = [
 	{
+		path: 'myp012',
+		name: 'myp012',
+		meta: { isPublic: true },
+		component: () => import('@/views/mypage/MYP012.vue'),
+	},
+	{
 		path: 'myp013',
 		name: 'myp013',
 		meta: { isPublic: true },

@@ -23,8 +23,8 @@
 								hide-details="auto"
 							></v-select>
 						</v-col>
-						<v-col md="4"></v-col>
-						<v-col md="1">
+						<v-col></v-col>
+						<v-col md="1" align="right">
 							<v-btn color="primary" dark>검색하기</v-btn>
 						</v-col>
 					</v-row>
@@ -32,6 +32,13 @@
 				<div class="item_box">
 					<div class="tit">
 						<p>총 <span>123</span>개의 검색결과가 있습니다.</p>
+						<v-select
+							label="10개씩 보기"
+							class="list_select"
+							single-line
+							hide-details="auto"
+						>
+						</v-select>
 					</div>
 					<div class="btn_area">
 						<v-btn color="primary" dark> 등록하기 </v-btn>

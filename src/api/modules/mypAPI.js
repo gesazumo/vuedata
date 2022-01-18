@@ -20,11 +20,23 @@ export const selectMyp01201 = () => {
 	return userInstance.get(`${url}`)
 }
 
-// My Project 프로젝트 선택 조회
+// My Project 공유하기 프로젝트 선택 조회
 export const selectMyp01202 = param => {
 	const url = '/mypage/myproject/myp012/selectMyp01202'
 	const queryString = util.convertUrl(param)
 	return userInstance.get(`${url}${queryString}`)
+}
+
+// My Project 공유하기 분석가 포털 공유 등록
+export const insertMyp01201 = param => {
+	const url = '/mypage/myproject/myp012/insertMyp01201'
+	return userInstance.post(`${url}`, { ...param })
+}
+
+// My Project 공유하기 계열사전송 & CI 변환 등록
+export const insertMyp01202 = param => {
+	const url = '/mypage/myproject/myp012/insertMyp01202'
+	return userInstance.post(`${url}`, { ...param })
 }
 
 // My Project 공유하기(분석가 포털 공유) 결과 조회
