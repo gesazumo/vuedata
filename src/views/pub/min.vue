@@ -1,5 +1,19 @@
 <template>
 	<v-app>
+		<div style="width: 100%; height: 100%; position: relative">
+			<div
+				style="
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-left: -50px;
+				"
+			>
+				<LoadingLottie />
+			</div>
+		</div>
+	</v-app>
+	<!--v-app>
 		<div class="text-center">
 			<v-dialog
 				v-model="dialog"
@@ -56,7 +70,7 @@
 			</v-dialog>
 		</div>
 
-		<!--<v-btn
+		<v-btn
 			color="primary"
 			small
 			outlined
@@ -92,7 +106,7 @@
 			</v-card>
 		</v-dialog>-->
 
-		<!--파일첨부
+	<!--파일첨부
 		<div style="float: left margin-right:10px">
 			<v-btn
 				color="primary"
@@ -161,8 +175,8 @@
 				</table>
 			</div>
 		</div>
-		-->
-	</v-app>
+		
+	</v-app-->
 </template>
 
 <script>

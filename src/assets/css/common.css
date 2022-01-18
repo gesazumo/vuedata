@@ -4,6 +4,7 @@
 @import "font.css";
 @import "main.css";
 @import "admin.css";
+
 /*@import "style.css";*/
 
 
@@ -742,36 +743,10 @@ textarea::-webkit-scrollbar {
   width: 3px;
   background-color: #d8d8d8;
 }
-
-/*link*/
-
-/*textfield
-.v-text-field {
-    max-width:240px !important;
-}
-*/
-
-/*기본버튼*/
-/*
-button {
-  font-family: "KBFGTextM"; 
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1em;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 4px;
-  margin: 0px 5px;
-  padding: 0 16px;
-  cursor: pointer;
-}*/
 button:active, button:hover, button:focus {
   opacity: 0.7;
   outline: 0;
 }
-
-
 button.large {
   height: 50px;
   min-width: 160px;
@@ -785,7 +760,6 @@ button.small {
   font-size: 14px;
   padding: 0 10px;
 }
-
 button.box {
   border: 1px solid #504842;
   background-color: #fff;
@@ -833,35 +807,6 @@ button:disabled {
   color: #fff;
   pointer-events: none;
 }
-
-/*
-
-button.box {
-  border: 1px solid #504842;
-  background-color: #fff;
-  color: #504842;
-  min-height: 40px;
-}
-button.round {
-  border: 1px solid #504842;
-  background-color: #fff;
-  color: #504842;
-  border-radius: 50px;
-}
-
-
-button.primary:hover {
-  background: #ffbc00 !important;
-  opacity: 0.7;
-  color: #1e1909 !important;
-}
-button.secondary:hover {
-  background: #504842 !important;
-  opacity: 0.7;
-  color: #fff !important;
-}
-
-*/
 
 /*버튼*/
 button.regit {background-color: #504842 !important; color: #fff !important;}  /*등록*/
@@ -917,7 +862,6 @@ button.close {background: none !important;}
 .v-btn.v-size--large {
   font-size: 16px !important;
 }
-
 .v-btn:before {
   background-color: currentColor;
   border-radius: inherit;
@@ -963,7 +907,6 @@ button.close {background: none !important;}
 .v-btn > .v-btn__content .v-icon {
   color: inherit;
 }
-
 .v-btn__content {
   align-items: center;
   color: inherit;
@@ -1252,7 +1195,7 @@ input[type="text"] {
 .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th {text-align: center !important;}
 
 
-/*서브-분석환경신청*/
+/*서브*/
 #sub_wrap {
   padding: 56px 0;
   margin: 0 auto;
@@ -1344,6 +1287,10 @@ input[type="text"] {
   height: 50px;
 }
 .sub_search i {font-size:18px; color:#757575; cursor: pointer;}
+.sub_search .v-input__append-inner {
+  margin-top: 10px;
+}
+
 
 /*서브메인*/
 #subMain {
@@ -1375,6 +1322,12 @@ input[type="text"] {
 .sub_main_info h2 {}
 .sub_main_info .sub_main_btn {
   margin-top: 48px;
+}
+.sub_main_info .sub_main_btn .v-btn {
+  color:#1e1909 !important;
+  font-family: 'KBFGTextM' !important;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 
@@ -1609,9 +1562,75 @@ input[type="text"] {
   color:#2c2921 !important;
 }
 
-.v-tabs .v-tab span {color:#f26615; }
-.theme--dark.v-tabs > .v-tabs-bar {
-  background-color: #ffbc00;
+.board_list_tab .v-sheet.v-card {
+  padding: 0 !important;
+}
+.board_list_tab .tab3 {
+  width:100%;
+  box-shadow:  0 2px 4px 0 rgba(0, 0, 0, 0.16);
+}
+.board_list_tab .tab3 .v-tab {
+  width: 33.33%;
+  max-width: 33.33% !important;
+  font-family: 'KBFGDisplayM';
+  font-weight: 600;
+}
+.board_list_tab .tab3 .v-tab span {
+  font-weight: normal;
+  margin-left: 10px;  
+}
+.v-tab--active {
+  color: #1e1909;
+  background-color: #f4f3f2;
+}
+.v-tab--active span {
+  color: #f26615;
+}
+.board_list_tab .tab3 .v-tabs-slider-wrapper {
+  transition: 0.8s cubic-bezier(0.25, 0.8, 0.5, 1);
+  padding: 0 140px;
+}
+.board_list_tab .tab3 .v-tabs-slider-wrapper .v-tabs-slider {
+  background-color: #ffbc00 !important;
+}
+
+.board_list_tab .tab5 {
+  width:100%;
+  box-shadow:  0 2px 4px 0 rgba(0, 0, 0, 0.16);
+}
+.board_list_tab .tab5 .v-tab {
+  width: 20%;
+  max-width: 20% !important;
+  font-family: 'KBFGDisplayM';
+  font-weight: 600;
+}
+.board_list_tab .tab5 .v-tab span {
+  font-weight: normal;
+  margin-left: 10px;  
+}
+
+.board_list_tab .tab5 .v-tabs-slider-wrapper {
+  transition: 0.8s cubic-bezier(0.25, 0.8, 0.5, 1);
+  padding: 0 40px;
+}
+.board_list_tab .tab5 .v-tabs-slider-wrapper .v-tabs-slider {
+  background-color: #ffbc00 !important;
+}
+
+.tab {
+  width: 100%;
+}
+.tab > .v-tabs .v-tab {
+  font-family: 'KBFGDisplayM';
+  font-size: 18px;
+  font-weight: 600;
+
+}
+.tab > .v-tabs .v-tab span {
+  margin-left: 18px;
+  font-weight: normal;
+  /*color:#f26615; */
+
 }
 
 .card_board {margin-top: 24px !important;}
@@ -3293,6 +3312,26 @@ td:last-child {
   white-space: pre-line;
   text-overflow: ellipsis;
 }
+#exp_sub .card_list .cardinfo {
+  clear: both;
+  font-family: 'KBFGTextM';
+  font-size: 12px;
+  margin-top: 24px;
+  border-top: 1px solid #d8d8d8;
+  padding-top: 24px;
+}
+#exp_sub .card_list .cardinfo div.board div {
+  float: left;
+  margin-right: 24px;
+  font-size: 12px;
+  cursor: pointer;
+}
+#exp_sub .card_list .cardinfo div.board div.good .v-icon:hover  {
+  color:#ffbc00;
+  -webkit-transform:rotate(-20deg);
+    transform:rotate(-20deg);
+}
+/*
 #exp_sub .card_list .card_sns {
   border-top:1px solid #d8d8d8;
   padding-top:24px;
@@ -3301,6 +3340,7 @@ td:last-child {
   float: left; 
   margin-right: 24px;
 }
+*/
 
 #exp_sub .card_item .card_d {
   display: inline-block;
@@ -3380,8 +3420,8 @@ td:last-child {
   border-radius: 4px;
   width: 280px;
   min-width: 280px;
-  max-width: 280px;
-  padding: 24px;
+  max-width: 280px;  
+  padding: 32px; 
   box-shadow: 3px 5px 5px 2px rgba(0,0,0,.2);
 }
 .file_list .v-list-item {

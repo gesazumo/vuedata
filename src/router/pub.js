@@ -20,10 +20,13 @@ export const pubRouter = [
 		path: 'error3', //대체페이지(권한없음)
 		component: () => import('@/views/pub/TAH-COM004.vue'),
 	},
-	//login
 	{
 		path: 'scr001', //로그인
 		component: () => import('@/views/pub/TAH-SCR001.vue'),
+	},
+	{
+		path: 'scr002', //메인화면 의견작성으로 진입시
+		component: () => import('@/views/pub/TAH-SCR002.vue'),
 	},
 	//Admin
 	{
@@ -209,12 +212,36 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-EXP001.vue'),
 	},
 	{
+		path: 'exp002', //Explore 마이데이터 목록
+		component: () => import('@/views/pub/TAH-EXP002.vue'),
+	},
+	{
+		path: 'exp003', //Explore 마이데이터 상세
+		component: () => import('@/views/pub/TAH-EXP003.vue'),
+	},
+	{
+		path: 'exp005', //Explore 특화데이터 목록
+		component: () => import('@/views/pub/TAH-EXP005.vue'),
+	},
+	{
+		path: 'exp006', //Explore 특화데이터 상세
+		component: () => import('@/views/pub/TAH-EXP006.vue'),
+	},
+	{
 		path: 'exp004', //Explore 테이블권한 신청
 		component: () => import('@/views/pub/TAH-EXP004.vue'),
 	},
 	{
 		path: 'exp007', //Explore 테이블권한 신청 완료
 		component: () => import('@/views/pub/TAH-EXP007.vue'),
+	},
+	{
+		path: 'exp010', //Explore 대시보드 리스트
+		component: () => import('@/views/pub/TAH-EXP010.vue'),
+	},
+	{
+		path: 'exp011', //Explore 대시보드 상세
+		component: () => import('@/views/pub/TAH-EXP011.vue'),
 	},
 	//My page
 	{
@@ -258,6 +285,10 @@ export const pubRouter = [
 		component: () => import('@/views/pub/TAH-MYP027.vue'),
 	},
 	{
+		path: 'myp031', //My page  My결재함 목록
+		component: () => import('@/views/pub/TAH-MYP031.vue'),
+	},
+	{
 		path: 'myp032', //My page  My결재함 분석환경신청 결재상세
 		component: () => import('@/views/pub/TAH-MYP032.vue'),
 	},
@@ -288,5 +319,13 @@ export const pubRouter = [
 	{
 		path: 'sup003', //Support FAQ
 		component: () => import('@/views/pub/TAH-SUP003.vue'),
+	},
+	{
+		path: 'sup004', //Support 문의하기
+		component: () => import('@/views/pub/TAH-SUP004.vue'),
+	},
+	{
+		path: 'min',
+		component: () => import('@/views/pub/min.vue'),
 	},
 ]
