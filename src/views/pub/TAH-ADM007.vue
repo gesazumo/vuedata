@@ -2,21 +2,54 @@
 	<v-app>
 		<div class="adm_contents">
 			<div class="inner">
-				<h5>문의하기 관리</h5>
+				<h5>포털 접속 이력</h5>
 				<div class="adm-search">
 					<v-row>
 						<v-col md="4">
-							<div class="label_txt">제목</div>
-							<v-text-field
-								placeholder="제목"
+							<div class="label_txt">
+								구분
+								<v-tooltip
+									right
+									content-class="secondary tooltip-right"
+								>
+									<template v-slot:activator="{ on, attrs }">
+										<v-btn
+											v-bind="attrs"
+											v-on="on"
+											icon
+											style="background: none !important"
+										>
+											<i
+												class="fas fa-question-circle"
+											></i>
+										</v-btn>
+									</template>
+									<div>
+										<p
+											class="title"
+											style="
+												color: #fff !important;
+												font-size: 16px !important;
+											"
+										>
+											포털 사용자 구분 정의를 확인하세요.
+										</p>
+										<span>
+											[일반유저] 분석환경 사용안함<br />
+											[파워유저] 분석환경 신청하여 사용중
+										</span>
+									</div>
+								</v-tooltip>
+							</div>
+							<v-select
+								placeholder="전체"
 								single-line
 								outlined
-								clearable
 								hide-details="auto"
-							></v-text-field>
+							></v-select>
 						</v-col>
 						<v-col md="4">
-							<div class="label_txt">등록일</div>
+							<div class="label_txt">접속일</div>
 							<div>
 								<date-picker
 									v-model="date"
@@ -28,16 +61,7 @@
 					</v-row>
 					<v-row>
 						<v-col md="4">
-							<div class="label_txt">구분</div>
-							<v-select
-								placeholder="전체 카테고리"
-								single-line
-								outlined
-								hide-details="auto"
-							></v-select>
-						</v-col>
-						<v-col md="4">
-							<div class="label_txt">계열사명</div>
+							<div class="label_txt">계열사</div>
 							<v-select
 								placeholder="전체"
 								single-line
@@ -45,17 +69,29 @@
 								hide-details="auto"
 							></v-select>
 						</v-col>
+						<v-col md="4">
+							<div class="label_txt">이름, 사번</div>
+							<v-text-field
+								single-line
+								outlined
+								hide-details="auto"
+							></v-text-field>
+						</v-col>
 					</v-row>
 					<v-row>
-						<v-col md="4">
+						<v-col md="6">
 							<div class="label_txt">Status</div>
 							<div class="checkgroup">
 								<v-checkbox
-									label="답변 대기중"
+									label="로그인 성공"
 									hide-details="auto"
 								></v-checkbox>
 								<v-checkbox
-									label="답변완료"
+									label="ID, PW 오류"
+									hide-details="auto"
+								></v-checkbox>
+								<v-checkbox
+									label="서비스 오류"
 									hide-details="auto"
 								></v-checkbox>
 							</div>
@@ -80,8 +116,10 @@
 							</v-select>
 						</div>
 						<div class="btn_area">
-							<v-btn color="primary"> 답변하기 </v-btn>
-							<v-btn color="primary" outlined> 삭제하기 </v-btn>
+							<v-btn color="primary"> 전체 다운로드 하기 </v-btn>
+							<v-btn color="primary" outlined>
+								선택항목 다운로드 하기
+							</v-btn>
 						</div>
 						<div class="table_box">
 							<v-data-table
@@ -92,26 +130,16 @@
 								hide-default-footer
 								class="elevation-1"
 							>
-								<template v-slot:item="row">
-									<tr>
-										<td>{{ row.item.singleselect }}</td>
-										<td>{{ row.item.a }}</td>
-										<td>{{ row.item.b }}</td>
-										<td>{{ row.item.c }}</td>
-										<td>{{ row.item.d }}</td>
-										<td>{{ row.item.e }}</td>
-										<td>{{ row.item.f }}</td>
-										<td>{{ row.item.g }}</td>
-										<td>
-											{{ row.item.h }}
-											<v-btn
-												color="primary"
-												outlined
-												small
-												>답변하기</v-btn
-											>
-										</td>
-									</tr>
+								<template v-slot:body>
+									<v-btn color="green darken-1" x-small>
+										로그인 성공
+									</v-btn>
+									<v-btn color="red darken-1" x-small
+										>서비스 오류</v-btn
+									>
+									<v-btn color="grey darken-1" x-small>
+										ID, PW 오류
+									</v-btn>
 								</template>
 							</v-data-table>
 						</div>
@@ -138,16 +166,22 @@ export default {
 	},
 	data() {
 		return {
+			date: '',
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
 
 			singleSelect: false,
 			selected: [],
-
 			headers: [
 				{
 					text: 'Status',
+					align: 'center',
+					sortable: true,
+					value: '',
+				},
+				{
+					text: '로그인 방식',
 					align: 'center',
 					sortable: true,
 					value: '',
@@ -159,37 +193,31 @@ export default {
 					value: '',
 				},
 				{
-					text: '문의내용',
-					align: 'left',
-					sortable: true,
-					value: '',
-				},
-				{
-					text: '등록자',
+					text: '접속일시',
 					align: 'center',
 					sortable: true,
 					value: '',
 				},
 				{
-					text: '계열사명',
+					text: '접속자',
 					align: 'center',
 					sortable: true,
 					value: '',
 				},
 				{
-					text: '등록일',
+					text: '사번',
 					align: 'center',
 					sortable: true,
 					value: '',
 				},
 				{
-					text: '답변자',
+					text: '회사명',
 					align: 'center',
 					sortable: true,
 					value: '',
 				},
 				{
-					text: '답변일',
+					text: '브라우저',
 					align: 'center',
 					sortable: true,
 					value: '',

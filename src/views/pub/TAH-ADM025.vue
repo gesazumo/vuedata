@@ -30,7 +30,6 @@
 						<v-col md="4">
 							<div class="label_txt">구분</div>
 							<v-select
-								:items="items_01"
 								placeholder="전체 카테고리"
 								single-line
 								outlined
@@ -39,8 +38,8 @@
 						</v-col>
 						<v-col md="5"></v-col>
 						<v-col md="2" align="right">
-							<v-btn color="primary" dark outlined>초기화</v-btn>
-							<v-btn color="primary" dark>검색하기</v-btn>
+							<v-btn color="primary" outlined>초기화</v-btn>
+							<v-btn color="primary">검색하기</v-btn>
 						</v-col>
 					</v-row>
 				</div>
@@ -48,20 +47,22 @@
 					<div class="board">
 						<div class="tit">
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+							<v-select
+								label="10개씩 보기"
+								class="list_select"
+								single-line
+								hide-details="auto"
+							>
+							</v-select>
 						</div>
 						<div class="btn_area">
-							<v-btn color="primary" dark> 등록하기 </v-btn>
-							<v-btn color="primary" dark outlined>
-								삭제하기
-							</v-btn>
-							<v-btn color="primary" dark outlined>
-								수정하기
-							</v-btn>
+							<v-btn color="primary"> 등록하기 </v-btn>
+							<v-btn color="primary" outlined> 삭제하기 </v-btn>
+							<v-btn color="primary" outlined> 수정하기 </v-btn>
 						</div>
 						<div class="table_box">
 							<v-data-table
 								:headers="headers"
-								:items="items"
 								:items-per-page="itemsPerPage"
 								:single-select="singleSelect"
 								show-select
@@ -96,63 +97,39 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			items_01: [
-				'전체',
-				'포털 이용',
-				'데이터 권한 신청',
-				'분석환경 활용',
-				'기타',
-			],
+
 			singleSelect: false,
 			selected: [],
 			headers: [
 				{
 					text: '카테고리',
+					align: 'center',
 					sortable: true,
-					value: 'a',
+					value: '',
 				},
 				{
 					text: '제목',
+					align: 'left',
 					sortable: true,
-					value: 'b',
+					value: '',
 				},
 				{
 					text: '등록자',
+					align: 'center',
 					sortable: true,
-					value: 'c',
+					value: '',
 				},
 				{
 					text: '등록일',
+					align: 'center',
 					sortable: true,
-					value: 'd',
+					value: '',
 				},
 				{
 					text: '조회수',
+					align: 'center',
 					sortable: true,
-					value: 'e',
-				},
-			],
-			items: [
-				{
-					a: '포털',
-					b: '포털 회원가입은 어떻게 하나요?',
-					c: '최자영',
-					d: '2021-00-00',
-					e: '80',
-				},
-				{
-					a: '데이터',
-					b: '마이데이커 사업자가 아닌 경우에도 권한신청을 할 수 ...',
-					c: '최자영',
-					d: '2021-00-00',
-					e: '79',
-				},
-				{
-					a: '분석환경',
-					b: 'AWS접속을 위한 방화벽은 어떻게 하나요?',
-					c: '최자영',
-					d: '2021-00-00',
-					e: '20',
+					value: '',
 				},
 			],
 		}

@@ -32,9 +32,6 @@
 								placeholder="메뉴 구분을 선택하세요"
 								outlined
 								hide-details="auto"
-								:items="item1"
-								v-model="item"
-								:rules="item1Rules"
 							></v-select>
 						</v-col>
 						<v-col md="4">
@@ -43,9 +40,6 @@
 								placeholder="계열사명을 선택하세요"
 								outlined
 								hide-details="auto"
-								:items="item2"
-								v-model="item"
-								:rules="item2Rules"
 							></v-select>
 						</v-col>
 					</v-row>
@@ -56,15 +50,12 @@
 								placeholder="사용여부를 선택하세요"
 								outlined
 								hide-details="auto"
-								:items="item3"
-								v-model="item"
-								:rules="item3Rules"
 							></v-select>
 						</v-col>
 						<v-col></v-col>
 						<v-col md="2" align="right">
-							<v-btn color="primary" dark outlined>초기화</v-btn>
-							<v-btn color="primary" dark>검색하기</v-btn>
+							<v-btn color="primary" outlined>초기화</v-btn>
+							<v-btn color="primary">검색하기</v-btn>
 						</v-col>
 					</v-row>
 				</div>
@@ -72,20 +63,22 @@
 					<div class="board">
 						<div class="tit">
 							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+							<v-select
+								label="10개씩 보기"
+								class="list_select"
+								single-line
+								hide-details="auto"
+							>
+							</v-select>
 						</div>
 						<div class="btn_area">
-							<v-btn color="primary" dark> 등록하기 </v-btn>
-							<v-btn color="primary" dark outlined>
-								삭제하기
-							</v-btn>
-							<v-btn color="primary" dark outlined>
-								수정하기
-							</v-btn>
+							<v-btn color="primary"> 등록하기 </v-btn>
+							<v-btn color="primary" outlined> 삭제하기 </v-btn>
+							<v-btn color="primary" outlined> 수정하기 </v-btn>
 						</div>
 						<div class="table_box">
 							<v-data-table
 								:headers="headers"
-								:items="items"
 								:items-per-page="itemsPerPage"
 								:single-select="singleSelect"
 								show-select
@@ -125,88 +118,49 @@ export default {
 
 			singleSelect: false,
 			selected: [],
-			item1: ['전체', '통합관리자', '일반관리자'],
-			item2: [
-				'전체',
-				'공통',
-				'KB금융지주',
-				'KB국민은행',
-				'KB증권',
-				'KB손해보험',
-				'KB국민카드',
-				'푸르덴셜생명',
-				'KB캐피탈',
-				'KB생명보험',
-				'KB저축은행',
-			],
-			item3: ['전체', 'Yes', 'No'],
-			item1Rules: [v => !!v || '카테고리를 선택해 주세요.'],
-			item2Rules: [v => !!v || '계열사를 선택해 주세요.'],
-			item3Rules: [v => !!v || '사용여부를 선택해 주세요.'],
+
 			headers: [
 				{
 					text: '구분',
+					align: 'center',
 					sortable: true,
-					value: '1',
+					value: '',
 				},
 				{
 					text: '계열사',
+					align: 'center',
 					sortable: true,
-					value: '2',
+					value: '',
 				},
 				{
 					text: '권한코드 ID',
+					align: 'center',
 					sortable: true,
-					value: '3',
+					value: '',
 				},
 				{
 					text: '권한명',
+					align: 'center',
 					sortable: true,
-					value: '4',
+					value: '',
 				},
 				{
 					text: '사용여부',
+					align: 'center',
 					sortable: true,
-					value: '5',
+					value: '',
 				},
 				{
 					text: '등록자',
+					align: 'center',
 					sortable: true,
-					value: '6',
+					value: '',
 				},
 				{
 					text: '등록일',
+					align: 'center',
 					sortable: true,
-					value: '7',
-				},
-			],
-			items: [
-				{
-					1: '통합',
-					2: '공통',
-					3: 'ADMIN-CMN-AUTH-001',
-					4: '통합 관리자',
-					5: 'Y',
-					6: '최자영',
-					7: '2022-00-00',
-				},
-				{
-					1: '일반',
-					2: 'KB국민은행',
-					3: 'ADMIN-KBO-AUTH-002',
-					4: '계열사 관리자(은행)',
-					5: 'Y',
-					6: '최자영',
-					7: '2022-00-00',
-				},
-				{
-					1: '일반',
-					2: '푸르덴셜생명',
-					3: 'ADMIN-KPO-AUTH-009',
-					4: '계열사 관리자(푸르덴셜)',
-					5: 'Y',
-					6: '최자영',
-					7: '2022-00-00',
+					value: '',
 				},
 			],
 		}

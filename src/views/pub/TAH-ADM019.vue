@@ -60,7 +60,7 @@
 							삭제하기
 						</v-btn>
 						<v-btn color="primary" dark outlined> 수정하기 </v-btn>
-						<v-dialog v-model="dialog" max-width="350">
+						<v-dialog v-model="dialog" max-width="280">
 							<v-card align="center">
 								<v-card-title class="text-subtitle-1">
 									선택 항목을 삭제하시겠습니까?
@@ -72,7 +72,6 @@
 
 									<v-btn
 										color="primary"
-										dark
 										outlined
 										@click="dialog = false"
 									>
@@ -81,7 +80,6 @@
 
 									<v-btn
 										color="primary"
-										dark
 										@click="dialog = false"
 									>
 										삭제하기
@@ -158,7 +156,6 @@ export default {
 					value: '',
 				},
 			],
-			items2: [{}],
 		}
 	},
 }

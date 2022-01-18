@@ -44,6 +44,38 @@
 							총 <span>{{ itemList.length }}</span
 							>개의 인스턴스 목록이 있습니다.
 						</p>
+						<v-select
+							:items="itemCount"
+							item-text="str"
+							item-value="val"
+							class="list_select"
+							value="10"
+							single-line
+							hide-details="auto"
+							@change="moreCount($event)"
+						>
+						</v-select>
+					</div>
+					<div class="btn_area">
+						<v-btn color="primary" @click="Insert()">
+							등록하기
+						</v-btn>
+						<v-btn
+							color="primary"
+							outlined
+							@click="Modify()"
+							:disabled="gf_btnModify(this.checkselected)"
+						>
+							수정하기
+						</v-btn>
+						<v-btn
+							color="primary"
+							outlined
+							@click="Delete()"
+							:disabled="gf_btnDelete(this.checkselected)"
+						>
+							삭제하기
+						</v-btn>
 					</div>
 					<div class="table_box">
 						<template>
@@ -99,23 +131,6 @@
 						></v-pagination>
 					</div>
 				</div>
-			</div>
-			<div class="btn_area">
-				<button
-					class="delete large"
-					@click="Delete()"
-					:disabled="gf_btnDelete(this.checkselected)"
-				>
-					삭제하기
-				</button>
-				<button
-					class="edit large"
-					@click="Modify()"
-					:disabled="gf_btnModify(this.checkselected)"
-				>
-					수정하기
-				</button>
-				<button class="regit large" @click="Insert()">등록하기</button>
 			</div>
 		</div>
 	</div>
@@ -190,6 +205,12 @@ export default {
 			], // 부호 SELCT
 			mark: '4', // 부호
 			korWord: '', // 한글단어명
+			itemCount: [
+				{ str: '10개씩보기', val: '10' },
+				{ str: '15개씩보기', val: '15' },
+				{ str: '30개씩보기', val: '30' },
+				{ str: '50개씩보기', val: '50' },
+			],
 		}
 	},
 
@@ -264,6 +285,10 @@ export default {
 				.catch(err => {
 					console.log('err : ' + err)
 				})
+		},
+
+		moreCount(val) {
+			this.itemsPerPage = Number(val)
 		},
 	},
 }
