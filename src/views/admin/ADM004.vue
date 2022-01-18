@@ -4,158 +4,187 @@
 			<h5>인스턴스 등록 및 수정</h5>
 			<div class="item_box">
 				<div class="table_box">
-					<table class="tb_write">
-						<caption>
-							table caption
-						</caption>
-						<colgroup>
-							<col width="230" />
-							<col width="" />
-						</colgroup>
-						<tbody>
-							<tr>
-								<th>
-									식별자
-									<span class="asterisk">필수</span>
-								</th>
-								<td>{{ instncIdnfr }}</td>
-							</tr>
-							<tr>
-								<th>
-									인스턴스명
-									<span class="asterisk">필수</span>
-								</th>
-								<td>
-									<v-text-field
-										placeholder="인스턴스명을 입력하세요"
-										single-line
-										clearable
-										outlined
-										hide-details="auto"
-										v-model="instncName"
-									>
-										<template slot="append-outer">
-											<v-btn color="primary" dark>
-												중복체크
-											</v-btn>
-										</template>
-									</v-text-field>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									인스턴스 정의
-									<span class="asterisk">필수</span>
-								</th>
-								<td>
-									<v-text-field
-										placeholder="인스턴스 정의 입력하세요"
-										single-line
-										clearable
-										outlined
-										hide-details="auto"
-										v-model="instncDefinCtnt"
-									>
-									</v-text-field>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									인스턴스 코드
-									<span class="asterisk">필수</span>
-								</th>
-								<td>
-									<v-btn color="primary" dark @click="addRow">
-										행추가하기
-									</v-btn>
-									<v-btn
-										class="box"
-										small
-										@click="removeRow()"
-									>
-										삭제하기
-									</v-btn>
-									<div style="margin-top: 16px">
-										<table class="table">
-											<thead>
-												<tr>
-													<th scope="col">
-														<input
-															type="checkbox"
-															v-model="allChecked"
-															@click="
-																checkedAll(
-																	$event
-																		.target
-																		.checked,
-																)
-															"
-														/>
-													</th>
-													<td>
-														<strong>
-															인스턴스코드
-														</strong>
-													</td>
-													<td>
-														<strong>
-															인스턴스코드 정의
-														</strong>
-													</td>
-												</tr>
-											</thead>
-											<tbody>
-												<tr
-													v-for="(
-														item2, index
-													) in instanceRows"
-													:key="index"
-												>
-													<td>
-														<input
-															type="checkbox"
-															v-model="checked"
-															:id="index"
-															:value="index"
-															:class="
-																select(index)
-															"
-														/>
-													</td>
-													<td>
-														<input
-															type="text"
-															v-model="
-																item2.instncCd
-															"
-															:rules="
-																() =>
-																	!!item2.instncCd ||
-																	'인스턴스코드를 입력해주세요.'
-															"
-														/>
-													</td>
-													<td>
-														<input
-															type="text"
-															v-model="
-																item2.instncCtnt
-															"
-															:rules="
-																() =>
-																	!!item2.instncCtnt ||
-																	'인스턴스코드 정의를 입력해주세요.'
-															"
-														/>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<v-form ref="form2" onsubmit="return false;">
+						<table class="tb_write">
+							<caption>
+								table caption
+							</caption>
+							<colgroup>
+								<col width="230" />
+								<col width="" />
+							</colgroup>
+
+							<tbody>
+								<tr>
+									<th>
+										식별자
+										<span class="asterisk">필수</span>
+									</th>
+									<td>{{ instncIdnfr }}</td>
+								</tr>
+								<tr>
+									<th>
+										인스턴스명
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-form
+											ref="form"
+											onsubmit="return false;"
+										>
+											<v-text-field
+												placeholder="인스턴스명을 입력하세요"
+												single-line
+												clearable
+												outlined
+												hide-details="auto"
+												v-model="instncName"
+												:rules="instncName_rule"
+											>
+												<template slot="append-outer">
+													<v-btn
+														color="primary"
+														@click="fn_jungBokChk()"
+														dark
+													>
+														중복체크
+													</v-btn>
+												</template>
+											</v-text-field>
+										</v-form>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										인스턴스 정의
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-text-field
+											placeholder="인스턴스 정의 입력하세요"
+											single-line
+											clearable
+											outlined
+											hide-details="auto"
+											v-model="instncDefinCtnt"
+											:rules="[reqInstncDefinCtnt]"
+										>
+										</v-text-field>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										인스턴스 코드
+										<span class="asterisk">필수</span>
+									</th>
+									<td>
+										<v-btn
+											color="primary"
+											dark
+											@click="addRow"
+										>
+											행추가하기
+										</v-btn>
+										<v-btn
+											class="box"
+											small
+											@click="removeRow()"
+										>
+											삭제하기
+										</v-btn>
+										<div style="margin-top: 16px">
+											<table class="table">
+												<thead>
+													<tr>
+														<th scope="col">
+															<input
+																type="checkbox"
+																v-model="
+																	allChecked
+																"
+																@click="
+																	checkedAll(
+																		$event
+																			.target
+																			.checked,
+																	)
+																"
+															/>
+														</th>
+														<td>
+															<strong>
+																인스턴스코드
+															</strong>
+														</td>
+														<td>
+															<strong>
+																인스턴스코드
+																정의
+															</strong>
+														</td>
+													</tr>
+												</thead>
+												<tbody>
+													<tr
+														v-for="(
+															item2, index
+														) in instanceRows"
+														:key="index"
+													>
+														<td>
+															<input
+																type="checkbox"
+																v-model="
+																	checked
+																"
+																:id="index"
+																:value="index"
+																:class="
+																	select(
+																		index,
+																	)
+																"
+															/>
+														</td>
+														<td>
+															<v-text-field
+																v-model="
+																	item2.instncCd
+																"
+																placeholder="인스턴스코드 입력해주세요"
+																single-line
+																clearable
+																outlined
+																hide-details="auto"
+																:rules="[
+																	requiredCd,
+																]"
+															></v-text-field>
+														</td>
+														<td>
+															<v-text-field
+																v-model="
+																	item2.instncCtnt
+																"
+																placeholder="인스턴스코드 정의를 입력해주세요."
+																single-line
+																clearable
+																outlined
+																hide-details="auto"
+																:rules="[
+																	requiredNm,
+																]"
+															></v-text-field>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</v-form>
 				</div>
 			</div>
 			<div class="btn_area">
@@ -194,7 +223,7 @@ export default {
 			jungBokChkText: '', // 중복체크 완료 단어
 			instncIdnfr: '', // 식별자
 			instncName: '', // 인스턴스명
-			instncDefinCtnt: '', // 인스턴스식별자
+			instncDefinCtnt: '', // 인스턴스정의
 			btnText: '등록',
 			headers: [
 				{
@@ -208,24 +237,60 @@ export default {
 					sortable: false,
 				},
 			],
+
+			instncName_rule: [
+				() => !!this.instncName || '인스턴스명을 입력해 주세요.',
+				() => !!this.jungBokChk || '중복체크를 해주세요.',
+			],
+			reqInstncDefinCtnt: value =>
+				!!value || '인스턴스 정의를 입력해 주세요.',
+			requiredCd: value => !!value || '인스턴스코드를 입력해주세요.',
+			requiredNm: value => !!value || '인스턴스코드 정의를 입력해주세요.',
 		}
 	},
 	methods: {
 		Modify() {
-			console.log(JSON.stringify(this.instanceRows.length))
 			if (this.instanceRows.length == 0) {
 				alert('인스턴스 코드를 등록해주시기 바랍니다.')
 				return
 			} else {
-				for (let i in this.instanceRows) {
-					if (
-						this.instanceRows[i].instncCd == '' ||
-						this.instanceRows[i].instncCtnt == ''
-					) {
-						alert('인스턴스코드를 입력해 주시기 바랍니다.')
-						return
-					}
+				// 개별부 체크
+				const jbCheck = this.$refs.form.validate()
+				const mainCheck = this.$refs.form2.validate()
+				if (!jbCheck || !mainCheck) {
+					return
 				}
+
+				// 중복값 체크
+				const duplicate = this.isDuplicate()
+				if (!duplicate) return
+
+				let url = '/api/admin/meta/regInstncAll'
+				if (this.btnText == '수정') {
+					url = '/api/admin/meta/modInstncAll'
+				}
+
+				axios
+					.post(url, {
+						instncIdnfr: this.instncIdnfr, // 식별자
+						instncName: this.instncName, // 인스턴스명
+						instncDefinCtnt: this.instncDefinCtnt, // 인스턴스정의
+						incdLen: this.instanceRows[0].instncCd.length, // 코드길이
+						userNo: 'S017069',
+						data: this.instanceRows,
+					})
+					.then(res => {
+						if (res) {
+							alert(this.btnText + '되었습니다.')
+							this.gf_router('adm003', {
+								searchKey: this.$route.params.searchKey,
+								searchKey2: this.$route.params.searchKey2,
+							})
+						}
+					})
+					.catch(err => {
+						console.log('err : ' + err)
+					})
 			}
 		},
 
@@ -265,12 +330,20 @@ export default {
 		},
 
 		fn_jungBokChk() {
+			if (!this.instncName) {
+				alert('인스턴스명을 입력해주세요.')
+				return
+			}
+
 			axios
-				.get('/api/admin/meta/getWordCon', {
-					params: { inHanglWordName: this.korWord },
+				.get('/api/admin/meta/getInstncList', {
+					params: {
+						inInstncName: this.instncName,
+						inCon: '1',
+					},
 				})
 				.then(res => {
-					if (res.data) {
+					if (res.data.count > 0) {
 						alert('이미 등록된 단어입니다.')
 						this.jungBokChk = false
 						this.$refs.form.validate()
@@ -288,16 +361,32 @@ export default {
 					alert('err : ' + err)
 				})
 		},
+
+		isDuplicate() {
+			const codeArr = []
+			for (let i in this.instanceRows) {
+				codeArr.push(this.instanceRows[i].instncCd)
+			}
+
+			const codeDup = codeArr.some(function (x) {
+				return codeArr.indexOf(x) !== codeArr.lastIndexOf(x)
+			})
+
+			if (codeDup) {
+				alert('중복된 인스턴스코드가 있습니다.')
+				return false
+			}
+			return true
+		},
 	},
 
 	created() {
 		// 값이 있을경우 수정
-		console.log(this.$route.params.instncIdnfr)
 		if (this.$route.params.instncIdnfr) {
 			this.btnText = '수정'
 			this.jungBokChk = true
 			axios
-				.get('/api/admin/meta/getInstncCon?', {
+				.get('/api/admin/meta/getInstncAll', {
 					params: { inInstncIdnfr: this.$route.params.instncIdnfr },
 				})
 				.then(res => {
@@ -305,19 +394,7 @@ export default {
 					this.instncIdnfr = res.data.instncIdnfr // 식별자
 					this.instncName = res.data.instncName // 인스턴스명
 					this.instncDefinCtnt = res.data.instncDefinCtnt // 인스턴스 정의
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
-
-			axios
-				.get('/api/admin/meta/getInsDtlList', {
-					params: { inInstncIdnfr: this.$route.params.instncIdnfr },
-				})
-				.then(res => {
-					console.log('상세 : ' + JSON.stringify(res))
 					this.instanceRows = res.data.list
-					// this.dtList = item
 				})
 				.catch(err => {
 					console.log('err : ' + err)

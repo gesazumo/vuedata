@@ -20,7 +20,9 @@
 						/>
 						<h4>분석환경신청이 완료되었습니다.</h4>
 						<span>
-							결재 현황 및 분석환경 신청결과는 ‘<u>My Page</u
+							결재 현황 및 분석환경 신청결과는 ‘<u
+								@click="GoMyPage"
+								>My Page</u
 							>’에서 확인 할 수 있습니다.
 						</span>
 					</div>
@@ -108,27 +110,38 @@
 						</table>
 					</div>
 					<div class="btnArea">
-						<v-btn class="box" large @click="GoHome()"
+						<v-btn class="box" large @click="GoHome"
 							>홈으로 가기</v-btn
 						>
-						<v-btn color="primary" large dark>My Page 가기</v-btn>
+						<v-btn color="primary" large dark @click="GoMyPage"
+							>My Page 가기</v-btn
+						>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div v-if="popupShow">
+			<ANA006 :popupName="popupName" @close:popup="popupClose" />
 		</div>
 	</v-app>
 </template>
 
 <script>
 import animationFile from '@/assets/lottie/check.json'
-import axios from 'axios'
+import { selectAna00401 } from '@/api/modules/anaAPI'
+import ANA006 from '@/views/analyze/ANA006.vue'
 
 export default {
+	components: {
+		ANA006,
+	},
 	name: 'CheckLottie',
 	data() {
 		return {
 			defaultOptions: { animationData: animationFile },
 			aplcnResult: null,
+			popupShow: false,
+			popupName: '프로젝트 생성 확인',
 		}
 	},
 
@@ -137,24 +150,19 @@ export default {
 	},
 
 	methods: {
-		init() {
+		async init() {
+			var data = this.$route.params.projectId
 			const param = {
-				projId: this.$route.params.projectId,
+				projId: !data ? 'KB0-PROJ-0001' : data, //this.$route.params.projectId,
 			}
 
-			const queryString = this.convertUrl(param)
-
-			var url = '/api/analyze/analenvreq/ana004/selectAna00401'
-
-			axios
-				.get(url + queryString, {})
-				.then(res => {
-					this.aplcnResult = res.data.aplcnResult
-					console.log(res.data)
-				})
-				.catch(err => {
-					console.log('err : ' + err)
-				})
+			try {
+				const { data } = await selectAna00401(param)
+				console.log(data)
+				this.aplcnResult = data.aplcnResult
+			} catch (error) {
+				console.log('err : ' + error)
+			}
 		},
 
 		handleAnimation: function (anim) {
@@ -174,7 +182,23 @@ export default {
 			})
 		},
 
-		GoMyPage() {},
+		GoMyPage() {
+			this.projectValid(this.popupOpen, this.next)
+		},
+
+		next() {
+			this.$router.push({
+				name: 'ana003',
+			})
+		},
+
+		popupOpen() {
+			this.popupShow = true
+		},
+
+		popupClose() {
+			this.popupShow = false
+		},
 	},
 }
 </script>

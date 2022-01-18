@@ -1,103 +1,123 @@
 <template>
-	<v-app>
-		<div class="adm_contents">
-			<div class="inner">
-				<h5>테이블 관리</h5>
-				<div class="adm-search">
-					<v-row>
-						<v-col md="4">
-							<div class="label_txt">제목</div>
-							<v-text-field
-								placeholder="제목"
-								single-line
-								outlined
-								clearable
-								hide-details="auto"
-							></v-text-field>
-						</v-col>
-						<v-col md="4">
-							<div class="label_txt">등록일</div>
-							<div>
-								<date-picker
-									v-model="date"
-									valueType="format"
-									range
-									placeholder="기간 선택"
-								/>
-							</div>
-						</v-col>
-					</v-row>
-					<v-row>
-						<v-col md="4">
-							<div class="label_txt">구분</div>
-							<v-select
-								:items="items_01"
-								placeholder="전체 카테고리"
-								single-line
-								outlined
-								hide-details="auto"
-							></v-select>
-						</v-col>
-						<v-col md="4">
-							<div class="label_txt">계열사</div>
-							<v-select
-								:items="items_02"
-								placeholder="전체"
-								single-line
-								outlined
-								hide-details="auto"
-							></v-select>
-						</v-col>
-						<v-col></v-col>
-						<v-col md="2" align="right">
-							<v-btn color="primary" dark outlined>초기화</v-btn>
-							<v-btn color="primary" dark>검색하기</v-btn>
-						</v-col>
-					</v-row>
-				</div>
-				<div class="item_box">
-					<div class="tit">
-						<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
-					</div>
-					<div class="btn_area">
-						<v-btn color="primary" dark> 답변하기 </v-btn>
-						<v-btn
-							color="primary"
-							dark
+	<div class="adm_contents">
+		<div class="inner">
+			<h5>테이블 관리</h5>
+			<div class="adm-search">
+				<v-row>
+					<v-col md="4">
+						<div class="label_txt">테이블명</div>
+						<v-text-field
+							v-model="tblHanglName"
+							placeholder="테이블명"
+							single-line
 							outlined
-							@click="dialog = true"
-						>
-							삭제하기
-						</v-btn>
-					</div>
-					<div class="table_box">
-						<v-data-table
-							:headers="headers"
-							:items="items"
-							:items-per-page="itemsPerPage"
-							:single-select="singleSelect"
-							show-select
-							hide-default-footer
-							class="elevation-1"
-						>
-						</v-data-table>
-						<div class="paging">
-							<v-pagination
-								v-model="page"
-								:length="20"
-								:total-visible="7"
-								color="primary"
-							></v-pagination>
+							clearable
+							hide-details="auto"
+						></v-text-field>
+					</v-col>
+					<v-col md="4">
+						<div class="label_txt">등록일</div>
+						<div>
+							<date-picker
+								v-model="date"
+								valueType="format"
+								range
+								placeholder="기간 선택"
+							/>
 						</div>
-					</div>
+					</v-col>
+				</v-row>
+				<v-row>
+					<v-col md="4">
+						<div class="label_txt">구분</div>
+						<v-select
+							:items="$getCmCode('TAH000004')"
+							item-text="cmnCdNm"
+							item-value="cmnCd"
+							v-model="dtCgry"
+							placeholder="카테고리를 선택하세요"
+							single-line
+							outlined
+							hide-details="auto"
+						></v-select>
+					</v-col>
+					<v-col md="4">
+						<div class="label_txt">계열사</div>
+						<v-select
+							:items="$getCmCode('TAH000002')"
+							item-text="cmnCdNm"
+							item-value="cmnCd"
+							v-model="groupCoCd"
+							placeholder="계열사를 선택하세요"
+							single-line
+							outlined
+							hide-details="auto"
+						></v-select>
+					</v-col>
+					<v-col></v-col>
+					<v-col md="2" align="right">
+						<v-btn color="primary" dark outlined>초기화</v-btn>
+						<v-btn color="primary" dark @click="onSearch()"
+							>검색하기</v-btn
+						>
+					</v-col>
+				</v-row>
+			</div>
+			<div class="item_box">
+				<div class="tit" v-if="itemList.length > 0">
+					<p>
+						총 <span>{{ itemList.length }}</span
+						>개의 테이블 목록이 있습니다.
+					</p>
+				</div>
+				<div class="table_box">
+					<v-data-table
+						v-model="checkselected"
+						:headers="headers"
+						:items="itemList"
+						:single-select="singleSelect"
+						:items-per-page="itemsPerPage"
+						item-key="tblId"
+						show-select
+						hide-default-footer
+						class="elevation-1"
+						:page.sync="page"
+						@page-count="pageCount = $event"
+					>
+						<template v-slot:no-data>
+							<v-alert :value="true">
+								조회된 데이터가 없습니다.
+							</v-alert>
+						</template>
+					</v-data-table>
+				</div>
+				<div class="paging">
+					<v-pagination
+						v-model="page"
+						:length="pageCount"
+						:total-visible="7"
+						color="primary"
+						v-if="pageCount > 1"
+					></v-pagination>
 				</div>
 			</div>
+			<div class="btn_area">
+				<button
+					class="edit large"
+					@click="Modify()"
+					:disabled="gf_btnModify(this.checkselected)"
+				>
+					수정하기
+				</button>
+				<button class="regit large" @click="Insert()">등록하기</button>
+			</div>
 		</div>
-	</v-app>
+	</div>
 </template>
 <script>
 import DatePicker from 'vue2-datepicker'
 import moment from 'moment'
+import axios from 'axios'
 
 export default {
 	components: {
@@ -110,105 +130,124 @@ export default {
 			page: 1,
 			pageCount: 0,
 			itemsPerPage: 10,
-			items_01: ['전체', '마이데이터', '특화데이터', 'Feature Store'],
-			items_02: [
-				'전체',
-				'그룹공통',
-				'KB금융지주',
-				'KB국민은행',
-				'KB증권',
-				'KB손해보험',
-				'KB국민카드',
-				'푸르덴셜생명',
-				'KB캐피탈',
-				'KB생명보험',
-				'KB저축은행',
-			],
-			singleSelect: false,
-			selected: [],
+			singleSelect: true,
+			checkselected: [], // 체크박스
+			itemList: [], // jsonData
+			tblHanglName: '', // 테이블명
+			dtCgry: 'A', // 구분
+			groupCoCd: 'K00', // 계열사
+			searchKey: {},
+			searchYn: false,
 			headers: [
 				{
 					text: '구분',
+					align: 'center',
 					sortable: true,
-					value: 'a',
+					value: 'dtCgryNm',
 				},
 				{
 					text: '계열사',
+					align: 'center',
 					sortable: true,
-					value: 'b',
+					value: 'groupCoNm',
 				},
 				{
 					text: '테이블명',
+					align: 'center',
 					sortable: true,
-					value: 'c',
+					value: 'tblId',
 				},
 				{
 					text: '테이블한글명',
+					align: 'center',
 					sortable: true,
-					value: 'd',
+					value: 'tblHanglName',
 				},
 				{
 					text: '버전',
+					align: 'center',
 					sortable: true,
-					value: 'e',
+					value: 'lastVsnno',
 				},
 				{
 					text: '등록자',
+					align: 'center',
 					sortable: true,
-					value: 'f',
+					value: 'sysLastEmpid',
 				},
 				{
 					text: '등록일시',
+					align: 'center',
 					sortable: true,
-					value: 'g',
+					value: 'sysLastPrcssYms',
+				},
+				{
+					text: '그룹회사코드',
+					align: ' d-none',
+					sortable: true,
+					value: 'groupCoCd',
 				},
 			],
-			items: [
-				{
-					a: '마이데이터',
-					b: '그룹공통',
-					c: 'TCTAHES01',
-					d: '마이데이터 가입자 정보',
-					e: '1',
-					f: '최자영',
-					g: '2021-00-00 00:00:00',
-				},
-				{
-					a: '특화데이터',
-					b: '공통업권',
-					c: 'TCTAHES02',
-					d: '마이데이터 해지 이력',
-					e: '1',
-					f: '최자영',
-					g: '2021-00-00 00:00:00',
-				},
-				{
-					a: 'Feature Store',
-					b: '그룹공통',
-					c: 'TCTAHES06',
-					d: '전송요구 신청이력',
-					e: '1',
-					f: '최자영',
-					g: '2021-00-00 00:00:00',
-				},
-			],
+			items: [],
 		}
 	},
 
+	methods: {
+		onSearch() {
+			this.searchYn = true
+			this.searchKey = {
+				inTblHanglName: this.tblHanglName, // 테이블명
+				inFrDt: this.date[0], // 시작일자
+				inToDt: this.date[1], // 종료일자
+				inDtCgry: this.dtCgry, // 구분
+				inGroupCoCd: this.groupCoCd, // 계열사
+			}
+			axios
+				.get('/api/admin/meta/getTblList', {
+					params: this.searchKey,
+				})
+				.then(res => {
+					this.itemList = res.data.list
+				})
+				.catch(err => {
+					console.log('err : ' + err)
+				})
+		},
+
+		Insert() {
+			this.gf_router('adm006', {
+				searchKey: this.searchKey,
+				searchKey2: this.searchYn,
+			})
+		},
+
+		Modify() {
+			this.gf_router('adm006', {
+				inGroupCoCd: this.checkselected[0].groupCoCd,
+				inTblId: this.checkselected[0].tblId,
+				searchKey: this.searchKey,
+				searchKey2: this.searchYn,
+			})
+		},
+	},
+
 	created() {
-		this.subject = ''
-		this.date = [
-			moment().subtract(1, 'months').format('YYYY-MM-DD'),
-			moment().format('YYYY-MM-DD'),
-		]
-		this.selectGb = { title: '전체', value: '99' }
-		this.selectSub = [
-			{ title: '전체', value: '99' },
-			{ title: 'Python', value: '01' },
-			{ title: 'R', value: '02' },
-			{ title: 'Anaconda', value: '03' },
-			{ title: '기타', value: '04' },
-		]
+		window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+
+		if (this.$route.params.searchKey2) {
+			this.tblHanglName = this.$route.params.searchKey.inTblHanglName // 테이블명
+			this.date[0] = this.$route.params.searchKey.inFrDt // 시작일자
+			this.date[1] = this.$route.params.searchKey.inToDt // 종료일자
+			this.dtCgry = this.$route.params.searchKey.inDtCgry // 구분
+			this.groupCoCd = this.$route.params.searchKey.inGroupCoCd // 계열사
+			this.onSearch()
+		} else {
+			this.subject = ''
+			this.date = [
+				moment().subtract(1, 'months').format('YYYY-MM-DD'),
+				moment().format('YYYY-MM-DD'),
+			]
+		}
 	},
 }
 </script>

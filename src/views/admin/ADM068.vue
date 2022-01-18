@@ -4,7 +4,7 @@
 			<div class="open-inner">
 				<div class="open-head">
 					<h5>컬럼명 조회</h5>
-					<div class="close-btn">
+					<div class="close-btn" @click="popupClose()">
 						<img src="../../images/com_icon_close.svg" />
 					</div>
 				</div>
@@ -18,22 +18,30 @@
 						</div>
 						<div style="float: left">
 							<v-text-field
-								placeholder="고객"
+								placeholder="은행"
+								single-line
 								outlined
+								v-model="korWord"
 								clearable
-								hide-details="auto"
 							></v-text-field>
 						</div>
 						<div style="float: left; margin-left: 5px">
 							<v-select
-								:items="items"
-								label="%_%"
+								:items="markitems"
+								item-text="iCon"
+								item-value="value"
+								ref="mark"
+								v-model="mark"
 								single-line
 								outlined
-								hide-details="auto"
 							>
 								<template slot="append-outer">
-									<v-btn color="primary" dark>
+									<v-btn
+										color="primary"
+										dark
+										@click="onSearch()"
+										:disabled="korWord == ''"
+									>
 										검색하기
 									</v-btn>
 								</template>
@@ -41,38 +49,62 @@
 						</div>
 					</div>
 					<div class="item_box">
-						<div class="tit">
-							<p>총 <span>00</span>개의 검색결과가 있습니다.</p>
+						<div class="tit" v-if="itemList.length > 0">
+							<p>
+								총 <span>{{ itemList.length }}</span
+								>개의 단어 목록이 있습니다.
+							</p>
 						</div>
 
 						<div class="table_box">
 							<v-data-table
+								v-model="checkselected"
 								:headers="headers"
-								:items="items"
-								:items-per-page="itemsPerPage"
+								:items="itemList"
 								:single-select="singleSelect"
+								:items-per-page="itemsPerPage"
+								item-key="hanglWordName"
 								show-select
-								:height="300"
-								fixed-header
 								hide-default-footer
 								class="elevation-1"
+								:page.sync="page"
+								@page-count="pageCount = $event"
+								:height="300"
 							>
+								<template v-slot:no-data>
+									<v-alert :value="true">
+										조회된 데이터가 없습니다.
+									</v-alert>
+								</template>
 							</v-data-table>
-							<div class="paging">
-								<v-pagination
-									v-model="page"
-									:length="20"
-									:total-visible="7"
-									color="primary"
-								></v-pagination>
-							</div>
+						</div>
+						<div class="paging">
+							<v-pagination
+								v-model="page"
+								:length="pageCount"
+								:total-visible="7"
+								color="primary"
+								v-if="pageCount > 1"
+							></v-pagination>
 						</div>
 					</div>
 					<div class="btnArea">
-						<v-btn color="primary" dark large outlined>
+						<v-btn
+							color="primary"
+							dark
+							large
+							outlined
+							@click="popupClose()"
+						>
 							취소
 						</v-btn>
-						<v-btn color="primary" dark large>선택완료</v-btn>
+						<v-btn
+							color="primary"
+							dark
+							large
+							@click="selectColumn()"
+							>선택완료</v-btn
+						>
 					</div>
 				</div>
 			</div>
@@ -80,60 +112,109 @@
 	</v-app>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
 	data() {
 		return {
-			name: '',
-			nameRules: '',
-			rules: {
-				nameRules: v => !!v || '이름을 입력해 주세요.',
-			},
+			page: 1,
+			pageCount: 0,
+			itemsPerPage: 10,
 			singleSelect: false,
-			selected: [],
+			checkselected: [], // 체크박스
+			itemList: [], // jsonData
+
 			headers: [
 				{
 					text: '원천',
 					align: 'center',
 					sortable: true,
+					value: 'screnRegiYn',
 				},
 				{
 					text: '한글단어명',
 					align: 'center',
 					sortable: true,
+					value: 'hanglWordName',
 				},
 				{
 					text: '영문약어명',
 					align: 'center',
 					sortable: true,
+					value: 'engAbrvnName',
 				},
 				{
 					text: '영어단어명',
 					align: 'center',
 					sortable: true,
+					value: 'engWordName',
 				},
 				{
 					text: '단어구분',
 					align: 'center',
 					sortable: true,
+					value: 'smwrCmwrDstic',
 				},
 				{
 					text: '정의',
 					align: 'center',
 					sortable: true,
+					value: 'hanglWordDefin',
 				},
 				{
 					text: '등록자',
 					align: 'center',
 					sortable: true,
+					value: 'sysLastEmpid',
 				},
 				{
 					text: '등록일시',
 					align: 'center',
 					sortable: true,
+					value: 'sysLastPrcssYms',
 				},
 			],
-			items: [],
+
+			markitems: [
+				{ iCon: '==', value: '1' },
+				{ iCon: '_%', value: '2' },
+				{ iCon: '%_', value: '3' },
+				{ iCon: '%_%', value: '4' },
+			], // 부호 SELCT
+			mark: '4', // 부호
+			korWord: '', // 한글단어명
 		}
+	},
+
+	methods: {
+		onSearch() {
+			if (this.korWord == '') {
+				return
+			}
+
+			axios
+				.get('/api/admin/meta/getWordList', {
+					params: { inCon: this.mark, inHanglWordName: this.korWord },
+				})
+				.then(res => {
+					this.itemList = res.data.list
+				})
+				.catch(err => {
+					console.log('err : ' + err)
+				})
+		},
+
+		selectColumn() {
+			if (this.checkselected.length == 0) {
+				alert('컬럼을 선택해 주세요.')
+				return
+			}
+			this.$emit('selectColumn', this.checkselected)
+		},
+
+		popupClose() {
+			this.$emit('close:popup')
+		},
 	},
 }
 </script>
