@@ -1,4 +1,4 @@
-FROM node:12.18
+FROM node:12.18 as build-stage
 
 # install simple http server for serving static content
 RUN npm install -g http-server 
@@ -17,6 +17,9 @@ COPY . .
 
 # build app for production with minification
 RUN npm run build
+
+FROM nginx:stable-apine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 EXPOSE 8080
 CMD [ "http-server --cors", "dist" ]
