@@ -30,6 +30,7 @@
     "vue-lottie": "^0.2.1",
     "vue-router": "^3.2.0",
     "vue-slick": "^1.1.16",
+    "vue-text-highlight": "^2.0.10",
     "vue-toasted": "^1.1.28",
     "vue-tree-list": "^1.5.0",
     "vue2-datepicker": "^3.10.4",
